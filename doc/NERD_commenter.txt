@@ -861,7 +861,6 @@ to get illegal syntax when uncommenting them.
 8. Changelog                                                *NERDComChangelog*
 
 2.1.7
-
     - added support for haml, thx to Greb Weber
     - added support for asterisk, thx to Laurent ARNOUD
     - added support for objcpp, thx to Nicolas Weber
@@ -869,6 +868,8 @@ to get illegal syntax when uncommenting them.
     - fixed a bug with the passwd filetype setup, thx to Yongwei Wu
     - fixed a bug that was forcing filetypes with an alternative set of delims
       to have at least one multipart set.
+    - split out the help file out from the script and repackaged everything as
+      a zip
 
 2.1.6
     - added support for gentoo-conf-d thanks to tinoucas for posting the issue
