@@ -1121,6 +1121,8 @@ bugs.
 
 Cheers to Cheng Fang for the bug reports :D
 
+Cheers to Yongwei Wu for a bug report about the passwd filetype.
+
 Not to forget! Thanks to the following people for sending me new filetypes to
 support :D
 
