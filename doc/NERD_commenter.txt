@@ -860,6 +860,11 @@ to get illegal syntax when uncommenting them.
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
+2.1.8
+    - added an alternative set of delims for the plsql filetype, thx to Kuchma
+      Michael
+    - added support for spectre, thx to Brett Warneke
+
 2.1.7
     - added support for haml, thx to Greb Weber
     - added support for asterisk, thx to Laurent ARNOUD
@@ -1165,3 +1170,6 @@ Bruce Sherrod                       velocity
 timberke                            cobol
 Aaron Schaefer                      factor 
 Laurent ARNOUD                      asterisk
+Kuchma Michael                      plsql
+Brett Warneke                       spectre
+

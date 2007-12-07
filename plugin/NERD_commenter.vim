@@ -553,7 +553,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
     elseif a:filetype == "plm" 
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "plsql" 
-        call s:MapDelimiters('--', '')
+        call s:MapDelimitersWithAlternative('--', '', '/*', '*/')
     elseif a:filetype == "po" 
         call s:MapDelimiters('#', '')
     elseif a:filetype == "postscr" 
@@ -676,6 +676,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == "specman" 
         call s:MapDelimiters('//', '')
+    elseif a:filetype == "spectre" 
+        call s:MapDelimitersWithAlternative('//', '', '*', '')
     elseif a:filetype == "spice" 
         call s:MapDelimiters('$', '')
     elseif a:filetype == "sql" 
