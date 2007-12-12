@@ -1836,15 +1836,15 @@ function s:UncommentLineNormal(line)
     let line = a:line
 
     "get the comment status on the line so we know how it is commented 
-    let lineCommentStatus =  s:IsCommentedOuttermost(b:leftAlt, b:rightAlt, b:left, b:right, line) 
+    let lineCommentStatus =  s:IsCommentedOuttermost(b:left, b:right, b:leftAlt, b:rightAlt, line) 
 
     "it is commented with b:left and b:right so remove these delims
     if lineCommentStatus == 1 
-        let line = s:RemoveDelimiters(b:leftAlt, b:rightAlt, line)
+        let line = s:RemoveDelimiters(b:left, b:right, line)
 
     "it is commented with b:leftAlt and b:rightAlt so remove these delims
     elseif lineCommentStatus == 2 && g:NERDRemoveAltComs
-        let line = s:RemoveDelimiters(b:left, b:right, line)
+        let line = s:RemoveDelimiters(b:leftAlt, b:rightAlt, line)
 
     "it is not properly commented with any delims so we check if it has
     "any random left or right delims on it and remove the outtermost ones 
