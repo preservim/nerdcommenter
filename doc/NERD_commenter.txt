@@ -864,6 +864,8 @@ to get illegal syntax when uncommenting them.
     - added an alternative set of delims for the plsql filetype, thx to Kuchma
       Michael
     - added support for spectre, thx to Brett Warneke
+    - fixed a bug that was screwing up the removal of spaces when
+      NERDSpaceDelims was set. Thx to David Miani for posting the issue.
 
 2.1.7
     - added support for haml, thx to Greb Weber
@@ -1127,6 +1129,9 @@ bugs.
 Cheers to Cheng Fang for the bug reports :D
 
 Cheers to Yongwei Wu for a bug report about the passwd filetype.
+
+Thanks to David Miani for reporting a space-removal bug when using the
+NERDSpaceDelims option.
 
 Not to forget! Thanks to the following people for sending me new filetypes to
 support :D
