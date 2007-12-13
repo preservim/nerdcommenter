@@ -866,6 +866,8 @@ to get illegal syntax when uncommenting them.
     - added support for spectre, thx to Brett Warneke
     - fixed a bug that was screwing up the removal of spaces when
       NERDSpaceDelims was set. Thx to David Miani for posting the issue.
+    - added dummy support for lhaskell, thx to pipp for posting the issue
+    
 
 2.1.7
     - added support for haml, thx to Greb Weber
@@ -1177,4 +1179,4 @@ Aaron Schaefer                      factor
 Laurent ARNOUD                      asterisk
 Kuchma Michael                      plsql
 Brett Warneke                       spectre
-
+Pipp                                lhaskell

@@ -416,6 +416,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('/*','*/')
     elseif a:filetype == "lftp" 
         call s:MapDelimiters('#', '')
+    elseif a:filetype == "lhaskell" 
+        call s:MapDelimiters('','')
     elseif a:filetype == "lifelines" 
         call s:MapDelimiters('/*','*/')
     elseif a:filetype == "lilo" 
