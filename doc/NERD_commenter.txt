@@ -744,7 +744,7 @@ If this option is set to 1 then the top style will be used.
 ------------------------------------------------------------------------------
                                                           *NERDDefaultNesting*
 Values: 0 or 1.
-Default 0.
+Default 1.
 
 When this option is set to 1, comments are nested automatically. That is, if
 you hit ,cc on a line that is already commented it will be commented
@@ -869,6 +869,8 @@ to get illegal syntax when uncommenting them.
     - added support for spectre, thx to Brett Warneke
     - added support for scala, thx to Renald Buter
     - added support for asymptote, thx to Vladimir Lomov
+    - made NERDDefaultNesting enabled by default as this seems more intuitive,
+      thx to marco for the suggestion
     
 
 2.1.7
@@ -1139,6 +1141,8 @@ NERDSpaceDelims option.
 
 Thanks to Jeremy Hinegardner for emailing me about a bug with aligned
 comments and the NERDSpaceDelims option.
+
+Thanks to marco for suggesting NERDDefaultNesting be set by default.
 
 Not to forget! Thanks to the following people for sending me new filetypes to
 support :D
