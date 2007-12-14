@@ -866,6 +866,8 @@ to get illegal syntax when uncommenting them.
     - added support for spectre, thx to Brett Warneke
     - fixed a bug that was screwing up the removal of spaces when
       NERDSpaceDelims was set. Thx to David Miani for posting the issue.
+    - fixed a bug with aligned comments and the NERDSpaceDelims option, thx to
+      Jeremy Hinegardner
     - added dummy support for lhaskell, thx to pipp for posting the issue
     
 
@@ -1134,6 +1136,9 @@ Cheers to Yongwei Wu for a bug report about the passwd filetype.
 
 Thanks to David Miani for reporting a space-removal bug when using the
 NERDSpaceDelims option.
+
+Thanks to Jeremy Hinegardner for emailing me about a bug with aligned
+comments and the NERDSpaceDelims option.
 
 Not to forget! Thanks to the following people for sending me new filetypes to
 support :D

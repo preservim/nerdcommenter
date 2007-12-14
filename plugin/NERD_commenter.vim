@@ -1106,12 +1106,12 @@ function s:CommentLines(forceNested, alignLeft, alignRight, firstLine, lastLine)
             " check if we can comment this line 
             if !isCommented || g:NERDUsePlaceHolders || s:Multipart()
                 if a:alignLeft
-                    let theLine = s:AddLeftDelimAligned(b:left, theLine, leftAlignIndx)
+                    let theLine = s:AddLeftDelimAligned(s:GetLeft(0,1,0), theLine, leftAlignIndx)
                 else
                     let theLine = s:AddLeftDelim(s:GetLeft(0,1,0), theLine)
                 endif
                 if a:alignRight
-                    let theLine = s:AddRightDelimAligned(b:right, theLine, rightAlignIndx)
+                    let theLine = s:AddRightDelimAligned(s:GetRight(0,1,0), theLine, rightAlignIndx)
                 else
                     let theLine = s:AddRightDelim(s:GetRight(0,1,0), theLine)
                 endif
