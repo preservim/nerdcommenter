@@ -166,6 +166,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('''', '')
     elseif a:filetype == "asterisk" 
         call s:MapDelimiters(';', '')
+    elseif a:filetype == "asy" 
+        call s:MapDelimiters('//', '')
     elseif a:filetype == "atlas" 
         call s:MapDelimiters('C','$') 
     elseif a:filetype == "autohotkey" 
@@ -622,6 +624,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimitersWithAlternative('//','', '/*', '')
     elseif a:filetype == "sather" 
         call s:MapDelimiters('--', '')
+    elseif a:filetype == "scala" 
+        call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "scheme" 
         call s:MapDelimiters(';', '')
     elseif a:filetype == "scilab" 

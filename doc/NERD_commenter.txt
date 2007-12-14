@@ -861,14 +861,16 @@ to get illegal syntax when uncommenting them.
 8. Changelog                                                *NERDComChangelog*
 
 2.1.8
-    - added an alternative set of delims for the plsql filetype, thx to Kuchma
-      Michael
-    - added support for spectre, thx to Brett Warneke
     - fixed a bug that was screwing up the removal of spaces when
-      NERDSpaceDelims was set. Thx to David Miani for posting the issue.
+      NERDSpaceDelims was set. Thx to David Miani for posting the issue
     - fixed a bug with aligned comments and the NERDSpaceDelims option, thx to
       Jeremy Hinegardner
     - added dummy support for lhaskell, thx to pipp for posting the issue
+    - added an alternative set of delims for the plsql filetype, thx to Kuchma
+      Michael
+    - added support for spectre, thx to Brett Warneke
+    - added support for scala, thx to Renald Buter
+    - added support for asymptote, thx to Vladimir Lomov
     
 
 2.1.7
@@ -1185,3 +1187,5 @@ Laurent ARNOUD                      asterisk
 Kuchma Michael                      plsql
 Brett Warneke                       spectre
 Pipp                                lhaskell
+Renald Buter                        scala
+Vladimir Lomov                      asymptote
