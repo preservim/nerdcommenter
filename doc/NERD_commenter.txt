@@ -861,10 +861,8 @@ to get illegal syntax when uncommenting them.
 8. Changelog                                                *NERDComChangelog*
 
 2.1.8
-    - fixed a bug that was screwing up the removal of spaces when
-      NERDSpaceDelims was set. Thx to David Miani for posting the issue
-    - fixed a bug with aligned comments and the NERDSpaceDelims option, thx to
-      Jeremy Hinegardner
+    - fixed a couple of bugs with the NERDSpaceDelims option, thx to 
+      David Miani and Jeremy Hinegardner
     - added dummy support for lhaskell, thx to pipp for posting the issue
     - added an alternative set of delims for the plsql filetype, thx to Kuchma
       Michael
