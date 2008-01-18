@@ -248,6 +248,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('','')
     elseif a:filetype == "cvs" 
         call s:MapDelimiters('CVS:','')
+    elseif a:filetype == "CVSAnnotate" 
+        call s:MapDelimiters('','')
     elseif a:filetype == "d" 
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "dcl" 
@@ -482,6 +484,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('(*','*)') 
     elseif a:filetype == "monk" 
         call s:MapDelimiters(';', '')
+    elseif a:filetype == "mrxvtrc" 
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "mush" 
         call s:MapDelimiters('#', '')
     elseif a:filetype == "muttrc" 
@@ -702,7 +706,11 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('--', '')
     elseif a:filetype == "strace" 
         call s:MapDelimiters('/*','*/')
+    elseif a:filetype == "SVKAnnotate" 
+        call s:MapDelimiters('','')
     elseif a:filetype == "svn" 
+        call s:MapDelimiters('','')
+    elseif a:filetype == "SVNAnnotate" 
         call s:MapDelimiters('','')
     elseif a:filetype == "SVNcommitlog" 
         call s:MapDelimiters('','')

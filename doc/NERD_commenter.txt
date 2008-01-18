@@ -860,6 +860,11 @@ to get illegal syntax when uncommenting them.
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
+2.1.9
+    - added support for mrxvtrc, thx to Marco for the email
+    - added dummy support for SVNAnnotate, SVKAnnotate and CVSAnnotate, thx to
+      nicothakis for posting the issue
+
 2.1.8
     - fixed a couple of bugs with the NERDSpaceDelims option, thx to 
       David Miani and Jeremy Hinegardner
@@ -1191,3 +1196,5 @@ Brett Warneke                       spectre
 Pipp                                lhaskell
 Renald Buter                        scala
 Vladimir Lomov                      asymptote
+Marco                               mrxvtrc
+nicothakis                          SVNAnnotate, CVSAnnotate, SVKAnnotate
