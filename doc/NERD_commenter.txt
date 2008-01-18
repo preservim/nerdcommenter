@@ -861,7 +861,7 @@ to get illegal syntax when uncommenting them.
 8. Changelog                                                *NERDComChangelog*
 
 2.1.9
-    - added support for mrxvtrc, thx to Marco for the email
+    - added support for mrxvtrc and aap, thx to Marco for the emails
     - added dummy support for SVNAnnotate, SVKAnnotate and CVSAnnotate, thx to
       nicothakis for posting the issue
 
@@ -1196,5 +1196,5 @@ Brett Warneke                       spectre
 Pipp                                lhaskell
 Renald Buter                        scala
 Vladimir Lomov                      asymptote
-Marco                               mrxvtrc
+Marco                               mrxvtrc, aap
 nicothakis                          SVNAnnotate, CVSAnnotate, SVKAnnotate

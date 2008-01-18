@@ -132,6 +132,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
     "hardcoded the comment delimiters to use 
     if a:filetype == "" 
         call s:MapDelimiters('', '')
+    elseif a:filetype == "aap" 
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "abaqus" 
         call s:MapDelimiters('**', '')
     elseif a:filetype == "abc" 
