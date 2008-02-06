@@ -1041,7 +1041,7 @@ function s:CommentBlock(top, bottom, lSide, rSide, forceNested )
 
                     if s:Multipart()
                         "stick the right delimiter down 
-                        let theLine = strpart(theLine, 0, rSide+strlen(leftSpaced)) . rightSpaced . strpart(theLine, rSide+strlen(rightSpaced))
+                        let theLine = strpart(theLine, 0, rSide+strlen(leftSpaced)) . rightSpaced . strpart(theLine, rSide+strlen(leftSpaced))
 
                         let firstLeftDelim = s:FindDelimiterIndex(b:left, theLine)
                         let lastRightDelim = s:LastIndexOfDelim(b:right, theLine)
