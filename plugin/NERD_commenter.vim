@@ -1440,7 +1440,7 @@ endfunction
 "    'nested', 'toEOL', 'prepend', 'append', 'insert', 'uncomment', 'yank'
 function! NERDComment(isVisual, type) range
     " we want case sensitivity when commenting 
-    let prevIgnoreCase = &ignorecase
+    let oldIgnoreCase = &ignorecase
     set noignorecase
 
     if a:isVisual
@@ -1529,7 +1529,7 @@ function! NERDComment(isVisual, type) range
         execute firstLine .','. lastLine .'call NERDComment('. a:isVisual .', "norm")'
     endif
 
-    let &ignorecase = prevIgnoreCase
+    let &ignorecase = oldIgnoreCase
 endfunction
 
 " Function: s:PlaceDelimitersAndInsBetween() function {{{2
