@@ -474,6 +474,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('%', '')
     elseif a:filetype == "mib" 
         call s:MapDelimiters('--', '')
+    elseif a:filetype == "mkd" 
+        call s:MapDelimiters('>', '')
     elseif a:filetype == "mma" 
         call s:MapDelimiters('(*','*)') 
     elseif a:filetype == "model"
@@ -486,6 +488,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('(*','*)') 
     elseif a:filetype == "monk" 
         call s:MapDelimiters(';', '')
+    elseif a:filetype == "mplayerconf" 
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "mrxvtrc" 
         call s:MapDelimiters('#', '')
     elseif a:filetype == "mush" 
@@ -790,6 +794,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('##', '')
     elseif a:filetype == "wget" 
         call s:MapDelimiters('#', '')
+    elseif a:filetype ==? "Wikipedia" 
+        call s:MapDelimiters('<!--','-->') 
     elseif a:filetype == "winbatch" 
         call s:MapDelimiters(';', '')
     elseif a:filetype == "wml" 
