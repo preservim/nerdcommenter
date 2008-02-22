@@ -863,6 +863,8 @@ to get illegal syntax when uncommenting them.
 2.1.10
     - added support for Wikipedia (thanks to Chen Xing)
     - added support for mplayerconf
+    - bugfixes (thanks to Ingo Karkat for the bug report/patch)
+    - added support for mkd (thanks to Stefano Zacchiroli)
 
 2.1.9
     - added support for mrxvtrc and aap, thx to Marco for the emails
