@@ -1453,7 +1453,7 @@ function! NERDComment(isVisual, type) range
         let firstLine = line("'<")
         let lastLine = line("'>")
         let firstCol = col("'<")
-        let lastCol = col("'>") - (&selection == 'exclusive' && has("gui_running") ? 1 : 0)
+        let lastCol = col("'>") - (&selection == 'exclusive' ? 1 : 0)
     else
         let firstLine = a:firstline
         let lastLine = a:lastline

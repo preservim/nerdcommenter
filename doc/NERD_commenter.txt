@@ -860,6 +860,10 @@ to get illegal syntax when uncommenting them.
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
+2.1.11
+    - fixed a bug with the selection option and visual commenting (again).
+      Thanks to Ingo Karkat (again).
+
 2.1.10
     - added support for Wikipedia (thanks to Chen Xing)
     - added support for mplayerconf
