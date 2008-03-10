@@ -344,6 +344,12 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('GEEK_COMMENT:', '')
     elseif a:filetype == "gentoo-conf-d" 
         call s:MapDelimiters('#', '')
+    elseif a:filetype == "gentoo-env-d"
+        call s:MapDelimiters('#', '')
+    elseif a:filetype == "gentoo-init-d"
+        call s:MapDelimiters('#', '')
+    elseif a:filetype == "gentoo-make-conf"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == 'gentoo-package-keywords'
         call s:MapDelimiters('#', '')
     elseif a:filetype == 'gentoo-package-mask' 
@@ -354,6 +360,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#','')
     elseif a:filetype == "groovy"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
+    elseif a:filetype == "grub"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "gtkrc" 
         call s:MapDelimiters('#', '')
     elseif a:filetype == "haskell" 
@@ -480,6 +488,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('>', '')
     elseif a:filetype == "mma" 
         call s:MapDelimiters('(*','*)') 
+    elseif a:filetype == "modconf"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "model"
         call s:MapDelimiters('$','$') 
     elseif a:filetype =~ "moduala." 
@@ -716,6 +726,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('--', '')
     elseif a:filetype == "strace" 
         call s:MapDelimiters('/*','*/')
+    elseif a:filetype == "sudoers"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "SVKAnnotate" 
         call s:MapDelimiters('','')
     elseif a:filetype == "svn" 
