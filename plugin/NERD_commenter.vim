@@ -256,6 +256,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "dcl" 
         call s:MapDelimiters('$!', '')
+    elseif a:filetype == "dakota" 
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "debchangelog" 
         call s:MapDelimiters('', '')
     elseif a:filetype == "debcontrol" 
@@ -542,6 +544,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimitersWithAlternative('{','}', '(*', '*)')
     elseif a:filetype == "passwd" 
         call s:MapDelimiters('','')
+    elseif a:filetype == "patran" 
+        call s:MapDelimitersWithAlternative('$','','/*', '*/')
     elseif a:filetype == "pcap" 
         call s:MapDelimiters('#', '')
     elseif a:filetype == "pccts" 

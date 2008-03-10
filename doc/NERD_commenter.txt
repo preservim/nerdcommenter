@@ -860,6 +860,9 @@ to get illegal syntax when uncommenting them.
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
+2.something
+    - added support for patran and dakota, thx to Jacobo Diaz for the email
+
 2.1.11
     - fixed a bug with the selection option and visual commenting (again).
       Thanks to Ingo Karkat (again).
@@ -1211,3 +1214,4 @@ Vladimir Lomov                      asymptote
 Marco                               mrxvtrc, aap
 nicothakis                          SVNAnnotate, CVSAnnotate, SVKAnnotate
 Chen Xing                           Wikipedia
+Jacobo Diaz                         dakota, patran
