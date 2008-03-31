@@ -356,6 +356,10 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == 'gentoo-package-use' 
         call s:MapDelimiters('#', '')
+    elseif a:filetype == 'gitAnnotate'
+        call s:MapDelimiters('', '')
+    elseif a:filetype == 'gitdiff'
+        call s:MapDelimiters('', '')
     elseif a:filetype == "gnuplot" 
         call s:MapDelimiters('#','')
     elseif a:filetype == "groovy"
@@ -735,6 +739,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
     elseif a:filetype == "SVNAnnotate" 
         call s:MapDelimiters('','')
     elseif a:filetype == "SVNcommitlog" 
+        call s:MapDelimiters('','')
+    elseif a:filetype == "SVNdiff"
         call s:MapDelimiters('','')
     elseif a:filetype == "systemverilog" 
         call s:MapDelimitersWithAlternative('//','', '/*','*/')

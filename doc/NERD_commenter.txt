@@ -864,6 +864,8 @@ to get illegal syntax when uncommenting them.
     - added support for patran and dakota, thx to Jacobo Diaz for the email
     - added support for gentoo-env-d, gentoo-init-d, gentoo-make-conf, grub,
       modconf and sudoers filetypes, thx to Li Jin for the patch.
+    - added support for SVNdiff, gitAnnotate, gitdiff. Thx to nicothakis for
+      posting the issue
 
 2.1.11
     - fixed a bug with the selection option and visual commenting (again).
@@ -1214,8 +1216,10 @@ Pipp                                lhaskell
 Renald Buter                        scala
 Vladimir Lomov                      asymptote
 Marco                               mrxvtrc, aap
-nicothakis                          SVNAnnotate, CVSAnnotate, SVKAnnotate
+nicothakis                          SVNAnnotate, CVSAnnotate, SVKAnnotate,
+                                    SVNdiff, gitAnnotate, gitdiff
 Chen Xing                           Wikipedia
 Jacobo Diaz                         dakota, patran
 Li Jin                              gentoo-env-d, gentoo-init-d,
                                     gentoo-make-conf, grub, modconf, sudoers
+
