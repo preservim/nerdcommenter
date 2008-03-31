@@ -860,7 +860,7 @@ to get illegal syntax when uncommenting them.
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
-2.something
+2.1.12
     - added support for patran and dakota, thx to Jacobo Diaz for the email
     - added support for gentoo-env-d, gentoo-init-d, gentoo-make-conf, grub,
       modconf and sudoers filetypes, thx to Li Jin for the patch.
