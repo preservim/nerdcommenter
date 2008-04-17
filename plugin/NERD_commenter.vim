@@ -632,6 +632,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == "rexx" 
         call s:MapDelimiters('/*','*/')
+    elseif a:filetype == "rib"
+        call s:MapDelimiters('#','')
     elseif a:filetype == "robots" 
         call s:MapDelimiters('#', '')
     elseif a:filetype == "rpl" 

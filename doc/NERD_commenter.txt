@@ -860,6 +860,10 @@ to get illegal syntax when uncommenting them.
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
+2.x.x
+    - added support for rib files, thanks to spookypeanut for posting the
+      issue.
+
 2.1.12
     - added support for patran and dakota, thx to Jacobo Diaz for the email
     - added support for gentoo-env-d, gentoo-init-d, gentoo-make-conf, grub,
@@ -1222,4 +1226,4 @@ Chen Xing                           Wikipedia
 Jacobo Diaz                         dakota, patran
 Li Jin                              gentoo-env-d, gentoo-init-d,
                                     gentoo-make-conf, grub, modconf, sudoers
-
+SpookeyPeanut                       rib
