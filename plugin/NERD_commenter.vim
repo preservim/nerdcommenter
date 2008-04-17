@@ -444,6 +444,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == "lilypond" 
         call s:MapDelimiters('%', '')
+    elseif a:filetype == "liquid"
+        call s:MapDelimiters('{%', '%}')
     elseif a:filetype == "lisp" 
         call s:MapDelimitersWithAlternative(';','', '#|', '|#') 
     elseif a:filetype == "lite" 
