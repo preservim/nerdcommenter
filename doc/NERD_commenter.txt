@@ -861,13 +861,13 @@ to get illegal syntax when uncommenting them.
 8. Changelog                                                *NERDComChangelog*
 
 2.x.x
-    - added support for rib files, thanks to spookypeanut for posting the
-      issue.
-    - added support for pyrex/cython, thanks to Greg Jandl for posting the
-      issue.
+    - added support for rib files, thanks to spookypeanut for
+      posting the issue.
+    - added support for pyrex/cython, thanks to Greg Jandl for 
+      posting the issue.
     - added support for liquid templates.
-    - added support for services and gitcommit, thx to Christophe Benz for the
-      email
+    - added support for services and gitcommit, thx to Christophe Benz 
+      for the email
     - set the NERDRemoveExtraSpaces option to 1 by default as the doc states
     - fixed a bug where extra spaces werent being removed sometimes, thx to
       Zhang Shuhan for the report
