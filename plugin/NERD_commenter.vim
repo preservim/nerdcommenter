@@ -2325,12 +2325,12 @@ function s:FindBoundingLinesOfSexyCom(lineNum)
         let theLine = getline(currentLine)
 
         "check if the current line is the top of the sexy comment
-        if theLine =~ '^[ \t]*' . left && theLine !~ '.*' . right
+        if theLine =~ '^[ \t]*' . left && theLine !~ '.*' . right && currentLine < s:NumLinesInBuf()
             let top = currentLine
             let currentLine = a:lineNum
 
         "check if the current line is the bottom of the sexy comment
-        elseif theLine =~ '^[ \t]*' . right && theLine !~ '.*' . left
+        elseif theLine =~ '^[ \t]*' . right && theLine !~ '.*' . left && currentLine > 1
             let bottom = currentLine
 
         "the right delimiter is on the same line as the last sexyComMarker 
