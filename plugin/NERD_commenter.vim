@@ -2325,7 +2325,7 @@ function s:FindBoundingLinesOfSexyCom(lineNum)
         let theLine = getline(currentLine)
 
         "check if the current line is the top of the sexy comment
-        if theLine =~ '^[ \t]*' . left && theLine !~ '.*' . right && currentLine < s:NumLinesInBuf()
+        if currentLine <= a:lineNum && theLine =~ '^[ \t]*' . left && theLine !~ '.*' . right && currentLine < s:NumLinesInBuf()
             let top = currentLine
             let currentLine = a:lineNum
 
