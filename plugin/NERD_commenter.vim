@@ -1516,7 +1516,7 @@ function! NERDComment(isVisual, type) range
         try
             call s:CommentLinesSexy(firstLine, lastLine)
         catch /NERDCommenter.Delimiters/
-            call s:NerdEcho("Sexy comments cannot be done with the available delimiters", 0)
+            call s:CommentLines(forceNested, 0, 0, firstLine, lastLine)
         catch /NERDCommenter.Nesting/
             call s:NerdEcho("Sexy comment aborted. Nested sexy cannot be nested", 0)
         endtry
