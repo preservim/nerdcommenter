@@ -674,6 +674,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == "selectbuf" 
         call s:MapDelimiters('', '')
+    elseif a:filetype == "services"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "sgml" 
         call s:MapDelimiters('<!','>') 
     elseif a:filetype == "sgmldecl" 

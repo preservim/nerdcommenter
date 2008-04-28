@@ -1231,3 +1231,4 @@ Li Jin                              gentoo-env-d, gentoo-init-d,
                                     gentoo-make-conf, grub, modconf, sudoers
 SpookeyPeanut                       rib
 Greg Jandl                          pyrex/cython
+Christophe Benz                     services
