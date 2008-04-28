@@ -869,6 +869,8 @@ to get illegal syntax when uncommenting them.
     - added support for services and gitcommit, thx to Christophe Benz for the
       email
     - set the NERDRemoveExtraSpaces option to 1 by default as the doc states
+    - fixed a bug where extra spaces werent being removed sometimes, thx to
+      Zhang Shuhan for the report
 
 2.1.12
     - added support for patran and dakota, thx to Jacobo Diaz for the email
@@ -1180,6 +1182,9 @@ Thanks to Ingo Karkat for the bug reports and the bugfix patch.
 
 Not to forget! Thanks to the following people for sending me new filetypes to
 support :D
+
+Thanks to Zhang Shuhan for noticing (and sending me the bug report) that
+spaces werent being removed properly for some comments.
 
 The hackers                         The filetypes~
 Sam R                               verilog

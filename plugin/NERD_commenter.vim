@@ -1911,16 +1911,16 @@ function s:UncommentLineNormal(line)
 
         "remove the outter most left comment delim 
         if indxLeft != -1 && (indxLeft < indxLeftAlt || indxLeftAlt == -1)
-            let line = s:ReplaceLeftMostDelim(b:left, '', line)
+            let line = s:RemoveDelimiters(b:left, '', line)
         elseif indxLeftAlt != -1
-            let line = s:ReplaceLeftMostDelim(b:leftAlt, '', line)
+            let line = s:RemoveDelimiters(b:leftAlt, '', line)
         endif
 
         "remove the outter most right comment delim 
         if indxRight != -1 && (indxRight < indxRightAlt || indxRightAlt == -1)
-            let line = s:ReplaceRightMostDelim(b:right, '', line)
+            let line = s:RemoveDelimiters('', b:right, line)
         elseif indxRightAlt != -1
-            let line = s:ReplaceRightMostDelim(b:rightAlt, '', line)
+            let line = s:RemoveDelimiters('', b:rightAlt, line)
         endif
     endif
 
