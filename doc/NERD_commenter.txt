@@ -866,6 +866,8 @@ to get illegal syntax when uncommenting them.
     - added support for pyrex/cython, thanks to Greg Jandl for posting the
       issue.
     - added support for liquid templates.
+    - added support for services and gitcommit, thx to Christophe Benz for the
+      email
 
 2.1.12
     - added support for patran and dakota, thx to Jacobo Diaz for the email
