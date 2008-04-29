@@ -1284,12 +1284,14 @@ function s:CommentLinesSexy(topline, bottomline)
         call setline(a:topline, theLine)
 
         "comment the bottom line 
-        let theLine = getline(a:bottomline)
-        let lineHasTabs = s:HasLeadingTabs(theLine)
-        if lineHasTabs
-            let theLine = s:ConvertLeadingTabsToSpaces(theLine)
+        if a:bottomline != a:topline
+            let theLine = getline(a:bottomline)
+            let lineHasTabs = s:HasLeadingTabs(theLine)
+            if lineHasTabs
+                let theLine = s:ConvertLeadingTabsToSpaces(theLine)
+            endif
+            let theLine = s:SwapOutterMultiPartDelimsForPlaceHolders(theLine)
         endif
-        let theLine = s:SwapOutterMultiPartDelimsForPlaceHolders(theLine)
         let theLine = s:AddRightDelim(spaceString . right, theLine)
         if lineHasTabs
             let theLine = s:ConvertLeadingSpacesToTabs(theLine)

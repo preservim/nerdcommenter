@@ -875,6 +875,7 @@ to get illegal syntax when uncommenting them.
       comments arent possible with the filetypes delimiters
     - fixed some other bugs with sexy comments
     - made toggle commenting slightly more robust
+    - fixed a bug with single line compact sexy comments
 
 2.1.12
     - added support for patran and dakota, thx to Jacobo Diaz for the email
