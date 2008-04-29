@@ -696,6 +696,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('%', '')
     elseif a:filetype == "sl" 
         call s:MapDelimiters('/*','*/')
+    elseif a:filetype == "slice" 
+        call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "slrnrc" 
         call s:MapDelimiters('%', '')
     elseif a:filetype == "sm" 
