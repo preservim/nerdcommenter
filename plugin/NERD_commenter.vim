@@ -814,6 +814,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('"','') 
     elseif a:filetype == "viminfo" 
         call s:MapDelimiters('','') 
+    elseif a:filetype == "vimperator"
+        call s:MapDelimiters('"','')
     elseif a:filetype == "virata" 
         call s:MapDelimiters('%', '')
     elseif a:filetype == "vo_base" 

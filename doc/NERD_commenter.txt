@@ -868,6 +868,7 @@ to get illegal syntax when uncommenting them.
     - added support for liquid templates.
     - added support for services and gitcommit, thx to Christophe Benz 
       for the email
+    - added support for vimperator, thx to A Pontus for the issue
     - set the NERDRemoveExtraSpaces option to 1 by default as the doc states
     - fixed a bug where extra spaces werent being removed sometimes, thx to
       Zhang Shuhan for the report
