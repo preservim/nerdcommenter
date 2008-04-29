@@ -1446,7 +1446,7 @@ function s:InvertComment(firstLine, lastLine)
 
         " if the line is commented normally, uncomment it 
         if s:IsCommentedFromStartOfLine(b:left, theLine) || s:IsCommentedFromStartOfLine(b:leftAlt, theLine)
-            call s:UncommentLines(1, currentLine, currentLine)
+            call s:UncommentLines(currentLine, currentLine)
             let currentLine = currentLine + 1
 
         " check if the line is commented sexually 
@@ -1525,7 +1525,7 @@ function! NERDComment(isVisual, type) range
         let theLine = getline(firstLine)
 
         if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(b:left, theLine) || s:IsCommentedFromStartOfLine(b:leftAlt, theLine)
-            call s:UncommentLines(1, firstLine, lastLine)
+            call s:UncommentLines(firstLine, lastLine)
         else
             call s:CommentLinesToggle(forceNested, firstLine, lastLine)
         endif
@@ -1554,7 +1554,7 @@ function! NERDComment(isVisual, type) range
         call s:PlaceDelimitersAndInsBetween()
 
     elseif a:type == 'uncomment'
-        call s:UncommentLines(0, firstLine, lastLine)
+        call s:UncommentLines(firstLine, lastLine)
 
     elseif a:type == 'yank'
         if a:isVisual 
@@ -1713,14 +1713,13 @@ function s:RemoveDelimiters(left, right, line)
     return line
 endfunction
 
-" Function: s:UncommentLines(onlyWholeLineComs, topLine, bottomLine) {{{2
+" Function: s:UncommentLines(topLine, bottomLine) {{{2
 " This function uncomments the given lines
 "
 " Args:
-" onlyWholeLineComs: should be 1 for toggle style uncommenting
 " topLine: the top line of the visual selection to uncomment
 " bottomLine: the bottom line of the visual selection to uncomment
-function s:UncommentLines(onlyWholeLineComs, topLine, bottomLine) 
+function s:UncommentLines(topLine, bottomLine) 
     "make local copies of a:firstline and a:lastline and, if need be, swap
     "them around if the top line is below the bottom
     let l:firstline = a:topLine
@@ -1753,12 +1752,7 @@ function s:UncommentLines(onlyWholeLineComs, topLine, bottomLine)
 
         "no sexy com was detected so uncomment the line as normal 
         else
-            let theLine = getline(currentLine)
-            if a:onlyWholeLineComs && (s:IsCommentedFromStartOfLine(b:left, theLine) || s:IsCommentedFromStartOfLine(b:leftAlt, theLine))
-                call s:UncommentLinesNormal(currentLine, currentLine)
-            elseif !a:onlyWholeLineComs
-                call s:UncommentLinesNormal(currentLine, currentLine)
-            endif
+            call s:UncommentLinesNormal(currentLine, currentLine)
             let currentLine = currentLine + 1
         endif
     endwhile

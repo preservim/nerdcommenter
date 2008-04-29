@@ -874,6 +874,7 @@ to get illegal syntax when uncommenting them.
     - made the sexy comment mapping fall back to normal commenting if sexy
       comments arent possible with the filetypes delimiters
     - fixed some other bugs with sexy comments
+    - made toggle commenting slightly more robust
 
 2.1.12
     - added support for patran and dakota, thx to Jacobo Diaz for the email
