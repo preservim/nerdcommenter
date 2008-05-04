@@ -89,7 +89,7 @@ line that is commented is uncommented and vice versa.
 
 
 [count],cs |NERDComSexyComment| 
-Comments out the selected lines ``sexually''
+Comments out the selected lines ``sexily''
 
 
 [count],cy |NERDComYankComment|
@@ -1183,6 +1183,8 @@ Thanks to Ingo Karkat for the bug reports and the bugfix patch.
 Thanks to Zhang Shuhan for sending me a report about spaces not being removed
 properly in some circumstances. Also, thanks for emailing me a bunch of bug
 reports about sexy/toggle comments and for testing my fixes.
+
+Thanks to tpope for the english lesson.
 
 Not to forget! Thanks to the following people for sending me new filetypes to
 support :D
