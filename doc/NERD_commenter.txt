@@ -860,7 +860,7 @@ to get illegal syntax when uncommenting them.
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
-2.x.x
+2.1.13
     - added support for rib files, thanks to spookypeanut for
       posting the issue.
     - added support for pyrex/cython, thanks to Greg Jandl for 
