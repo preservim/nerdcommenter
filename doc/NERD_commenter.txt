@@ -1241,3 +1241,5 @@ Li Jin                              gentoo-env-d, gentoo-init-d,
 SpookeyPeanut                       rib
 Greg Jandl                          pyrex/cython
 Christophe Benz                     services, gitcommit
+A Pontus                            vimperator
+Stromnov                            slice
