@@ -1180,11 +1180,12 @@ Thanks to marco for suggesting NERDDefaultNesting be set by default.
 
 Thanks to Ingo Karkat for the bug reports and the bugfix patch.
 
+Thanks to Zhang Shuhan for sending me a report about spaces not being removed
+properly in some circumstances. Also, thanks for emailing me a bunch of bug
+reports about sexy/toggle comments and for testing my fixes.
+
 Not to forget! Thanks to the following people for sending me new filetypes to
 support :D
-
-Thanks to Zhang Shuhan for noticing (and sending me the bug report) that
-spaces werent being removed properly for some comments.
 
 The hackers                         The filetypes~
 Sam R                               verilog
