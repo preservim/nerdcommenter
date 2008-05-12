@@ -360,6 +360,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('', '')
     elseif a:filetype == 'gitcommit'
         call s:MapDelimiters('', '')
+    elseif a:filetype == 'gitconfig'
+        call s:MapDelimiters(';', '')
     elseif a:filetype == 'gitdiff'
         call s:MapDelimiters('', '')
     elseif a:filetype == "gnuplot" 

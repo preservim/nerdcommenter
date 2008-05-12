@@ -860,6 +860,8 @@ to get illegal syntax when uncommenting them.
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
+2.1.14
+    - added support for gitconfig
 2.1.13
     - added support for rib, pyrex/cython, liquid, services, gitcommit,
       vimperator, and slice. Thanks to spookypeanut, Greg Jandl, Christophe
