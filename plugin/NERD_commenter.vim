@@ -766,6 +766,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters(';', '')
     elseif a:filetype == "tak" 
         call s:MapDelimiters('$', '')
+    elseif a:filetype == "tar"
+        call s:MapDelimiters('', '')
     elseif a:filetype == "tasm" 
         call s:MapDelimiters(';', '')
     elseif a:filetype == "tcl" 
