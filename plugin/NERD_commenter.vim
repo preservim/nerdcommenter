@@ -528,6 +528,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('/*', '')
     elseif a:filetype == "ncf" 
         call s:MapDelimiters(';', '')
+    elseif a:filetype == "nerdtree"
+        call s:MapDelimiters('', '')
     elseif a:filetype == "netdict" 
         call s:MapDelimiters('', '')
     elseif a:filetype == "netrw" 
