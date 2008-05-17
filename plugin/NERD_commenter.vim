@@ -290,6 +290,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('<!--','-->') 
     elseif a:filetype == "dtml" 
         call s:MapDelimiters('<dtml-comment>','</dtml-comment>') 
+    elseif a:filetype == "dtrace"
+        call s:MapDelimiters('/*','*/')
     elseif a:filetype == "dylan" 
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == 'ebuild'
