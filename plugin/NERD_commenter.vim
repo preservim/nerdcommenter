@@ -3,10 +3,6 @@
 " Maintainer:   Martin Grenfell <martin_grenfell at msn.com>
 let s:NERD_commenter_version = 2.1.14
 
-" For help documentation type :help NERDCommenter. If this fails, Restart vim
-" and try again. If it sill doesnt work... the help page is at the bottom 
-" of this file.
-
 " Section: script init stuff {{{1
 if exists("loaded_nerd_comments")
     finish
