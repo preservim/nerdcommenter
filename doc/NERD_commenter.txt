@@ -1061,9 +1061,9 @@ to get illegal syntax when uncommenting them.
       filetypes.
     - Added '#' comments as an alternative for the asm filetype
 
-Thanks to Markus Klinik and Anders for bug reports, and again to Anders
-for his patch. Thanks to John O'Shea and fREW for the filetype
-information.
+    Thanks to Markus Klinik and Anders for bug reports, and again to Anders
+    for his patch. Thanks to John O'Shea and fREW for the filetype
+    information.
 
 ==============================================================================
 8. Credits                                                    *NERDComCredits*
