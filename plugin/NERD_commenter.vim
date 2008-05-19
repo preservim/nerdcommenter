@@ -564,6 +564,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('', '')
     elseif a:filetype == "ox" 
         call s:MapDelimiters('//', '')
+    elseif a:filetype == "pamconf"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "pascal" 
         call s:MapDelimitersWithAlternative('{','}', '(*', '*)')
     elseif a:filetype == "passwd" 
