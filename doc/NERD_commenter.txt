@@ -862,7 +862,7 @@ to get illegal syntax when uncommenting them.
 
 2.1.15
     - added support for pamconf, thanks to Martin Kustermann
-    - added support for mason
+    - added support for mason, thanks to Indriði Einarsson
     - added support for map, thanks to Chris
 
 2.1.14
