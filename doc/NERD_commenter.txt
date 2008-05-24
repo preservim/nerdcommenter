@@ -862,6 +862,7 @@ to get illegal syntax when uncommenting them.
 
 2.1.15
     - added support for pamconf, thanks to Martin Kustermann
+    - added support for mason
 
 2.1.14
     - added support for gitconfig, tar, nerdtree
@@ -1252,3 +1253,4 @@ Christophe Benz                     services, gitcommit
 A Pontus                            vimperator
 Stromnov                            slice
 Martin Kustermann                   pamconf
+Indriði Einarsson                   mason

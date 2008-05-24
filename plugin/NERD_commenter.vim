@@ -1,5 +1,5 @@
 " vim global plugin that provides easy code commenting for various file types
-" Last Change:  17 May 2008
+" Last Change:  24 May 2008
 " Maintainer:   Martin Grenfell <martin_grenfell at msn.com>
 let s:NERD_commenter_version = 2.1.14
 
@@ -482,6 +482,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('<!--', '-->')
     elseif a:filetype == "masm" 
         call s:MapDelimiters(';', '')
+    elseif a:filetype == "mason"
+        call s:MapDelimiters('<% #', '%>')
     elseif a:filetype == "master" 
         call s:MapDelimiters('$', '')
     elseif a:filetype == "matlab" 
