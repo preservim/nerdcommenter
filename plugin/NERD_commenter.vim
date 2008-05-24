@@ -476,6 +476,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('> ','')
     elseif a:filetype == "make" 
         call s:MapDelimiters('#','') 
+    elseif a:filetype == "map"
+        call s:MapDelimiters('%', '')
     elseif a:filetype == "maple" 
         call s:MapDelimiters('#', '')
     elseif a:filetype == "markdown" 
