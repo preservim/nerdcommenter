@@ -861,9 +861,10 @@ to get illegal syntax when uncommenting them.
 8. Changelog                                                *NERDComChangelog*
 
 2.1.15
-    - added support for pamconf, thanks to Martin Kustermann
-    - added support for mason, thanks to Indriði Einarsson
-    - added support for map, thanks to Chris
+    - added pamconf support, thanks to Martin Kustermann
+    - added mason support, thanks to Indriði Einarsson
+    - added map support, thanks to Chris
+    - added bzr support, thanks to Stromnov
 
 2.1.14
     - added support for gitconfig, tar, nerdtree
@@ -1252,7 +1253,7 @@ SpookeyPeanut                       rib
 Greg Jandl                          pyrex/cython
 Christophe Benz                     services, gitcommit
 A Pontus                            vimperator
-Stromnov                            slice
+Stromnov                            slice, bzr
 Martin Kustermann                   pamconf
 Indriði Einarsson                   mason
 Chris                               map

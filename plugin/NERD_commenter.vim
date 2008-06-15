@@ -196,6 +196,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('%', '')
     elseif a:filetype == "btm" 
         call s:MapDelimiters('::', '')
+    elseif a:filetype == "bzr"
+        call s:MapDelimiters('', '')
     elseif a:filetype == "caos" 
         call s:MapDelimiters('*', '')
     elseif a:filetype == "catalog" 
