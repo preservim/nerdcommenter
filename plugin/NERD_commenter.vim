@@ -368,6 +368,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#','')
     elseif a:filetype == "groovy"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
+    elseif a:filetype == "group"
+        call s:MapDelimiters('','')
     elseif a:filetype == "grub"
         call s:MapDelimiters('#', '')
     elseif a:filetype == "gtkrc"

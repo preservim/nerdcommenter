@@ -865,6 +865,7 @@ to get illegal syntax when uncommenting them.
     - added mason support, thanks to Indriði Einarsson
     - added map support, thanks to Chris
     - added bzr support, thanks to Stromnov
+    - added group support, thanks to Krzysztof A. Adamski
 
 2.1.14
     - added support for gitconfig, tar, nerdtree
@@ -1257,3 +1258,4 @@ Stromnov                            slice, bzr
 Martin Kustermann                   pamconf
 Indriði Einarsson                   mason
 Chris                               map
+Krzysztof A. Adamski                group
