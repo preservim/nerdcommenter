@@ -858,6 +858,7 @@ if your face looked like a toaster and a t-rex put together? :(
     - added map support, thanks to Chris
     - added bzr support, thanks to Stromnov
     - added group support, thanks to Krzysztof A. Adamski
+    - change license to wtfpl
 
 2.1.14
     - added support for gitconfig, tar, nerdtree
