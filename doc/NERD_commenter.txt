@@ -40,9 +40,9 @@ CONTENTS                                               *NERDCommenterContents*
         4.1 Delimiter detection heuristics....|NERDComHeuristics|
         4.2 Nesting issues....................|NERDComNesting|
     5.The author..............................|NERDComAuthor|
-    6.TODO list...............................|NERDComTodo|
-    7.Changelog...............................|NERDComChangelog|
-    8.Credits.................................|NERDComCredits|
+    6.Changelog...............................|NERDComChangelog|
+    7.Credits.................................|NERDComCredits|
+    8.License.................................|NERDComLicense|
 
 ==============================================================================
 1. Intro                                                       *NERDCommenter*
@@ -839,7 +839,7 @@ will become: >
 for simplicity)
 
 ==============================================================================
-6. The author                                                  *NERDComAuthor*
+5. The author                                                  *NERDComAuthor*
 
 The author of the NERD commenter is Martyzillatron --- the half robot, half
 dinosaur bastard son of Megatron and Godzilla. He enjoys destroying
@@ -850,15 +850,7 @@ its a lonely life being the worlds premier terror machine. How would you feel
 if your face looked like a toaster and a t-rex put together? :(
 
 ==============================================================================
-7. TODO list                                                     *NERDComTodo*
-
-Uncommenting of minimal comments needs to be more robust. Currently it is easy
-to get illegal syntax when uncommenting them.
-
-
-
-==============================================================================
-8. Changelog                                                *NERDComChangelog*
+7. Changelog                                                *NERDComChangelog*
 
 2.1.15
     - added pamconf support, thanks to Martin Kustermann
@@ -1070,7 +1062,7 @@ to get illegal syntax when uncommenting them.
     information.
 
 ==============================================================================
-8. Credits                                                    *NERDComCredits*
+7. Credits                                                    *NERDComCredits*
 
 Thanks and respect to the following people:
 
@@ -1259,3 +1251,9 @@ Martin Kustermann                   pamconf
 Indriði Einarsson                   mason
 Chris                               map
 Krzysztof A. Adamski                group
+
+==============================================================================
+8. License                                                    *NERDComLicense*
+
+The NERD commenter is released under the wtfpl.
+See http://sam.zoy.org/wtfpl/COPYING.
