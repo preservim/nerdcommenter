@@ -10,7 +10,7 @@
 "              See http://sam.zoy.org/wtfpl/COPYING for more details.
 "
 " ============================================================================
-let s:NERD_commenter_version = 2.1.14
+let s:NERD_commenter_version = 2.1.15
 
 " Section: script init stuff {{{1
 if exists("loaded_nerd_comments")
