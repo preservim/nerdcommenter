@@ -2,6 +2,7 @@
 " File:        NERD_commenter.vim
 " Description: vim global plugin that provides easy code commenting
 " Maintainer:  Martin Grenfell <martin_grenfell at msn dot com>
+" Version:     2.1.15
 " Last Change: 22 June, 2008
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
@@ -10,7 +11,6 @@
 "              See http://sam.zoy.org/wtfpl/COPYING for more details.
 "
 " ============================================================================
-let s:NERD_commenter_version = 2.1.15
 
 " Section: script init stuff {{{1
 if exists("loaded_nerd_comments")
