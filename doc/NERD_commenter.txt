@@ -854,7 +854,7 @@ if your face looked like a toaster and a t-rex put together? :(
 
 2.1.16
     - compatibility fix for vim7.2, cheers to Ben Schmidt, David Fishburn, and
-      Erik Falor for the emails.
+      Erik Falor for the emails, and to JaGoTerr for posting the issue.
 2.1.15
     - added pamconf support, thanks to Martin Kustermann
     - added mason support, thanks to Indriði Einarsson
@@ -1193,7 +1193,7 @@ reports about sexy/toggle comments and for testing my fixes.
 Thanks to tpope for the english lesson.
 
 Thanks to Ben Schmidt, David Fishburn, and Erik Falor for emailing me about an
-incompatibility with vim7.2.
+incompatibility with vim7.2. Thanks also to JaGoTerr for posting the issue.
 
 Not to forget! Thanks to the following people for sending me new filetypes to
 support :D
