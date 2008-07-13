@@ -651,17 +651,17 @@ When we uncomment this line it will go back to what it was.
 ------------------------------------------------------------------------------
                                                                *NERDMapleader*
 Values: arbitrary string.
-Default: \c
+Default: ,c
 
 NERDMapleader is used to specify what all the NERD commenter key mappings
 begin with.
 
 The default key mappings will look like this: >
-    \cc
-    \cu
-    \ca
-    \ci
-    \cs
+    ,cc
+    ,cu
+    ,ca
+    ,ci
+    ,cs
     ...
 <
 However, if this line: >
@@ -856,7 +856,8 @@ if your face looked like a toaster and a t-rex put together? :(
     - fixed haskell delimiters (hackily). Thanks to Elias Pipping.
     - add support for mailcap. Thanks to Pascal Brueckner.
     - add support for stata. Thanks to Jerónimo Carballo.
-
+    - applied a patch from ewfalor to fix an error in the help file with the
+      NERDMapleader doc
 
 2.1.16
     - compatibility fix for vim7.2, cheers to Ben Schmidt, David Fishburn, and
