@@ -855,6 +855,7 @@ if your face looked like a toaster and a t-rex put together? :(
 2.1.17
     - fixed haskell delimiters (hackily). Thanks to Elias Pipping.
     - add support for mailcap. Thanks to Pascal Brueckner.
+    - add support for stata. Thanks to Jerónimo Carballo.
 
 
 2.1.16
@@ -1267,6 +1268,7 @@ Indriði Einarsson                   mason
 Chris                               map
 Krzysztof A. Adamski                group
 Pascal Brueckner                    mailcap
+Jerónimo Carballo                   stata
 
 ==============================================================================
 8. License                                                    *NERDComLicense*

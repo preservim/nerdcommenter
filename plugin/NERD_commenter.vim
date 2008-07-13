@@ -761,6 +761,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == "st"
         call s:MapDelimiters('"','')
+    elseif a:filetype == "stata"
+        call s:MapDelimiters('/*','*/')
     elseif a:filetype == "stp"
         call s:MapDelimiters('--', '')
     elseif a:filetype == "strace"
