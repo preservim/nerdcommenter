@@ -487,6 +487,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('dnl ', '')
     elseif a:filetype == "mail"
         call s:MapDelimiters('> ','')
+    elseif a:filetype == "mailcap"
+        call s:MapDelimiters('#','')
     elseif a:filetype == "make"
         call s:MapDelimiters('#','')
     elseif a:filetype == "map"

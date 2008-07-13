@@ -854,6 +854,8 @@ if your face looked like a toaster and a t-rex put together? :(
 
 2.1.17
     - fixed haskell delimiters (hackily). Thanks to Elias Pipping.
+    - add support for mailcap. Thanks to Pascal Brueckner.
+
 
 2.1.16
     - compatibility fix for vim7.2, cheers to Ben Schmidt, David Fishburn, and
@@ -1264,6 +1266,7 @@ Martin Kustermann                   pamconf
 Indriði Einarsson                   mason
 Chris                               map
 Krzysztof A. Adamski                group
+Pascal Brueckner                    mailcap
 
 ==============================================================================
 8. License                                                    *NERDComLicense*
