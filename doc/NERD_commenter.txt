@@ -111,8 +111,9 @@ Adds comment delimiters to the start of line and goes into insert mode between
 them.
 
 
-<C-c> |NERDComInsertComment|
+ |NERDComInsertComment|
 Adds comment delimiters at the current cursor position and inserts between.
+Disabled by default.
 
 
 ,ca |NERDComAltDelim|
@@ -288,12 +289,18 @@ insert mode between the new delimiters.
 ------------------------------------------------------------------------------
 2.2.11 Insert comment map                               *NERDComInsertComment*
 
-Default mapping: <C-c>
+Default mapping: disabled by default.
 Change the mapping with: NERDComInInsertMap.
 Applicable modes: insert.
 
 Adds comment delimiters at the current cursor position and inserts
 between them.
+
+NOTE: prior to version 2.1.17 this was mapped to ctrl-c. To restore this
+mapping add >
+    let NERDComInsertMap='<c-c>'
+<
+to your vimrc.
 
 ------------------------------------------------------------------------------
 2.2.12 Use alternate delims map                              *NERDComAltDelim*
@@ -858,6 +865,8 @@ if your face looked like a toaster and a t-rex put together? :(
     - add support for stata. Thanks to Jerónimo Carballo.
     - applied a patch from ewfalor to fix an error in the help file with the
       NERDMapleader doc
+    - disable the insert mode ctrl-c mapping by default, see :help
+      NERDComInsertComment if you wish to restore it
 
 2.1.16
     - compatibility fix for vim7.2, cheers to Ben Schmidt, David Fishburn, and
