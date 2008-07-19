@@ -3294,7 +3294,9 @@ execute 'nmap <silent>' . g:NERDAppendComMap . ' :call NERDComment(0, "append")<
 execute 'nmap <silent>' . g:NERDPrependComMap . ' :call NERDComment(0, "prepend")<cr>'
 
 " set up the mapping to insert comment delims at the cursor position in insert mode
-execute 'inoremap <silent>' . g:NERDComInInsertMap . ' ' . '<SPACE><BS><ESC>:call NERDComment(0, "insert")<CR>'
+if g:NERDComInInsertMap != ''
+    execute 'inoremap <silent>' . g:NERDComInInsertMap . ' ' . '<SPACE><BS><ESC>:call NERDComment(0, "insert")<CR>'
+endif
 
 " Section: Menu item setup {{{1
 " ===========================================================================
