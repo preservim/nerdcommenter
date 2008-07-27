@@ -859,6 +859,8 @@ if your face looked like a toaster and a t-rex put together? :(
 ==============================================================================
 7. Changelog                                                *NERDComChangelog*
 
+2.1.18
+    - add support for llvm. Thanks to nicothakis.
 2.1.17
     - fixed haskell delimiters (hackily). Thanks to Elias Pipping.
     - add support for mailcap. Thanks to Pascal Brueckner.
@@ -1264,6 +1266,7 @@ Vladimir Lomov                      asymptote
 Marco                               mrxvtrc, aap
 nicothakis                          SVNAnnotate, CVSAnnotate, SVKAnnotate,
                                     SVNdiff, gitAnnotate, gitdiff, dtrace
+                                    llvm
 Chen Xing                           Wikipedia
 Jacobo Diaz                         dakota, patran
 Li Jin                              gentoo-env-d, gentoo-init-d,

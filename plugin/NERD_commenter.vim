@@ -465,6 +465,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimitersWithAlternative(';','', '#|', '|#')
     elseif a:filetype == "lite"
         call s:MapDelimiters('/*','*/')
+    elseif a:filetype == "llvm"
+        call s:MapDelimiters(';','')
     elseif a:filetype == "lookupfile"
         call s:MapDelimiters('', '')
     elseif a:filetype == "lotos"
