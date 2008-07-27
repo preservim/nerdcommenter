@@ -895,6 +895,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('/*','*/')
     elseif a:filetype == "yaml"
         call s:MapDelimiters('#','')
+    elseif a:filetype == "xquery"
+        call s:MapDelimiters('(:',':)')
     elseif a:filetype == "z8a"
         call s:MapDelimiters(';', '')
 

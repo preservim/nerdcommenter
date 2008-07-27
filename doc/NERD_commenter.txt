@@ -861,6 +861,7 @@ if your face looked like a toaster and a t-rex put together? :(
 
 2.1.18
     - add support for llvm. Thanks to nicothakis.
+    - add support for xquery. Thanks to Phillip Kovalev.
 2.1.17
     - fixed haskell delimiters (hackily). Thanks to Elias Pipping.
     - add support for mailcap. Thanks to Pascal Brueckner.
@@ -1282,6 +1283,7 @@ Chris                               map
 Krzysztof A. Adamski                group
 Pascal Brueckner                    mailcap
 Jerónimo Carballo                   stata
+Phillip Kovalev                     xquery
 
 ==============================================================================
 8. License                                                    *NERDComLicense*
