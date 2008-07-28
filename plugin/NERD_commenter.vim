@@ -619,6 +619,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == "postscr"
         call s:MapDelimiters('%', '')
+    elseif a:filetype == "potwiki"
+        call s:MapDelimiters('', '')
     elseif a:filetype == "pov"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "povini"

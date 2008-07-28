@@ -859,6 +859,8 @@ if your face looked like a toaster and a t-rex put together? :(
 ==============================================================================
 7. Changelog                                                *NERDComChangelog*
 
+2.x.x
+    - add support for potwiki. Thanks to Bernhard Grotz for the email.
 2.1.18
     - add support for llvm. Thanks to nicothakis.
     - add support for xquery. Thanks to Phillip Kovalev.
@@ -1284,6 +1286,7 @@ Krzysztof A. Adamski                group
 Pascal Brueckner                    mailcap
 Jerónimo Carballo                   stata
 Phillip Kovalev                     xquery
+Bernhard Grotz                      potwiki
 
 ==============================================================================
 8. License                                                    *NERDComLicense*
