@@ -861,6 +861,7 @@ if your face looked like a toaster and a t-rex put together? :(
 
 2.x.x
     - add support for potwiki. Thanks to Bernhard Grotz for the email.
+    - add support for SVNcommig. Thanks to John O'Shea.
 2.1.18
     - add support for llvm. Thanks to nicothakis.
     - add support for xquery. Thanks to Phillip Kovalev.
@@ -1230,7 +1231,7 @@ Michael Brunner                     kconfig
 Antono Vasiljev                     netdict
 Melissa Reid                        omlet
 Ilia N Ternovich                    quickfix
-John O'Shea                         RTF, SVNcommitlog and vcscommit
+John O'Shea                         RTF, SVNcommitlog and vcscommit, SVNCommit
 Anders                              occam
 Mark Woodward                       csv
 fREW                                gentoo-package-mask,
