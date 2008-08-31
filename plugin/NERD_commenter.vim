@@ -95,21 +95,16 @@ let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 " Section: Comment enabler autocommands {{{2
 " ============================================================================
 
-if !exists("nerd_autocmds_loaded")
-    let nerd_autocmds_loaded=1
+augroup commentEnablers
 
-    augroup commentEnablers
+    "if the user enters a buffer or reads a buffer then we gotta set up
+    "the comment delimiters for that new filetype
+    autocmd BufEnter,BufRead * :call s:SetUpForNewFiletype(&filetype, 0)
 
-        "if the user enters a buffer or reads a buffer then we gotta set up
-        "the comment delimiters for that new filetype
-        autocmd BufEnter,BufRead * :call s:SetUpForNewFiletype(&filetype, 0)
-
-        "if the filetype of a buffer changes, force the script to reset the
-        "delims for the buffer
-        autocmd Filetype * :call s:SetUpForNewFiletype(&filetype, 1)
-    augroup END
-
-endif
+    "if the filetype of a buffer changes, force the script to reset the
+    "delims for the buffer
+    autocmd Filetype * :call s:SetUpForNewFiletype(&filetype, 1)
+augroup END
 
 
 " Function: s:SetUpForNewFiletype(filetype) function {{{2
