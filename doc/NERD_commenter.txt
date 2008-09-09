@@ -1272,7 +1272,7 @@ Vladimir Lomov                      asymptote
 Marco                               mrxvtrc, aap
 nicothakis                          SVNAnnotate, CVSAnnotate, SVKAnnotate,
                                     SVNdiff, gitAnnotate, gitdiff, dtrace
-                                    llvm
+                                    llvm, applescript
 Chen Xing                           Wikipedia
 Jacobo Diaz                         dakota, patran
 Li Jin                              gentoo-env-d, gentoo-init-d,

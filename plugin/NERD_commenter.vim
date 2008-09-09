@@ -158,6 +158,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == "apachestyle"
         call s:MapDelimiters('#', '')
+    elseif a:filetype == "applescript"
+        call s:MapDelimitersWithAlternative('--', '', '(*', '*)')
     elseif a:filetype == "asm68k"
         call s:MapDelimiters(';', '')
     elseif a:filetype == "asm"
