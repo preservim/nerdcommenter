@@ -1261,7 +1261,7 @@ Nicolas Weber                       markdown, objcpp
 tinoucas                            gentoo-conf-d
 Greg Weber                          D, haml
 Bruce Sherrod                       velocity
-timberke                            cobol
+timberke                            cobol, calibre
 Aaron Schaefer                      factor
 Laurent ARNOUD                      asterisk, mplayerconf
 Kuchma Michael                      plsql

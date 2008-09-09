@@ -204,6 +204,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('', '')
     elseif a:filetype == "caos"
         call s:MapDelimiters('*', '')
+    elseif a:filetype == "calibre"
+        call s:MapDelimiters('//','')
     elseif a:filetype == "catalog"
         call s:MapDelimiters('--','--')
     elseif a:filetype == "c"
