@@ -1220,6 +1220,8 @@ incompatibility with vim7.2. Thanks also to JaGoTerr for posting the issue.
 
 Thanks to Elias Pipping for sending me a bug report about haskell commenting.
 
+Thanks to mntnoe for pointing out incorrect delimiters for haskell.
+
 Not to forget! Thanks to the following people for sending me new filetypes to
 support :D
 
