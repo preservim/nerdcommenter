@@ -1290,6 +1290,7 @@ Pascal Brueckner                    mailcap
 Jerónimo Carballo                   stata
 Phillip Kovalev                     xquery
 Bernhard Grotz                      potwiki
+sgronblo                            man
 
 ==============================================================================
 8. License                                                    *NERDComLicense*
