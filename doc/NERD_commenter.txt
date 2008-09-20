@@ -161,7 +161,7 @@ Applicable modes: normal visual visual-line visual-block.
 Performs nested commenting.  Works the same as <leader>cc except that if a
 line is already commented then it will be commented again.
 
-If |NERDUsePlaceHolders| is set then the previous comment delimiters will
+If |'NERDUsePlaceHolders'| is set then the previous comment delimiters will
 be replaced by place-holder delimiters if needed.  Otherwise the nested
 comment will only be added if the current commenting delimiters have no right
 delimiter (to avoid syntax errors)
@@ -170,7 +170,7 @@ If a [count] is given in normal mode, the mapping works as though that many
 lines were selected in visual-line mode.
 
 Related options:
-|NERDDefaultNesting|
+|'NERDDefaultNesting'|
 
 ------------------------------------------------------------------------------
 2.2.3 Toggle comment map                                *NERDComToggleComment*
@@ -203,8 +203,8 @@ For example: if you are programming in c and you select 5 lines and press
 will be placed at the end of the last line.
 
 Sets of multipart comment delimiters that are between the top and bottom
-selected lines are replaced with place holders (see |NERDLPlace|) if
-|NERDUsePlaceHolders| is set for the current filetype. If it is not, then
+selected lines are replaced with place holders (see |'NERDLPlace'|) if
+|'NERDUsePlaceHolders'| is set for the current filetype. If it is not, then
 the comment will be aborted if place holders are required to prevent illegal
 syntax.
 
@@ -246,7 +246,7 @@ If a [count] is given in normal mode, the mapping works as though that many
 lines were selected in visual-line mode.
 
 Related options:
-|NERDCompactSexyComs|
+|'NERDCompactSexyComs'|
 
 ------------------------------------------------------------------------------
 2.2.7 Yank comment map                                    *NERDComYankComment*
@@ -352,8 +352,8 @@ If a [count] is given in normal mode, the mapping works as though that many
 lines were selected in visual-line mode.
 
 Related  options:
-|NERDRemoveAltComs|
-|NERDRemoveExtraSpaces|
+|'NERDRemoveAltComs'|
+|'NERDRemoveExtraSpaces'|
 
 ------------------------------------------------------------------------------
 2.3 Supported filetypes                                     *NERDComFiletypes*
@@ -435,40 +435,40 @@ then the script would do a sexy comment on the last visual selection.
 ------------------------------------------------------------------------------
 3.1 Options summary                                    *NERDComOptionsSummary*
 
-|loaded_nerd_comments|                Turns off the script.
-|NERDAllowAnyVisualDelims|            Allows multipart alternative delims to
+|'loaded_nerd_comments'|              Turns off the script.
+|'NERDAllowAnyVisualDelims'|          Allows multipart alternative delims to
                                       be used when commenting in
                                       visual/visual-block mode.
-|NERDBlockComIgnoreEmpty|             Forces right delims to be placed when
+|'NERDBlockComIgnoreEmpty'|           Forces right delims to be placed when
                                       doing visual-block comments.
-|NERDCommentWholeLinesInVMode|        Changes behaviour of visual comments.
-|NERDCreateDefaultMappings|           Turn the default mappings on/off.
-|NERDDefaultNesting|                  Tells the script to use nested comments
+|'NERDCommentWholeLinesInVMode'|      Changes behaviour of visual comments.
+|'NERDCreateDefaultMappings'|         Turn the default mappings on/off.
+|'NERDDefaultNesting'|                Tells the script to use nested comments
                                       by default.
-|NERDMenuMode|                        Specifies how the NERD commenter menu
+|'NERDMenuMode'|                      Specifies how the NERD commenter menu
                                       will appear (if at all).
-|NERDLPlace|                          Specifies what to use as the left
+|'NERDLPlace'|                        Specifies what to use as the left
                                       delimiter placeholder when nesting
                                       comments.
-|NERDUsePlaceHolders|                 Specifies which filetypes may use
+|'NERDUsePlaceHolders'|               Specifies which filetypes may use
                                       placeholders when nesting comments.
-|NERDRemoveAltComs|                   Tells the script whether to remove
+|'NERDRemoveAltComs'|                 Tells the script whether to remove
                                       alternative comment delimiters when
                                       uncommenting.
-|NERDRemoveExtraSpaces|               Tells the script to always remove the
+|'NERDRemoveExtraSpaces'|             Tells the script to always remove the
                                       extra spaces when uncommenting
                                       (regardless of whether NERDSpaceDelims
                                       is set)
-|NERDRPlace|                          Specifies what to use as the right
+|'NERDRPlace'|                        Specifies what to use as the right
                                       delimiter placeholder when nesting
                                       comments.
-|NERDShutUp|                          Stops "Unknown filetype" output from the
+|'NERDShutUp'|                        Stops "Unknown filetype" output from the
                                       script
-|NERDSpaceDelims|                     Specifies whether to add extra spaces
+|'NERDSpaceDelims'|                   Specifies whether to add extra spaces
                                       around delimiters when commenting, and
                                       whether to remove them when
                                       uncommenting.
-|NERDCompactSexyComs|                 Specifies whether to use the compact
+|'NERDCompactSexyComs'|               Specifies whether to use the compact
                                       style sexy comments.
 
 ------------------------------------------------------------------------------
@@ -477,13 +477,13 @@ then the script would do a sexy comment on the last visual selection.
 To enable any of the below options you should put the given line in your
 ~/.vimrc
 
-                                                       *loaded_nerd_comments*
+                                                       *'loaded_nerd_comments'*
 If this script is driving you insane you can turn it off by setting this
 option >
     let loaded_nerd_comments=1
 <
 ------------------------------------------------------------------------------
-                                                    *NERDAllowAnyVisualDelims*
+                                                    *'NERDAllowAnyVisualDelims'*
 Values: 0 or 1.
 Default: 1.
 
@@ -506,7 +506,7 @@ shown on the right: >
     System.out.println(foo * bar);        System.out.println(foo * bar);
 <
 ------------------------------------------------------------------------------
-                                                     *NERDBlockComIgnoreEmpty*
+                                                     *'NERDBlockComIgnoreEmpty'*
 Values: 0 or 1.
 Default: 1.
 
@@ -549,7 +549,7 @@ Otherwise, the code block would become: >
     /*}  */
 <
 ------------------------------------------------------------------------------
-                                                *NERDCommentWholeLinesInVMode*
+                                                *'NERDCommentWholeLinesInVMode'*
 Values: 0, 1 or 2.
 Default: 0.
 
@@ -590,7 +590,7 @@ then stick the following line in your vimrc: >
 Note that this option does not affect the behaviour of |visual-block| mode.
 
 ------------------------------------------------------------------------------
-                                                *NERDCreateDefaultMappings*
+                                                *'NERDCreateDefaultMappings'*
 Values: 0 or 1.
 Default: 1.
 
@@ -599,7 +599,7 @@ If set to 0, none of the default mappings will be created.
 See also |NERDComMappings|.
 
 ------------------------------------------------------------------------------
-                                                           *NERDRemoveAltComs*
+                                                           *'NERDRemoveAltComs'*
 Values: 0 or 1.
 Default: 1.
 
@@ -614,13 +614,13 @@ For example, if you are editing a c++ file using // style comments and you go
 It will not be uncommented if the NERDRemoveAltComs is set to 0.
 
 ------------------------------------------------------------------------------
-                                                       *NERDRemoveExtraSpaces*
+                                                       *'NERDRemoveExtraSpaces'*
 Values: 0 or 1.
 Default: 1.
 
 By default, the NERD commenter will remove spaces around comment delimiters if
 either:
-1. |NERDSpaceDelims| is set to 1.
+1. |'NERDSpaceDelims'| is set to 1.
 2. NERDRemoveExtraSpaces is set to 1.
 
 This means that if we have the following lines in a c code file: >
@@ -639,12 +639,12 @@ Otherwise they would become: >
      int bar = 10;
     int baz = foo + bar
 <
-If you want the spaces to be removed only if |NERDSpaceDelims| is set then
+If you want the spaces to be removed only if |'NERDSpaceDelims'| is set then
 set NERDRemoveExtraSpaces to 0.
 
 ------------------------------------------------------------------------------
-                                                                  *NERDLPlace*
-                                                                  *NERDRPlace*
+                                                                  *'NERDLPlace'*
+                                                                  *'NERDRPlace'*
 Values: arbitrary string.
 Default:
     NERDLPlace: "[>"
@@ -666,7 +666,7 @@ and we comment it with <leader>cn it will be changed to: >
 When we uncomment this line it will go back to what it was.
 
 ------------------------------------------------------------------------------
-                                                                *NERDMenuMode*
+                                                                *'NERDMenuMode'*
 Values: 0, 1, 2, 3.
 Default: 3
 
@@ -677,7 +677,7 @@ This option can take 4 values:
     "3": Turns the 'Plugin -> comment' menu on with <alt>-c as the shortcut.
 
 ------------------------------------------------------------------------------
-                                                         *NERDUsePlaceHolders*
+                                                         *'NERDUsePlaceHolders'*
 Values: 0 or 1.
 Default 1.
 
@@ -685,7 +685,7 @@ This option is used to specify whether place-holder delimiters should be used
 when adding nested comments.
 
 ------------------------------------------------------------------------------
-                                                                  *NERDShutUp*
+                                                                  *'NERDShutUp'*
 Values: 0 or 1.
 Default 1.
 
@@ -694,7 +694,7 @@ messages.  Stick this line in your vimrc: >
     let NERDShutUp=1
 <
 ------------------------------------------------------------------------------
-                                                             *NERDSpaceDelims*
+                                                             *'NERDSpaceDelims'*
 Values: 0 or 1.
 Default 0.
 
@@ -707,10 +707,10 @@ as opposed to this: >
 <
 If you want spaces to be added then set NERDSpaceDelims to 1 in your vimrc.
 
-See also |NERDRemoveExtraSpaces|.
+See also |'NERDRemoveExtraSpaces'|.
 
 ------------------------------------------------------------------------------
-                                                         *NERDCompactSexyComs*
+                                                         *'NERDCompactSexyComs'*
 Values: 0 or 1.
 Default 0.
 
@@ -729,7 +729,7 @@ As opposed to like this: >
 If this option is set to 1 then the top style will be used.
 
 ------------------------------------------------------------------------------
-                                                          *NERDDefaultNesting*
+                                                          *'NERDDefaultNesting'*
 Values: 0 or 1.
 Default 1.
 
@@ -767,7 +767,7 @@ created.
 See the help for the mapping in question to see which <plug> mapping to
 map to, and which modes it applies to.
 
-See also |NERDCreateDefaultMappings|.
+See also |'NERDCreateDefaultMappings'|.
 
 ==============================================================================
 5. Issues with the script                                      *NERDComIssues*
