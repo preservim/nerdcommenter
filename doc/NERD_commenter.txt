@@ -48,11 +48,11 @@ CONTENTS                                               *NERDCommenterContents*
 1. Intro                                                       *NERDCommenter*
 
 The NERD commenter provides many different commenting operations and styles
-which may be invoked via key mappings and a commenting menu. These operations
-are available for most filetypes.
+which are invoked via key mappings and a menu. These operations are available
+for most filetypes.
 
-There are also options available that allow you to tweak the commenting engine
-to you taste.
+There are also options that allow to tweak the commenting engine to your
+taste.
 
 ==============================================================================
 2. Functionality provided                               *NERDComFunctionality*
@@ -61,17 +61,14 @@ to you taste.
 2.1 Functionality summary                        *NERDComFunctionalitySummary*
 
 The following key mappings are provided by default (there is also a menu
-provided that contains menu items corresponding to all the below mappings):
-
-Most of the following mappings are for normal/visual mode only. The
-|NERDComInsertComment| mapping is for insert mode only.
+with items corresponding to all the mappings below):
 
 [count]<leader>cc |NERDComComment|
 Comment out the current line or text selected in visual mode.
 
 
 [count]<leader>cn |NERDComNestedComment|
-Same as but forces nesting.
+Same as <leader>cc but forces nesting.
 
 
 [count]<leader>c<space> |NERDComToggleComment|
@@ -80,13 +77,11 @@ line is commented, all selected lines are uncommented and vice versa.
 
 
 [count]<leader>cm |NERDComMinimalComment|
-Comments the given lines using only one set of multipart delimiters if
-possible.
+Comments the given lines using only one set of multipart delimiters.
 
 
 [count]<leader>ci |NERDComInvertComment|
-Toggles the comment state of the selected line(s) individually. Each selected
-line that is commented is uncommented and vice versa.
+Toggles the comment state of the selected line(s) individually.
 
 
 [count]<leader>cs |NERDComSexyComment|
@@ -94,8 +89,7 @@ Comments out the selected lines ``sexily''
 
 
 [count]<leader>cy |NERDComYankComment|
-Same as |NERDComComment| except that the commented line(s) are yanked
-before commenting.
+Same as <leader>cc except that the commented line(s) are yanked first.
 
 
 <leader>c$ |NERDComEOLComment|
@@ -402,8 +396,7 @@ one other marker symbol. For example: >
      * So there!
      * But this one is ``compact'' style */
 <
-Here the multipart delimiters are /* and */ and the marker is *. The NERD
-commenter is capable of adding and removing comments of this type.
+Here the multipart delimiters are /* and */ and the marker is *.
 
 ------------------------------------------------------------------------------
 2.5 The NERDComment function                             *NERDComNERDComment*
@@ -419,9 +412,9 @@ The arguments to this function are simple:
       boundries. If set to 0 then the function will operate on the current
       line.
     - type: is used to specify what type of commenting operation is to be
-      performed, and it can be one of the following: 'sexy', 'invert',
-      'minimal', 'toggle', 'alignLeft', 'alignRight', 'alignBoth', 'norm',
-      'nested', 'toEOL', 'prepend', 'append', 'insert', 'uncomment', 'yank'
+      performed, and it can be one of the following: "sexy", "invert",
+      "minimal", "toggle", "alignLeft", "alignRight", "alignBoth", "norm",
+      "nested", "toEOL", "prepend", "append", "insert", "uncomment", "yank"
 
 For example, if you typed >
     :call NERDComment(1, 'sexy')
@@ -587,7 +580,8 @@ then stick the following line in your vimrc: >
     let NERDCommentWholeLinesInVMode=2
 <
 
-Note that this option does not affect the behaviour of |visual-block| mode.
+Note that this option does not affect the behaviour of commenting in
+|visual-block| mode.
 
 ------------------------------------------------------------------------------
                                                 *'NERDCreateDefaultMappings'*
@@ -604,7 +598,7 @@ Values: 0 or 1.
 Default: 1.
 
 When uncommenting a line (for a filetype with an alternative commenting style)
-this option tells the script whether to look for, and remove, comments
+this option tells the script whether to look for, and remove, comment
 delimiters of the alternative style.
 
 For example, if you are editing a c++ file using // style comments and you go
@@ -682,7 +676,7 @@ Values: 0 or 1.
 Default 1.
 
 This option is used to specify whether place-holder delimiters should be used
-when adding nested comments.
+when creating a nested comment.
 
 ------------------------------------------------------------------------------
                                                                   *'NERDShutUp'*
@@ -742,7 +736,7 @@ again
 
 If you want the NERD commenter to use the alternative delimiters for a
 specific filetype by default then put a line of this form into your vimrc: >
-    let NERD_<&filetype>_alt_style=1
+    let NERD_<filetype>_alt_style=1
 <
 Example: java uses // style comments by default, but you want it to default to
 /* */ style comments instead. You would put this line in your vimrc: >
@@ -841,220 +835,6 @@ if your face looked like a toaster and a t-rex put together? :(
       NERDMapleader doc
     - disable the insert mode ctrl-c mapping by default, see :help
       NERDComInsertComment if you wish to restore it
-
-2.1.16
-    - compatibility fix for vim7.2, cheers to Ben Schmidt, David Fishburn, and
-      Erik Falor for the emails, and to JaGoTerr for posting the issue.
-
-2.1.15
-    - added pamconf support, thanks to Martin Kustermann
-    - added mason support, thanks to Indriði Einarsson
-    - added map support, thanks to Chris
-    - added bzr support, thanks to Stromnov
-    - added group support, thanks to Krzysztof A. Adamski
-    - change license to wtfpl
-
-2.1.14
-    - added support for gitconfig, tar, nerdtree
-    - added support for dtrace, thanks to nicothakis for the post
-2.1.13
-    - added support for rib, pyrex/cython, liquid, services, gitcommit,
-      vimperator, and slice. Thanks to spookypeanut, Greg Jandl, Christophe
-      Benz, A Pontus, and Stromnov for emailing me and/or posting issues.
-    - set the NERDRemoveExtraSpaces option to 1 by default as the doc states
-    - other fixes: (thanks to Zhang Shuhan for all his emails and testing)
-        * made the sexy comment mapping fall back to normal commenting if sexy
-          comments arent possible for the current filetype
-        * fixed some bugs with sexy comments
-        * made the uncommenting side of toggle comments slightly more robust
-        * fixed a bug where some extra spaces werent being removed (although
-          the currect options were set)
-2.1.12
-    - added support for patran and dakota, thx to Jacobo Diaz for the email
-    - added support for gentoo-env-d, gentoo-init-d, gentoo-make-conf, grub,
-      modconf and sudoers filetypes, thx to Li Jin for the patch.
-    - added support for SVNdiff, gitAnnotate, gitdiff. Thx to nicothakis for
-      posting the issue
-
-2.1.11
-    - fixed a bug with the selection option and visual commenting (again).
-      Thanks to Ingo Karkat (again).
-
-2.1.10
-    - added support for Wikipedia (thanks to Chen Xing)
-    - added support for mplayerconf
-    - bugfixes (thanks to Ingo Karkat for the bug report/patch)
-    - added support for mkd (thanks to Stefano Zacchiroli)
-
-2.1.9
-    - added support for mrxvtrc and aap, thx to Marco for the emails
-    - added dummy support for SVNAnnotate, SVKAnnotate and CVSAnnotate, thx to
-      nicothakis for posting the issue
-
-2.1.8
-    - fixed a couple of bugs with the NERDSpaceDelims option, thx to
-      David Miani and Jeremy Hinegardner
-    - added dummy support for lhaskell, thx to pipp for posting the issue
-    - added an alternative set of delims for the plsql filetype, thx to Kuchma
-      Michael
-    - added support for spectre, thx to Brett Warneke
-    - added support for scala, thx to Renald Buter
-    - added support for asymptote, thx to Vladimir Lomov
-    - made NERDDefaultNesting enabled by default as this seems more intuitive,
-      thx to marco for the suggestion
-
-
-2.1.7
-    - added support for haml, thx to Greb Weber
-    - added support for asterisk, thx to Laurent ARNOUD
-    - added support for objcpp, thx to Nicolas Weber
-    - added support for the factor filetype, thx to Aaron Schaefer
-    - fixed a bug with the passwd filetype setup, thx to Yongwei Wu
-    - fixed a bug that was forcing filetypes with an alternative set of delims
-      to have at least one multipart set.
-    - split out the help file out from the script and repackaged everything as
-      a zip
-
-2.1.6
-    - added support for gentoo-conf-d thanks to tinoucas for posting the issue
-      and the patch
-    - added support for the D filetype. Thanks to Greg Weber for the email.
-    - added dummy support for cobol, cheers to timberke for posting the issue.
-    - added support for velocity. Thanks to Bruce Sherrod for the email.
-
-2.1.5
-    - added support for lilypond, bbx and lytex. Thanks to Eyolf Østrem for
-      the email.
-    - added an alterative set of delimiters for the dosbatch filetype, thanks
-      to Ingo Karkat for the email.
-    - added support for the markdown filetype. Thanks to Nicolas Weber for the
-      posting the issue.
-
-2.1.4
-    - added support for the ahk filetype. Cheers to Don Hatlestad for the
-      email.
-    - added support for desktop and xsd filetypes. Thanks to Christophe Benz.
-    - added dummy support for Rails-log
-    - fixed a bunch of bugs in the comment delimiter setup process, thanks to
-      Cheng Fang for the email :D
-    - hardcore refactoring and removal of seldomly used, overly-complex
-      functionality.
-    - the script now requires vim 7
-2.1.3
-    - fixed numerous bugs that were causing tabs to permanently be converted
-      to spaces, even if noexpandtab was set. Thanks to Heptite on #vim for
-      working with me to track them down :)
-    - added dummy support for "lookupfile". Thanks to David Fishburn for the
-      email.
-    - added support for "rst", thanks to Niels Aan de Brugh for the email.
-
-2.1.2
-    - added support for the vera and ldif filetypes. Thanks to Normandie
-      Azucena and Florian Apolloner for the emails.
-
-2.1.1
-    - added dummy support for SVNcommitlog and vcscommit. Thanks to John
-      O'Shea for the email.
-    - added support for Groovy. Thanks to Jason Mills for the email.
-2.1.0
-    - now the script resets the delimiters when the filetype of the buffer
-      changes (thanks to James Hales for the patch)
-    - added formal support/doc for prepending a count to many of the
-      commenting maps so you can go, eg, 5,cc to comment 5 lines from normal
-      mode. Thanks again to James Hales for the patch.
-    - added support for the "gams" filetype that Jorge Rodrigues created.
-    - added support for the "objc" filetype, thanks to Rainer Müller for the
-      email.
-    - added support for the "sass" filetype that Dmitry Ilyashevich created.
-
-2.0.7
-    - Added support for eclass and ebuild filetypes. Thanks to Alex Tarkovsky
-      for the email.
-
-2.0.6
-    - Changed the default setting of NERDMapleader to ",c", meaning all the
-      maps now start with ,c instead of \c. This is to stop a major mapping
-      clash with the vcscommand plugin. Anyone wanting to keep the \c map
-      leader should read :help NERDMapleader.
-    - Added support for debcontrol and dummy support for debchangelog
-      filetypes, thanks to Stefano Zacchiroli for the email.
-    - Made it so that the NERDShutUp option now only controls the "Pleeease
-      email the delimiters..." requests. It no longer affects the general
-      output of the script.
-    - Simplified the names of the help tags.
-
-2.0.5
-    - Added support for autoit, autohotkey and docbk filetypes (thanks to
-      Michael Böhler)
-    - Added support for cmake (thanks to Aaron Small)
-    - Added support for htmldjango and django filetypes (thanks to Ramiro
-      Morales)
-    - Improved the delimiters for eruby again
-    - Applied a patch from Seth Mason to fix some pathing issues with the help
-      file installation.
-
-2.0.4
-    - Added support for verilog_systemverilog and systemverilog filetypes
-      (Thanks to Alexey for the email)
-    - Added support for fstab, thanks to Lizendir for the email.
-    - Added support for the smarty filetype.
-    - Improved the delimiters for eruby.
-    - Added dummy support for changelog filetype.
-
-2.0.3
-    - Added dummy support for the csv filetype (thx to Mark Woodward for the
-      email)
-    - Added dummy support for vo_base and otl filetypes (thanks to fREW for
-      the email)
-
-2.0.2:
-    - Minor bug fix that was stopping nested comments from working
-
-2.0.1:
-    - Fixed the visual bell for the |NERDComToEOLMap| map.
-    - Added another possible value to the NERDMenuMode option which causes the
-      menu to be displayed under 'Plugin -> Comment'. See :h NERDMenuMode.
-      This new menu mode is now the default.
-    - Added support for the occam filetype (thanks to Anders for emailing me)
-    - Made the main commenting function (NERDComment) available outside the
-      script.
-    - bug fixes and refactoring
-
-2.0.0:
-    - NOTE: renamed the script to  NERD_commenter.vim. When you install this
-      version you must delete the old files: NERD_comments.vim and
-      NERD_comments.txt.
-    - Reworked the mappings and main entry point function for the script to
-      avoid causing visual-bells and screen scrolling.
-    - Changes to the script options (see |NERD_com-Customisation| for
-      details):
-        - They are all camel case now instead of underscored.
-        - Converted all of the regular expression options into simple boolean
-          options for simplicity.
-        - All the options are now stated positively, eg.
-          NERD_dont_remove_spaces_regexp has become NERDRemoveExtraSpaces.
-        - Some of the option names have been changed (other than in the above
-          ways)
-        - Some have been removed altogether, namely: NERD_create_h_filetype
-          (why was a commenting script creating a filetype?!),
-          NERD_left_align_regexp, NERD_right_align_regexp,
-
-    - Removed all the NERD_use_alt_style_XXX_coms options and replaced them
-      with a better system. Now if a filetype has alternative delims, the
-      script will check whether an option of the form
-      "NERD_<&filetype>_alt_style" exists, and if it does then alt delims will
-      be used. See |NERD_com-cust-delims| for details.
-    - The script no longer removes extra spaces for sexy comments for the
-      NERDRemoveExtraSpaces option (it will still remove spaces if
-      NERDSpaceDelims is set).
-    - Added dummy support for viminfo and rtf.
-    - Added support for the "gentoo-package-\(keywords\|mask\|use\)"
-      filetypes.
-    - Added '#' comments as an alternative for the asm filetype
-
-    Thanks to Markus Klinik and Anders for bug reports, and again to Anders
-    for his patch. Thanks to John O'Shea and fREW for the filetype
-    information.
 
 ==============================================================================
 8. Credits                                                    *NERDComCredits*
