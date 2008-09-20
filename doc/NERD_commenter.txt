@@ -35,14 +35,14 @@ CONTENTS                                               *NERDCommenterContents*
         3.1 Options summary...................|NERDComOptionsSummary|
         3.2 Options details...................|NERDComOptionsDetails|
         3.3 Default delimiter Options.........|NERDComDefaultDelims|
-        3.4 Key mapping Options...............|NERDComMappings|
-    4.Issues with the script..................|NERDComIssues|
-        4.1 Delimiter detection heuristics....|NERDComHeuristics|
-        4.2 Nesting issues....................|NERDComNesting|
-    5.The author..............................|NERDComAuthor|
-    6.Changelog...............................|NERDComChangelog|
-    7.Credits.................................|NERDComCredits|
-    8.License.................................|NERDComLicense|
+    4. Customising key mappings...............|NERDComMappings|
+    5. Issues with the script.................|NERDComIssues|
+        5.1 Delimiter detection heuristics....|NERDComHeuristics|
+        5.2 Nesting issues....................|NERDComNesting|
+    6.The author..............................|NERDComAuthor|
+    7.Changelog...............................|NERDComChangelog|
+    8.Credits.................................|NERDComCredits|
+    9.License.................................|NERDComLicense|
 
 ==============================================================================
 1. Intro                                                       *NERDCommenter*
@@ -66,69 +66,70 @@ provided that contains menu items corresponding to all the below mappings):
 Most of the following mappings are for normal/visual mode only. The
 |NERDComInsertComment| mapping is for insert mode only.
 
-[count],cc |NERDComComment|
-Comments out the current line or text selected in visual mode.
+[count]<leader>cc |NERDComComment|
+Comment out the current line or text selected in visual mode.
 
 
-[count],cn |NERDComNestedComment|
-Same as |NERDComComment| but forces nesting.
+[count]<leader>cn |NERDComNestedComment|
+Same as but forces nesting.
 
-[count],c<space> |NERDComToggleComment|
+
+[count]<leader>c<space> |NERDComToggleComment|
 Toggles the comment state of the selected line(s). If the topmost selected
 line is commented, all selected lines are uncommented and vice versa.
 
 
-[count],cm |NERDComMinimalComment|
+[count]<leader>cm |NERDComMinimalComment|
 Comments the given lines using only one set of multipart delimiters if
 possible.
 
 
-[count],ci |NERDComInvertComment|
+[count]<leader>ci |NERDComInvertComment|
 Toggles the comment state of the selected line(s) individually. Each selected
 line that is commented is uncommented and vice versa.
 
 
-[count],cs |NERDComSexyComment|
+[count]<leader>cs |NERDComSexyComment|
 Comments out the selected lines ``sexily''
 
 
-[count],cy |NERDComYankComment|
+[count]<leader>cy |NERDComYankComment|
 Same as |NERDComComment| except that the commented line(s) are yanked
 before commenting.
 
 
-,c$ |NERDComEOLComment|
+<leader>c$ |NERDComEOLComment|
 Comments the current line from the cursor to the end of line.
 
 
-,cA |NERDComAppendComment|
+<leader>cA |NERDComAppendComment|
 Adds comment delimiters to the end of line and goes into insert mode between
 them.
 
 
-,cI |NERDComPrependComment|
+<leader>cI |NERDComPrependComment|
 Adds comment delimiters to the start of line and goes into insert mode between
 them.
 
 
- |NERDComInsertComment|
+|NERDComInsertComment|
 Adds comment delimiters at the current cursor position and inserts between.
 Disabled by default.
 
 
-,ca |NERDComAltDelim|
+<leader>ca |NERDComAltDelim|
 Switches to the alternative set of delimiters.
 
 
-[count],cl
-[count],cr
-[count],cb    |NERDComAlignedComment|
+[count]<leader>cl
+[count]<leader>cr
+[count]<leader>cb    |NERDComAlignedComment|
 Same as |NERDComComment| except that the delimiters are aligned down the
-left side (,cl), the right side (,cr) or both sides
-(,cb).
+left side (<leader>cl), the right side (<leader>cr) or both sides
+(<leader>cb).
 
 
-[count],cu |NERDComUncommentLine|
+[count]<leader>cu |NERDComUncommentLine|
 Uncomments the selected line(s).
 
 ------------------------------------------------------------------------------
@@ -137,8 +138,8 @@ Uncomments the selected line(s).
 ------------------------------------------------------------------------------
 2.2.1 Comment map                                             *NERDComComment*
 
-Default mapping: [count],cc
-Change the mapping with: NERDComLineMap.
+Default mapping: [count]<leader>cc
+Mapped to: <plug>NERDCommenterComment
 Applicable modes: normal visual visual-line visual-block.
 
 
@@ -153,11 +154,11 @@ lines were selected in visual-line mode.
 ------------------------------------------------------------------------------
 2.2.2 Nested comment map                                *NERDComNestedComment*
 
-Default mapping: [count],cn
-Change the mapping with: NERDComLineNestMap.
+Default mapping: [count]<leader>cn
+Mapped to: <plug>NERDCommenterNest
 Applicable modes: normal visual visual-line visual-block.
 
-Performs nested commenting.  Works the same as ,cc except that if a
+Performs nested commenting.  Works the same as <leader>cc except that if a
 line is already commented then it will be commented again.
 
 If |NERDUsePlaceHolders| is set then the previous comment delimiters will
@@ -174,8 +175,8 @@ Related options:
 ------------------------------------------------------------------------------
 2.2.3 Toggle comment map                                *NERDComToggleComment*
 
-Default mapping: [count],c<space>
-Change the mapping with: NERDComLineToggleMap.
+Default mapping: [count]<leader>c<space>
+Mapped to: <plug>NERDCommenterToggle
 Applicable modes: normal visual-line.
 
 Toggles commenting of the lines selected. The behaviour of this mapping
@@ -191,14 +192,14 @@ lines were selected in visual-line mode.
 ------------------------------------------------------------------------------
 2.2.4 Minimal comment map                              *NERDComMinimalComment*
 
-Default mapping: [count],cm
-Change the mapping with: NERDComLineMinimalMap
+Default mapping: [count]<leader>cm
+Mapped to: <plug>NERDCommenterMinimal
 Applicable modes: normal visual-line.
 
 Comments the selected lines using one set of multipart delimiters if possible.
 
 For example: if you are programming in c and you select 5 lines and press
-,cm then a '/*' will be placed at the start of the top line and a '*/'
+<leader>cm then a '/*' will be placed at the start of the top line and a '*/'
 will be placed at the end of the last line.
 
 Sets of multipart comment delimiters that are between the top and bottom
@@ -213,8 +214,8 @@ lines were selected in visual-line mode.
 ------------------------------------------------------------------------------
 2.2.5 Invert comment map                                *NERDComInvertComment*
 
-Default mapping: ,ci
-Change the mapping with: NERDComLineInvertMap.
+Default mapping: <leader>ci
+Mapped to: <plug>NERDCommenterInvert
 Applicable modes: normal visual-line.
 
 Inverts the commented state of each selected line. If the a selected line is
@@ -230,8 +231,8 @@ lines were selected in visual-line mode.
 ------------------------------------------------------------------------------
 2.2.6 Sexy comment map                                    *NERDComSexyComment*
 
-Default mapping: [count],cs
-Change the mapping with: NERDComLineSexyMap
+Default mapping: [count]<leader>cs
+Mapped to: <plug>NERDCommenterSexy
 Applicable modes: normal, visual-line.
 
 Comments the selected line(s) ``sexily''... see |NERDComSexyComments| for
@@ -250,17 +251,17 @@ Related options:
 ------------------------------------------------------------------------------
 2.2.7 Yank comment map                                    *NERDComYankComment*
 
-Default mapping: [count],cy
-Change the mapping with: NERDComLineYankMap
+Default mapping: [count]<leader>cy
+Mapped to: <plug>NERDCommenterYank
 Applicable modes: normal visual visual-line visual-block.
 
-Same as ,cc except that it yanks the line(s) that are commented first.
+Same as <leader>cc except that it yanks the line(s) that are commented first.
 
 ------------------------------------------------------------------------------
 2.2.8 Comment to EOL map                                   *NERDComEOLComment*
 
-Default mapping: ,c$
-Change the mapping with: NERDComToEOLMap
+Default mapping: <leader>c$
+Mapped to: <plug>NERDCommenterToEOL
 Applicable modes: normal.
 
 Comments the current line from the current cursor position up to the end of
@@ -269,8 +270,8 @@ the line.
 ------------------------------------------------------------------------------
 2.2.9 Append com to line map                            *NERDComAppendComment*
 
-Default mapping: ,cA
-Change the mapping with: NERDAppendComMap.
+Default mapping: <leader>cA
+Mapped to: <plug>NERDCommenterAppend
 Applicable modes: normal.
 
 Appends comment delimiters to the end of the current line and goes
@@ -279,8 +280,8 @@ to insert mode between the new delimiters.
 ------------------------------------------------------------------------------
 2.2.10 Prepend com to line map                         *NERDComPrependComment*
 
-Default mapping: ,cI
-Change the mapping with: NERDPrependComMap.
+Default mapping: <leader>cI
+Mapped to: <plug>NERDCommenterPrepend
 Applicable modes: normal.
 
 Prepends comment delimiters to the start of the current line and goes to
@@ -290,7 +291,7 @@ insert mode between the new delimiters.
 2.2.11 Insert comment map                               *NERDComInsertComment*
 
 Default mapping: disabled by default.
-Change the mapping with: NERDComInInsertMap.
+Map it to: <plug>NERDCommenterInInsert
 Applicable modes: insert.
 
 Adds comment delimiters at the current cursor position and inserts
@@ -305,12 +306,12 @@ to your vimrc.
 ------------------------------------------------------------------------------
 2.2.12 Use alternate delims map                              *NERDComAltDelim*
 
-Default mapping: ,ca
-Change the mapping with: NERDAltComMap
+Default mapping: <leader>ca
+Mapped to: <plug>NERDCommenterAltDelims
 Applicable modes: normal.
 
 Changes to the alternative commenting style if one is available. For example,
-if the user is editing a c++ file using // comments and they hit ,ca
+if the user is editing a c++ file using // comments and they hit <leader>ca
 then they will be switched over to /**/ comments.
 
 See also |NERDComDefaultDelims|
@@ -318,12 +319,13 @@ See also |NERDComDefaultDelims|
 ------------------------------------------------------------------------------
 2.2.13 Comment aligned maps                            *NERDComAlignedComment*
 
-Default mappings: [count],cl   [count],cr   [count],cb
-Change the mappings with: NERDComAlignLeftMap, NERDComAlignRightMap and
-NERDComAlignBothMap.
+Default mappings: [count]<leader>cl   [count]<leader>cr   [count]<leader>cb
+Mapped to: <plug>NERDCommenterAlignLeft
+           <plug>NERDCommenterAlignRight
+           <plug>NERDCommenterAlignBoth
 Applicable modes: normal visual-line.
 
-Same as ,cc except that the comment delimiters are aligned on the left
+Same as <leader>cc except that the comment delimiters are aligned on the left
 side, right side or both sides respectively. These comments are always nested
 if the line(s) are already commented.
 
@@ -333,8 +335,8 @@ lines were selected in visual-line mode.
 ------------------------------------------------------------------------------
 2.2.14 Uncomment line map                               *NERDComUncommentLine*
 
-Default mapping: [count],cu
-Change the mapping with: NERDUncomLineMap.
+Default mapping: [count]<leader>cu
+Mapped to: <plug>NERDCommenterUncomment
 Applicable modes: normal visual visual-line visual-block.
 
 Uncomments the current line. If multiple lines are selected in
@@ -440,6 +442,7 @@ then the script would do a sexy comment on the last visual selection.
 |NERDBlockComIgnoreEmpty|             Forces right delims to be placed when
                                       doing visual-block comments.
 |NERDCommentWholeLinesInVMode|        Changes behaviour of visual comments.
+|NERDCreateDefaultMappings|           Turn the default mappings on/off.
 |NERDDefaultNesting|                  Tells the script to use nested comments
                                       by default.
 |NERDMenuMode|                        Specifies how the NERD commenter menu
@@ -447,8 +450,6 @@ then the script would do a sexy comment on the last visual selection.
 |NERDLPlace|                          Specifies what to use as the left
                                       delimiter placeholder when nesting
                                       comments.
-|NERDMapleader|                       Specifies what all the commenting key
-                                      mappings will begin with.
 |NERDUsePlaceHolders|                 Specifies which filetypes may use
                                       placeholders when nesting comments.
 |NERDRemoveAltComs|                   Tells the script whether to remove
@@ -589,6 +590,15 @@ then stick the following line in your vimrc: >
 Note that this option does not affect the behaviour of |visual-block| mode.
 
 ------------------------------------------------------------------------------
+                                                *NERDCreateDefaultMappings*
+Values: 0 or 1.
+Default: 1.
+
+If set to 0, none of the default mappings will be created.
+
+See also |NERDComMappings|.
+
+------------------------------------------------------------------------------
                                                            *NERDRemoveAltComs*
 Values: 0 or 1.
 Default: 1.
@@ -598,7 +608,7 @@ this option tells the script whether to look for, and remove, comments
 delimiters of the alternative style.
 
 For example, if you are editing a c++ file using // style comments and you go
-,cu on this line: >
+<leader>cu on this line: >
     /* This is a c++ comment baby! */
 <
 It will not be uncommented if the NERDRemoveAltComs is set to 0.
@@ -650,40 +660,10 @@ To set these options use lines like: >
 Following the above example, if we have line of c code: >
     /* int horse */
 <
-and we comment it with ,cn it will be changed to: >
+and we comment it with <leader>cn it will be changed to: >
     /*FOO int horse BAR*/
 <
 When we uncomment this line it will go back to what it was.
-
-------------------------------------------------------------------------------
-                                                               *NERDMapleader*
-Values: arbitrary string.
-Default: ,c
-
-NERDMapleader is used to specify what all the NERD commenter key mappings
-begin with.
-
-The default key mappings will look like this: >
-    ,cc
-    ,cu
-    ,ca
-    ,ci
-    ,cs
-    ...
-<
-However, if this line: >
-    let NERDMapleader = ',x'
-<
-were present in your vimrc then the default mappings would look like this: >
-    ,xc
-    ,xu
-    ,xa
-    ,xi
-    ,xs
-    ...
-<
-This option only affects the mappings that have not been explicitly set
-manually (see |NERDComMappings|).
 
 ------------------------------------------------------------------------------
                                                                 *NERDMenuMode*
@@ -754,7 +734,7 @@ Values: 0 or 1.
 Default 1.
 
 When this option is set to 1, comments are nested automatically. That is, if
-you hit ,cc on a line that is already commented it will be commented
+you hit <leader>cc on a line that is already commented it will be commented
 again
 
 ------------------------------------------------------------------------------
@@ -771,42 +751,30 @@ Example: java uses // style comments by default, but you want it to default to
 
 See |NERDComAltDelim| for switching commenting styles at runtime.
 
-------------------------------------------------------------------------------
-3.4 Key mapping customisation                                *NERDComMappings*
+==============================================================================
+4. Key mapping customisation                                *NERDComMappings*
 
-These options are used to override the default keys that are used for the
-commenting mappings. Their values must be set to strings. As an example: if
-you wanted to use the mapping ,foo to uncomment lines of code then
-you would place this line in your vimrc >
-    let NERDUncomLineMap=",foo"
+To change a mapping just map another key combo to the internal <plug> mapping.
+For example, to remap the *NERDComComment* mapping to ",omg" you would put
+these lines in your vimrc: >
+    nmap ,omg <plug>NERDCommenterComment
+    vmap ,omg <plug>NERDCommenterComment
 <
-Check out |NERDComFunctionality| for details about what the following
-mappings do.
+This will stop the corresponding default mappings from being created. Note: in
+this case if you only override the nmap, then the default vmap will still be
+created.
 
-Default Mapping     Option to override~
+See the help for the mapping in question to see which <plug> mapping to
+map to, and which modes it applies to.
 
-,ca                 NERDAltComMap
-,ce                 NERDAppendComMap
-,cl                 NERDComAlignLeftMap
-,cb                 NERDComAlignBothMap
-,cr                 NERDComAlignRightMap
-<C-c>               NERDComInInsertMap
-,ci                 NERDComLineInvertMap
-,cc                 NERDComLineMap
-,cn                 NERDComLineNestMap
-,cs                 NERDComLineSexyMap
-,c<space>           NERDComLineToggleMap
-,cm                 NERDComLineMinimalMap
-,c$                 NERDComToEOLMap
-,cy                 NERDComLineYankMap
-,cu                 NERDUncomLineMap
+See also |NERDCreateDefaultMappings|.
 
 ==============================================================================
-4. Issues with the script                                      *NERDComIssues*
+5. Issues with the script                                      *NERDComIssues*
 
 
 ------------------------------------------------------------------------------
-4.1 Delimiter detection heuristics                         *NERDComHeuristics*
+5.1 Delimiter detection heuristics                         *NERDComHeuristics*
 
 Heuristics are used to distinguish the real comment delimiters
 
@@ -826,7 +794,7 @@ string. These heuristics, while usually pretty accurate, will not work for all
 cases.
 
 ------------------------------------------------------------------------------
-4.2 Nesting issues                                            *NERDComNesting*
+5.2 Nesting issues                                            *NERDComNesting*
 
 If we have some line of code like this: >
     /*int foo */ = /*5 + 9;*/
@@ -846,7 +814,7 @@ will become: >
 for simplicity)
 
 ==============================================================================
-5. The author                                                  *NERDComAuthor*
+6. The author                                                  *NERDComAuthor*
 
 The author of the NERD commenter is Martyzillatron --- the half robot, half
 dinosaur bastard son of Megatron and Godzilla. He enjoys destroying
@@ -857,7 +825,7 @@ its a lonely life being the worlds premier terror machine. How would you feel
 if your face looked like a toaster and a t-rex put together? :(
 
 ==============================================================================
-7. Changelog                                                *NERDComChangelog*
+8. Changelog                                                *NERDComChangelog*
 
 2.x.x
     - add support for potwiki. Thanks to Bernhard Grotz for the email.
@@ -1089,7 +1057,7 @@ if your face looked like a toaster and a t-rex put together? :(
     information.
 
 ==============================================================================
-7. Credits                                                    *NERDComCredits*
+8. Credits                                                    *NERDComCredits*
 
 Thanks and respect to the following people:
 
@@ -1293,7 +1261,7 @@ Bernhard Grotz                      potwiki
 sgronblo                            man
 
 ==============================================================================
-8. License                                                    *NERDComLicense*
+9. License                                                    *NERDComLicense*
 
 The NERD commenter is released under the wtfpl.
 See http://sam.zoy.org/wtfpl/COPYING.
