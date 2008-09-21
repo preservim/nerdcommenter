@@ -750,16 +750,13 @@ See |NERDComAltDelim| for switching commenting styles at runtime.
 
 To change a mapping just map another key combo to the internal <plug> mapping.
 For example, to remap the *NERDComComment* mapping to ",omg" you would put
-these lines in your vimrc: >
-    nmap ,omg <plug>NERDCommenterComment
-    vmap ,omg <plug>NERDCommenterComment
+this line in your vimrc: >
+    map ,omg <plug>NERDCommenterComment
 <
-This will stop the corresponding default mappings from being created. Note: in
-this case if you only override the nmap, then the default vmap will still be
-created.
+This will stop the corresponding default mappings from being created.
 
 See the help for the mapping in question to see which <plug> mapping to
-map to, and which modes it applies to.
+map to.
 
 See also |'NERDCreateDefaultMappings'|.
 
