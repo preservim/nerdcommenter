@@ -819,8 +819,15 @@ if your face looked like a toaster and a t-rex put together? :(
 8. Changelog                                                *NERDComChangelog*
 
 2.x.x
-    - add support for potwiki. Thanks to Bernhard Grotz for the email.
-    - add support for SVNcommig. Thanks to John O'Shea.
+    - rewrite the mappings system to be more "standard".
+      - removed all the mapping options
+      - the default mappings now start with <leader> instead of comma.
+      - see :help NERDComMappings, and :help NERDCreateDefaultMappings for
+        more info
+    - add support for applescript, calbire, man, SVNcommit and potwiki. Thanks
+      to nicothakis, timberke, sgronblo, mntnoe, Bernhard Grotz and John
+      O'Shea respectively.
+    - bugfix for haskell delimiters. Thanks to mntnoe.
 2.1.18
     - add support for llvm. Thanks to nicothakis.
     - add support for xquery. Thanks to Phillip Kovalev.
