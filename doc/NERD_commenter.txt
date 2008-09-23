@@ -116,11 +116,9 @@ Switches to the alternative set of delimiters.
 
 
 [count]<leader>cl
-[count]<leader>cr
 [count]<leader>cb    |NERDComAlignedComment|
 Same as |NERDComComment| except that the delimiters are aligned down the
-left side (<leader>cl), the right side (<leader>cr) or both sides
-(<leader>cb).
+left side (<leader>cl) or both sides (<leader>cb).
 
 
 [count]<leader>cu |NERDComUncommentLine|
@@ -313,14 +311,13 @@ See also |NERDComDefaultDelims|
 ------------------------------------------------------------------------------
 2.2.13 Comment aligned maps                            *NERDComAlignedComment*
 
-Default mappings: [count]<leader>cl   [count]<leader>cr   [count]<leader>cb
+Default mappings: [count]<leader>cl   [count]<leader>cb
 Mapped to: <plug>NERDCommenterAlignLeft
-           <plug>NERDCommenterAlignRight
            <plug>NERDCommenterAlignBoth
 Applicable modes: normal visual-line.
 
 Same as <leader>cc except that the comment delimiters are aligned on the left
-side, right side or both sides respectively. These comments are always nested
+side or both sides respectively. These comments are always nested
 if the line(s) are already commented.
 
 If a [count] is given in normal mode, the mapping works as though that many
@@ -413,7 +410,7 @@ The arguments to this function are simple:
       line.
     - type: is used to specify what type of commenting operation is to be
       performed, and it can be one of the following: "sexy", "invert",
-      "minimal", "toggle", "alignLeft", "alignRight", "alignBoth", "norm",
+      "minimal", "toggle", "alignLeft", "alignBoth", "norm",
       "nested", "toEOL", "prepend", "append", "insert", "uncomment", "yank"
 
 For example, if you typed >

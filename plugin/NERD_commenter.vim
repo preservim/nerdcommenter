@@ -1147,10 +1147,9 @@ endfunction
 " Args:
 "   -forceNested: a flag indicating whether the called is requesting the comment
 "    to be nested if need be
-"   -alignRight/alignLeft: 0/1 if the comments delimiters should/shouldnt be
-"    aligned left/right
+"   -align: should be "left" or "both" or "none"
 "   -firstLine/lastLine: the top and bottom lines to comment
-function s:CommentLines(forceNested, alignLeft, alignRight, firstLine, lastLine)
+function s:CommentLines(forceNested, align, firstLine, lastLine)
     " we need to get the left and right indexes of the leftmost char in the
     " block of of lines and the right most char so that we can do alignment of
     " the delimiters if the user has specified
@@ -1182,12 +1181,12 @@ function s:CommentLines(forceNested, alignLeft, alignRight, firstLine, lastLine)
 
             " check if we can comment this line
             if !isCommented || g:NERDUsePlaceHolders || s:Multipart()
-                if a:alignLeft
+                if a:align == "left" || a:align == "both"
                     let theLine = s:AddLeftDelimAligned(s:GetLeft(0,1,0), theLine, leftAlignIndx)
                 else
                     let theLine = s:AddLeftDelim(s:GetLeft(0,1,0), theLine)
                 endif
-                if a:alignRight
+                if a:align == "both"
                     let theLine = s:AddRightDelimAligned(s:GetRight(0,1,0), theLine, rightAlignIndx)
                 else
                     let theLine = s:AddRightDelim(s:GetRight(0,1,0), theLine)
@@ -1436,7 +1435,7 @@ function s:CommentRegion(topLine, topCol, bottomLine, bottomCol, forceNested)
         let topOfRange = a:topLine+1
         let bottomOfRange = a:bottomLine-1
         if topOfRange <= bottomOfRange
-            call s:CommentLines(a:forceNested, 0, 0, topOfRange, bottomOfRange)
+            call s:CommentLines(a:forceNested, "none", topOfRange, bottomOfRange)
         endif
 
         "comment the bottom line
@@ -1494,14 +1493,14 @@ function s:InvertComment(firstLine, lastLine)
     endwhile
 endfunction
 
-" Function: NERDComment(isVisual, alignLeft, alignRight, type) function {{{2
+" Function: NERDComment(isVisual, type) function {{{2
 " This function is a Wrapper for the main commenting functions
 "
 " Args:
 "   -isVisual: a flag indicating whether the comment is requested in visual
 "    mode or not
 "   -type: the type of commenting requested. Can be 'sexy', 'invert',
-"    'minimal', 'toggle', 'alignLeft', 'alignRight', 'alignBoth', 'norm',
+"    'minimal', 'toggle', 'alignLeft', 'alignBoth', 'norm',
 "    'nested', 'toEOL', 'prepend', 'append', 'insert', 'uncomment', 'yank'
 function! NERDComment(isVisual, type) range
     " we want case sensitivity when commenting
@@ -1528,13 +1527,17 @@ function! NERDComment(isVisual, type) range
         elseif a:isVisual && visualmode() == "v" && (g:NERDCommentWholeLinesInVMode==0 || (g:NERDCommentWholeLinesInVMode==2 && s:HasMultipartDelims()))
             call s:CommentRegion(firstLine, firstCol, lastLine, lastCol, forceNested)
         else
-            call s:CommentLines(forceNested, 0, 0, firstLine, lastLine)
+            call s:CommentLines(forceNested, "none", firstLine, lastLine)
         endif
 
-    elseif a:type == 'alignLeft' || a:type == 'alignRight' || a:type == 'alignBoth'
-        let alignLeft = (a:type == 'alignLeft' || a:type == 'alignBoth')
-        let alignRight = (a:type == 'alignRight' || a:type == 'alignBoth')
-        call s:CommentLines(forceNested, alignLeft, alignRight, firstLine, lastLine)
+    elseif a:type == 'alignLeft' || a:type == 'alignBoth'
+        let align = "none"
+        if a:type == "alignLeft"
+            let align = "left"
+        elseif a:type == "alignBoth"
+            let align = "both"
+        endif
+        call s:CommentLines(forceNested, align, firstLine, lastLine)
 
     elseif a:type == 'invert'
         call s:InvertComment(firstLine, lastLine)
@@ -1543,7 +1546,7 @@ function! NERDComment(isVisual, type) range
         try
             call s:CommentLinesSexy(firstLine, lastLine)
         catch /NERDCommenter.Delimiters/
-            call s:CommentLines(forceNested, 0, 0, firstLine, lastLine)
+            call s:CommentLines(forceNested, "none", firstLine, lastLine)
         catch /NERDCommenter.Nesting/
             call s:NerdEcho("Sexy comment aborted. Nested sexy cannot be nested", 0)
         endtry
@@ -3260,10 +3263,6 @@ vmap <silent> <plug>NERDCommenterYank <ESC>:call NERDComment(1, "yank")<CR>
 nnoremap <silent> <plug>NERDCommenterAlignLeft :call NERDComment(0, "alignLeft")<cr>
 vnoremap <silent> <plug>NERDCommenterAlignLeft <ESC>:call NERDComment(1, "alignLeft")<cr>
 
-" right aligned comments
-nnoremap <silent> <plug>NERDCommenterAlignRight :call NERDComment(0, "alignRight")<cr>
-vnoremap <silent> <plug>NERDCommenterAlignRight <ESC>:call NERDComment(1, "alignRight")<cr>
-
 " left and right aligned comments
 nnoremap <silent> <plug>NERDCommenterAlignBoth :call NERDComment(0, "alignBoth")<cr>
 vnoremap <silent> <plug>NERDCommenterAlignBoth <ESC>:call NERDComment(1, "alignBoth")<cr>
@@ -3307,7 +3306,6 @@ if g:NERDCreateDefaultMappings
     call s:CreateMaps('<plug>NERDCommenterInvert',     '<leader>ci')
     call s:CreateMaps('<plug>NERDCommenterYank',       '<leader>cy')
     call s:CreateMaps('<plug>NERDCommenterAlignLeft',  '<leader>cl')
-    call s:CreateMaps('<plug>NERDCommenterAlignRight', '<leader>cr')
     call s:CreateMaps('<plug>NERDCommenterAlignBoth',  '<leader>cb')
     call s:CreateMaps('<plug>NERDCommenterNest',       '<leader>cn')
     call s:CreateMaps('<plug>NERDCommenterUncomment',  '<leader>cu')
@@ -3352,7 +3350,6 @@ if g:NERDMenuMode != 0
     exec 'nmenu <silent> '. menuRoot .'.Prepend <plug>NERDCommenterPrepend'
     exec 'menu <silent> '. menuRoot .'.-Sep-    :'
     call s:CreateMenuItems('<plug>NERDCommenterAlignLeft',  'Left\ aligned', menuRoot)
-    call s:CreateMenuItems('<plug>NERDCommenterAlignRight', 'Right\ aligned', menuRoot)
     call s:CreateMenuItems('<plug>NERDCommenterAlignBoth',  'Left\ and\ right\ aligned', menuRoot)
     exec 'menu <silent> '. menuRoot .'.-Sep2-    :'
     call s:CreateMenuItems('<plug>NERDCommenterUncomment',  'Uncomment', menuRoot)
