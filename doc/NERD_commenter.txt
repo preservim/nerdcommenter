@@ -820,8 +820,9 @@ if your face looked like a toaster and a t-rex put together? :(
 
 2.x.x
     - rewrite the mappings system to be more "standard".
-      - removed all the mapping options
-      - the default mappings now start with <leader> instead of comma.
+      - removed all the mapping options. Now, mappings to <plug> mappings are
+        used
+      - the default mappings now start with <leader>c instead of ,c
       - see :help NERDComMappings, and :help NERDCreateDefaultMappings for
         more info
     - add support for applescript, calbire, man, SVNcommit and potwiki. Thanks
