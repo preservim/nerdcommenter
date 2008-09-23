@@ -23,11 +23,10 @@ CONTENTS                                               *NERDCommenterContents*
             2.2.7 Yank comment map............|NERDComYankComment|
             2.2.8 Comment to EOL map..........|NERDComEOLComment|
             2.2.9 Append com to line map......|NERDComAppendComment|
-            2.2.10 Prepend com to line map....|NERDComPrependComment|
-            2.2.11 Insert comment map.........|NERDComInsertComment|
-            2.2.12 Use alternate delims map...|NERDComAltDelim|
-            2.2.13 Comment aligned maps.......|NERDComAlignedComment|
-            2.2.14 Uncomment line map.........|NERDComUncommentLine|
+            2.2.10 Insert comment map.........|NERDComInsertComment|
+            2.2.11 Use alternate delims map...|NERDComAltDelim|
+            2.2.12 Comment aligned maps.......|NERDComAlignedComment|
+            2.2.13 Uncomment line map.........|NERDComUncommentLine|
         2.3 Supported filetypes...............|NERDComFiletypes|
         2.4 Sexy Comments.....................|NERDComSexyComments|
         2.5 The NERDComment function..........|NERDComNERDComment|
@@ -98,11 +97,6 @@ Comments the current line from the cursor to the end of line.
 
 <leader>cA |NERDComAppendComment|
 Adds comment delimiters to the end of line and goes into insert mode between
-them.
-
-
-<leader>cI |NERDComPrependComment|
-Adds comment delimiters to the start of line and goes into insert mode between
 them.
 
 
@@ -270,17 +264,7 @@ Appends comment delimiters to the end of the current line and goes
 to insert mode between the new delimiters.
 
 ------------------------------------------------------------------------------
-2.2.10 Prepend com to line map                         *NERDComPrependComment*
-
-Default mapping: <leader>cI
-Mapped to: <plug>NERDCommenterPrepend
-Applicable modes: normal.
-
-Prepends comment delimiters to the start of the current line and goes to
-insert mode between the new delimiters.
-
-------------------------------------------------------------------------------
-2.2.11 Insert comment map                               *NERDComInsertComment*
+2.2.10 Insert comment map                               *NERDComInsertComment*
 
 Default mapping: disabled by default.
 Map it to: <plug>NERDCommenterInInsert
@@ -296,7 +280,7 @@ mapping add >
 to your vimrc.
 
 ------------------------------------------------------------------------------
-2.2.12 Use alternate delims map                              *NERDComAltDelim*
+2.2.11 Use alternate delims map                              *NERDComAltDelim*
 
 Default mapping: <leader>ca
 Mapped to: <plug>NERDCommenterAltDelims
@@ -309,7 +293,7 @@ then they will be switched over to /**/ comments.
 See also |NERDComDefaultDelims|
 
 ------------------------------------------------------------------------------
-2.2.13 Comment aligned maps                            *NERDComAlignedComment*
+2.2.12 Comment aligned maps                            *NERDComAlignedComment*
 
 Default mappings: [count]<leader>cl   [count]<leader>cb
 Mapped to: <plug>NERDCommenterAlignLeft
@@ -324,7 +308,7 @@ If a [count] is given in normal mode, the mapping works as though that many
 lines were selected in visual-line mode.
 
 ------------------------------------------------------------------------------
-2.2.14 Uncomment line map                               *NERDComUncommentLine*
+2.2.13 Uncomment line map                               *NERDComUncommentLine*
 
 Default mapping: [count]<leader>cu
 Mapped to: <plug>NERDCommenterUncomment
@@ -410,8 +394,8 @@ The arguments to this function are simple:
       line.
     - type: is used to specify what type of commenting operation is to be
       performed, and it can be one of the following: "sexy", "invert",
-      "minimal", "toggle", "alignLeft", "alignBoth", "norm",
-      "nested", "toEOL", "prepend", "append", "insert", "uncomment", "yank"
+      "minimal", "toggle", "alignLeft", "alignBoth", "norm", "nested",
+      "toEOL", "append", "insert", "uncomment", "yank"
 
 For example, if you typed >
     :call NERDComment(1, 'sexy')

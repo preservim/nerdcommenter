@@ -1501,7 +1501,7 @@ endfunction
 "    mode or not
 "   -type: the type of commenting requested. Can be 'sexy', 'invert',
 "    'minimal', 'toggle', 'alignLeft', 'alignBoth', 'norm',
-"    'nested', 'toEOL', 'prepend', 'append', 'insert', 'uncomment', 'yank'
+"    'nested', 'toEOL', 'append', 'insert', 'uncomment', 'yank'
 function! NERDComment(isVisual, type) range
     " we want case sensitivity when commenting
     let oldIgnoreCase = &ignorecase
@@ -1573,9 +1573,6 @@ function! NERDComment(isVisual, type) range
         call s:SaveScreenState()
         call s:CommentBlock(firstLine, firstLine, col("."), col("$")-1, 1)
         call s:RestoreScreenState()
-
-    elseif a:type == 'prepend'
-        call s:PrependCommentToLine()
 
     elseif a:type == 'append'
         call s:AppendCommentToLine()
@@ -1654,46 +1651,6 @@ function s:PlaceDelimitersAndInsBetween()
     startinsert
 endfunction
 
-" Function: s:PrependCommentToLine(){{{2
-" This function prepends comment delimiters to the start of line and places
-" the cursor in position to start typing the comment
-function s:PrependCommentToLine()
-    " get the left and right delimiters without any escape chars in them
-    let left = s:GetLeft(0, 1, 0)
-    let right = s:GetRight(0, 1, 0)
-
-    " get the len of the right delim
-    let lenRight = strlen(right)
-
-
-    "if the line is empty then we need to know about this later on
-    let isLineEmpty = strlen(getline(".")) == 0
-
-    "stick the delimiters down at the start of the line. We have to format the
-    "comment with spaces as appropriate
-    if lenRight > 0
-        execute ":normal I" . left . right
-    else
-        execute ":normal I" . left
-    endif
-
-    " if there is a right delimiter then we gotta move the cursor left
-    " by the len of the right delimiter so we insert between the delimiters
-    if lenRight > 0
-        let leftMoveAmount = lenRight
-        execute ":normal " . leftMoveAmount . "h"
-    endif
-    normal l
-
-    "if the line was empty then we gotta add an extra space on the end because
-    "the cursor will move back one more at the end of the last "execute"
-    "command
-    if isLineEmpty && lenRight == 0
-        execute ":normal a "
-    endif
-
-    startinsert
-endfunction
 " Function: s:RemoveDelimiters(left, right, line) {{{2
 " this function is called to remove the first left comment delimiter and the
 " last right delimiter of the given line.
@@ -3281,9 +3238,6 @@ nnoremap <silent> <plug>NERDCommenterToEOL :call NERDComment(0, "toEOL")<cr>
 " append comments
 nmap <silent> <plug>NERDCommenterAppend :call NERDComment(0, "append")<cr>
 
-" prepend comments
-nmap <silent> <plug>NERDCommenterPrepend :call NERDComment(0, "prepend")<cr>
-
 " insert comments
 inoremap <silent> <plug>NERDCommenterInInsert <SPACE><BS><ESC>:call NERDComment(0, "insert")<CR>
 
@@ -3311,7 +3265,6 @@ if g:NERDCreateDefaultMappings
     call s:CreateMaps('<plug>NERDCommenterUncomment',  '<leader>cu')
     call s:CreateMaps('<plug>NERDCommenterToEOL',      '<leader>c$')
     call s:CreateMaps('<plug>NERDCommenterAppend',     '<leader>cA')
-    call s:CreateMaps('<plug>NERDCommenterPrepend',    '<leader>cI')
 
     if !hasmapto('<plug>NERDCommenterAltDelims', 'n')
         nmap <leader>ca <plug>NERDCommenterAltDelims
@@ -3347,7 +3300,6 @@ if g:NERDMenuMode != 0
     call s:CreateMenuItems('<plug>NERDCommenterSexy',       'Sexy', menuRoot)
     call s:CreateMenuItems('<plug>NERDCommenterYank',       'Yank\ then\ comment', menuRoot)
     exec 'nmenu <silent> '. menuRoot .'.Append <plug>NERDCommenterAppend'
-    exec 'nmenu <silent> '. menuRoot .'.Prepend <plug>NERDCommenterPrepend'
     exec 'menu <silent> '. menuRoot .'.-Sep-    :'
     call s:CreateMenuItems('<plug>NERDCommenterAlignLeft',  'Left\ aligned', menuRoot)
     call s:CreateMenuItems('<plug>NERDCommenterAlignBoth',  'Left\ and\ right\ aligned', menuRoot)
