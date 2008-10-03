@@ -811,6 +811,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == "tssgm"
         call s:MapDelimiters("comment = '","'")
+    elseif a:filetype == "txt2tags"
+        call s:MapDelimiters('%','')
     elseif a:filetype == "uc"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "uil"
