@@ -804,6 +804,7 @@ if your face looked like a toaster and a t-rex put together? :(
         used
       - see :help NERDComMappings, and :help NERDCreateDefaultMappings for
         more info
+    - remove "prepend comments" and "right aligned comments".
     - add support for applescript, calbire, man, SVNcommit, potwiki, txt2tags and SVNinfo.
       Thanks to nicothakis, timberke, sgronblo, mntnoe, Bernhard Grotz, John
       O'Shea, François and Giacomo Mariani respectively.
