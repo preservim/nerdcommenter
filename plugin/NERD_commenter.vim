@@ -771,6 +771,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('','')
     elseif a:filetype == "SVNdiff"
         call s:MapDelimiters('','')
+    elseif a:filetype == "SVNinfo"
+        call s:MapDelimiters('','')
     elseif a:filetype == "systemverilog"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "tads"

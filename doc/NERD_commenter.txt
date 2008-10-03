@@ -806,9 +806,9 @@ if your face looked like a toaster and a t-rex put together? :(
       - the default mappings now start with <leader>c instead of ,c
       - see :help NERDComMappings, and :help NERDCreateDefaultMappings for
         more info
-    - add support for applescript, calbire, man, SVNcommit, potwiki, txt2tags.
+    - add support for applescript, calbire, man, SVNcommit, potwiki, txt2tags and SVNinfo.
       Thanks to nicothakis, timberke, sgronblo, mntnoe, Bernhard Grotz, John
-      O'Shea and François respectively.
+      O'Shea, François and Giacomo Mariani respectively.
     - bugfix for haskell delimiters. Thanks to mntnoe.
 2.1.18
     - add support for llvm. Thanks to nicothakis.
@@ -1026,6 +1026,7 @@ Phillip Kovalev                     xquery
 Bernhard Grotz                      potwiki
 sgronblo                            man
 François                            txt2tags
+Giacomo Mariani                     SVNinfo
 
 ==============================================================================
 9. License                                                    *NERDComLicense*
