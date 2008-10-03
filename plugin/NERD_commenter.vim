@@ -1004,13 +1004,13 @@ function s:AppendCommentToLine()
 
     "stick the delimiters down at the end of the line. We have to format the
     "comment with spaces as appropriate
-    execute ":normal " . insOrApp . (isLineEmpty ? '' : ' ') . left . right . " "
+    execute ":normal! " . insOrApp . (isLineEmpty ? '' : ' ') . left . right . " "
 
     " if there is a right delimiter then we gotta move the cursor left
     " by the len of the right delimiter so we insert between the delimiters
     if lenRight > 0
         let leftMoveAmount = lenRight
-        execute ":normal " . leftMoveAmount . "h"
+        execute ":normal! " . leftMoveAmount . "h"
     endif
     startinsert
 endfunction
@@ -1589,11 +1589,11 @@ function! NERDComment(isVisual, type) range
 
     elseif a:type == 'yank'
         if a:isVisual
-            normal gvy
+            normal! gvy
         elseif countWasGiven
             execute firstLine .','. lastLine .'yank'
         else
-            normal Y
+            normal! yy
         endif
         execute firstLine .','. lastLine .'call NERDComment('. a:isVisual .', "norm")'
     endif
@@ -1630,19 +1630,19 @@ function s:PlaceDelimitersAndInsBetween()
     " place the delimiters down. We do it differently depending on whether
     " there is a left AND right delimiter
     if lenRight > 0
-        execute ":normal " . insOrApp . left . right
-        execute ":normal " . lenRight . "h"
+        execute ":normal! " . insOrApp . left . right
+        execute ":normal! " . lenRight . "h"
     else
-        execute ":normal " . insOrApp . left
+        execute ":normal! " . insOrApp . left
 
         " if we are tacking the delim on the EOL then we gotta add a space
         " after it cos when we go out of insert mode the cursor will move back
         " one and the user wont be in position to type the comment.
         if isDelimOnEOL
-            execute 'normal a '
+            execute 'normal! a '
         endif
     endif
-    normal l
+    normal! l
 
     "if needed convert spaces back to tabs and adjust the cursors col
     "accordingly
@@ -1811,7 +1811,7 @@ function s:UncommentLinesSexy(topline, bottomline)
     " if the first line contains only the left delim then just delete it
     if theLine =~ '^[ \t]*' . left . '[ \t]*$' && !g:NERDCompactSexyComs
         call cursor(a:topline, 1)
-        normal dd
+        normal! dd
         let bottomline = bottomline - 1
 
     " topline contains more than just the left delim
@@ -1835,7 +1835,7 @@ function s:UncommentLinesSexy(topline, bottomline)
     " if the bottomline contains only the right delim then just delete it
     if theLine =~ '^[ \t]*' . right . '[ \t]*$'
         call cursor(bottomline, 1)
-        normal dd
+        normal! dd
 
     " the last line contains more than the right delim
     else
@@ -3048,7 +3048,7 @@ function s:RestoreScreenState()
     endif
 
     call cursor(t:NERDComOldTopLine, 0)
-    normal zt
+    normal! zt
     call setpos(".", t:NERDComOldPos)
 endfunction
 
