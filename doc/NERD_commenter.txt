@@ -996,7 +996,7 @@ Greg Weber                          D, haml
 Bruce Sherrod                       velocity
 timberke                            cobol, calibre
 Aaron Schaefer                      factor
-Laurent ARNOUD                      asterisk, mplayerconf
+Mr X                                asterisk, mplayerconf
 Kuchma Michael                      plsql
 Brett Warneke                       spectre
 Pipp                                lhaskell
