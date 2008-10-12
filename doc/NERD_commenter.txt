@@ -729,7 +729,7 @@ See |NERDComAltDelim| for switching commenting styles at runtime.
 4. Key mapping customisation                                *NERDComMappings*
 
 To change a mapping just map another key combo to the internal <plug> mapping.
-For example, to remap the *NERDComComment* mapping to ",omg" you would put
+For example, to remap the |NERDComComment| mapping to ",omg" you would put
 this line in your vimrc: >
     map ,omg <plug>NERDCommenterComment
 <
@@ -958,6 +958,8 @@ incompatibility with vim7.2. Thanks also to JaGoTerr for posting the issue.
 Thanks to Elias Pipping for sending me a bug report about haskell commenting.
 
 Thanks to mntnoe for pointing out incorrect delimiters for haskell.
+
+Thanks to Mark S. for pointing out a bug in the doc.
 
 Not to forget! Thanks to the following people for sending me new filetypes to
 support :D
