@@ -798,6 +798,9 @@ if your face looked like a toaster and a t-rex put together? :(
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
+2.x.x
+    - add support for newlisp, thanks to Matthew Lee Hinman.
+
 2.2.0
     - rewrote the mappings system to be more "standard".
       - removed all the mapping options. Now, mappings to <plug> mappings are
@@ -1026,6 +1029,7 @@ Bernhard Grotz                      potwiki
 sgronblo                            man
 François                            txt2tags
 Giacomo Mariani                     SVNinfo
+Matthew Lee Hinman                  newlisp
 
 ==============================================================================
 9. License                                                    *NERDComLicense*

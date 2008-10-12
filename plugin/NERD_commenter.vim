@@ -539,6 +539,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('', '')
     elseif a:filetype == "netrw"
         call s:MapDelimiters('', '')
+    elseif a:filetype == "newlisp"
+        call s:MapDelimiters(';','')
     elseif a:filetype == "nqc"
         call s:MapDelimiters('/*','*/')
     elseif a:filetype == "nroff"
