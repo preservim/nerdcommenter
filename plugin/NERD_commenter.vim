@@ -164,7 +164,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
     elseif a:filetype == "autoit"
         call s:MapDelimiters(';','')
     elseif a:filetype == "automake"
-        call s:MapDelimitersWithAlternative('#','', 'dnl ', '')
+        call s:MapDelimiters('##','')
     elseif a:filetype == "ave"
         call s:MapDelimiters("'",'')
     elseif a:filetype == "awk"

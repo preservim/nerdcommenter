@@ -800,6 +800,7 @@ if your face looked like a toaster and a t-rex put together? :(
 
 2.x.x
     - add support for newlisp, thanks to Matthew Lee Hinman.
+    - fix automake comments, thanks to Elias Pipping
 
 2.2.0
     - rewrote the mappings system to be more "standard".
@@ -1030,6 +1031,7 @@ sgronblo                            man
 François                            txt2tags
 Giacomo Mariani                     SVNinfo
 Matthew Lee Hinman                  newlisp
+Elias Pipping                       automake
 
 ==============================================================================
 9. License                                                    *NERDComLicense*
