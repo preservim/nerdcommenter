@@ -125,6 +125,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('%', '')
     elseif a:filetype == "acedb"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
+    elseif a:filetype == "actionscript"
+        call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "ada"
         call s:MapDelimitersWithAlternative('--','', '--  ', '')
     elseif a:filetype == "ahdl"
