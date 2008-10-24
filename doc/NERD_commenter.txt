@@ -1037,6 +1037,7 @@ François                            txt2tags
 Giacomo Mariani                     SVNinfo
 Matthew Lee Hinman                  newlisp
 Elias Pipping                       automake
+Edwin Benavides                     actionscript, processing
 
 ==============================================================================
 9. License                                                    *NERDComLicense*
