@@ -627,6 +627,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('/*','*/')
     elseif a:filetype == "prolog"
         call s:MapDelimitersWithAlternative('%','','/*','*/')
+    elseif a:filetype == "ps1"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "psf"
         call s:MapDelimiters('#', '')
     elseif a:filetype == "ptcap"
