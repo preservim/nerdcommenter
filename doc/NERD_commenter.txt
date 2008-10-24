@@ -801,6 +801,8 @@ if your face looked like a toaster and a t-rex put together? :(
 2.x.x
     - add support for newlisp, thanks to Matthew Lee Hinman.
     - fix automake comments, thanks to Elias Pipping
+    - make haml comments default to -# with / as the alternative delimiter,
+      thanks to tpope
 
 2.2.0
     - rewrote the mappings system to be more "standard".

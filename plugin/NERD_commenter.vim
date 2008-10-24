@@ -374,7 +374,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
     elseif a:filetype == "h"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "haml"
-        call s:MapDelimiters('/', '')
+        call s:MapDelimitersWithAlternative('-#', '', '/', '')
     elseif a:filetype == "help"
         call s:MapDelimiters('"','')
     elseif a:filetype == "hercules"
