@@ -619,6 +619,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('%', '')
     elseif a:filetype == "ppwiz"
         call s:MapDelimiters(';;', '')
+    elseif a:filetype == "processing"
+        call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "procmail"
         call s:MapDelimiters('#', '')
     elseif a:filetype == "progress"

@@ -803,7 +803,7 @@ if your face looked like a toaster and a t-rex put together? :(
     - fix automake comments, thanks to Elias Pipping
     - make haml comments default to -# with / as the alternative delimiter,
       thanks to tpope
-    - add support for actionscript, thanks to Edwin Benavides
+    - add support for actionscript and processing thanks to Edwin Benavides
 
 2.2.0
     - rewrote the mappings system to be more "standard".
