@@ -383,6 +383,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "hog"
         call s:MapDelimiters('#', '')
+    elseif a:filetype == "hostsaccess"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "html"
         call s:MapDelimitersWithAlternative('<!--','-->', '//', '')
     elseif a:filetype == "htmldjango"
