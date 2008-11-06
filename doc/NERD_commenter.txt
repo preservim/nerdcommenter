@@ -806,6 +806,7 @@ if your face looked like a toaster and a t-rex put together? :(
     - add support for actionscript and processing thanks to Edwin Benavides
     - add support for ps1 (powershell), thanks to Jason Mills
     - add support for hostsaccess, thanks to Thomas Rowe
+    - add support for CVScommit
 
 2.2.0
     - rewrote the mappings system to be more "standard".

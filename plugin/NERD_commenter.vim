@@ -245,6 +245,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('CVS:','')
     elseif a:filetype == "CVSAnnotate"
         call s:MapDelimiters('','')
+    elseif a:filetype == "CVScommit"
+        call s:MapDelimiters('','')
     elseif a:filetype == "d"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "dcl"
