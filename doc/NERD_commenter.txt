@@ -798,7 +798,7 @@ if your face looked like a toaster and a t-rex put together? :(
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
-2.x.x
+2.2.1
     - add support for newlisp and clojure, thanks to Matthew Lee Hinman.
     - fix automake comments, thanks to Elias Pipping
     - make haml comments default to -# with / as the alternative delimiter,
