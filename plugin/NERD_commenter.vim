@@ -789,6 +789,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('','')
     elseif a:filetype == "svn"
         call s:MapDelimiters('','')
+    elseif a:filetype == "SVNannotate"
+        call s:MapDelimiters('','')
     elseif a:filetype == "SVNAnnotate"
         call s:MapDelimiters('','')
     elseif a:filetype == "SVNcommit"

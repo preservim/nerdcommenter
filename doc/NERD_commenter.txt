@@ -811,6 +811,7 @@ if your face looked like a toaster and a t-rex put together? :(
     - use # for gitcommit comments, thanks to Simon Ruderich.
     - add support for mako and genshi, thanks to Keitheis.
     - add support for conkyrc, thanks to David
+    - add support for SVNannotate, thanks to Miguel Jaque Barbero.
 
 2.2.0
     - rewrote the mappings system to be more "standard".
@@ -1049,6 +1050,7 @@ Thomas Rowe                         hostsaccess
 Simon Ruderich                      asciidoc, git, gitcommit, gitrebase
 Keitheis                            mako, genshi
 David                               conkyrc
+Miguel Jaque Barbero                SVNannotate
 
 ==============================================================================
 9. License                                                    *NERDComLicense*
