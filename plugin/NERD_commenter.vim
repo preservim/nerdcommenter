@@ -215,6 +215,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "clipper"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
+    elseif a:filetype == "clojure"
+        call s:MapDelimiters(';', '')
     elseif a:filetype == "cmake"
         call s:MapDelimiters('#','')
     elseif a:filetype == "cobol"
