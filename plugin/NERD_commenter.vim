@@ -225,6 +225,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == "config"
         call s:MapDelimiters('dnl ', '')
+    elseif a:filetype == "conkyrc"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "context"
         call s:MapDelimiters('%','')
     elseif a:filetype == "cpp"
