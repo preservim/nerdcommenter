@@ -809,6 +809,7 @@ if your face looked like a toaster and a t-rex put together? :(
     - add support for CVScommit
     - add support for asciidoc, git and gitrebase. Thanks to Simon Ruderich.
     - use # for gitcommit comments, thanks to Simon Ruderich.
+    - add support for mako and genshi, thanks to Keitheis.
 
 2.2.0
     - rewrote the mappings system to be more "standard".
@@ -1045,6 +1046,7 @@ Elias Pipping                       automake
 Edwin Benavides                     actionscript, processing
 Thomas Rowe                         hostsaccess
 Simon Ruderich                      asciidoc, git, gitcommit, gitrebase
+Keitheis                            mako, genshi
 
 ==============================================================================
 9. License                                                    *NERDComLicense*

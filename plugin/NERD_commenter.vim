@@ -341,6 +341,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('--', '')
     elseif a:filetype == "geek"
         call s:MapDelimiters('GEEK_COMMENT:', '')
+    elseif a:filetype == "genshi"
+        call s:MapDelimitersWithAlternative('<!--','-->', '{#', '#}')
     elseif a:filetype == "gentoo-conf-d"
         call s:MapDelimiters('#', '')
     elseif a:filetype == "gentoo-env-d"
@@ -489,6 +491,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#','')
     elseif a:filetype == "make"
         call s:MapDelimiters('#','')
+    elseif a:filetype == "mako"
+        call s:MapDelimiters('##', '')
     elseif a:filetype == "man"
         call s:MapDelimiters('."', '')
     elseif a:filetype == "map"
