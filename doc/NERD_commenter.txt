@@ -812,6 +812,7 @@ if your face looked like a toaster and a t-rex put together? :(
     - add support for mako and genshi, thanks to Keitheis.
     - add support for conkyrc, thanks to David
     - add support for SVNannotate, thanks to Miguel Jaque Barbero.
+    - add support for sieve, thanks to Stefan Walk
 
 2.2.0
     - rewrote the mappings system to be more "standard".
@@ -1051,6 +1052,7 @@ Simon Ruderich                      asciidoc, git, gitcommit, gitrebase
 Keitheis                            mako, genshi
 David                               conkyrc
 Miguel Jaque Barbero                SVNannotate
+Stefan Walk                         sieve
 
 ==============================================================================
 9. License                                                    *NERDComLicense*

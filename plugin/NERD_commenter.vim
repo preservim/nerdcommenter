@@ -725,6 +725,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('<!--','-->')
     elseif a:filetype == "sicad"
         call s:MapDelimiters('*', '')
+    elseif a:filetype == "sieve"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "simula"
         call s:MapDelimitersWithAlternative('%', '', '--', '')
     elseif a:filetype == "sinda"
