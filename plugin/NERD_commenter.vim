@@ -571,6 +571,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "objcpp"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
+    elseif a:filetype == "objj"
+        call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "ocaml"
         call s:MapDelimiters('(*','*)')
     elseif a:filetype == "occam"

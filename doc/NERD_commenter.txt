@@ -813,6 +813,7 @@ if your face looked like a toaster and a t-rex put together? :(
     - add support for conkyrc, thanks to David
     - add support for SVNannotate, thanks to Miguel Jaque Barbero.
     - add support for sieve, thanks to Stefan Walk
+    - add support for objj, thanks to Adam Thorsen.
 
 2.2.0
     - rewrote the mappings system to be more "standard".
@@ -1053,6 +1054,7 @@ Keitheis                            mako, genshi
 David                               conkyrc
 Miguel Jaque Barbero                SVNannotate
 Stefan Walk                         sieve
+Adam Thorsen                        objj
 
 ==============================================================================
 9. License                                                    *NERDComLicense*
