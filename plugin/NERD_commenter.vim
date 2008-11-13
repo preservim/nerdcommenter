@@ -145,6 +145,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == "apachestyle"
         call s:MapDelimiters('#', '')
+    elseif a:filetype == "asciidoc"
+        call s:MapDelimiters('//', '')
     elseif a:filetype == "applescript"
         call s:MapDelimitersWithAlternative('--', '', '(*', '*)')
     elseif a:filetype == "asm68k"
@@ -353,14 +355,18 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == 'gentoo-package-use'
         call s:MapDelimiters('#', '')
+    elseif a:filetype == 'git'
+        call s:MapDelimiters('', '')
     elseif a:filetype == 'gitAnnotate'
         call s:MapDelimiters('', '')
     elseif a:filetype == 'gitcommit'
-        call s:MapDelimiters('', '')
+        call s:MapDelimiters('#', '')
     elseif a:filetype == 'gitconfig'
         call s:MapDelimiters(';', '')
     elseif a:filetype == 'gitdiff'
         call s:MapDelimiters('', '')
+    elseif a:filetype == 'gitrebase'
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "gnuplot"
         call s:MapDelimiters('#','')
     elseif a:filetype == "groovy"

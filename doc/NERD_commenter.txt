@@ -807,6 +807,8 @@ if your face looked like a toaster and a t-rex put together? :(
     - add support for ps1 (powershell), thanks to Jason Mills
     - add support for hostsaccess, thanks to Thomas Rowe
     - add support for CVScommit
+    - add support for asciidoc, git and gitrebase. Thanks to Simon Ruderich.
+    - use # for gitcommit comments, thanks to Simon Ruderich.
 
 2.2.0
     - rewrote the mappings system to be more "standard".
@@ -1042,6 +1044,7 @@ Matthew Lee Hinman                  newlisp
 Elias Pipping                       automake
 Edwin Benavides                     actionscript, processing
 Thomas Rowe                         hostsaccess
+Simon Ruderich                      asciidoc, git, gitcommit, gitrebase
 
 ==============================================================================
 9. License                                                    *NERDComLicense*
