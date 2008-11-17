@@ -798,6 +798,10 @@ if your face looked like a toaster and a t-rex put together? :(
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
+2.2.x
+    - add support for dhcpd, limits, ntp, resolv, rgb, sysctl, udevconf and
+      udevrules. Thanks to Thilo Six.
+
 2.2.1
     - add support for newlisp and clojure, thanks to Matthew Lee Hinman.
     - fix automake comments, thanks to Elias Pipping
@@ -1055,6 +1059,8 @@ David                               conkyrc
 Miguel Jaque Barbero                SVNannotate
 Stefan Walk                         sieve
 Adam Thorsen                        objj
+Thilo Six                           dhcpd, limits, ntp, resolv, rgb, sysctl,
+                                    udevconf, udevrules
 
 ==============================================================================
 9. License                                                    *NERDComLicense*

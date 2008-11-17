@@ -269,6 +269,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters(';', '')
     elseif a:filetype == "desktop"
         call s:MapDelimiters('#', '')
+    elseif a:filetype == "dhcpd"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "diff"
         call s:MapDelimiters('#', '')
     elseif a:filetype == "django"
@@ -461,6 +463,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype == "lilypond"
         call s:MapDelimiters('%', '')
+    elseif a:filetype == "limits"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "liquid"
         call s:MapDelimiters('{%', '%}')
     elseif a:filetype == "lisp"
@@ -566,6 +570,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
     elseif a:filetype == "nroff"
         call s:MapDelimiters('\"', '')
     elseif a:filetype == "nsis"
+        call s:MapDelimiters('#', '')
+    elseif a:filetype == "ntp"
         call s:MapDelimiters('#', '')
     elseif a:filetype == "objc"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
@@ -677,8 +683,12 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters(';', '')
     elseif a:filetype == "remind"
         call s:MapDelimiters('#', '')
+    elseif a:filetype == "resolv"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "rexx"
         call s:MapDelimiters('/*','*/')
+    elseif a:filetype == "rgb"
+        call s:MapDelimiters('!', '')
     elseif a:filetype == "rib"
         call s:MapDelimiters('#','')
     elseif a:filetype == "robots"
@@ -805,6 +815,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('','')
     elseif a:filetype == "SVNinfo"
         call s:MapDelimiters('','')
+    elseif a:filetype == "sysctl"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "systemverilog"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype == "tads"
@@ -849,6 +861,10 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('%','')
     elseif a:filetype == "uc"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
+    elseif a:filetype == "udevconf"
+        call s:MapDelimiters('#', '')
+    elseif a:filetype == "udevrules"
+        call s:MapDelimiters('#', '')
     elseif a:filetype == "uil"
         call s:MapDelimiters('!', '')
     elseif a:filetype == "vb"
