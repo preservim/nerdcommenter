@@ -115,835 +115,830 @@ function s:SetUpForNewFiletype(filetype, forceReset)
 
     "check the filetype against all known filetypes to see if we have
     "hardcoded the comment delimiters to use
-    if a:filetype == ""
+    if a:filetype ==? ""
         call s:MapDelimiters('', '')
-    elseif a:filetype == "aap"
+    elseif a:filetype ==? "aap"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "abaqus"
+    elseif a:filetype ==? "abaqus"
         call s:MapDelimiters('**', '')
-    elseif a:filetype == "abc"
+    elseif a:filetype ==? "abc"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "acedb"
+    elseif a:filetype ==? "acedb"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "actionscript"
+    elseif a:filetype ==? "actionscript"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "ada"
+    elseif a:filetype ==? "ada"
         call s:MapDelimitersWithAlternative('--','', '--  ', '')
-    elseif a:filetype == "ahdl"
+    elseif a:filetype ==? "ahdl"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "ahk"
+    elseif a:filetype ==? "ahk"
         call s:MapDelimitersWithAlternative(';', '', '/*', '*/')
-    elseif a:filetype == "amiga"
+    elseif a:filetype ==? "amiga"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "aml"
+    elseif a:filetype ==? "aml"
         call s:MapDelimiters('/*', '')
-    elseif a:filetype == "ampl"
+    elseif a:filetype ==? "ampl"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "ant"
+    elseif a:filetype ==? "ant"
         call s:MapDelimiters('<!--','-->')
-    elseif a:filetype == "apache"
+    elseif a:filetype ==? "apache"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "apachestyle"
+    elseif a:filetype ==? "apachestyle"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "asciidoc"
+    elseif a:filetype ==? "asciidoc"
         call s:MapDelimiters('//', '')
-    elseif a:filetype == "applescript"
+    elseif a:filetype ==? "applescript"
         call s:MapDelimitersWithAlternative('--', '', '(*', '*)')
-    elseif a:filetype == "asm68k"
+    elseif a:filetype ==? "asm68k"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "asm"
+    elseif a:filetype ==? "asm"
         call s:MapDelimitersWithAlternative(';', '', '#', '')
-    elseif a:filetype == "asn"
+    elseif a:filetype ==? "asn"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "aspvbs"
+    elseif a:filetype ==? "aspvbs"
         call s:MapDelimiters('''', '')
-    elseif a:filetype == "asterisk"
+    elseif a:filetype ==? "asterisk"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "asy"
+    elseif a:filetype ==? "asy"
         call s:MapDelimiters('//', '')
-    elseif a:filetype == "atlas"
+    elseif a:filetype ==? "atlas"
         call s:MapDelimiters('C','$')
-    elseif a:filetype == "autohotkey"
+    elseif a:filetype ==? "autohotkey"
         call s:MapDelimiters(';','')
-    elseif a:filetype == "autoit"
+    elseif a:filetype ==? "autoit"
         call s:MapDelimiters(';','')
-    elseif a:filetype == "automake"
+    elseif a:filetype ==? "automake"
         call s:MapDelimiters('##','')
-    elseif a:filetype == "ave"
+    elseif a:filetype ==? "ave"
         call s:MapDelimiters("'",'')
-    elseif a:filetype == "awk"
+    elseif a:filetype ==? "awk"
         call s:MapDelimiters('#','')
-    elseif a:filetype == "basic"
+    elseif a:filetype ==? "basic"
         call s:MapDelimitersWithAlternative("'",'', 'REM ', '')
-    elseif a:filetype == "b"
+    elseif a:filetype ==? "b"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "bbx"
+    elseif a:filetype ==? "bbx"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "bc"
+    elseif a:filetype ==? "bc"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "bdf"
+    elseif a:filetype ==? "bdf"
         call s:MapDelimiters('COMMENT ', '')
-    elseif a:filetype == "bib"
+    elseif a:filetype ==? "bib"
         call s:MapDelimiters('%','')
-    elseif a:filetype == "bindzone"
+    elseif a:filetype ==? "bindzone"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "bst"
+    elseif a:filetype ==? "bst"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "btm"
+    elseif a:filetype ==? "btm"
         call s:MapDelimiters('::', '')
-    elseif a:filetype == "bzr"
+    elseif a:filetype ==? "bzr"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "caos"
+    elseif a:filetype ==? "caos"
         call s:MapDelimiters('*', '')
-    elseif a:filetype == "calibre"
+    elseif a:filetype ==? "calibre"
         call s:MapDelimiters('//','')
-    elseif a:filetype == "catalog"
+    elseif a:filetype ==? "catalog"
         call s:MapDelimiters('--','--')
-    elseif a:filetype == "c"
+    elseif a:filetype ==? "c"
         call s:MapDelimitersWithAlternative('/*','*/', '//', '')
-    elseif a:filetype == "cfg"
+    elseif a:filetype ==? "cfg"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "cg"
+    elseif a:filetype ==? "cg"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "ch"
+    elseif a:filetype ==? "ch"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "changelog"
+    elseif a:filetype ==? "changelog"
         call s:MapDelimiters('','')
-    elseif a:filetype == "cl"
+    elseif a:filetype ==? "cl"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "clean"
+    elseif a:filetype ==? "clean"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "clipper"
+    elseif a:filetype ==? "clipper"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "clojure"
+    elseif a:filetype ==? "clojure"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "cmake"
+    elseif a:filetype ==? "cmake"
         call s:MapDelimiters('#','')
-    elseif a:filetype == "cobol"
+    elseif a:filetype ==? "cobol"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "conf"
+    elseif a:filetype ==? "conf"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "config"
+    elseif a:filetype ==? "config"
         call s:MapDelimiters('dnl ', '')
-    elseif a:filetype == "conkyrc"
+    elseif a:filetype ==? "conkyrc"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "context"
+    elseif a:filetype ==? "context"
         call s:MapDelimiters('%','')
-    elseif a:filetype == "cpp"
+    elseif a:filetype ==? "cpp"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "crontab"
+    elseif a:filetype ==? "crontab"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "cs"
+    elseif a:filetype ==? "cs"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "csc"
+    elseif a:filetype ==? "csc"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "csp"
+    elseif a:filetype ==? "csp"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "css"
+    elseif a:filetype ==? "css"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "cterm"
+    elseif a:filetype ==? "cterm"
         call s:MapDelimiters('*', '')
-    elseif a:filetype == "cupl"
+    elseif a:filetype ==? "cupl"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "csv"
+    elseif a:filetype ==? "csv"
         call s:MapDelimiters('','')
-    elseif a:filetype == "cvs"
+    elseif a:filetype ==? "cvs"
         call s:MapDelimiters('CVS:','')
-    elseif a:filetype == "CVSAnnotate"
+    elseif a:filetype ==? "CVSAnnotate"
         call s:MapDelimiters('','')
-    elseif a:filetype == "CVScommit"
+    elseif a:filetype ==? "CVScommit"
         call s:MapDelimiters('','')
-    elseif a:filetype == "d"
+    elseif a:filetype ==? "d"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "dcl"
+    elseif a:filetype ==? "dcl"
         call s:MapDelimiters('$!', '')
-    elseif a:filetype == "dakota"
+    elseif a:filetype ==? "dakota"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "debchangelog"
+    elseif a:filetype ==? "debchangelog"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "debcontrol"
+    elseif a:filetype ==? "debcontrol"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "debsources"
+    elseif a:filetype ==? "debsources"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "def"
+    elseif a:filetype ==? "def"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "desktop"
+    elseif a:filetype ==? "desktop"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "dhcpd"
+    elseif a:filetype ==? "dhcpd"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "diff"
+    elseif a:filetype ==? "diff"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "django"
+    elseif a:filetype ==? "django"
         call s:MapDelimitersWithAlternative('<!--','-->', '{#', '#}')
-    elseif a:filetype == "docbk"
+    elseif a:filetype ==? "docbk"
         call s:MapDelimiters('<!--', '-->')
-    elseif a:filetype == "dns"
+    elseif a:filetype ==? "dns"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "dosbatch"
+    elseif a:filetype ==? "dosbatch"
         call s:MapDelimitersWithAlternative('REM ','', '::', '')
-    elseif a:filetype == "dosini"
+    elseif a:filetype ==? "dosini"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "dot"
+    elseif a:filetype ==? "dot"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "dracula"
+    elseif a:filetype ==? "dracula"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "dsl"
+    elseif a:filetype ==? "dsl"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "dtd"
+    elseif a:filetype ==? "dtd"
         call s:MapDelimiters('<!--','-->')
-    elseif a:filetype == "dtml"
+    elseif a:filetype ==? "dtml"
         call s:MapDelimiters('<dtml-comment>','</dtml-comment>')
-    elseif a:filetype == "dtrace"
+    elseif a:filetype ==? "dtrace"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "dylan"
+    elseif a:filetype ==? "dylan"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == 'ebuild'
+    elseif a:filetype ==? 'ebuild'
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "ecd"
+    elseif a:filetype ==? "ecd"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == 'eclass'
+    elseif a:filetype ==? 'eclass'
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "eiffel"
+    elseif a:filetype ==? "eiffel"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "elf"
+    elseif a:filetype ==? "elf"
         call s:MapDelimiters("'", '')
-    elseif a:filetype == "elmfilt"
+    elseif a:filetype ==? "elmfilt"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "erlang"
+    elseif a:filetype ==? "erlang"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "eruby"
+    elseif a:filetype ==? "eruby"
         call s:MapDelimitersWithAlternative('<!--', '-->', '<%#', '%>')
-    elseif a:filetype == "eterm"
+    elseif a:filetype ==? "eterm"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "expect"
+    elseif a:filetype ==? "expect"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "exports"
+    elseif a:filetype ==? "exports"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "factor"
+    elseif a:filetype ==? "factor"
         call s:MapDelimitersWithAlternative('! ', '', '!# ', '')
-    elseif a:filetype == "fetchmail"
+    elseif a:filetype ==? "fetchmail"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "fgl"
+    elseif a:filetype ==? "fgl"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "focexec"
+    elseif a:filetype ==? "focexec"
         call s:MapDelimiters('-*', '')
-    elseif a:filetype == "form"
+    elseif a:filetype ==? "form"
         call s:MapDelimiters('*', '')
-    elseif a:filetype == "fortran"
+    elseif a:filetype ==? "fortran"
         call s:MapDelimiters('!', '')
-    elseif a:filetype == "foxpro"
+    elseif a:filetype ==? "foxpro"
         call s:MapDelimiters('*', '')
-    elseif a:filetype == "fstab"
+    elseif a:filetype ==? "fstab"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "fvwm"
+    elseif a:filetype ==? "fvwm"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "fx"
+    elseif a:filetype ==? "fx"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "gams"
+    elseif a:filetype ==? "gams"
         call s:MapDelimiters('*', '')
-    elseif a:filetype == "gdb"
+    elseif a:filetype ==? "gdb"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "gdmo"
+    elseif a:filetype ==? "gdmo"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "geek"
+    elseif a:filetype ==? "geek"
         call s:MapDelimiters('GEEK_COMMENT:', '')
-    elseif a:filetype == "genshi"
+    elseif a:filetype ==? "genshi"
         call s:MapDelimitersWithAlternative('<!--','-->', '{#', '#}')
-    elseif a:filetype == "gentoo-conf-d"
+    elseif a:filetype ==? "gentoo-conf-d"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "gentoo-env-d"
+    elseif a:filetype ==? "gentoo-env-d"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "gentoo-init-d"
+    elseif a:filetype ==? "gentoo-init-d"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "gentoo-make-conf"
+    elseif a:filetype ==? "gentoo-make-conf"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == 'gentoo-package-keywords'
+    elseif a:filetype ==? 'gentoo-package-keywords'
         call s:MapDelimiters('#', '')
-    elseif a:filetype == 'gentoo-package-mask'
+    elseif a:filetype ==? 'gentoo-package-mask'
         call s:MapDelimiters('#', '')
-    elseif a:filetype == 'gentoo-package-use'
+    elseif a:filetype ==? 'gentoo-package-use'
         call s:MapDelimiters('#', '')
-    elseif a:filetype == 'git'
+    elseif a:filetype ==? 'git'
         call s:MapDelimiters('', '')
-    elseif a:filetype == 'gitAnnotate'
+    elseif a:filetype ==? 'gitAnnotate'
         call s:MapDelimiters('', '')
-    elseif a:filetype == 'gitcommit'
+    elseif a:filetype ==? 'gitcommit'
         call s:MapDelimiters('#', '')
-    elseif a:filetype == 'gitconfig'
+    elseif a:filetype ==? 'gitconfig'
         call s:MapDelimiters(';', '')
-    elseif a:filetype == 'gitdiff'
+    elseif a:filetype ==? 'gitdiff'
         call s:MapDelimiters('', '')
-    elseif a:filetype == 'gitrebase'
+    elseif a:filetype ==? 'gitrebase'
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "gnuplot"
+    elseif a:filetype ==? "gnuplot"
         call s:MapDelimiters('#','')
-    elseif a:filetype == "groovy"
+    elseif a:filetype ==? "groovy"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "group"
+    elseif a:filetype ==? "group"
         call s:MapDelimiters('','')
-    elseif a:filetype == "grub"
+    elseif a:filetype ==? "grub"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "gtkrc"
+    elseif a:filetype ==? "gtkrc"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "haskell"
+    elseif a:filetype ==? "haskell"
         call s:MapDelimitersWithAlternative('{-','-}', '--', '')
-    elseif a:filetype == "hb"
+    elseif a:filetype ==? "hb"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "h"
+    elseif a:filetype ==? "h"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "haml"
+    elseif a:filetype ==? "haml"
         call s:MapDelimitersWithAlternative('-#', '', '/', '')
-    elseif a:filetype == "help"
+    elseif a:filetype ==? "help"
         call s:MapDelimiters('"','')
-    elseif a:filetype == "hercules"
+    elseif a:filetype ==? "hercules"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "hog"
+    elseif a:filetype ==? "hog"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "hostsaccess"
+    elseif a:filetype ==? "hostsaccess"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "html"
+    elseif a:filetype ==? "html"
         call s:MapDelimitersWithAlternative('<!--','-->', '//', '')
-    elseif a:filetype == "htmldjango"
+    elseif a:filetype ==? "htmldjango"
         call s:MapDelimitersWithAlternative('<!--','-->', '{#', '#}')
-    elseif a:filetype == "htmlos"
+    elseif a:filetype ==? "htmlos"
         call s:MapDelimiters('#','/#')
-    elseif a:filetype == "ia64"
+    elseif a:filetype ==? "ia64"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "icon"
+    elseif a:filetype ==? "icon"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "idlang"
+    elseif a:filetype ==? "idlang"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "idl"
+    elseif a:filetype ==? "idl"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "indent"
+    elseif a:filetype ==? "indent"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "inform"
+    elseif a:filetype ==? "inform"
         call s:MapDelimiters('!', '')
-    elseif a:filetype == "inittab"
+    elseif a:filetype ==? "inittab"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "ishd"
+    elseif a:filetype ==? "ishd"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "iss"
+    elseif a:filetype ==? "iss"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "ist"
+    elseif a:filetype ==? "ist"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "jam"
+    elseif a:filetype ==? "jam"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "java"
+    elseif a:filetype ==? "java"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "javascript"
+    elseif a:filetype ==? "javascript"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "jess"
+    elseif a:filetype ==? "jess"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "jgraph"
+    elseif a:filetype ==? "jgraph"
         call s:MapDelimiters('(*','*)')
-    elseif a:filetype == "jproperties"
+    elseif a:filetype ==? "jproperties"
         call s:MapDelimiters('#','')
-    elseif a:filetype == "jsp"
+    elseif a:filetype ==? "jsp"
         call s:MapDelimiters('<%--', '--%>')
-    elseif a:filetype == "kconfig"
+    elseif a:filetype ==? "kconfig"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "kix"
+    elseif a:filetype ==? "kix"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "kscript"
+    elseif a:filetype ==? "kscript"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "lace"
+    elseif a:filetype ==? "lace"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "ldif"
+    elseif a:filetype ==? "ldif"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "lex"
+    elseif a:filetype ==? "lex"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "lftp"
+    elseif a:filetype ==? "lftp"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "lhaskell"
+    elseif a:filetype ==? "lhaskell"
         call s:MapDelimiters('','')
-    elseif a:filetype == "lifelines"
+    elseif a:filetype ==? "lifelines"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "lilo"
+    elseif a:filetype ==? "lilo"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "lilypond"
+    elseif a:filetype ==? "lilypond"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "limits"
+    elseif a:filetype ==? "limits"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "liquid"
+    elseif a:filetype ==? "liquid"
         call s:MapDelimiters('{%', '%}')
-    elseif a:filetype == "lisp"
+    elseif a:filetype ==? "lisp"
         call s:MapDelimitersWithAlternative(';','', '#|', '|#')
-    elseif a:filetype == "lite"
+    elseif a:filetype ==? "lite"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "llvm"
+    elseif a:filetype ==? "llvm"
         call s:MapDelimiters(';','')
-    elseif a:filetype == "lookupfile"
+    elseif a:filetype ==? "lookupfile"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "lotos"
+    elseif a:filetype ==? "lotos"
         call s:MapDelimiters('(*','*)')
-    elseif a:filetype == "lout"
+    elseif a:filetype ==? "lout"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "lprolog"
+    elseif a:filetype ==? "lprolog"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "lscript"
+    elseif a:filetype ==? "lscript"
         call s:MapDelimiters("'", '')
-    elseif a:filetype == "lss"
+    elseif a:filetype ==? "lss"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "lua"
+    elseif a:filetype ==? "lua"
         call s:MapDelimitersWithAlternative('--','', '--[[', ']]')
-    elseif a:filetype == "lynx"
+    elseif a:filetype ==? "lynx"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "lytex"
+    elseif a:filetype ==? "lytex"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "m4"
+    elseif a:filetype ==? "m4"
         call s:MapDelimiters('dnl ', '')
-    elseif a:filetype == "mail"
+    elseif a:filetype ==? "mail"
         call s:MapDelimiters('> ','')
-    elseif a:filetype == "mailcap"
+    elseif a:filetype ==? "mailcap"
         call s:MapDelimiters('#','')
-    elseif a:filetype == "make"
+    elseif a:filetype ==? "make"
         call s:MapDelimiters('#','')
-    elseif a:filetype == "mako"
+    elseif a:filetype ==? "mako"
         call s:MapDelimiters('##', '')
-    elseif a:filetype == "man"
+    elseif a:filetype ==? "man"
         call s:MapDelimiters('."', '')
-    elseif a:filetype == "map"
+    elseif a:filetype ==? "map"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "maple"
+    elseif a:filetype ==? "maple"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "markdown"
+    elseif a:filetype ==? "markdown"
         call s:MapDelimiters('<!--', '-->')
-    elseif a:filetype == "masm"
+    elseif a:filetype ==? "masm"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "mason"
+    elseif a:filetype ==? "mason"
         call s:MapDelimiters('<% #', '%>')
-    elseif a:filetype == "master"
+    elseif a:filetype ==? "master"
         call s:MapDelimiters('$', '')
-    elseif a:filetype == "matlab"
+    elseif a:filetype ==? "matlab"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "mel"
+    elseif a:filetype ==? "mel"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "mf"
+    elseif a:filetype ==? "mf"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "mib"
+    elseif a:filetype ==? "mib"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "mkd"
+    elseif a:filetype ==? "mkd"
         call s:MapDelimiters('>', '')
-    elseif a:filetype == "mma"
+    elseif a:filetype ==? "mma"
         call s:MapDelimiters('(*','*)')
-    elseif a:filetype == "modconf"
+    elseif a:filetype ==? "modconf"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "model"
+    elseif a:filetype ==? "model"
         call s:MapDelimiters('$','$')
     elseif a:filetype =~ "moduala."
         call s:MapDelimiters('(*','*)')
-    elseif a:filetype == "modula2"
+    elseif a:filetype ==? "modula2"
         call s:MapDelimiters('(*','*)')
-    elseif a:filetype == "modula3"
+    elseif a:filetype ==? "modula3"
         call s:MapDelimiters('(*','*)')
-    elseif a:filetype == "monk"
+    elseif a:filetype ==? "monk"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "mplayerconf"
+    elseif a:filetype ==? "mplayerconf"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "mrxvtrc"
+    elseif a:filetype ==? "mrxvtrc"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "mush"
+    elseif a:filetype ==? "mush"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "muttrc"
+    elseif a:filetype ==? "muttrc"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "named"
+    elseif a:filetype ==? "named"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "nasm"
+    elseif a:filetype ==? "nasm"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "nastran"
+    elseif a:filetype ==? "nastran"
         call s:MapDelimiters('$', '')
-    elseif a:filetype == "natural"
+    elseif a:filetype ==? "natural"
         call s:MapDelimiters('/*', '')
-    elseif a:filetype == "ncf"
+    elseif a:filetype ==? "ncf"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "nerdtree"
+    elseif a:filetype ==? "nerdtree"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "netdict"
+    elseif a:filetype ==? "netdict"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "netrw"
+    elseif a:filetype ==? "netrw"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "newlisp"
+    elseif a:filetype ==? "newlisp"
         call s:MapDelimiters(';','')
-    elseif a:filetype == "nqc"
+    elseif a:filetype ==? "nqc"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "nroff"
+    elseif a:filetype ==? "nroff"
         call s:MapDelimiters('\"', '')
-    elseif a:filetype == "nsis"
+    elseif a:filetype ==? "nsis"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "ntp"
+    elseif a:filetype ==? "ntp"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "objc"
+    elseif a:filetype ==? "objc"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "objcpp"
+    elseif a:filetype ==? "objcpp"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "objj"
+    elseif a:filetype ==? "objj"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "ocaml"
+    elseif a:filetype ==? "ocaml"
         call s:MapDelimiters('(*','*)')
-    elseif a:filetype == "occam"
+    elseif a:filetype ==? "occam"
         call s:MapDelimiters('--','')
-    elseif a:filetype == "omlet"
+    elseif a:filetype ==? "omlet"
         call s:MapDelimiters('(*','*)')
-    elseif a:filetype == "omnimark"
+    elseif a:filetype ==? "omnimark"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "openroad"
+    elseif a:filetype ==? "openroad"
         call s:MapDelimiters('//', '')
-    elseif a:filetype == "opl"
+    elseif a:filetype ==? "opl"
         call s:MapDelimiters("REM", "")
-    elseif a:filetype == "ora"
+    elseif a:filetype ==? "ora"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "otl"
+    elseif a:filetype ==? "otl"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "ox"
+    elseif a:filetype ==? "ox"
         call s:MapDelimiters('//', '')
-    elseif a:filetype == "pamconf"
+    elseif a:filetype ==? "pamconf"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "pascal"
+    elseif a:filetype ==? "pascal"
         call s:MapDelimitersWithAlternative('{','}', '(*', '*)')
-    elseif a:filetype == "passwd"
+    elseif a:filetype ==? "passwd"
         call s:MapDelimiters('','')
-    elseif a:filetype == "patran"
+    elseif a:filetype ==? "patran"
         call s:MapDelimitersWithAlternative('$','','/*', '*/')
-    elseif a:filetype == "pcap"
+    elseif a:filetype ==? "pcap"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "pccts"
+    elseif a:filetype ==? "pccts"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "perl"
+    elseif a:filetype ==? "perl"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "pfmain"
+    elseif a:filetype ==? "pfmain"
         call s:MapDelimiters('//', '')
-    elseif a:filetype == "php"
+    elseif a:filetype ==? "php"
         call s:MapDelimitersWithAlternative('//','','/*', '*/')
-    elseif a:filetype == "phtml"
+    elseif a:filetype ==? "phtml"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "pic"
+    elseif a:filetype ==? "pic"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "pike"
+    elseif a:filetype ==? "pike"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "pilrc"
+    elseif a:filetype ==? "pilrc"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "pine"
+    elseif a:filetype ==? "pine"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "plaintex"
+    elseif a:filetype ==? "plaintex"
         call s:MapDelimiters('%','')
-    elseif a:filetype == "plm"
+    elseif a:filetype ==? "plm"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "plsql"
+    elseif a:filetype ==? "plsql"
         call s:MapDelimitersWithAlternative('--', '', '/*', '*/')
-    elseif a:filetype == "po"
+    elseif a:filetype ==? "po"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "postscr"
+    elseif a:filetype ==? "postscr"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "potwiki"
+    elseif a:filetype ==? "potwiki"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "pov"
+    elseif a:filetype ==? "pov"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "povini"
+    elseif a:filetype ==? "povini"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "ppd"
+    elseif a:filetype ==? "ppd"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "ppwiz"
+    elseif a:filetype ==? "ppwiz"
         call s:MapDelimiters(';;', '')
-    elseif a:filetype == "processing"
+    elseif a:filetype ==? "processing"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "procmail"
+    elseif a:filetype ==? "procmail"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "progress"
+    elseif a:filetype ==? "progress"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "prolog"
+    elseif a:filetype ==? "prolog"
         call s:MapDelimitersWithAlternative('%','','/*','*/')
-    elseif a:filetype == "ps1"
+    elseif a:filetype ==? "ps1"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "psf"
+    elseif a:filetype ==? "psf"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "ptcap"
+    elseif a:filetype ==? "ptcap"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "pyrex"
+    elseif a:filetype ==? "pyrex"
         call s:MapDelimiters('#','')
-    elseif a:filetype == "python"
+    elseif a:filetype ==? "python"
         call s:MapDelimiters('#','')
-    elseif a:filetype == "qf"
+    elseif a:filetype ==? "qf"
         call s:MapDelimiters('','')
-    elseif a:filetype == "radiance"
+    elseif a:filetype ==? "radiance"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "Rails-log"
+    elseif a:filetype ==? "Rails-log"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "ratpoison"
+    elseif a:filetype ==? "ratpoison"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "r"
+    elseif a:filetype ==? "r"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "rc"
+    elseif a:filetype ==? "rc"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "readline"
+    elseif a:filetype ==? "readline"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "rebol"
+    elseif a:filetype ==? "rebol"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "registry"
+    elseif a:filetype ==? "registry"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "remind"
+    elseif a:filetype ==? "remind"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "resolv"
+    elseif a:filetype ==? "resolv"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "rexx"
+    elseif a:filetype ==? "rexx"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "rgb"
+    elseif a:filetype ==? "rgb"
         call s:MapDelimiters('!', '')
-    elseif a:filetype == "rib"
+    elseif a:filetype ==? "rib"
         call s:MapDelimiters('#','')
-    elseif a:filetype == "robots"
+    elseif a:filetype ==? "robots"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "rpl"
+    elseif a:filetype ==? "rpl"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "rst"
+    elseif a:filetype ==? "rst"
         call s:MapDelimiters('..', '')
-    elseif a:filetype == "rtf"
+    elseif a:filetype ==? "rtf"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "ruby"
+    elseif a:filetype ==? "ruby"
         call s:MapDelimiters('#','')
-    elseif a:filetype == "sa"
+    elseif a:filetype ==? "sa"
         call s:MapDelimiters('--','')
-    elseif a:filetype == "samba"
+    elseif a:filetype ==? "samba"
         call s:MapDelimitersWithAlternative(';','', '#', '')
-    elseif a:filetype == "sas"
+    elseif a:filetype ==? "sas"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "sass"
+    elseif a:filetype ==? "sass"
         call s:MapDelimitersWithAlternative('//','', '/*', '')
-    elseif a:filetype == "sather"
+    elseif a:filetype ==? "sather"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "scala"
+    elseif a:filetype ==? "scala"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "scheme"
+    elseif a:filetype ==? "scheme"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "scilab"
+    elseif a:filetype ==? "scilab"
         call s:MapDelimiters('//', '')
-    elseif a:filetype == "screen"
+    elseif a:filetype ==? "screen"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "scsh"
+    elseif a:filetype ==? "scsh"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "sdl"
+    elseif a:filetype ==? "sdl"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "sed"
+    elseif a:filetype ==? "sed"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "selectbuf"
+    elseif a:filetype ==? "selectbuf"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "services"
+    elseif a:filetype ==? "services"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "sgml"
+    elseif a:filetype ==? "sgml"
         call s:MapDelimiters('<!','>')
-    elseif a:filetype == "sgmldecl"
+    elseif a:filetype ==? "sgmldecl"
         call s:MapDelimiters('--','--')
-    elseif a:filetype == "sgmllnx"
+    elseif a:filetype ==? "sgmllnx"
         call s:MapDelimiters('<!--','-->')
-    elseif a:filetype == "sicad"
+    elseif a:filetype ==? "sicad"
         call s:MapDelimiters('*', '')
-    elseif a:filetype == "sieve"
+    elseif a:filetype ==? "sieve"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "simula"
+    elseif a:filetype ==? "simula"
         call s:MapDelimitersWithAlternative('%', '', '--', '')
-    elseif a:filetype == "sinda"
+    elseif a:filetype ==? "sinda"
         call s:MapDelimiters('$', '')
-    elseif a:filetype == "skill"
+    elseif a:filetype ==? "skill"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "slang"
+    elseif a:filetype ==? "slang"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "sl"
+    elseif a:filetype ==? "sl"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "slice"
+    elseif a:filetype ==? "slice"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "slrnrc"
+    elseif a:filetype ==? "slrnrc"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "sm"
+    elseif a:filetype ==? "sm"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "smarty"
+    elseif a:filetype ==? "smarty"
         call s:MapDelimiters('{*', '*}')
-    elseif a:filetype == "smil"
+    elseif a:filetype ==? "smil"
         call s:MapDelimiters('<!','>')
-    elseif a:filetype == "smith"
+    elseif a:filetype ==? "smith"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "sml"
+    elseif a:filetype ==? "sml"
         call s:MapDelimiters('(*','*)')
-    elseif a:filetype == "snnsnet"
+    elseif a:filetype ==? "snnsnet"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "snnspat"
+    elseif a:filetype ==? "snnspat"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "snnsres"
+    elseif a:filetype ==? "snnsres"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "snobol4"
+    elseif a:filetype ==? "snobol4"
         call s:MapDelimiters('*', '')
-    elseif a:filetype == "spec"
+    elseif a:filetype ==? "spec"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "specman"
+    elseif a:filetype ==? "specman"
         call s:MapDelimiters('//', '')
-    elseif a:filetype == "spectre"
+    elseif a:filetype ==? "spectre"
         call s:MapDelimitersWithAlternative('//', '', '*', '')
-    elseif a:filetype == "spice"
+    elseif a:filetype ==? "spice"
         call s:MapDelimiters('$', '')
-    elseif a:filetype == "sql"
+    elseif a:filetype ==? "sql"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "sqlforms"
+    elseif a:filetype ==? "sqlforms"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "sqlj"
+    elseif a:filetype ==? "sqlj"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "sqr"
+    elseif a:filetype ==? "sqr"
         call s:MapDelimiters('!', '')
-    elseif a:filetype == "squid"
+    elseif a:filetype ==? "squid"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "st"
+    elseif a:filetype ==? "st"
         call s:MapDelimiters('"','')
-    elseif a:filetype == "stata"
+    elseif a:filetype ==? "stata"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "stp"
+    elseif a:filetype ==? "stp"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "strace"
+    elseif a:filetype ==? "strace"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "sudoers"
+    elseif a:filetype ==? "sudoers"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "SVKAnnotate"
+    elseif a:filetype ==? "SVKAnnotate"
         call s:MapDelimiters('','')
-    elseif a:filetype == "svn"
+    elseif a:filetype ==? "svn"
         call s:MapDelimiters('','')
-    elseif a:filetype == "SVNannotate"
+    elseif a:filetype ==? "SVNannotate"
         call s:MapDelimiters('','')
-    elseif a:filetype == "SVNAnnotate"
+    elseif a:filetype ==? "SVNcommit"
         call s:MapDelimiters('','')
-    elseif a:filetype == "SVNcommit"
+    elseif a:filetype ==? "SVNcommitlog"
         call s:MapDelimiters('','')
-    elseif a:filetype == "SVNcommitlog"
+    elseif a:filetype ==? "SVNdiff"
         call s:MapDelimiters('','')
-    elseif a:filetype == "SVNdiff"
+    elseif a:filetype ==? "SVNinfo"
         call s:MapDelimiters('','')
-    elseif a:filetype == "SVNinfo"
-        call s:MapDelimiters('','')
-    elseif a:filetype == "sysctl"
+    elseif a:filetype ==? "sysctl"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "systemverilog"
+    elseif a:filetype ==? "systemverilog"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "tads"
+    elseif a:filetype ==? "tads"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "taglist"
+    elseif a:filetype ==? "taglist"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "tags"
+    elseif a:filetype ==? "tags"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "tak"
+    elseif a:filetype ==? "tak"
         call s:MapDelimiters('$', '')
-    elseif a:filetype == "tar"
+    elseif a:filetype ==? "tar"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "tasm"
+    elseif a:filetype ==? "tasm"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "tcl"
+    elseif a:filetype ==? "tcl"
         call s:MapDelimiters('#','')
-    elseif a:filetype == "terminfo"
+    elseif a:filetype ==? "terminfo"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "tex"
+    elseif a:filetype ==? "tex"
         call s:MapDelimiters('%','')
-    elseif a:filetype == "text"
+    elseif a:filetype ==? "text"
         call s:MapDelimiters('','')
-    elseif a:filetype == "texinfo"
+    elseif a:filetype ==? "texinfo"
         call s:MapDelimiters("@c ", "")
-    elseif a:filetype == "texmf"
+    elseif a:filetype ==? "texmf"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "tf"
+    elseif a:filetype ==? "tf"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "tidy"
+    elseif a:filetype ==? "tidy"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "tli"
+    elseif a:filetype ==? "tli"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "trasys"
+    elseif a:filetype ==? "trasys"
         call s:MapDelimiters("$", "")
-    elseif a:filetype == "tsalt"
+    elseif a:filetype ==? "tsalt"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "tsscl"
+    elseif a:filetype ==? "tsscl"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "tssgm"
+    elseif a:filetype ==? "tssgm"
         call s:MapDelimiters("comment = '","'")
-    elseif a:filetype == "txt2tags"
+    elseif a:filetype ==? "txt2tags"
         call s:MapDelimiters('%','')
-    elseif a:filetype == "uc"
+    elseif a:filetype ==? "uc"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "udevconf"
+    elseif a:filetype ==? "udevconf"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "udevrules"
+    elseif a:filetype ==? "udevrules"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "uil"
+    elseif a:filetype ==? "uil"
         call s:MapDelimiters('!', '')
-    elseif a:filetype == "vb"
+    elseif a:filetype ==? "vb"
         call s:MapDelimiters("'","")
-    elseif a:filetype == "vcscommit"
+    elseif a:filetype ==? "vcscommit"
         call s:MapDelimiters('','')
-    elseif a:filetype == "velocity"
+    elseif a:filetype ==? "velocity"
         call s:MapDelimitersWithAlternative("##","", '#*', '*#')
-    elseif a:filetype == "vera"
+    elseif a:filetype ==? "vera"
         call s:MapDelimitersWithAlternative('/*','*/','//','')
-    elseif a:filetype == "verilog"
+    elseif a:filetype ==? "verilog"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "verilog_systemverilog"
+    elseif a:filetype ==? "verilog_systemverilog"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "vgrindefs"
+    elseif a:filetype ==? "vgrindefs"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "vhdl"
+    elseif a:filetype ==? "vhdl"
         call s:MapDelimiters('--', '')
-    elseif a:filetype == "vim"
+    elseif a:filetype ==? "vim"
         call s:MapDelimiters('"','')
-    elseif a:filetype == "viminfo"
+    elseif a:filetype ==? "viminfo"
         call s:MapDelimiters('','')
-    elseif a:filetype == "vimperator"
+    elseif a:filetype ==? "vimperator"
         call s:MapDelimiters('"','')
-    elseif a:filetype == "virata"
+    elseif a:filetype ==? "virata"
         call s:MapDelimiters('%', '')
-    elseif a:filetype == "vo_base"
+    elseif a:filetype ==? "vo_base"
         call s:MapDelimiters('', '')
-    elseif a:filetype == "vrml"
+    elseif a:filetype ==? "vrml"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "vsejcl"
+    elseif a:filetype ==? "vsejcl"
         call s:MapDelimiters('/*', '')
-    elseif a:filetype == "webmacro"
+    elseif a:filetype ==? "webmacro"
         call s:MapDelimiters('##', '')
-    elseif a:filetype == "wget"
+    elseif a:filetype ==? "wget"
         call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "Wikipedia"
+    elseif a:filetype ==?? "Wikipedia"
         call s:MapDelimiters('<!--','-->')
-    elseif a:filetype == "winbatch"
+    elseif a:filetype ==? "winbatch"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "wml"
+    elseif a:filetype ==? "wml"
         call s:MapDelimiters('#', '')
     elseif a:filetype =~ "[^w]*sh"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "wvdial"
+    elseif a:filetype ==? "wvdial"
         call s:MapDelimiters(';', '')
-    elseif a:filetype == "xdefaults"
+    elseif a:filetype ==? "xdefaults"
         call s:MapDelimiters('!', '')
-    elseif a:filetype == "xf86conf"
+    elseif a:filetype ==? "xf86conf"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "xhtml"
+    elseif a:filetype ==? "xhtml"
         call s:MapDelimiters('<!--', '-->')
-    elseif a:filetype == "xkb"
+    elseif a:filetype ==? "xkb"
         call s:MapDelimiters('//', '')
-    elseif a:filetype == "xmath"
+    elseif a:filetype ==? "xmath"
         call s:MapDelimiters('#', '')
-    elseif a:filetype == "xml"
+    elseif a:filetype ==? "xml"
         call s:MapDelimiters('<!--','-->')
-    elseif a:filetype == "xmodmap"
+    elseif a:filetype ==? "xmodmap"
         call s:MapDelimiters('!', '')
-    elseif a:filetype == "xpm2"
+    elseif a:filetype ==? "xpm2"
         call s:MapDelimiters('!', '')
-    elseif a:filetype == "xpm"
+    elseif a:filetype ==? "xpm"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "xsd"
+    elseif a:filetype ==? "xsd"
         call s:MapDelimiters('<!--','-->')
-    elseif a:filetype == "xslt"
+    elseif a:filetype ==? "xslt"
         call s:MapDelimiters('<!--','-->')
-    elseif a:filetype == "yacc"
+    elseif a:filetype ==? "yacc"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype == "yaml"
+    elseif a:filetype ==? "yaml"
         call s:MapDelimiters('#','')
-    elseif a:filetype == "xquery"
+    elseif a:filetype ==? "xquery"
         call s:MapDelimiters('(:',':)')
-    elseif a:filetype == "z8a"
+    elseif a:filetype ==? "z8a"
         call s:MapDelimiters(';', '')
-
-    elseif a:filetype == ""
-        call s:MapDelimitersWithAlternative("","", "", "")
 
         "we have not hardcoded the comment delimiters to use for this filetype so
         "get them from &commentstring.

@@ -801,6 +801,7 @@ if your face looked like a toaster and a t-rex put together? :(
 2.2.x
     - add support for dhcpd, limits, ntp, resolv, rgb, sysctl, udevconf and
       udevrules. Thanks to Thilo Six.
+    - match filetypes case insensitively
 
 2.2.1
     - add support for newlisp and clojure, thanks to Matthew Lee Hinman.
