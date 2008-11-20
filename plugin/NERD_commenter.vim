@@ -899,7 +899,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('##', '')
     elseif a:filetype ==? "wget"
         call s:MapDelimiters('#', '')
-    elseif a:filetype ==?? "Wikipedia"
+    elseif a:filetype ==? "Wikipedia"
         call s:MapDelimiters('<!--','-->')
     elseif a:filetype ==? "winbatch"
         call s:MapDelimiters(';', '')
