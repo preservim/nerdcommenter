@@ -708,7 +708,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
     elseif a:filetype ==? "sas"
         call s:MapDelimiters('/*','*/')
     elseif a:filetype ==? "sass"
-        call s:MapDelimitersWithAlternative('//','', '/*', '')
+        call s:MapDelimitersWithAlternative('//','', '/*', '*/')
     elseif a:filetype ==? "sather"
         call s:MapDelimiters('--', '')
     elseif a:filetype ==? "scala"
