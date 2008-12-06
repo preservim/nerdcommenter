@@ -802,6 +802,7 @@ if your face looked like a toaster and a t-rex put together? :(
     - add support for dhcpd, limits, ntp, resolv, rgb, sysctl, udevconf and
       udevrules. Thanks to Thilo Six.
     - match filetypes case insensitively
+    - add support for mp (metapost), thanks to Andrey Skvortsov.
 
 2.2.1
     - add support for newlisp and clojure, thanks to Matthew Lee Hinman.
@@ -1062,7 +1063,7 @@ Stefan Walk                         sieve
 Adam Thorsen                        objj
 Thilo Six                           dhcpd, limits, ntp, resolv, rgb, sysctl,
                                     udevconf, udevrules
-
+Andrey Skvortsov                    mp
 ==============================================================================
 9. License                                                    *NERDComLicense*
 

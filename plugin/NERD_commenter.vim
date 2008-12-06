@@ -539,6 +539,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('(*','*)')
     elseif a:filetype ==? "monk"
         call s:MapDelimiters(';', '')
+    elseif a:filetype ==? "mp"
+        call s:MapDelimiters('%', '')
     elseif a:filetype ==? "mplayerconf"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "mrxvtrc"
