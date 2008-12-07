@@ -803,6 +803,7 @@ if your face looked like a toaster and a t-rex put together? :(
       udevrules. Thanks to Thilo Six.
     - match filetypes case insensitively
     - add support for mp (metapost), thanks to Andrey Skvortsov.
+    - add support for htmlcheetah, thanks to Simon Hengel.
 
 2.2.1
     - add support for newlisp and clojure, thanks to Matthew Lee Hinman.
@@ -1064,6 +1065,7 @@ Adam Thorsen                        objj
 Thilo Six                           dhcpd, limits, ntp, resolv, rgb, sysctl,
                                     udevconf, udevrules
 Andrey Skvortsov                    mp
+Simon Hengel                        htmlcheetah
 ==============================================================================
 9. License                                                    *NERDComLicense*
 

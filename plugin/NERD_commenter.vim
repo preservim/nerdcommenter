@@ -403,6 +403,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "html"
         call s:MapDelimitersWithAlternative('<!--','-->', '//', '')
+    elseif a:filetype ==? "htmlcheetah"
+        call s:MapDelimiters('##','')
     elseif a:filetype ==? "htmldjango"
         call s:MapDelimitersWithAlternative('<!--','-->', '{#', '#}')
     elseif a:filetype ==? "htmlos"
