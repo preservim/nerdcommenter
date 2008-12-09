@@ -22,13 +22,6 @@ if v:version < 700
 endif
 let loaded_nerd_comments = 1
 
-" Section: spaces init {{{2
-" Occasionally we need to grab a string of spaces so just make one here
-let s:spaces = ""
-while strlen(s:spaces) < 100
-    let s:spaces = s:spaces . "    "
-endwhile
-
 " Function: s:InitVariable() function {{{2
 " This function is used to initialise a given variable to a given value. The
 " variable is only initialised if it does not exist prior
@@ -1377,13 +1370,13 @@ function s:CommentLinesSexy(topline, bottomline)
         " add the left delimiter one line above the lines that are to be commented
         call cursor(a:topline, 1)
         execute 'normal! O'
-        call setline(a:topline, strpart(s:spaces, 0, leftAlignIndx) . left )
+        call setline(a:topline, repeat(' ', leftAlignIndx) . left )
 
         " add the right delimiter after bottom line (we have to add 1 cos we moved
         " the lines down when we added the left delim
         call cursor(a:bottomline+1, 1)
         execute 'normal! o'
-        call setline(a:bottomline+2, strpart(s:spaces, 0, leftAlignIndx) . strpart(s:spaces, 0, strlen(left)-strlen(sexyComMarker)) . right )
+        call setline(a:bottomline+2, repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . right )
 
     endif
 
@@ -1401,7 +1394,7 @@ function s:CommentLinesSexy(topline, bottomline)
         let theLine = s:SwapOutterMultiPartDelimsForPlaceHolders(theLine)
 
         " add the sexyComMarker
-        let theLine = strpart(s:spaces, 0, leftAlignIndx) . strpart(s:spaces, 0, strlen(left)-strlen(sexyComMarker)) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
+        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
 
         if lineHasTabs
             let theLine = s:ConvertLeadingSpacesToTabs(theLine)
@@ -2023,7 +2016,7 @@ function s:AddLeftDelimAligned(delim, theLine, alignIndx)
     "so we can align the delim properly
     let theLine = a:theLine
     if strlen(theLine) < a:alignIndx
-        let theLine = strpart(s:spaces, 0, a:alignIndx - strlen(theLine))
+        let theLine = repeat(' ', a:alignIndx - strlen(theLine))
     endif
 
     return strpart(theLine, 0, a:alignIndx) . a:delim . strpart(theLine, a:alignIndx)
@@ -2050,7 +2043,7 @@ function s:AddRightDelimAligned(delim, theLine, alignIndx)
         " so we get a string containing the needed spaces (it
         " could be empty)
         let extraSpaces = ''
-        let extraSpaces = strpart(s:spaces, 0, a:alignIndx-strlen(a:theLine))
+        let extraSpaces = repeat(' ', a:alignIndx-strlen(a:theLine))
 
         " add the right delim
         return substitute(a:theLine, '$', extraSpaces . a:delim, '')
