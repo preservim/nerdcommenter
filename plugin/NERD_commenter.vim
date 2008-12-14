@@ -426,6 +426,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('/*','*/')
     elseif a:filetype ==? "java"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
+    elseif a:filetype ==? "javacc"
+        call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype ==? "javascript"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype ==? "jess"
