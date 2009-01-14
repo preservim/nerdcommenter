@@ -305,7 +305,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
     elseif a:filetype ==? "erlang"
         call s:MapDelimiters('%', '')
     elseif a:filetype ==? "eruby"
-        call s:MapDelimitersWithAlternative('<!--', '-->', '<%#', '%>')
+        call s:MapDelimitersWithAlternative('<%#', '%>', '<!--', '-->')
     elseif a:filetype ==? "eterm"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "expect"

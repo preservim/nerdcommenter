@@ -805,6 +805,7 @@ if your face looked like a toaster and a t-rex put together? :(
     - add support for mp (metapost), thanks to Andrey Skvortsov.
     - add support for htmlcheetah, thanks to Simon Hengel.
     - add support for javacc, thanks to Matt Tolton.
+    - make <%# %> the default delims for eruby, thanks to tpope.
 
 2.2.1
     - add support for newlisp and clojure, thanks to Matthew Lee Hinman.
