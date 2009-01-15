@@ -430,6 +430,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype ==? "javascript"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
+    elseif a:filetype == "javascript.jquery"
+        call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype ==? "jess"
         call s:MapDelimiters(';', '')
     elseif a:filetype ==? "jgraph"
