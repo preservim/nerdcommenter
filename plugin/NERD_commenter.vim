@@ -700,7 +700,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('..', '')
     elseif a:filetype ==? "rtf"
         call s:MapDelimiters('', '')
-    elseif a:filetype ==? "ruby"
+    elseif a:filetype =~ "ruby\..*"
         call s:MapDelimiters('#','')
     elseif a:filetype ==? "sa"
         call s:MapDelimiters('--','')
