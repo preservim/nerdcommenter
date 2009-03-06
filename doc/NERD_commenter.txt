@@ -807,7 +807,8 @@ if your face looked like a toaster and a t-rex put together? :(
     - add support for javacc, thanks to Matt Tolton.
     - make <%# %> the default delims for eruby, thanks to tpope.
     - add support for javascript.jquery, thanks to Ivan Devat.
-    - add support for cucumber and pdf, fix sass delims, thanks to tpope
+    - add support for cucumber and pdf. Fix sass and railslog delims,
+      thanks to tpope
 
 2.2.1
     - add support for newlisp and clojure, thanks to Matthew Lee Hinman.

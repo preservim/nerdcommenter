@@ -672,7 +672,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('','')
     elseif a:filetype ==? "radiance"
         call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "Rails-log"
+    elseif a:filetype ==? "railslog"
         call s:MapDelimiters('', '')
     elseif a:filetype ==? "ratpoison"
         call s:MapDelimiters('#', '')
