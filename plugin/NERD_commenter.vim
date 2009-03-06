@@ -612,6 +612,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "pccts"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
+    elseif a:filetype ==? "pdf"
+        call s:MapDelimiters('%', '')
     elseif a:filetype ==? "perl"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "pfmain"
