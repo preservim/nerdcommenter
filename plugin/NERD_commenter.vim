@@ -236,6 +236,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('/*','*/')
     elseif a:filetype ==? "cterm"
         call s:MapDelimiters('*', '')
+    elseif a:filetype ==? "cucumber"
+        call s:MapDelimiters('#','')
     elseif a:filetype ==? "cupl"
         call s:MapDelimiters('/*','*/')
     elseif a:filetype ==? "csv"

@@ -807,6 +807,7 @@ if your face looked like a toaster and a t-rex put together? :(
     - add support for javacc, thanks to Matt Tolton.
     - make <%# %> the default delims for eruby, thanks to tpope.
     - add support for javascript.jquery, thanks to Ivan Devat.
+    - add support for cucumber, thanks to tpope
 
 2.2.1
     - add support for newlisp and clojure, thanks to Matthew Lee Hinman.
@@ -1071,6 +1072,7 @@ Andrey Skvortsov                    mp
 Simon Hengel                        htmlcheetah
 Matt Tolton                         javacc
 Ivan Devat                          javascript.jquery
+tpope                               cucumber
 ==============================================================================
 9. License                                                    *NERDComLicense*
 
