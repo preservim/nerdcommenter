@@ -183,8 +183,6 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('%', '')
     elseif a:filetype ==? "btm"
         call s:MapDelimiters('::', '')
-    elseif a:filetype ==? "bzr"
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? "caos"
         call s:MapDelimiters('*', '')
     elseif a:filetype ==? "calibre"
@@ -199,8 +197,6 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype ==? "ch"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "changelog"
-        call s:MapDelimiters('','')
     elseif a:filetype ==? "cl"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "clean"
@@ -211,8 +207,6 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters(';', '')
     elseif a:filetype ==? "cmake"
         call s:MapDelimiters('#','')
-    elseif a:filetype ==? "cobol"
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? "conf"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "config"
@@ -239,22 +233,14 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#','')
     elseif a:filetype ==? "cupl"
         call s:MapDelimiters('/*','*/')
-    elseif a:filetype ==? "csv"
-        call s:MapDelimiters('','')
     elseif a:filetype ==? "cvs"
         call s:MapDelimiters('CVS:','')
-    elseif a:filetype ==? "CVSAnnotate"
-        call s:MapDelimiters('','')
-    elseif a:filetype ==? "CVScommit"
-        call s:MapDelimiters('','')
     elseif a:filetype ==? "d"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype ==? "dcl"
         call s:MapDelimiters('$!', '')
     elseif a:filetype ==? "dakota"
         call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "debchangelog"
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? "debcontrol"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "debsources"
@@ -357,24 +343,16 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? 'gentoo-package-use'
         call s:MapDelimiters('#', '')
-    elseif a:filetype ==? 'git'
-        call s:MapDelimiters('', '')
-    elseif a:filetype ==? 'gitAnnotate'
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? 'gitcommit'
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? 'gitconfig'
         call s:MapDelimiters(';', '')
-    elseif a:filetype ==? 'gitdiff'
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? 'gitrebase'
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "gnuplot"
         call s:MapDelimiters('#','')
     elseif a:filetype ==? "groovy"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "group"
-        call s:MapDelimiters('','')
     elseif a:filetype ==? "grub"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "gtkrc"
@@ -455,8 +433,6 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('/*','*/')
     elseif a:filetype ==? "lftp"
         call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "lhaskell"
-        call s:MapDelimiters('','')
     elseif a:filetype ==? "lifelines"
         call s:MapDelimiters('/*','*/')
     elseif a:filetype ==? "lilo"
@@ -473,8 +449,6 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('/*','*/')
     elseif a:filetype ==? "llvm"
         call s:MapDelimiters(';','')
-    elseif a:filetype ==? "lookupfile"
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? "lotos"
         call s:MapDelimiters('(*','*)')
     elseif a:filetype ==? "lout"
@@ -559,12 +533,6 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('/*', '')
     elseif a:filetype ==? "ncf"
         call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "nerdtree"
-        call s:MapDelimiters('', '')
-    elseif a:filetype ==? "netdict"
-        call s:MapDelimiters('', '')
-    elseif a:filetype ==? "netrw"
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? "newlisp"
         call s:MapDelimiters(';','')
     elseif a:filetype ==? "nqc"
@@ -595,16 +563,12 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters("REM", "")
     elseif a:filetype ==? "ora"
         call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "otl"
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? "ox"
         call s:MapDelimiters('//', '')
     elseif a:filetype ==? "pamconf"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "pascal"
         call s:MapDelimitersWithAlternative('{','}', '(*', '*)')
-    elseif a:filetype ==? "passwd"
-        call s:MapDelimiters('','')
     elseif a:filetype ==? "patran"
         call s:MapDelimitersWithAlternative('$','','/*', '*/')
     elseif a:filetype ==? "pcap"
@@ -639,8 +603,6 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "postscr"
         call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "potwiki"
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? "pov"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype ==? "povini"
@@ -667,12 +629,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#','')
     elseif a:filetype ==? "python"
         call s:MapDelimiters('#','')
-    elseif a:filetype ==? "qf"
-        call s:MapDelimiters('','')
     elseif a:filetype ==? "radiance"
         call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "railslog"
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? "ratpoison"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "r"
@@ -701,8 +659,6 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('/*','*/')
     elseif a:filetype ==? "rst"
         call s:MapDelimiters('..', '')
-    elseif a:filetype ==? "rtf"
-        call s:MapDelimiters('', '')
     elseif a:filetype =~ '\cruby\(\..*\)\?'
         call s:MapDelimiters('#','')
     elseif a:filetype ==? "sa"
@@ -729,8 +685,6 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('/*','*/')
     elseif a:filetype ==? "sed"
         call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "selectbuf"
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? "services"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "sgml"
@@ -803,34 +757,16 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('/*','*/')
     elseif a:filetype ==? "sudoers"
         call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "SVKAnnotate"
-        call s:MapDelimiters('','')
-    elseif a:filetype ==? "svn"
-        call s:MapDelimiters('','')
-    elseif a:filetype ==? "SVNannotate"
-        call s:MapDelimiters('','')
-    elseif a:filetype ==? "SVNcommit"
-        call s:MapDelimiters('','')
-    elseif a:filetype ==? "SVNcommitlog"
-        call s:MapDelimiters('','')
-    elseif a:filetype ==? "SVNdiff"
-        call s:MapDelimiters('','')
-    elseif a:filetype ==? "SVNinfo"
-        call s:MapDelimiters('','')
     elseif a:filetype ==? "sysctl"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "systemverilog"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype ==? "tads"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "taglist"
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? "tags"
         call s:MapDelimiters(';', '')
     elseif a:filetype ==? "tak"
         call s:MapDelimiters('$', '')
-    elseif a:filetype ==? "tar"
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? "tasm"
         call s:MapDelimiters(';', '')
     elseif a:filetype ==? "tcl"
@@ -839,8 +775,6 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "tex"
         call s:MapDelimiters('%','')
-    elseif a:filetype ==? "text"
-        call s:MapDelimiters('','')
     elseif a:filetype ==? "texinfo"
         call s:MapDelimiters("@c ", "")
     elseif a:filetype ==? "texmf"
@@ -871,8 +805,6 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('!', '')
     elseif a:filetype ==? "vb"
         call s:MapDelimiters("'","")
-    elseif a:filetype ==? "vcscommit"
-        call s:MapDelimiters('','')
     elseif a:filetype ==? "velocity"
         call s:MapDelimitersWithAlternative("##","", '#*', '*#')
     elseif a:filetype ==? "vera"
@@ -887,14 +819,10 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('--', '')
     elseif a:filetype ==? "vim"
         call s:MapDelimiters('"','')
-    elseif a:filetype ==? "viminfo"
-        call s:MapDelimiters('','')
     elseif a:filetype ==? "vimperator"
         call s:MapDelimiters('"','')
     elseif a:filetype ==? "virata"
         call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "vo_base"
-        call s:MapDelimiters('', '')
     elseif a:filetype ==? "vrml"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "vsejcl"
