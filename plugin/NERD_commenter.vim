@@ -60,7 +60,6 @@ call s:InitVariable("g:NERDUsePlaceHolders", 1)
 call s:InitVariable("g:NERDRemoveAltComs", 1)
 call s:InitVariable("g:NERDRemoveExtraSpaces", 1)
 call s:InitVariable("g:NERDRPlace", "<]")
-call s:InitVariable("g:NERDShutUp", '0')
 call s:InitVariable("g:NERDSpaceDelims", 0)
 call s:InitVariable("g:NERDDelimiterRequests", 1)
 
@@ -948,10 +947,6 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         "we have not hardcoded the comment delimiters to use for this filetype so
         "get them from &commentstring.
     else
-        "print a disclaimer to the user :)
-        if !g:NERDShutUp
-            call s:NerdEcho("Unknown filetype '".a:filetype."', setting delimiters by &commentstring.\nPleeeeease email the author of the NERD commenter with this filetype\nand its delimiters!", 0)
-        endif
 
         "extract the delims from &commentstring
         let left= substitute(&commentstring, '\(.*\)%s.*', '\1', '')

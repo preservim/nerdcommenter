@@ -436,8 +436,6 @@ then the script would do a sexy comment on the last visual selection.
 |'NERDRPlace'|                        Specifies what to use as the right
                                       delimiter placeholder when nesting
                                       comments.
-|'NERDShutUp'|                        Stops "Unknown filetype" output from the
-                                      script
 |'NERDSpaceDelims'|                   Specifies whether to add extra spaces
                                       around delimiters when commenting, and
                                       whether to remove them when
@@ -660,15 +658,6 @@ This option is used to specify whether place-holder delimiters should be used
 when creating a nested comment.
 
 ------------------------------------------------------------------------------
-                                                                  *'NERDShutUp'*
-Values: 0 or 1.
-Default 1.
-
-This option is used to prevent the script from echoing "Unknown filetype"
-messages.  Stick this line in your vimrc: >
-    let NERDShutUp=1
-<
-------------------------------------------------------------------------------
                                                              *'NERDSpaceDelims'*
 Values: 0 or 1.
 Default 0.
@@ -809,6 +798,7 @@ if your face looked like a toaster and a t-rex put together? :(
     - add support for javascript.jquery, thanks to Ivan Devat.
     - add support for cucumber and pdf. Fix sass and railslog delims,
       thanks to tpope
+    - remove the NERDShutup option and the message is suppresses
 
 2.2.1
     - add support for newlisp and clojure, thanks to Matthew Lee Hinman.
