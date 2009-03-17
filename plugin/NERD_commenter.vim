@@ -723,8 +723,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
     else
 
         "extract the delims from &commentstring
-        let left= substitute(&commentstring, '\(.*\)%s.*', '\1', '')
-        let right= substitute(&commentstring, '.*%s\(.*\)', '\1', 'g')
+        let left= substitute(&commentstring, '\([^ \t]*\)\s*%s.*', '\1', '')
+        let right= substitute(&commentstring, '.*%s\s*\(.*\)', '\1', 'g')
 
         call s:MapDelimiters(left,right)
     endif
