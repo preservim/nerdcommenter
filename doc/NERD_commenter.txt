@@ -793,7 +793,7 @@ The latest dev versions are on github
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
-2.2.x
+2.2.2
     - remove the NERDShutup option and the message is suppresses, this makes
       the plugin silently rely on &commentstring for unknown filetypes.
     - add support for dhcpd, limits, ntp, resolv, rgb, sysctl, udevconf and
