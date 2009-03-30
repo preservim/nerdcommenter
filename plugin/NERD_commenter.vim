@@ -718,15 +718,13 @@ function s:SetUpForNewFiletype(filetype, forceReset)
     elseif a:filetype ==? "z8a"
         call s:MapDelimiters(';', '')
 
-        "we have not hardcoded the comment delimiters to use for this filetype so
-        "get them from &commentstring.
     else
 
         "extract the delims from &commentstring
         let left= substitute(&commentstring, '\([^ \t]*\)\s*%s.*', '\1', '')
         let right= substitute(&commentstring, '.*%s\s*\(.*\)', '\1', 'g')
-
         call s:MapDelimiters(left,right)
+
     endif
 endfunction
 
