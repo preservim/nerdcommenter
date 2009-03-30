@@ -38,7 +38,7 @@ CONTENTS                                               *NERDCommenterContents*
     5. Issues with the script.................|NERDComIssues|
         5.1 Delimiter detection heuristics....|NERDComHeuristics|
         5.2 Nesting issues....................|NERDComNesting|
-    6.The author..............................|NERDComAuthor|
+    6.About..     ............................|NERDComAbout|
     7.Changelog...............................|NERDComChangelog|
     8.Credits.................................|NERDComCredits|
     9.License.................................|NERDComLicense|
@@ -774,7 +774,7 @@ will become: >
 for simplicity)
 
 ==============================================================================
-6. The author                                                  *NERDComAuthor*
+6. About                                                        *NERDComAbout*
 
 The author of the NERD commenter is Martyzillatron --- the half robot, half
 dinosaur bastard son of Megatron and Godzilla. He enjoys destroying
@@ -783,6 +783,12 @@ metropolises and eating tourist busses.
 Drop him a line at martin_grenfell at msn.com. He would love to hear from you.
 its a lonely life being the worlds premier terror machine. How would you feel
 if your face looked like a toaster and a t-rex put together? :(
+
+The latest stable versions can be found at
+    http://www.vim.org/scripts/script.php?script_id=1218
+
+The latest dev versions are on github
+    http://github.com/scrooloose/nerdcommenter
 
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
