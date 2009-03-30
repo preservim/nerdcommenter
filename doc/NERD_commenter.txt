@@ -794,6 +794,8 @@ The latest dev versions are on github
 8. Changelog                                                *NERDComChangelog*
 
 2.2.x
+    - remove the NERDShutup option and the message is suppresses, this makes
+      the plugin silently rely on &commentstring for unknown filetypes.
     - add support for dhcpd, limits, ntp, resolv, rgb, sysctl, udevconf and
       udevrules. Thanks to Thilo Six.
     - match filetypes case insensitively
@@ -804,7 +806,6 @@ The latest dev versions are on github
     - add support for javascript.jquery, thanks to Ivan Devat.
     - add support for cucumber and pdf. Fix sass and railslog delims,
       thanks to tpope
-    - remove the NERDShutup option and the message is suppresses
 
 2.2.1
     - add support for newlisp and clojure, thanks to Matthew Lee Hinman.
