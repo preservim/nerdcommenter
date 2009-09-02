@@ -539,6 +539,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "ptcap"
         call s:MapDelimiters('#', '')
+    elseif a:filetype ==? "python"
+        call s:MapDelimiters('#','')
     elseif a:filetype ==? "radiance"
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "ratpoison"
