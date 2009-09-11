@@ -1147,6 +1147,7 @@ function s:CommentLinesSexy(topline, bottomline)
         " add the left delimiter one line above the lines that are to be commented
         call cursor(a:topline, 1)
         execute 'normal! O'
+        let theLine = repeat(' ', leftAlignIndx) . left
 
         " Make sure tabs are respected
         if !&expandtab
