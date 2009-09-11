@@ -1147,13 +1147,24 @@ function s:CommentLinesSexy(topline, bottomline)
         " add the left delimiter one line above the lines that are to be commented
         call cursor(a:topline, 1)
         execute 'normal! O'
-        call setline(a:topline, repeat(' ', leftAlignIndx) . left )
+
+        " Make sure tabs are respected
+        if !&expandtab
+           let theLine = s:ConvertLeadingSpacesToTabs(theLine)
+        endif
+        call setline(a:topline, theLine)
 
         " add the right delimiter after bottom line (we have to add 1 cos we moved
         " the lines down when we added the left delim
         call cursor(a:bottomline+1, 1)
         execute 'normal! o'
-        call setline(a:bottomline+2, repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . right )
+        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . right
+
+        " Make sure tabs are respected
+        if !&expandtab
+           let theLine = s:ConvertLeadingSpacesToTabs(theLine)
+        endif
+        call setline(a:bottomline+2, theLine)
 
     endif
 
