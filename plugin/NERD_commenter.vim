@@ -659,6 +659,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         call s:MapDelimiters('#', '')
     elseif a:filetype ==? "tli"
         call s:MapDelimiters('#', '')
+    elseif a:filetype ==? "tmux"
+        call s:MapDelimiters('#', '')
     elseif a:filetype ==? "trasys"
         call s:MapDelimiters("$", "")
     elseif a:filetype ==? "tsalt"
