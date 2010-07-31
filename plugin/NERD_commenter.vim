@@ -63,9 +63,317 @@ call s:InitVariable("g:NERDRPlace", "<]")
 call s:InitVariable("g:NERDSpaceDelims", 0)
 call s:InitVariable("g:NERDDelimiterRequests", 1)
 
-
-
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
+"vf ;;dA:hcs"'A {j^f(lyi(k$p0f{a A }0f{a 'left':jdd^
+
+let s:delimiterMap = {
+    \ 'aap': { 'left': '#' },
+    \ 'abc': { 'left': '%' },
+    \ 'acedb': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'actionscript': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'ada': { 'left': '--', 'leftAlt': '--  ' },
+    \ 'ahdl': { 'left': '--' },
+    \ 'ahk': { 'left': ';', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'amiga': { 'left': ';' },
+    \ 'aml': { 'left': '/*' },
+    \ 'ampl': { 'left': '#' },
+    \ 'apache': { 'left': '#' },
+    \ 'apachestyle': { 'left': '#' },
+    \ 'asciidoc': { 'left': '//' },
+    \ 'applescript': { 'left': '--', 'leftAlt': '(*', 'rightAlt': '*)' },
+    \ 'asm68k': { 'left': ';' },
+    \ 'asm': { 'left': ';', 'leftAlt': '#' },
+    \ 'asn': { 'left': '--' },
+    \ 'aspvbs': { 'left': '''' },
+    \ 'asterisk': { 'left': ';' },
+    \ 'asy': { 'left': '//' },
+    \ 'atlas': { 'left': 'C', 'right': '$' },
+    \ 'autohotkey': { 'left': ';' },
+    \ 'autoit': { 'left': ';' },
+    \ 'ave': { 'left': "'" },
+    \ 'awk': { 'left': '#' },
+    \ 'basic': { 'left': "'", 'leftAlt': 'REM ' },
+    \ 'bbx': { 'left': '%' },
+    \ 'bc': { 'left': '#' },
+    \ 'bib': { 'left': '%' },
+    \ 'bindzone': { 'left': ';' },
+    \ 'bst': { 'left': '%' },
+    \ 'btm': { 'left': '::' },
+    \ 'caos': { 'left': '*' },
+    \ 'calibre': { 'left': '//' },
+    \ 'catalog': { 'left': '--', 'right': '--' },
+    \ 'c': { 'left': '/*','right': '*/', 'leftAlt': '//' },
+    \ 'cfg': { 'left': '#' },
+    \ 'cg': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'ch': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'cl': { 'left': '#' },
+    \ 'clean': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'clipper': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'clojure': { 'left': ';' },
+    \ 'cmake': { 'left': '#' },
+    \ 'conkyrc': { 'left': '#' },
+    \ 'cpp': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'crontab': { 'left': '#' },
+    \ 'cs': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'csp': { 'left': '--' },
+    \ 'cterm': { 'left': '*' },
+    \ 'cucumber': { 'left': '#' },
+    \ 'cvs': { 'left': 'CVS:' },
+    \ 'd': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'dcl': { 'left': '$!' },
+    \ 'dakota': { 'left': '#' },
+    \ 'debcontrol': { 'left': '#' },
+    \ 'debsources': { 'left': '#' },
+    \ 'def': { 'left': ';' },
+    \ 'desktop': { 'left': '#' },
+    \ 'dhcpd': { 'left': '#' },
+    \ 'diff': { 'left': '#' },
+    \ 'django': { 'left': '<!--','right': '-->', 'leftAlt': '{#', 'rightAlt': '#}' },
+    \ 'docbk': { 'left': '<!--', 'right': '-->' },
+    \ 'dns': { 'left': ';' },
+    \ 'dosbatch': { 'left': 'REM ', 'leftAlt': '::' },
+    \ 'dosini': { 'left': ';' },
+    \ 'dot': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'dracula': { 'left': ';' },
+    \ 'dsl': { 'left': ';' },
+    \ 'dtml': { 'left': '<dtml-comment>', 'right': '</dtml-comment>' },
+    \ 'dylan': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'ebuild': { 'left': '#' },
+    \ 'ecd': { 'left': '#' },
+    \ 'eclass': { 'left': '#' },
+    \ 'eiffel': { 'left': '--' },
+    \ 'elf': { 'left': "'" },
+    \ 'elmfilt': { 'left': '#' },
+    \ 'erlang': { 'left': '%' },
+    \ 'eruby': { 'left': '<%#', 'right': '%>', 'leftAlt': '<!--', 'rightAlt': '-->' },
+    \ 'expect': { 'left': '#' },
+    \ 'exports': { 'left': '#' },
+    \ 'factor': { 'left': '! ', 'leftAlt': '!# ' },
+    \ 'fgl': { 'left': '#' },
+    \ 'focexec': { 'left': '-*' },
+    \ 'form': { 'left': '*' },
+    \ 'foxpro': { 'left': '*' },
+    \ 'fstab': { 'left': '#' },
+    \ 'fvwm': { 'left': '#' },
+    \ 'fx': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'gams': { 'left': '*' },
+    \ 'gdb': { 'left': '#' },
+    \ 'gdmo': { 'left': '--' },
+    \ 'geek': { 'left': 'GEEK_COMMENT:' },
+    \ 'genshi': { 'left': '<!--','right': '-->', 'leftAlt': '{#', 'rightAlt': '#}' },
+    \ 'gentoo-conf-d': { 'left': '#' },
+    \ 'gentoo-env-d': { 'left': '#' },
+    \ 'gentoo-init-d': { 'left': '#' },
+    \ 'gentoo-make-conf': { 'left': '#' },
+    \ 'gentoo-package-keywords': { 'left': '#' },
+    \ 'gentoo-package-mask': { 'left': '#' },
+    \ 'gentoo-package-use': { 'left': '#' },
+    \ 'gitcommit': { 'left': '#' },
+    \ 'gitconfig': { 'left': ';' },
+    \ 'gitrebase': { 'left': '#' },
+    \ 'gnuplot': { 'left': '#' },
+    \ 'groovy': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'gtkrc': { 'left': '#' },
+    \ 'haskell': { 'left': '{-','right': '-}', 'leftAlt': '--' },
+    \ 'hb': { 'left': '#' },
+    \ 'h': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'haml': { 'left': '-#', 'leftAlt': '/' },
+    \ 'hercules': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'hog': { 'left': '#' },
+    \ 'hostsaccess': { 'left': '#' },
+    \ 'htmlcheetah': { 'left': '##' },
+    \ 'htmldjango': { 'left': '<!--','right': '-->', 'leftAlt': '{#', 'rightAlt': '#}' },
+    \ 'htmlos': { 'left': '#', 'right': '/#' },
+    \ 'ia64': { 'left': '#' },
+    \ 'icon': { 'left': '#' },
+    \ 'idlang': { 'left': ';' },
+    \ 'idl': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'inform': { 'left': '!' },
+    \ 'inittab': { 'left': '#' },
+    \ 'ishd': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'iss': { 'left': ';' },
+    \ 'ist': { 'left': '%' },
+    \ 'java': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'javacc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'javascript': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'javascript.jquery': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'jess': { 'left': ';' },
+    \ 'jgraph': { 'left': '(*', 'right': '*)' },
+    \ 'jproperties': { 'left': '#' },
+    \ 'jsp': { 'left': '<%--', 'right': '--%>' },
+    \ 'kix': { 'left': ';' },
+    \ 'kscript': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'lace': { 'left': '--' },
+    \ 'ldif': { 'left': '#' },
+    \ 'lilo': { 'left': '#' },
+    \ 'lilypond': { 'left': '%' },
+    \ 'liquid': { 'left': '{%', 'right': '%}' },
+    \ 'lisp': { 'left': ';', 'leftAlt': '#|', 'rightAlt': '|#' },
+    \ 'llvm': { 'left': ';' },
+    \ 'lotos': { 'left': '(*', 'right': '*)' },
+    \ 'lout': { 'left': '#' },
+    \ 'lprolog': { 'left': '%' },
+    \ 'lscript': { 'left': "'" },
+    \ 'lss': { 'left': '#' },
+    \ 'lua': { 'left': '--', 'leftAlt': '--[[', 'rightAlt': ']]' },
+    \ 'lynx': { 'left': '#' },
+    \ 'lytex': { 'left': '%' },
+    \ 'mail': { 'left': '> ' },
+    \ 'mako': { 'left': '##' },
+    \ 'man': { 'left': '."' },
+    \ 'map': { 'left': '%' },
+    \ 'maple': { 'left': '#' },
+    \ 'markdown': { 'left': '<!--', 'right': '-->' },
+    \ 'masm': { 'left': ';' },
+    \ 'mason': { 'left': '<% #', 'right': '%>' },
+    \ 'master': { 'left': '$' },
+    \ 'matlab': { 'left': '%' },
+    \ 'mel': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'mib': { 'left': '--' },
+    \ 'mkd': { 'left': '>' },
+    \ 'mma': { 'left': '(*', 'right': '*)' },
+    \ 'model': { 'left': '$', 'right': '$' },
+    \ 'moduala.': { 'left': '(*', 'right': '*)' },
+    \ 'modula2': { 'left': '(*', 'right': '*)' },
+    \ 'modula3': { 'left': '(*', 'right': '*)' },
+    \ 'monk': { 'left': ';' },
+    \ 'mush': { 'left': '#' },
+    \ 'named': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'nasm': { 'left': ';' },
+    \ 'nastran': { 'left': '$' },
+    \ 'natural': { 'left': '/*' },
+    \ 'ncf': { 'left': ';' },
+    \ 'newlisp': { 'left': ';' },
+    \ 'nroff': { 'left': '\"' },
+    \ 'nsis': { 'left': '#' },
+    \ 'ntp': { 'left': '#' },
+    \ 'objc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'objcpp': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'objj': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'ocaml': { 'left': '(*', 'right': '*)' },
+    \ 'occam': { 'left': '--' },
+    \ 'omlet': { 'left': '(*', 'right': '*)' },
+    \ 'omnimark': { 'left': ';' },
+    \ 'openroad': { 'left': '//' },
+    \ 'opl': { 'left': "REM" },
+    \ 'ora': { 'left': '#' },
+    \ 'ox': { 'left': '//' },
+    \ 'pascal': { 'left': '{','right': '}', 'leftAlt': '(*', 'rightAlt': '*)' },
+    \ 'patran': { 'left': '$', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'pcap': { 'left': '#' },
+    \ 'pccts': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'pdf': { 'left': '%' },
+    \ 'pfmain': { 'left': '//' },
+    \ 'php': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'pic': { 'left': ';' },
+    \ 'pike': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'pilrc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'pine': { 'left': '#' },
+    \ 'plm': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'plsql': { 'left': '--', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'po': { 'left': '#' },
+    \ 'postscr': { 'left': '%' },
+    \ 'pov': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'povini': { 'left': ';' },
+    \ 'ppd': { 'left': '%' },
+    \ 'ppwiz': { 'left': ';;' },
+    \ 'processing': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'prolog': { 'left': '%', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'ps1': { 'left': '#' },
+    \ 'psf': { 'left': '#' },
+    \ 'ptcap': { 'left': '#' },
+    \ 'python': { 'left': '#' },
+    \ 'radiance': { 'left': '#' },
+    \ 'ratpoison': { 'left': '#' },
+    \ 'r': { 'left': '#' },
+    \ 'rc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'rebol': { 'left': ';' },
+    \ 'registry': { 'left': ';' },
+    \ 'remind': { 'left': '#' },
+    \ 'resolv': { 'left': '#' },
+    \ 'rgb': { 'left': '!' },
+    \ 'rib': { 'left': '#' },
+    \ 'robots': { 'left': '#' },
+    \ 'sa': { 'left': '--' },
+    \ 'samba': { 'left': ';', 'leftAlt': '#' },
+    \ 'sass': { 'left': '//', 'leftAlt': '/*' },
+    \ 'sather': { 'left': '--' },
+    \ 'scala': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'scilab': { 'left': '//' },
+    \ 'scsh': { 'left': ';' },
+    \ 'sed': { 'left': '#' },
+    \ 'sgmldecl': { 'left': '--', 'right': '--' },
+    \ 'sgmllnx': { 'left': '<!--', 'right': '-->' },
+    \ 'sicad': { 'left': '*' },
+    \ 'simula': { 'left': '%', 'leftAlt': '--' },
+    \ 'sinda': { 'left': '$' },
+    \ 'skill': { 'left': ';' },
+    \ 'slang': { 'left': '%' },
+    \ 'slice': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'slrnrc': { 'left': '%' },
+    \ 'sm': { 'left': '#' },
+    \ 'smarty': { 'left': '{*', 'right': '*}' },
+    \ 'smil': { 'left': '<!', 'right': '>' },
+    \ 'smith': { 'left': ';' },
+    \ 'sml': { 'left': '(*', 'right': '*)' },
+    \ 'snnsnet': { 'left': '#' },
+    \ 'snnspat': { 'left': '#' },
+    \ 'snnsres': { 'left': '#' },
+    \ 'snobol4': { 'left': '*' },
+    \ 'spec': { 'left': '#' },
+    \ 'specman': { 'left': '//' },
+    \ 'spectre': { 'left': '//', 'leftAlt': '*' },
+    \ 'spice': { 'left': '$' },
+    \ 'sql': { 'left': '--' },
+    \ 'sqlforms': { 'left': '--' },
+    \ 'sqlj': { 'left': '--' },
+    \ 'sqr': { 'left': '!' },
+    \ 'squid': { 'left': '#' },
+    \ 'st': { 'left': '"' },
+    \ 'stp': { 'left': '--' },
+    \ 'systemverilog': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'tads': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'tags': { 'left': ';' },
+    \ 'tak': { 'left': '$' },
+    \ 'tasm': { 'left': ';' },
+    \ 'tcl': { 'left': '#' },
+    \ 'texinfo': { 'left': "@c " },
+    \ 'texmf': { 'left': '%' },
+    \ 'tf': { 'left': ';' },
+    \ 'tidy': { 'left': '#' },
+    \ 'tli': { 'left': '#' },
+    \ 'tmux': { 'left': '#' },
+    \ 'trasys': { 'left': "$" },
+    \ 'tsalt': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'tsscl': { 'left': '#' },
+    \ 'tssgm': { 'left': "comment = '", 'right': "'" },
+    \ 'txt2tags': { 'left': '%' },
+    \ 'uc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'uil': { 'left': '!' },
+    \ 'vb': { 'left': "'" },
+    \ 'velocity': { 'left': "##", 'right': "", 'leftAlt': '#*', 'rightAlt': '*#' },
+    \ 'vera': { 'left': '/*','right': '*/', 'leftAlt': '//' },
+    \ 'verilog': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'verilog_systemverilog': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'vgrindefs': { 'left': '#' },
+    \ 'vhdl': { 'left': '--' },
+    \ 'vimperator': { 'left': '"' },
+    \ 'virata': { 'left': '%' },
+    \ 'vrml': { 'left': '#' },
+    \ 'vsejcl': { 'left': '/*' },
+    \ 'webmacro': { 'left': '##' },
+    \ 'wget': { 'left': '#' },
+    \ 'Wikipedia': { 'left': '<!--', 'right': '-->' },
+    \ 'winbatch': { 'left': ';' },
+    \ 'wml': { 'left': '#' },
+    \ 'wvdial': { 'left': ';' },
+    \ 'xdefaults': { 'left': '!' },
+    \ 'xkb': { 'left': '//' },
+    \ 'xmath': { 'left': '#' },
+    \ 'xpm2': { 'left': '!' },
+    \ 'xquery': { 'left': '(:', 'right': ':)' },
+    \ 'z8a': { 'left': ';' }
+    \ }
 
 " Section: Comment mapping functions, autocommands and commands {{{1
 " ============================================================================
@@ -88,9 +396,6 @@ augroup END
 " This function is responsible for setting up buffer scoped variables for the
 " given filetype.
 "
-" These variables include the comment delimiters for the given filetype and calls
-" MapDelimiters or MapDelimitersWithAlternative passing in these delimiters.
-"
 " Args:
 "   -filetype: the filetype to set delimiters for
 "   -forceReset: 1 if the delimiters should be reset if they have already be
@@ -105,663 +410,32 @@ function s:SetUpForNewFiletype(filetype, forceReset)
 
     let b:NERDSexyComMarker = ''
 
-    "check the filetype against all known filetypes to see if we have
-    "hardcoded the comment delimiters to use
-    if a:filetype ==? ""
-        call s:MapDelimiters('', '')
-    elseif a:filetype ==? "aap"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "abc"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "acedb"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "actionscript"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "ada"
-        call s:MapDelimitersWithAlternative('--','', '--  ', '')
-    elseif a:filetype ==? "ahdl"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "ahk"
-        call s:MapDelimitersWithAlternative(';', '', '/*', '*/')
-    elseif a:filetype ==? "amiga"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "aml"
-        call s:MapDelimiters('/*', '')
-    elseif a:filetype ==? "ampl"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "apache"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "apachestyle"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "asciidoc"
-        call s:MapDelimiters('//', '')
-    elseif a:filetype ==? "applescript"
-        call s:MapDelimitersWithAlternative('--', '', '(*', '*)')
-    elseif a:filetype ==? "asm68k"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "asm"
-        call s:MapDelimitersWithAlternative(';', '', '#', '')
-    elseif a:filetype ==? "asn"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "aspvbs"
-        call s:MapDelimiters('''', '')
-    elseif a:filetype ==? "asterisk"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "asy"
-        call s:MapDelimiters('//', '')
-    elseif a:filetype ==? "atlas"
-        call s:MapDelimiters('C','$')
-    elseif a:filetype ==? "autohotkey"
-        call s:MapDelimiters(';','')
-    elseif a:filetype ==? "autoit"
-        call s:MapDelimiters(';','')
-    elseif a:filetype ==? "ave"
-        call s:MapDelimiters("'",'')
-    elseif a:filetype ==? "awk"
-        call s:MapDelimiters('#','')
-    elseif a:filetype ==? "basic"
-        call s:MapDelimitersWithAlternative("'",'', 'REM ', '')
-    elseif a:filetype ==? "bbx"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "bc"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "bib"
-        call s:MapDelimiters('%','')
-    elseif a:filetype ==? "bindzone"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "bst"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "btm"
-        call s:MapDelimiters('::', '')
-    elseif a:filetype ==? "caos"
-        call s:MapDelimiters('*', '')
-    elseif a:filetype ==? "calibre"
-        call s:MapDelimiters('//','')
-    elseif a:filetype ==? "catalog"
-        call s:MapDelimiters('--','--')
-    elseif a:filetype ==? "c"
-        call s:MapDelimitersWithAlternative('/*','*/', '//', '')
-    elseif a:filetype ==? "cfg"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "cg"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "ch"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "cl"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "clean"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "clipper"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "clojure"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "cmake"
-        call s:MapDelimiters('#','')
-    elseif a:filetype ==? "conkyrc"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "cpp"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "crontab"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "cs"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "csp"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "cterm"
-        call s:MapDelimiters('*', '')
-    elseif a:filetype ==? "cucumber"
-        call s:MapDelimiters('#','')
-    elseif a:filetype ==? "cvs"
-        call s:MapDelimiters('CVS:','')
-    elseif a:filetype ==? "d"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "dcl"
-        call s:MapDelimiters('$!', '')
-    elseif a:filetype ==? "dakota"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "debcontrol"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "debsources"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "def"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "desktop"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "dhcpd"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "diff"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "django"
-        call s:MapDelimitersWithAlternative('<!--','-->', '{#', '#}')
-    elseif a:filetype ==? "docbk"
-        call s:MapDelimiters('<!--', '-->')
-    elseif a:filetype ==? "dns"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "dosbatch"
-        call s:MapDelimitersWithAlternative('REM ','', '::', '')
-    elseif a:filetype ==? "dosini"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "dot"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "dracula"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "dsl"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "dtml"
-        call s:MapDelimiters('<dtml-comment>','</dtml-comment>')
-    elseif a:filetype ==? "dylan"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? 'ebuild'
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "ecd"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? 'eclass'
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "eiffel"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "elf"
-        call s:MapDelimiters("'", '')
-    elseif a:filetype ==? "elmfilt"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "erlang"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "eruby"
-        call s:MapDelimitersWithAlternative('<%#', '%>', '<!--', '-->')
-    elseif a:filetype ==? "expect"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "exports"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "factor"
-        call s:MapDelimitersWithAlternative('! ', '', '!# ', '')
-    elseif a:filetype ==? "fgl"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "focexec"
-        call s:MapDelimiters('-*', '')
-    elseif a:filetype ==? "form"
-        call s:MapDelimiters('*', '')
-    elseif a:filetype ==? "foxpro"
-        call s:MapDelimiters('*', '')
-    elseif a:filetype ==? "fstab"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "fvwm"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "fx"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "gams"
-        call s:MapDelimiters('*', '')
-    elseif a:filetype ==? "gdb"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "gdmo"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "geek"
-        call s:MapDelimiters('GEEK_COMMENT:', '')
-    elseif a:filetype ==? "genshi"
-        call s:MapDelimitersWithAlternative('<!--','-->', '{#', '#}')
-    elseif a:filetype ==? "gentoo-conf-d"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "gentoo-env-d"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "gentoo-init-d"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "gentoo-make-conf"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? 'gentoo-package-keywords'
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? 'gentoo-package-mask'
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? 'gentoo-package-use'
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? 'gitcommit'
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? 'gitconfig'
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? 'gitrebase'
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "gnuplot"
-        call s:MapDelimiters('#','')
-    elseif a:filetype ==? "groovy"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "gtkrc"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "haskell"
-        call s:MapDelimitersWithAlternative('{-','-}', '--', '')
-    elseif a:filetype ==? "hb"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "h"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "haml"
-        call s:MapDelimitersWithAlternative('-#', '', '/', '')
-    elseif a:filetype ==? "hercules"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "hog"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "hostsaccess"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "htmlcheetah"
-        call s:MapDelimiters('##','')
-    elseif a:filetype ==? "htmldjango"
-        call s:MapDelimitersWithAlternative('<!--','-->', '{#', '#}')
-    elseif a:filetype ==? "htmlos"
-        call s:MapDelimiters('#','/#')
-    elseif a:filetype ==? "ia64"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "icon"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "idlang"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "idl"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "inform"
-        call s:MapDelimiters('!', '')
-    elseif a:filetype ==? "inittab"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "ishd"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "iss"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "ist"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "java"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "javacc"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "javascript"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype == "javascript.jquery"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "jess"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "jgraph"
-        call s:MapDelimiters('(*','*)')
-    elseif a:filetype ==? "jproperties"
-        call s:MapDelimiters('#','')
-    elseif a:filetype ==? "jsp"
-        call s:MapDelimiters('<%--', '--%>')
-    elseif a:filetype ==? "kix"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "kscript"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "lace"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "ldif"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "lilo"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "lilypond"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "liquid"
-        call s:MapDelimiters('{%', '%}')
-    elseif a:filetype ==? "lisp"
-        call s:MapDelimitersWithAlternative(';','', '#|', '|#')
-    elseif a:filetype ==? "llvm"
-        call s:MapDelimiters(';','')
-    elseif a:filetype ==? "lotos"
-        call s:MapDelimiters('(*','*)')
-    elseif a:filetype ==? "lout"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "lprolog"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "lscript"
-        call s:MapDelimiters("'", '')
-    elseif a:filetype ==? "lss"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "lua"
-        call s:MapDelimitersWithAlternative('--','', '--[[', ']]')
-    elseif a:filetype ==? "lynx"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "lytex"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "mail"
-        call s:MapDelimiters('> ','')
-    elseif a:filetype ==? "mako"
-        call s:MapDelimiters('##', '')
-    elseif a:filetype ==? "man"
-        call s:MapDelimiters('."', '')
-    elseif a:filetype ==? "map"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "maple"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "markdown"
-        call s:MapDelimiters('<!--', '-->')
-    elseif a:filetype ==? "masm"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "mason"
-        call s:MapDelimiters('<% #', '%>')
-    elseif a:filetype ==? "master"
-        call s:MapDelimiters('$', '')
-    elseif a:filetype ==? "matlab"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "mel"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "mib"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "mkd"
-        call s:MapDelimiters('>', '')
-    elseif a:filetype ==? "mma"
-        call s:MapDelimiters('(*','*)')
-    elseif a:filetype ==? "model"
-        call s:MapDelimiters('$','$')
-    elseif a:filetype =~ "moduala."
-        call s:MapDelimiters('(*','*)')
-    elseif a:filetype ==? "modula2"
-        call s:MapDelimiters('(*','*)')
-    elseif a:filetype ==? "modula3"
-        call s:MapDelimiters('(*','*)')
-    elseif a:filetype ==? "monk"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "mush"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "named"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "nasm"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "nastran"
-        call s:MapDelimiters('$', '')
-    elseif a:filetype ==? "natural"
-        call s:MapDelimiters('/*', '')
-    elseif a:filetype ==? "ncf"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "newlisp"
-        call s:MapDelimiters(';','')
-    elseif a:filetype ==? "nroff"
-        call s:MapDelimiters('\"', '')
-    elseif a:filetype ==? "nsis"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "ntp"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "objc"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "objcpp"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "objj"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "ocaml"
-        call s:MapDelimiters('(*','*)')
-    elseif a:filetype ==? "occam"
-        call s:MapDelimiters('--','')
-    elseif a:filetype ==? "omlet"
-        call s:MapDelimiters('(*','*)')
-    elseif a:filetype ==? "omnimark"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "openroad"
-        call s:MapDelimiters('//', '')
-    elseif a:filetype ==? "opl"
-        call s:MapDelimiters("REM", "")
-    elseif a:filetype ==? "ora"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "ox"
-        call s:MapDelimiters('//', '')
-    elseif a:filetype ==? "pascal"
-        call s:MapDelimitersWithAlternative('{','}', '(*', '*)')
-    elseif a:filetype ==? "patran"
-        call s:MapDelimitersWithAlternative('$','','/*', '*/')
-    elseif a:filetype ==? "pcap"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "pccts"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "pdf"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "pfmain"
-        call s:MapDelimiters('//', '')
-    elseif a:filetype ==? "php"
-        call s:MapDelimitersWithAlternative('//','','/*', '*/')
-    elseif a:filetype ==? "pic"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "pike"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "pilrc"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "pine"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "plm"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "plsql"
-        call s:MapDelimitersWithAlternative('--', '', '/*', '*/')
-    elseif a:filetype ==? "po"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "postscr"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "pov"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "povini"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "ppd"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "ppwiz"
-        call s:MapDelimiters(';;', '')
-    elseif a:filetype ==? "processing"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "prolog"
-        call s:MapDelimitersWithAlternative('%','','/*','*/')
-    elseif a:filetype ==? "ps1"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "psf"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "ptcap"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "python"
-        call s:MapDelimiters('#','')
-    elseif a:filetype ==? "radiance"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "ratpoison"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "r"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "rc"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "rebol"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "registry"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "remind"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "resolv"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "rgb"
-        call s:MapDelimiters('!', '')
-    elseif a:filetype ==? "rib"
-        call s:MapDelimiters('#','')
-    elseif a:filetype ==? "robots"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "sa"
-        call s:MapDelimiters('--','')
-    elseif a:filetype ==? "samba"
-        call s:MapDelimitersWithAlternative(';','', '#', '')
-    elseif a:filetype ==? "sass"
-        call s:MapDelimitersWithAlternative('//','', '/*', '')
-    elseif a:filetype ==? "sather"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "scala"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "scilab"
-        call s:MapDelimiters('//', '')
-    elseif a:filetype ==? "scsh"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "sed"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "sgmldecl"
-        call s:MapDelimiters('--','--')
-    elseif a:filetype ==? "sgmllnx"
-        call s:MapDelimiters('<!--','-->')
-    elseif a:filetype ==? "sicad"
-        call s:MapDelimiters('*', '')
-    elseif a:filetype ==? "simula"
-        call s:MapDelimitersWithAlternative('%', '', '--', '')
-    elseif a:filetype ==? "sinda"
-        call s:MapDelimiters('$', '')
-    elseif a:filetype ==? "skill"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "slang"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "slice"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "slrnrc"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "sm"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "smarty"
-        call s:MapDelimiters('{*', '*}')
-    elseif a:filetype ==? "smil"
-        call s:MapDelimiters('<!','>')
-    elseif a:filetype ==? "smith"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "sml"
-        call s:MapDelimiters('(*','*)')
-    elseif a:filetype ==? "snnsnet"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "snnspat"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "snnsres"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "snobol4"
-        call s:MapDelimiters('*', '')
-    elseif a:filetype ==? "spec"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "specman"
-        call s:MapDelimiters('//', '')
-    elseif a:filetype ==? "spectre"
-        call s:MapDelimitersWithAlternative('//', '', '*', '')
-    elseif a:filetype ==? "spice"
-        call s:MapDelimiters('$', '')
-    elseif a:filetype ==? "sql"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "sqlforms"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "sqlj"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "sqr"
-        call s:MapDelimiters('!', '')
-    elseif a:filetype ==? "squid"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "st"
-        call s:MapDelimiters('"','')
-    elseif a:filetype ==? "stp"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "systemverilog"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "tads"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "tags"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "tak"
-        call s:MapDelimiters('$', '')
-    elseif a:filetype ==? "tasm"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "tcl"
-        call s:MapDelimiters('#','')
-    elseif a:filetype ==? "texinfo"
-        call s:MapDelimiters("@c ", "")
-    elseif a:filetype ==? "texmf"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "tf"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "tidy"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "tli"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "tmux"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "trasys"
-        call s:MapDelimiters("$", "")
-    elseif a:filetype ==? "tsalt"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "tsscl"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "tssgm"
-        call s:MapDelimiters("comment = '","'")
-    elseif a:filetype ==? "txt2tags"
-        call s:MapDelimiters('%','')
-    elseif a:filetype ==? "uc"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "uil"
-        call s:MapDelimiters('!', '')
-    elseif a:filetype ==? "vb"
-        call s:MapDelimiters("'","")
-    elseif a:filetype ==? "velocity"
-        call s:MapDelimitersWithAlternative("##","", '#*', '*#')
-    elseif a:filetype ==? "vera"
-        call s:MapDelimitersWithAlternative('/*','*/','//','')
-    elseif a:filetype ==? "verilog"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "verilog_systemverilog"
-        call s:MapDelimitersWithAlternative('//','', '/*','*/')
-    elseif a:filetype ==? "vgrindefs"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "vhdl"
-        call s:MapDelimiters('--', '')
-    elseif a:filetype ==? "vimperator"
-        call s:MapDelimiters('"','')
-    elseif a:filetype ==? "virata"
-        call s:MapDelimiters('%', '')
-    elseif a:filetype ==? "vrml"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "vsejcl"
-        call s:MapDelimiters('/*', '')
-    elseif a:filetype ==? "webmacro"
-        call s:MapDelimiters('##', '')
-    elseif a:filetype ==? "wget"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "Wikipedia"
-        call s:MapDelimiters('<!--','-->')
-    elseif a:filetype ==? "winbatch"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "wml"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "wvdial"
-        call s:MapDelimiters(';', '')
-    elseif a:filetype ==? "xdefaults"
-        call s:MapDelimiters('!', '')
-    elseif a:filetype ==? "xkb"
-        call s:MapDelimiters('//', '')
-    elseif a:filetype ==? "xmath"
-        call s:MapDelimiters('#', '')
-    elseif a:filetype ==? "xpm2"
-        call s:MapDelimiters('!', '')
-    elseif a:filetype ==? "xquery"
-        call s:MapDelimiters('(:',':)')
-    elseif a:filetype ==? "z8a"
-        call s:MapDelimiters(';', '')
+    if has_key(s:delimiterMap, a:filetype)
+        let data = s:delimiterMap[a:filetype]
 
+        let left = has_key(data, 'left') ? data['left'] : ''
+        let right = has_key(data, 'right') ? data['right'] : ''
+        let leftAlt = has_key(data, 'leftAlt') ? data['leftAlt'] : ''
+        let rightAlt = has_key(data, 'rightAlt') ? data['rightAlt'] : ''
     else
 
         "extract the delims from &commentstring
         let left= substitute(&commentstring, '\([^ \t]*\)\s*%s.*', '\1', '')
         let right= substitute(&commentstring, '.*%s\s*\(.*\)', '\1', 'g')
-        call s:MapDelimiters(left,right)
-
+        let leftAlt = ''
+        let rightAlt = ''
     endif
-endfunction
 
-" Function: s:MapDelimiters(left, right) function {{{2
-" This function is a wrapper for s:MapDelimiters(left, right, leftAlt, rightAlt, useAlt) and is called when there
-" is no alternative comment delimiters for the current filetype
-"
-" Args:
-"   -left: the left comment delimiter
-"   -right: the right comment delimiter
-function s:MapDelimiters(left, right)
-    call s:MapDelimitersWithAlternative(a:left, a:right, "", "")
-endfunction
-
-" Function: s:MapDelimitersWithAlternative(left, right, leftAlt, rightAlt) function {{{2
-" this function sets up the comment delimiter buffer variables
-"
-" Args:
-"   -left:  the string defining the comment start delimiter
-"   -right: the string defining the comment end delimiter
-"   -leftAlt:  the string for the alternative comment style defining the comment start delimiter
-"   -rightAlt: the string for the alternative comment style defining the comment end delimiter
-function s:MapDelimitersWithAlternative(left, right, leftAlt, rightAlt)
     if !exists('g:NERD_' . &filetype . '_alt_style')
-        let b:NERDLeft = a:left
-        let b:NERDRight = a:right
-        let b:NERDLeftAlt = a:leftAlt
-        let b:NERDRightAlt = a:rightAlt
+        let b:NERDLeft = left
+        let b:NERDRight = right
+        let b:NERDLeftAlt = leftAlt
+        let b:NERDRightAlt = rightAlt
     else
-        let b:NERDLeft = a:leftAlt
-        let b:NERDRight = a:rightAlt
-        let b:NERDLeftAlt = a:left
-        let b:NERDRightAlt = a:right
+        let b:NERDLeft = leftAlt
+        let b:NERDRight = rightAlt
+        let b:NERDLeftAlt = left
+        let b:NERDRightAlt = right
     endif
 endfunction
 
