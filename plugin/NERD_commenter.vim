@@ -445,8 +445,8 @@ function s:SwitchToAlternativeDelimiters(printMsgs)
     endif
 
     "save the current delimiters
-    let tempLeft = s:GetLeft(0,0,0)
-    let tempRight = s:GetRight(0,0,0)
+    let tempLeft = s:Left()
+    let tempRight = s:Right()
 
     "swap current delimiters for alternative
     let b:NERDCommenterDelims['left'] = b:NERDCommenterDelims['leftAlt']
@@ -458,7 +458,7 @@ function s:SwitchToAlternativeDelimiters(printMsgs)
 
     "tell the user what comment delimiters they are now using
     if a:printMsgs
-        call s:NerdEcho("Now using " . s:GetLeft(0,0,0) . " " . s:GetRight(0,0,0) . " to delimit comments", 1)
+        call s:NerdEcho("Now using " . s:Left() . " " . s:Right() . " to delimit comments", 1)
     endif
 
     return 1
@@ -470,8 +470,8 @@ endfunction
 " This function appends comment delimiters at the EOL and places the cursor in
 " position to start typing the comment
 function s:AppendCommentToLine()
-    let left = s:GetLeft(0,1,0)
-    let right = s:GetRight(0,1,0)
+    let left = s:Left({'space': 1})
+    let right = s:Right({'space': 1})
 
     " get the len of the right delim
     let lenRight = strlen(right)
@@ -577,8 +577,8 @@ function s:CommentBlock(top, bottom, lSide, rSide, forceNested )
                 call setline(currentLine, theLine)
                 if s:CanPlaceCursor(currentLine, lSide)
 
-                    let leftSpaced = s:GetLeft(0,1,0)
-                    let rightSpaced = s:GetRight(0,1,0)
+                    let leftSpaced = s:Left({'space': 1})
+                    let rightSpaced = s:Right({'space': 1})
 
                     "stick the left delimiter down
                     let theLine = strpart(theLine, 0, lSide-1) . leftSpaced . strpart(theLine, lSide-1)
@@ -587,19 +587,19 @@ function s:CommentBlock(top, bottom, lSide, rSide, forceNested )
                         "stick the right delimiter down
                         let theLine = strpart(theLine, 0, rSide+strlen(leftSpaced)) . rightSpaced . strpart(theLine, rSide+strlen(leftSpaced))
 
-                        let firstLeftDelim = s:FindDelimiterIndex(s:GetLeft(0,0,0), theLine)
-                        let lastRightDelim = s:LastIndexOfDelim(s:GetRight(0,0,0), theLine)
+                        let firstLeftDelim = s:FindDelimiterIndex(s:Left(), theLine)
+                        let lastRightDelim = s:LastIndexOfDelim(s:Right(), theLine)
 
                         if firstLeftDelim != -1 && lastRightDelim != -1
                             let searchStr = strpart(theLine, 0, lastRightDelim)
-                            let searchStr = strpart(searchStr, firstLeftDelim+strlen(s:GetLeft(0,0,0)))
+                            let searchStr = strpart(searchStr, firstLeftDelim+strlen(s:Left()))
 
                             "replace the outter most delims in searchStr with
                             "place-holders
-                            let theLineWithPlaceHolders = s:ReplaceDelims(s:GetLeft(0,0,0), s:GetRight(0,0,0), g:NERDLPlace, g:NERDRPlace, searchStr)
+                            let theLineWithPlaceHolders = s:ReplaceDelims(s:Left(), s:Right(), g:NERDLPlace, g:NERDRPlace, searchStr)
 
                             "add the right delimiter onto the line
-                            let theLine = strpart(theLine, 0, firstLeftDelim+strlen(s:GetLeft(0,0,0))) . theLineWithPlaceHolders . strpart(theLine, lastRightDelim)
+                            let theLine = strpart(theLine, 0, firstLeftDelim+strlen(s:Left())) . theLineWithPlaceHolders . strpart(theLine, lastRightDelim)
                         endif
                     endif
                 endif
@@ -639,7 +639,7 @@ function s:CommentLines(forceNested, align, firstLine, lastLine)
 
     " gotta add the length of the left delimiter onto the rightAlignIndx cos
     " we'll be adding a left delim to the line
-    let rightAlignIndx = rightAlignIndx + strlen(s:GetLeft(0,1,0))
+    let rightAlignIndx = rightAlignIndx + strlen(s:Left({'space': 1}))
 
     " now we actually comment the lines. Do it line by line
     let currentLine = a:firstLine
@@ -658,19 +658,19 @@ function s:CommentLines(forceNested, align, firstLine, lastLine)
 
             " find out if the line is commented using normal delims and/or
             " alternate ones
-            let isCommented = s:IsCommented(s:GetLeft(0,0,0), s:GetRight(0,0,0), theLine) || s:IsCommented(s:GetLeft(1,0,0), s:GetRight(1,0,0), theLine)
+            let isCommented = s:IsCommented(s:Left(), s:Right(), theLine) || s:IsCommented(s:Left({'alt': 1}), s:Right({'alt': 1}), theLine)
 
             " check if we can comment this line
             if !isCommented || g:NERDUsePlaceHolders || s:Multipart()
                 if a:align == "left" || a:align == "both"
-                    let theLine = s:AddLeftDelimAligned(s:GetLeft(0,1,0), theLine, leftAlignIndx)
+                    let theLine = s:AddLeftDelimAligned(s:Left({'space': 1}), theLine, leftAlignIndx)
                 else
-                    let theLine = s:AddLeftDelim(s:GetLeft(0,1,0), theLine)
+                    let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
                 endif
                 if a:align == "both"
-                    let theLine = s:AddRightDelimAligned(s:GetRight(0,1,0), theLine, rightAlignIndx)
+                    let theLine = s:AddRightDelimAligned(s:Right({'space': 1}), theLine, rightAlignIndx)
                 else
-                    let theLine = s:AddRightDelim(s:GetRight(0,1,0), theLine)
+                    let theLine = s:AddRightDelim(s:Right({'space': 1}), theLine)
                 endif
             endif
         endif
@@ -880,8 +880,8 @@ function s:CommentLinesToggle(forceNested, firstLine, lastLine)
                 let theLine = s:SwapOutterMultiPartDelimsForPlaceHolders(theLine)
             endif
 
-            let theLine = s:AddLeftDelim(s:GetLeft(0, 1, 0), theLine)
-            let theLine = s:AddRightDelim(s:GetRight(0, 1, 0), theLine)
+            let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
+            let theLine = s:AddRightDelim(s:Right({'space': 1}), theLine)
         endif
 
         " restore leading tabs if appropriate
@@ -939,7 +939,7 @@ function s:CommentRegion(topLine, topCol, bottomLine, bottomCol, forceNested)
     endif
 
     "stick the cursor back on the char it was on before the comment
-    call cursor(a:topLine, a:topCol + strlen(s:GetLeft(0,0,0)) + g:NERDSpaceDelims)
+    call cursor(a:topLine, a:topCol + strlen(s:Left()) + g:NERDSpaceDelims)
 
     "if we switched delims then we gotta go back to what they were before
     if switchedDelims == 1
@@ -964,7 +964,7 @@ function s:InvertComment(firstLine, lastLine)
         let sexyComBounds = s:FindBoundingLinesOfSexyCom(currentLine)
 
         " if the line is commented normally, uncomment it
-        if s:IsCommentedFromStartOfLine(s:GetLeft(0,0,0), theLine) || s:IsCommentedFromStartOfLine(s:GetLeft(1,0,0), theLine)
+        if s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
             call s:UncommentLines(currentLine, currentLine)
             let currentLine = currentLine + 1
 
@@ -1047,7 +1047,7 @@ function! NERDComment(isVisual, type) range
     elseif a:type == 'toggle'
         let theLine = getline(firstLine)
 
-        if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(s:GetLeft(0,0,0), theLine) || s:IsCommentedFromStartOfLine(s:GetLeft(1,0,0), theLine)
+        if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
             call s:UncommentLines(firstLine, lastLine)
         else
             call s:CommentLinesToggle(forceNested, firstLine, lastLine)
@@ -1095,8 +1095,8 @@ endfunction
 " cursor between them
 function s:PlaceDelimitersAndInsBetween()
     " get the left and right delimiters without any escape chars in them
-    let left = s:GetLeft(0, 1, 0)
-    let right = s:GetRight(0, 1, 0)
+    let left = s:Left({'space': 1})
+    let right = s:Right({'space': 1})
 
     let theLine = getline(".")
     let lineHasLeadTabs = s:HasLeadingTabs(theLine) || (theLine =~ '^ *$' && !&expandtab)
@@ -1364,54 +1364,54 @@ function s:UncommentLineNormal(line)
     let line = a:line
 
     "get the comment status on the line so we know how it is commented
-    let lineCommentStatus =  s:IsCommentedOuttermost(s:GetLeft(0,0,0), s:GetRight(0,0,0), s:GetLeft(1,0,0), s:GetRight(1,0,0), line)
+    let lineCommentStatus =  s:IsCommentedOuttermost(s:Left(), s:Right(), s:Left({'alt': 1}), s:Right({'alt': 1}), line)
 
-    "it is commented with s:GetLeft(0,0,0) and s:GetRight(0,0,0) so remove these delims
+    "it is commented with s:Left() and s:Right() so remove these delims
     if lineCommentStatus == 1
-        let line = s:RemoveDelimiters(s:GetLeft(0,0,0), s:GetRight(0,0,0), line)
+        let line = s:RemoveDelimiters(s:Left(), s:Right(), line)
 
-    "it is commented with s:GetLeft(1,0,0) and s:GetRight(1,0,0) so remove these delims
+    "it is commented with s:Left({'alt': 1}) and s:Right({'alt': 1}) so remove these delims
     elseif lineCommentStatus == 2 && g:NERDRemoveAltComs
-        let line = s:RemoveDelimiters(s:GetLeft(1,0,0), s:GetRight(1,0,0), line)
+        let line = s:RemoveDelimiters(s:Left({'alt': 1}), s:Right({'alt': 1}), line)
 
     "it is not properly commented with any delims so we check if it has
     "any random left or right delims on it and remove the outtermost ones
     else
         "get the positions of all delim types on the line
-        let indxLeft = s:FindDelimiterIndex(s:GetLeft(0,0,0), line)
-        let indxLeftAlt = s:FindDelimiterIndex(s:GetLeft(1,0,0), line)
-        let indxRight = s:FindDelimiterIndex(s:GetRight(0,0,0), line)
-        let indxRightAlt = s:FindDelimiterIndex(s:GetRight(1,0,0), line)
+        let indxLeft = s:FindDelimiterIndex(s:Left(), line)
+        let indxLeftAlt = s:FindDelimiterIndex(s:Left({'alt': 1}), line)
+        let indxRight = s:FindDelimiterIndex(s:Right(), line)
+        let indxRightAlt = s:FindDelimiterIndex(s:Right({'alt': 1}), line)
 
         "remove the outter most left comment delim
         if indxLeft != -1 && (indxLeft < indxLeftAlt || indxLeftAlt == -1)
-            let line = s:RemoveDelimiters(s:GetLeft(0,0,0), '', line)
+            let line = s:RemoveDelimiters(s:Left(), '', line)
         elseif indxLeftAlt != -1
-            let line = s:RemoveDelimiters(s:GetLeft(1,0,0), '', line)
+            let line = s:RemoveDelimiters(s:Left({'alt': 1}), '', line)
         endif
 
         "remove the outter most right comment delim
         if indxRight != -1 && (indxRight < indxRightAlt || indxRightAlt == -1)
-            let line = s:RemoveDelimiters('', s:GetRight(0,0,0), line)
+            let line = s:RemoveDelimiters('', s:Right(), line)
         elseif indxRightAlt != -1
-            let line = s:RemoveDelimiters('', s:GetRight(1,0,0), line)
+            let line = s:RemoveDelimiters('', s:Right({'alt': 1}), line)
         endif
     endif
 
 
-    let indxLeft = s:FindDelimiterIndex(s:GetLeft(0,0,0), line)
-    let indxLeftAlt = s:FindDelimiterIndex(s:GetLeft(1,0,0), line)
+    let indxLeft = s:FindDelimiterIndex(s:Left(), line)
+    let indxLeftAlt = s:FindDelimiterIndex(s:Left({'alt': 1}), line)
     let indxLeftPlace = s:FindDelimiterIndex(g:NERDLPlace, line)
 
     let indxRightPlace = s:FindDelimiterIndex(g:NERDRPlace, line)
-    let indxRightAlt = s:FindDelimiterIndex(s:GetRight(1,0,0), line)
+    let indxRightAlt = s:FindDelimiterIndex(s:Right({'alt': 1}), line)
     let indxRightPlace = s:FindDelimiterIndex(g:NERDRPlace, line)
 
-    let right = s:GetRight(0,0,0)
-    let left = s:GetLeft(0,0,0)
+    let right = s:Right()
+    let left = s:Left()
     if !s:Multipart()
-        let right = s:GetRight(1,0,0)
-        let left = s:GetLeft(1,0,0)
+        let right = s:Right({'alt': 1})
+        let left = s:Left({'alt': 1})
     endif
 
 
@@ -1573,7 +1573,7 @@ endfunction
 "   -lineNum: the line num of the line to check for commentability
 function s:CanToggleCommentLine(forceNested, lineNum)
     let theLine = getline(a:lineNum)
-    if (s:IsCommentedFromStartOfLine(s:GetLeft(0,0,0), theLine) || s:IsCommentedFromStartOfLine(s:GetLeft(1,0,0), theLine)) && !a:forceNested
+    if (s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)) && !a:forceNested
         return 0
     endif
 
@@ -1693,9 +1693,9 @@ endfunction
 function s:DoesBlockHaveMultipartDelim(top, bottom)
     if s:HasMultipartDelims()
         if s:Multipart()
-            return s:DoesBlockHaveDelim(s:GetLeft(0,0,0), a:top, a:bottom) || s:DoesBlockHaveDelim(s:GetRight(0,0,0), a:top, a:bottom)
+            return s:DoesBlockHaveDelim(s:Left(), a:top, a:bottom) || s:DoesBlockHaveDelim(s:Right(), a:top, a:bottom)
         else
-            return s:DoesBlockHaveDelim(s:GetLeft(1,0,0), a:top, a:bottom) || s:DoesBlockHaveDelim(s:GetRight(1,0,0), a:top, a:bottom)
+            return s:DoesBlockHaveDelim(s:Left({'alt': 1}), a:top, a:bottom) || s:DoesBlockHaveDelim(s:Right({'alt': 1}), a:top, a:bottom)
         endif
     endif
     return 0
@@ -1779,11 +1779,11 @@ function s:FindBoundingLinesOfSexyCom(lineNum)
     let left = ''
     let right = ''
     if s:Multipart()
-        let left = s:GetLeft(0,0,1)
-        let right = s:GetRight(0,0,1)
+        let left = s:Left({'esc': 1})
+        let right = s:Right({'esc': 1})
     elseif s:AltMultipart()
-        let left = s:GetLeft(1,0,1)
-        let right = s:GetRight(1,0,1)
+        let left = s:Left({'alt': 1, 'esc': 1})
+        let right = s:Right({'alt': 1, 'esc': 1})
     else
         return []
     endif
@@ -1837,57 +1837,6 @@ function s:FindBoundingLinesOfSexyCom(lineNum)
 endfunction
 
 
-" Function: s:GetLeft(alt, space, esc) {{{2
-" returns the left/left-alternative delimiter
-" Args:
-"   -alt: specifies whether to get left or left-alternative delim
-"   -space: specifies whether the delim should be spaced or not
-"    (the space string will only be added if NERDSpaceDelims is set)
-"   -esc: specifies whether the tricky chars in the delim should be ESCed
-function s:GetLeft(alt, space, esc)
-    let delim = a:alt ? b:NERDCommenterDelims['leftAlt'] : b:NERDCommenterDelims['left'] 
-
-    if delim == ''
-        return ''
-    endif
-
-    if a:space && g:NERDSpaceDelims
-        let delim = delim . s:spaceStr
-    endif
-
-    if a:esc
-        let delim = s:Esc(delim)
-    endif
-
-    return delim
-endfunction
-
-" Function: s:GetRight(alt, space, esc) {{{2
-" returns the right/right-alternative delimiter
-" Args:
-"   -alt: specifies whether to get right or right-alternative delim
-"   -space: specifies whether the delim should be spaced or not
-"   (the space string will only be added if NERDSpaceDelims is set)
-"   -esc: specifies whether the tricky chars in the delim should be ESCed
-function s:GetRight(alt, space, esc)
-    let delim = a:alt ? b:NERDCommenterDelims['rightAlt'] : b:NERDCommenterDelims['right'] 
-
-    if delim == ''
-        return ''
-    endif
-
-    if a:space && g:NERDSpaceDelims
-        let delim = s:spaceStr . delim
-    endif
-
-    if a:esc
-        let delim = s:Esc(delim)
-    endif
-
-    return delim
-endfunction
-
-
 " Function: s:GetSexyComMarker() {{{2
 " Returns the sexy comment marker for the current filetype.
 "
@@ -1912,14 +1861,14 @@ function s:GetSexyComMarker(space, esc)
         else
             "find a comment marker by getting the longest available left delim
             "(that has a corresponding right delim) and taking the last char
-            let lenLeft = strlen(s:GetLeft(0,0,0))
-            let lenLeftAlt = strlen(s:GetLeft(1,0,0))
+            let lenLeft = strlen(s:Left())
+            let lenLeftAlt = strlen(s:Left({'alt': 1}))
             let left = ''
             let right = ''
             if s:Multipart() && lenLeft >= lenLeftAlt
-                let left = s:GetLeft(0,0,0)
+                let left = s:Left()
             elseif s:AltMultipart()
-                let left = s:GetLeft(1,0,0)
+                let left = s:Left({'alt': 1})
             else
                 return -1
             endif
@@ -1948,8 +1897,8 @@ endfunction
 "   (the space string will only be added if NERDSpaceDelims is set)
 "   -esc: specifies whether the tricky chars in the string are ESCed
 function s:GetSexyComLeft(space, esc)
-    let lenLeft = strlen(s:GetLeft(0,0,0))
-    let lenLeftAlt = strlen(s:GetLeft(1,0,0))
+    let lenLeft = strlen(s:Left())
+    let lenLeftAlt = strlen(s:Left({'alt': 1}))
     let left = ''
 
     "assume c style sexy comments if possible
@@ -1958,9 +1907,9 @@ function s:GetSexyComLeft(space, esc)
     else
         "grab the longest left delim that has a right
         if s:Multipart() && lenLeft >= lenLeftAlt
-            let left = s:GetLeft(0,0,0)
+            let left = s:Left()
         elseif s:AltMultipart()
-            let left = s:GetLeft(1,0,0)
+            let left = s:Left({'alt': 1})
         else
             return -1
         endif
@@ -1986,8 +1935,8 @@ endfunction
 "   is specified for the current filetype)
 "   -esc: specifies whether the tricky chars in the string are ESCed
 function s:GetSexyComRight(space, esc)
-    let lenLeft = strlen(s:GetLeft(0,0,0))
-    let lenLeftAlt = strlen(s:GetLeft(1,0,0))
+    let lenLeft = strlen(s:Left())
+    let lenLeftAlt = strlen(s:Left({'alt': 1}))
     let right = ''
 
     "assume c style sexy comments if possible
@@ -1996,9 +1945,9 @@ function s:GetSexyComRight(space, esc)
     else
         "grab the right delim that pairs with the longest left delim
         if s:Multipart() && lenLeft >= lenLeftAlt
-            let right = s:GetRight(0,0,0)
+            let right = s:Right()
         elseif s:AltMultipart()
-            let right = s:GetRight(1,0,0)
+            let right = s:Right({'alt': 1})
         else
             return -1
         endif
@@ -2034,7 +1983,7 @@ endfunction
 " Function: s:HasCStyleComments() {{{2
 " Returns 1 iff the current filetype has c style comment delimiters
 function s:HasCStyleComments()
-    return (s:GetLeft(0,0,0) == '/*' && s:GetRight(0,0,0) == '*/') || (s:GetLeft(1,0,0) == '/*' && s:GetRight(1,0,0) == '*/')
+    return (s:Left() == '/*' && s:Right() == '*/') || (s:Left({'alt': 1}) == '/*' && s:Right({'alt': 1}) == '*/')
 endfunction
 
 " Function: s:IsCommentedNormOrSexy(lineNum) {{{2
@@ -2047,7 +1996,7 @@ function s:IsCommentedNormOrSexy(lineNum)
     let theLine = getline(a:lineNum)
 
     "if the line is commented normally return 1
-    if s:IsCommented(s:GetLeft(0,0,0), s:GetRight(0,0,0), theLine) || s:IsCommented(s:GetLeft(1,0,0), s:GetRight(1,0,0), theLine)
+    if s:IsCommented(s:Left(), s:Right(), theLine) || s:IsCommented(s:Left({'alt': 1}), s:Right({'alt': 1}), theLine)
         return 1
     endif
 
@@ -2263,11 +2212,11 @@ function s:IsSexyComment(topline, bottomline)
     let left = ''
     let right = ''
     if s:Multipart()
-        let left = s:GetLeft(0,0,0)
-        let right = s:GetRight(0,0,0)
+        let left = s:Left()
+        let right = s:Right()
     elseif s:AltMultipart()
-        let left = s:GetLeft(1,0,0)
-        let right = s:GetRight(1,0,0)
+        let left = s:Left({'alt': 1})
+        let right = s:Right({'alt': 1})
     else
         return 0
     endif
@@ -2370,6 +2319,28 @@ function s:LastIndexOfDelim(delim, str)
 
 endfunction
 
+" Function: s:Left(...) {{{2
+" returns left delimiter data
+function s:Left(...)
+    let params = a:0 ? a:1 : {}
+
+    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['leftAlt'] : b:NERDCommenterDelims['left'] 
+
+    if delim == ''
+        return ''
+    endif
+
+    if has_key(params, 'space') && g:NERDSpaceDelims
+        let delim = delim . s:spaceStr
+    endif
+
+    if has_key(params, 'esc')
+        let delim = s:Esc(delim)
+    endif
+
+    return delim
+endfunction
+
 " Function: s:LeftMostIndx(countCommentedLines, countEmptyLines, topline, bottomline) {{{2
 " This function takes in 2 line numbers and returns the index of the left most
 " char (that is not a space or a tab) on all of these lines.
@@ -2392,7 +2363,7 @@ function s:LeftMostIndx(countCommentedLines, countEmptyLines, topline, bottomlin
         " commented, check it
         let theLine = getline(currentLine)
         if a:countEmptyLines || theLine !~ '^[ \t]*$'
-            if a:countCommentedLines || (!s:IsCommented(s:GetLeft(0,0,0), s:GetRight(0,0,0), theLine) && !s:IsCommented(s:GetLeft(1,0,0), s:GetRight(1,0,0), theLine))
+            if a:countCommentedLines || (!s:IsCommented(s:Left(), s:Right(), theLine) && !s:IsCommented(s:Left({'alt': 1}), s:Right({'alt': 1}), theLine))
                 " convert spaces to tabs and get the number of leading spaces for
                 " this line and update leftMostIndx if need be
                 let theLine = s:ConvertLeadingTabsToSpaces(theLine)
@@ -2417,7 +2388,7 @@ endfunction
 " Function: s:Multipart() {{{2
 " returns 1 if the current delims are multipart
 function s:Multipart()
-    return s:GetRight(0,0,0) != ''
+    return s:Right() != ''
 endfunction
 
 " Function: s:NerdEcho(msg, typeOfMsg) {{{2
@@ -2527,6 +2498,28 @@ function s:RestoreScreenState()
     call setpos(".", t:NERDComOldPos)
 endfunction
 
+" Function: s:Right(...) {{{2
+" returns right delimiter data
+function s:Right(...)
+    let params = a:0 ? a:1 : {}
+
+    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['rightAlt'] : b:NERDCommenterDelims['right'] 
+
+    if delim == ''
+        return ''
+    endif
+
+    if has_key(params, 'space') && g:NERDSpaceDelims
+        let delim = s:spaceStr . delim
+    endif
+
+    if has_key(params, 'esc')
+        let delim = s:Esc(delim)
+    endif
+
+    return delim
+endfunction
+
 " Function: s:RightMostIndx(countCommentedLines, countEmptyLines, topline, bottomline) {{{2
 " This function takes in 2 line numbers and returns the index of the right most
 " char on all of these lines.
@@ -2548,7 +2541,7 @@ function s:RightMostIndx(countCommentedLines, countEmptyLines, topline, bottomli
         let theLine = getline(currentLine)
         if a:countEmptyLines || theLine !~ '^[ \t]*$'
 
-            if a:countCommentedLines || (!s:IsCommented(s:GetLeft(0,0,0), s:GetRight(0,0,0), theLine) && !s:IsCommented(s:GetLeft(1,0,0), s:GetRight(1,0,0), theLine))
+            if a:countCommentedLines || (!s:IsCommented(s:Left(), s:Right(), theLine) && !s:IsCommented(s:Left({'alt': 1}), s:Right({'alt': 1}), theLine))
 
                 " update rightMostIndx if need be
                 let theLine = s:ConvertLeadingTabsToSpaces(theLine)
@@ -2583,20 +2576,20 @@ endfunction
 function s:SwapOutterMultiPartDelimsForPlaceHolders(line)
     " find out if the line is commented using normal delims and/or
     " alternate ones
-    let isCommented = s:IsCommented(s:GetLeft(0,0,0), s:GetRight(0,0,0), a:line)
-    let isCommentedAlt = s:IsCommented(s:GetLeft(1,0,0), s:GetRight(1,0,0), a:line)
+    let isCommented = s:IsCommented(s:Left(), s:Right(), a:line)
+    let isCommentedAlt = s:IsCommented(s:Left({'alt': 1}), s:Right({'alt': 1}), a:line)
 
     let line2 = a:line
 
     "if the line is commented and there is a right delimiter, replace
     "the delims with place-holders
     if isCommented && s:Multipart()
-        let line2 = s:ReplaceDelims(s:GetLeft(0,0,0), s:GetRight(0,0,0), g:NERDLPlace, g:NERDRPlace, a:line)
+        let line2 = s:ReplaceDelims(s:Left(), s:Right(), g:NERDLPlace, g:NERDRPlace, a:line)
 
     "similarly if the line is commented with the alternative
     "delimiters
     elseif isCommentedAlt && s:AltMultipart()
-        let line2 = s:ReplaceDelims(s:GetLeft(1,0,0), s:GetRight(1,0,0), g:NERDLPlace, g:NERDRPlace, a:line)
+        let line2 = s:ReplaceDelims(s:Left({'alt': 1}), s:Right({'alt': 1}), g:NERDLPlace, g:NERDRPlace, a:line)
     endif
 
     return line2
@@ -2612,11 +2605,11 @@ function s:SwapOutterPlaceHoldersForMultiPartDelims(line)
     let left = ''
     let right = ''
     if s:Multipart()
-        let left = s:GetLeft(0,0,0)
-        let right = s:GetRight(0,0,0)
+        let left = s:Left()
+        let right = s:Right()
     elseif s:AltMultipart()
-        let left = s:GetLeft(1,0,0)
-        let right = s:GetRight(1,0,0)
+        let left = s:Left({'alt': 1})
+        let right = s:Right({'alt': 1})
     endif
 
     let line = s:ReplaceDelims(g:NERDLPlace, g:NERDRPlace, left, right, a:line)
