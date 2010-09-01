@@ -976,7 +976,7 @@ function s:InvertComment(firstLine, lastLine)
 
             "move to the line after last line of the sexy comment
             let numLinesAfterSexyComRemoved = s:NumLinesInBuf()
-            let currentLine = bottomBound - (numLinesBeforeSexyComRemoved - numLinesAfterSexyComRemoved) + 1
+            let currentLine = sexyComBounds[1] - (numLinesBeforeSexyComRemoved - numLinesAfterSexyComRemoved) + 1
 
         " the line isnt commented
         else
