@@ -702,7 +702,7 @@ function s:CommentLinesMinimal(firstLine, lastLine)
     "if we need to use place holders for the comment, make sure they are
     "enabled for this filetype
     if !g:NERDUsePlaceHolders && s:DoesBlockHaveMultipartDelim(a:firstLine, a:lastLine)
-        throw 'NERDCommenter.Settings exception: Placeoholders are required but disabled.'
+        throw 'NERDCommenter.Settings exception: Place holders are required but disabled.'
     endif
 
     "get the left and right delims to smack on
