@@ -305,6 +305,7 @@ let s:delimiterMap = {
     \ 'sed': { 'left': '#' },
     \ 'sgmldecl': { 'left': '--', 'right': '--' },
     \ 'sgmllnx': { 'left': '<!--', 'right': '-->' },
+    \ 'sh': { 'left': '#' },
     \ 'sicad': { 'left': '*' },
     \ 'simula': { 'left': '%', 'leftAlt': '--' },
     \ 'sinda': { 'left': '$' },
