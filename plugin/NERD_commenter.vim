@@ -2400,10 +2400,10 @@ endfunction
 function s:NerdEcho(msg, typeOfMsg)
     if a:typeOfMsg == 0
         echohl WarningMsg
-        echo 'NERDCommenter:' . a:msg
+        echom 'NERDCommenter:' . a:msg
         echohl None
     elseif a:typeOfMsg == 1
-        echo 'NERDCommenter:' . a:msg
+        echom 'NERDCommenter:' . a:msg
     endif
 endfunction
 
