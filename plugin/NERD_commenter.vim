@@ -1001,6 +1001,10 @@ function! NERDComment(isVisual, type) range
     let oldIgnoreCase = &ignorecase
     set noignorecase
 
+    if !exists("g:did_load_ftplugin") || g:did_load_ftplugin != 1
+        call s:NerdEcho("filetype plugins should be enabled. See :help NERDComInstallation and :help :filetype-plugin-on", 0)
+    endif
+
     if a:isVisual
         let firstLine = line("'<")
         let lastLine = line("'>")
