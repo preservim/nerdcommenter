@@ -781,7 +781,7 @@ The latest dev versions are on github
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
-2.2.3
+2.3.0
     - remove all filetypes which have a &commentstring in the standard vim
       runtime for vim > 7.0 unless the script stores an alternate set of
       delimiters
