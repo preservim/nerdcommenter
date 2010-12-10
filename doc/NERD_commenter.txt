@@ -781,6 +781,15 @@ The latest dev versions are on github
 ==============================================================================
 8. Changelog                                                *NERDComChangelog*
 
+2.3.0
+    - remove all filetypes which have a &commentstring in the standard vim
+      runtime for vim > 7.0 unless the script stores an alternate set of
+      delimiters
+    - make the script complain if the user doesnt have filetype plugins enabled
+    - use <leader> instead of comma to start the default mappings
+    - fix a couple of bugs with sexy comments - thanks to Tim Smart
+    - lots of refactoring
+
 2.2.2
     - remove the NERDShutup option and the message is suppresses, this makes
       the plugin silently rely on &commentstring for unknown filetypes.

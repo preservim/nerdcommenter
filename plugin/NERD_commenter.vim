@@ -1,9 +1,9 @@
 " ============================================================================
 " File:        NERD_commenter.vim
 " Description: vim global plugin that provides easy code commenting
-" Maintainer:  Martin Grenfell <martin_grenfell at msn dot com>
-" Version:     2.2.2
-" Last Change: 09th October, 2010
+" Maintainer:  Martin Grenfell <martin.grenfell at gmail dot com>
+" Version:     2.3.0
+" Last Change: 08th December, 2010
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -208,7 +208,7 @@ let s:delimiterMap = {
     \ 'ldif': { 'left': '#' },
     \ 'lilo': { 'left': '#' },
     \ 'lilypond': { 'left': '%' },
-    \ 'liquid': { 'left': '{%', 'right': '%}' },
+    \ 'liquid': { 'left': '{% comment %}', 'right': '{% endcomment %}' },
     \ 'lisp': { 'left': ';', 'leftAlt': '#|', 'rightAlt': '|#' },
     \ 'llvm': { 'left': ';' },
     \ 'lotos': { 'left': '(*', 'right': '*)' },
@@ -1001,6 +1001,10 @@ function! NERDComment(isVisual, type) range
     " we want case sensitivity when commenting
     let oldIgnoreCase = &ignorecase
     set noignorecase
+
+    if !exists("g:did_load_ftplugin") || g:did_load_ftplugin != 1
+        call s:NerdEcho("filetype plugins should be enabled. See :help NERDComInstallation and :help :filetype-plugin-on", 0)
+    endif
 
     if a:isVisual
         let firstLine = line("'<")
@@ -2401,10 +2405,10 @@ endfunction
 function s:NerdEcho(msg, typeOfMsg)
     if a:typeOfMsg == 0
         echohl WarningMsg
-        echo 'NERDCommenter:' . a:msg
+        echom 'NERDCommenter:' . a:msg
         echohl None
     elseif a:typeOfMsg == 1
-        echo 'NERDCommenter:' . a:msg
+        echom 'NERDCommenter:' . a:msg
     endif
 endfunction
 
