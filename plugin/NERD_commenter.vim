@@ -264,6 +264,7 @@ let s:delimiterMap = {
     \ 'pcap': { 'left': '#' },
     \ 'pccts': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'pdf': { 'left': '%' },
+    \ 'perl': { 'left': '#' },
     \ 'pfmain': { 'left': '//' },
     \ 'php': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'pic': { 'left': ';' },
