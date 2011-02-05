@@ -381,7 +381,7 @@ let s:delimiterMap = {
 " Section: Comment enabler autocommands {{{2
 " ============================================================================
 
-augroup commentEnablers
+augroup NERDCommenter
 
     "if the user enters a buffer or reads a buffer then we gotta set up
     "the comment delimiters for that new filetype
