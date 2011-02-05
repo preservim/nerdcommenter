@@ -1,9 +1,9 @@
 " ============================================================================
 " File:        NERD_commenter.vim
 " Description: vim global plugin that provides easy code commenting
-" Maintainer:  Martin Grenfell <martin_grenfell at msn dot com>
-" Version:     2.2.2
-" Last Change: 09th October, 2010
+" Maintainer:  Martin Grenfell <martin.grenfell at gmail dot com>
+" Version:     2.3.0
+" Last Change: 08th December, 2010
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -47,7 +47,7 @@ endfunction
 let s:spaceStr = ' '
 let s:lenSpaceStr = strlen(s:spaceStr)
 
-" Section: variable init calls {{{2
+" Section: variable initialization {{{2
 call s:InitVariable("g:NERDAllowAnyVisualDelims", 1)
 call s:InitVariable("g:NERDBlockComIgnoreEmpty", 0)
 call s:InitVariable("g:NERDCommentWholeLinesInVMode", 0)
@@ -61,11 +61,13 @@ call s:InitVariable("g:NERDRemoveAltComs", 1)
 call s:InitVariable("g:NERDRemoveExtraSpaces", 1)
 call s:InitVariable("g:NERDRPlace", "<]")
 call s:InitVariable("g:NERDSpaceDelims", 0)
-call s:InitVariable("g:NERDDelimiterRequests", 1)
 call s:InitVariable("g:NERDDefaultAlign", "none")
 
+if !exists("g:NERDCustomDelimiters")
+    let g:NERDCustomDelimiters = {}
+endif
+
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
-"vf ;;dA:hcs"'A {j^f(lyi(k$p0f{a A }0f{a 'left':jdd^
 
 let s:delimiterMap = {
     \ 'aap': { 'left': '#' },
@@ -209,7 +211,7 @@ let s:delimiterMap = {
     \ 'ldif': { 'left': '#' },
     \ 'lilo': { 'left': '#' },
     \ 'lilypond': { 'left': '%' },
-    \ 'liquid': { 'left': '{%', 'right': '%}' },
+    \ 'liquid': { 'left': '{% comment %}', 'right': '{% endcomment %}' },
     \ 'lisp': { 'left': ';', 'leftAlt': '#|', 'rightAlt': '|#' },
     \ 'llvm': { 'left': ';' },
     \ 'lotos': { 'left': '(*', 'right': '*)' },
@@ -377,12 +379,17 @@ let s:delimiterMap = {
     \ 'z8a': { 'left': ';' }
     \ }
 
+"merge in the custom delimiters
+for ft in keys(g:NERDCustomDelimiters)
+    let s:delimiterMap[ft] = g:NERDCustomDelimiters[ft]
+endfor
+
 " Section: Comment mapping functions, autocommands and commands {{{1
 " ============================================================================
 " Section: Comment enabler autocommands {{{2
 " ============================================================================
 
-augroup commentEnablers
+augroup NERDCommenter
 
     "if the user enters a buffer or reads a buffer then we gotta set up
     "the comment delimiters for that new filetype
@@ -404,10 +411,24 @@ augroup END
 "    set for this buffer.
 "
 function s:SetUpForNewFiletype(filetype, forceReset)
+    let ft = a:filetype
+
+    "for compound filetypes, if we dont know how to handle the full filetype
+    "then break it down and use the first part that we know how to handle
+    if ft =~ '\.' && !has_key(s:delimiterMap, ft)
+        let filetypes = split(a:filetype, '\.')
+        for i in filetypes
+            if has_key(s:delimiterMap, i)
+                let ft = i
+                break
+            endif
+        endfor
+    endif
+
     let b:NERDSexyComMarker = ''
 
-    if has_key(s:delimiterMap, a:filetype)
-        let b:NERDCommenterDelims = s:delimiterMap[a:filetype]
+    if has_key(s:delimiterMap, ft)
+        let b:NERDCommenterDelims = s:delimiterMap[ft]
         for i in ['left', 'leftAlt', 'right', 'rightAlt']
             if !has_key(b:NERDCommenterDelims, i)
                 let b:NERDCommenterDelims[i] = ''
@@ -1015,6 +1036,10 @@ function! NERDComment(isVisual, type) range
     " we want case sensitivity when commenting
     let oldIgnoreCase = &ignorecase
     set noignorecase
+
+    if !exists("g:did_load_ftplugin") || g:did_load_ftplugin != 1
+        call s:NerdEcho("filetype plugins should be enabled. See :help NERDComInstallation and :help :filetype-plugin-on", 0)
+    endif
 
     if a:isVisual
         let firstLine = line("'<")
@@ -2415,10 +2440,10 @@ endfunction
 function s:NerdEcho(msg, typeOfMsg)
     if a:typeOfMsg == 0
         echohl WarningMsg
-        echo 'NERDCommenter:' . a:msg
+        echom 'NERDCommenter:' . a:msg
         echohl None
     elseif a:typeOfMsg == 1
-        echo 'NERDCommenter:' . a:msg
+        echom 'NERDCommenter:' . a:msg
     endif
 endfunction
 
