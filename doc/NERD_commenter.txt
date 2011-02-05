@@ -404,6 +404,8 @@ then the script would do a sexy comment on the last visual selection.
                                       doing visual-block comments.
 |'NERDCommentWholeLinesInVMode'|      Changes behaviour of visual comments.
 |'NERDCreateDefaultMappings'|         Turn the default mappings on/off.
+|'NERDCustomDelimiters'|              Add or override delimiters for any
+                                      filetypes.
 |'NERDDefaultNesting'|                Tells the script to use nested comments
                                       by default.
 |'NERDMenuMode'|                      Specifies how the NERD commenter menu
@@ -550,13 +552,32 @@ Note that this option does not affect the behaviour of commenting in
 |visual-block| mode.
 
 ------------------------------------------------------------------------------
-                                                *'NERDCreateDefaultMappings'*
+                                                 *'NERDCreateDefaultMappings'*
 Values: 0 or 1.
 Default: 1.
 
 If set to 0, none of the default mappings will be created.
 
 See also |NERDComMappings|.
+
+------------------------------------------------------------------------------
+                                                      *'NERDCustomDelimiters'*
+Values: A map (format specified below).
+Default: {}
+
+Use this option if you have new filetypes you want the script to handle, or if
+you want to override the default delimiters of a filetype.
+
+Example: >
+    let g:NERDCustomDelimiters = {
+        \ 'ruby': { 'left': '#', 'leftAlt': 'FOO', 'rightAlt': 'BAR' },
+        \ 'grondle': { 'left': '{{', 'right': '}}' }
+    \ }
+<
+
+Here we override the delimiter settings for ruby and add FOO/BAR as alternative
+delimiters. We also add {{ and }} as delimiters for a new filetype called
+'grondle'.
 
 ------------------------------------------------------------------------------
                                                            *'NERDRemoveAltComs'*
