@@ -47,7 +47,7 @@ endfunction
 let s:spaceStr = ' '
 let s:lenSpaceStr = strlen(s:spaceStr)
 
-" Section: variable init calls {{{2
+" Section: variable initialization {{{2
 call s:InitVariable("g:NERDAllowAnyVisualDelims", 1)
 call s:InitVariable("g:NERDBlockComIgnoreEmpty", 0)
 call s:InitVariable("g:NERDCommentWholeLinesInVMode", 0)
@@ -61,6 +61,10 @@ call s:InitVariable("g:NERDRemoveAltComs", 1)
 call s:InitVariable("g:NERDRemoveExtraSpaces", 1)
 call s:InitVariable("g:NERDRPlace", "<]")
 call s:InitVariable("g:NERDSpaceDelims", 0)
+
+if !exists("g:NERDCustomDelimiters")
+    let g:NERDCustomDelimiters = {}
+endif
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -373,6 +377,11 @@ let s:delimiterMap = {
     \ 'xquery': { 'left': '(:', 'right': ':)' },
     \ 'z8a': { 'left': ';' }
     \ }
+
+"merge in the custom delimiters
+for ft in keys(g:NERDCustomDelimiters)
+    let s:delimiterMap[ft] = g:NERDCustomDelimiters[ft]
+endfor
 
 " Section: Comment mapping functions, autocommands and commands {{{1
 " ============================================================================
