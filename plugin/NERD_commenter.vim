@@ -403,10 +403,18 @@ augroup END
 "    set for this buffer.
 "
 function s:SetUpForNewFiletype(filetype, forceReset)
+    let ft = a:filetype
+
+    "for compound filetypes, if we dont know how to handle the full filetype
+    "then just use the first part, e.g. 'foo.bar' is treated as 'foo'
+    if ft =~ '\.' && !has_key(s:delimiterMap, ft)
+        let ft = split(a:filetype, '\.')[0]
+    endif
+
     let b:NERDSexyComMarker = ''
 
-    if has_key(s:delimiterMap, a:filetype)
-        let b:NERDCommenterDelims = s:delimiterMap[a:filetype]
+    if has_key(s:delimiterMap, ft)
+        let b:NERDCommenterDelims = s:delimiterMap[ft]
         for i in ['left', 'leftAlt', 'right', 'rightAlt']
             if !has_key(b:NERDCommenterDelims, i)
                 let b:NERDCommenterDelims[i] = ''
