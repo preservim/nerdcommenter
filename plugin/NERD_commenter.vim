@@ -413,9 +413,15 @@ function s:SetUpForNewFiletype(filetype, forceReset)
     let ft = a:filetype
 
     "for compound filetypes, if we dont know how to handle the full filetype
-    "then just use the first part, e.g. 'foo.bar' is treated as 'foo'
+    "then break it down and use the first part that we know how to handle
     if ft =~ '\.' && !has_key(s:delimiterMap, ft)
-        let ft = split(a:filetype, '\.')[0]
+        let filetypes = split(a:filetype, '\.')
+        for i in filetypes
+            if has_key(s:delimiterMap, i)
+                let ft = i
+                break
+            endif
+        endfor
     endif
 
     let b:NERDSexyComMarker = ''
