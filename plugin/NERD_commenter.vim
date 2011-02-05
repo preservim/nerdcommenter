@@ -64,7 +64,6 @@ call s:InitVariable("g:NERDSpaceDelims", 0)
 call s:InitVariable("g:NERDDelimiterRequests", 1)
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
-"vf ;;dA:hcs"'A {j^f(lyi(k$p0f{a A }0f{a 'left':jdd^
 
 let s:delimiterMap = {
     \ 'aap': { 'left': '#' },
