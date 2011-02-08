@@ -654,7 +654,7 @@ Default: 3
 This option can take 4 values:
     "0": Turns the menu off.
     "1": Turns the 'comment' menu on with no menu shortcut.
-    "2": Turns the 'comment 'menu on with <alt>-c as the shortcut.
+    "2": Turns the 'comment' menu on with <alt>-c as the shortcut.
     "3": Turns the 'Plugin -> comment' menu on with <alt>-c as the shortcut.
 
 ------------------------------------------------------------------------------
