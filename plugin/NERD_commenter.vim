@@ -187,6 +187,7 @@ let s:delimiterMap = {
     \ 'htmlcheetah': { 'left': '##' },
     \ 'htmldjango': { 'left': '<!--','right': '-->', 'leftAlt': '{#', 'rightAlt': '#}' },
     \ 'htmlos': { 'left': '#', 'right': '/#' },
+    \ 'html': { 'left': '<!--','right': '-->' },
     \ 'ia64': { 'left': '#' },
     \ 'icon': { 'left': '#' },
     \ 'idlang': { 'left': ';' },
