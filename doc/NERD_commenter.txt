@@ -597,7 +597,7 @@ It will not be uncommented if the NERDRemoveAltComs is set to 0.
 ------------------------------------------------------------------------------
                                                        *'NERDRemoveExtraSpaces'*
 Values: 0 or 1.
-Default: 1.
+Default: 0.
 
 By default, the NERD commenter will remove spaces around comment delimiters if
 either:
@@ -620,8 +620,6 @@ Otherwise they would become: >
      int bar = 10;
     int baz = foo + bar
 <
-If you want the spaces to be removed only if |'NERDSpaceDelims'| is set then
-set NERDRemoveExtraSpaces to 0.
 
 ------------------------------------------------------------------------------
                                                                   *'NERDLPlace'*
