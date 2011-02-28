@@ -258,6 +258,7 @@ let s:delimiterMap = {
     \ 'occam': { 'left': '--' },
     \ 'omlet': { 'left': '(*', 'right': '*)' },
     \ 'omnimark': { 'left': ';' },
+    \ 'ooc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'openroad': { 'left': '//' },
     \ 'opl': { 'left': "REM" },
     \ 'ora': { 'left': '#' },
