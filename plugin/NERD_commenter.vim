@@ -1049,6 +1049,10 @@ function NERDCommenterYank(isVisual, register) range
         execute range .'yank '. a:register
     endif
     execute range .'call NERDComment('. a:isVisual .', "norm")'
+
+    if !a:isVisual
+        silent! call repeat#set(rangeCount.reg.'\<plug>NERDCommenterYank',-1)
+    endif
 endfunction
 
 " Function: NERDComment(isVisual, type) function {{{2
@@ -1069,6 +1073,9 @@ function! NERDComment(isVisual, type) range
         call s:NerdEcho("filetype plugins should be enabled. See :help NERDComInstallation and :help :filetype-plugin-on", 0)
     endif
 
+    let suffix = ''
+    let rangeCount = ''
+
     if a:isVisual
         let firstLine = line("'<")
         let lastLine = line("'>")
@@ -1077,6 +1084,10 @@ function! NERDComment(isVisual, type) range
     else
         let firstLine = a:firstline
         let lastLine = a:lastline
+    endif
+
+    if firstLine != lastLine
+        let rangeCount = lastLine - firstLine + 1
     endif
 
     let forceNested = (a:type == 'nested' || g:NERDDefaultNesting)
@@ -1089,18 +1100,26 @@ function! NERDComment(isVisual, type) range
         else
             call s:CommentLines(forceNested, "none", firstLine, lastLine)
         endif
+        if a:type == 'norm'
+            let suffix = 'Comment'
+        else
+            let suffix = 'Nest'
+        endif
 
     elseif a:type == 'alignLeft' || a:type == 'alignBoth'
         let align = "none"
         if a:type == "alignLeft"
             let align = "left"
+            let suffix = "AlignLeft"
         elseif a:type == "alignBoth"
             let align = "both"
+            let suffix = "AlignBoth"
         endif
         call s:CommentLines(forceNested, align, firstLine, lastLine)
 
     elseif a:type == 'invert'
         call s:InvertComment(firstLine, lastLine)
+        let suffix = "Invert"
 
     elseif a:type == 'sexy'
         try
@@ -1110,6 +1129,7 @@ function! NERDComment(isVisual, type) range
         catch /NERDCommenter.Nesting/
             call s:NerdEcho("Sexy comment aborted. Nested sexy cannot be nested", 0)
         endtry
+        let suffix = "Sexy"
 
     elseif a:type == 'toggle'
         let theLine = getline(firstLine)
@@ -1119,6 +1139,7 @@ function! NERDComment(isVisual, type) range
         else
             call s:CommentLinesToggle(forceNested, firstLine, lastLine)
         endif
+        let suffix = "Toggle"
 
     elseif a:type == 'minimal'
         try
@@ -1128,24 +1149,32 @@ function! NERDComment(isVisual, type) range
         catch /NERDCommenter.Settings/
             call s:NerdEcho("Place holders are required but disabled.", 0)
         endtry
+        let suffix = 'Minimal'
 
     elseif a:type == 'toEOL'
         call s:SaveScreenState()
         call s:CommentBlock(firstLine, firstLine, col("."), col("$")-1, 1)
         call s:RestoreScreenState()
+        let suffix = 'ToEOL'
 
     elseif a:type == 'append'
         call s:AppendCommentToLine()
+        let suffix = 'Append'
 
     elseif a:type == 'insert'
         call s:PlaceDelimitersAndInsBetween()
 
     elseif a:type == 'uncomment'
         call s:UncommentLines(firstLine, lastLine)
+        let suffix = 'Uncomment'
 
     endif
 
     let &ignorecase = oldIgnoreCase
+
+    if !a:isVisual && suffix != ""
+        silent! call repeat#set(rangeCount ."\<Plug>NERDCommenter". suffix,-1)
+    endif
 endfunction
 
 " Function: s:PlaceDelimitersAndInsBetween() function {{{2
