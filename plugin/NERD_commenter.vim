@@ -1012,6 +1012,45 @@ function s:InvertComment(firstLine, lastLine)
     endwhile
 endfunction
 
+" Function: NERDCommentYank(isVisual, type) function {{{2
+" This function handles yanking
+"
+" Args:
+"   -isVisual: a flag indicating whether the comment is requested in visual
+"    mode or not
+"   -register: the register to yank into
+function NERDCommenterYank(isVisual, register) range
+    if a:isVisual
+        let firstLine = line("'<")
+        let lastLine = line("'>")
+        let firstCol = col("'<")
+        let lastCol = col("'>") - (&selection == 'exclusive' ? 1 : 0)
+    else
+        let firstLine = a:firstline
+        let lastLine = a:lastline
+    endif
+
+    let reg = ''
+    let range = ''
+    let rangeCount = ''
+
+    if a:register != ""
+        let reg = '"'.a:register
+    endif
+
+    if firstLine != lastLine
+        let range = firstLine .','. lastLine
+        let rangeCount = lastLine - firstLine + 1
+    endif
+
+    if a:isVisual
+        normal! gvy
+    else
+        execute range .'yank '. a:register
+    endif
+    execute range .'call NERDComment('. a:isVisual .', "norm")'
+endfunction
+
 " Function: NERDComment(isVisual, type) function {{{2
 " This function is a Wrapper for the main commenting functions
 "
@@ -1020,7 +1059,7 @@ endfunction
 "    mode or not
 "   -type: the type of commenting requested. Can be 'sexy', 'invert',
 "    'minimal', 'toggle', 'alignLeft', 'alignBoth', 'norm',
-"    'nested', 'toEOL', 'append', 'insert', 'uncomment', 'yank'
+"    'nested', 'toEOL', 'append', 'insert', 'uncomment'
 function! NERDComment(isVisual, type) range
     " we want case sensitivity when commenting
     let oldIgnoreCase = &ignorecase
@@ -1039,8 +1078,6 @@ function! NERDComment(isVisual, type) range
         let firstLine = a:firstline
         let lastLine = a:lastline
     endif
-
-    let countWasGiven = (a:isVisual == 0 && firstLine != lastLine)
 
     let forceNested = (a:type == 'nested' || g:NERDDefaultNesting)
 
@@ -1106,15 +1143,6 @@ function! NERDComment(isVisual, type) range
     elseif a:type == 'uncomment'
         call s:UncommentLines(firstLine, lastLine)
 
-    elseif a:type == 'yank'
-        if a:isVisual
-            normal! gvy
-        elseif countWasGiven
-            execute firstLine .','. lastLine .'yank'
-        else
-            normal! yy
-        endif
-        execute firstLine .','. lastLine .'call NERDComment('. a:isVisual .', "norm")'
     endif
 
     let &ignorecase = oldIgnoreCase
@@ -2715,8 +2743,8 @@ nnoremap <silent> <plug>NERDCommenterInvert :call NERDComment(0, "invert")<CR>
 vnoremap <silent> <plug>NERDCommenterInvert <ESC>:call NERDComment(1, "invert")<CR>
 
 " yank then comment
-nmap <silent> <plug>NERDCommenterYank :call NERDComment(0, "yank")<CR>
-vmap <silent> <plug>NERDCommenterYank <ESC>:call NERDComment(1, "yank")<CR>
+nmap <silent> <plug>NERDCommenterYank :call NERDCommentYank(0, v:register)<CR>
+vmap <silent> <plug>NERDCommenterYank <ESC>:call NERDCommentYank(1, v:register)<CR>
 
 " left aligned comments
 nnoremap <silent> <plug>NERDCommenterAlignLeft :call NERDComment(0, "alignLeft")<cr>
