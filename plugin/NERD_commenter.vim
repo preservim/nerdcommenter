@@ -248,6 +248,7 @@ let s:delimiterMap = {
     \ 'natural': { 'left': '/*' },
     \ 'ncf': { 'left': ';' },
     \ 'newlisp': { 'left': ';' },
+    \ 'nginx': { 'left': '#' },
     \ 'nroff': { 'left': '\"' },
     \ 'nsis': { 'left': '#' },
     \ 'ntp': { 'left': '#' },
