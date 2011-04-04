@@ -249,6 +249,7 @@ let s:delimiterMap = {
     \ 'natural': { 'left': '/*' },
     \ 'ncf': { 'left': ';' },
     \ 'newlisp': { 'left': ';' },
+    \ 'nimrod': { 'left': '#' },
     \ 'nroff': { 'left': '\"' },
     \ 'nsis': { 'left': '#' },
     \ 'ntp': { 'left': '#' },
