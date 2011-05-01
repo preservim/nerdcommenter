@@ -1417,14 +1417,14 @@ function s:UncommentLineNormal(line)
         "remove the outter most left comment delim
         if indxLeft != -1 && (indxLeft < indxLeftAlt || indxLeftAlt == -1)
             let line = s:RemoveDelimiters(s:Left(), '', line)
-        elseif indxLeftAlt != -1
+        elseif indxLeftAlt != -1 && g:NERDRemoveAltComs
             let line = s:RemoveDelimiters(s:Left({'alt': 1}), '', line)
         endif
 
         "remove the outter most right comment delim
         if indxRight != -1 && (indxRight < indxRightAlt || indxRightAlt == -1)
             let line = s:RemoveDelimiters('', s:Right(), line)
-        elseif indxRightAlt != -1
+        elseif indxRightAlt != -1 && g:NERDRemoveAltComs
             let line = s:RemoveDelimiters('', s:Right({'alt': 1}), line)
         endif
     endif
