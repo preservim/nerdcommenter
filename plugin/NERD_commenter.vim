@@ -151,6 +151,7 @@ let s:delimiterMap = {
     \ 'eruby': { 'left': '<%#', 'right': '%>', 'leftAlt': '<!--', 'rightAlt': '-->' },
     \ 'expect': { 'left': '#' },
     \ 'exports': { 'left': '#' },
+    \ 'fancy': { 'left': '#' },
     \ 'factor': { 'left': '! ', 'leftAlt': '!# ' },
     \ 'fgl': { 'left': '#' },
     \ 'focexec': { 'left': '-*' },
