@@ -1019,7 +1019,7 @@ endfunction
 "   -isVisual: a flag indicating whether the comment is requested in visual
 "    mode or not
 "   -register: the register to yank into
-function NERDCommenterYank(isVisual, register) range
+function NERDCommentYank(isVisual, register) range
     if a:isVisual
         let firstLine = line("'<")
         let lastLine = line("'>")
