@@ -403,7 +403,7 @@ augroup NERDCommenter
 
     "if the user enters a buffer or reads a buffer then we gotta set up
     "the comment delimiters for that new filetype
-    autocmd BufEnter,BufRead * :call s:SetUpForNewFiletype(&filetype, 0)
+    autocmd BufEnter * :call s:SetUpForNewFiletype(&filetype, 0)
 
     "if the filetype of a buffer changes, force the script to reset the
     "delims for the buffer
