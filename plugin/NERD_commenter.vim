@@ -448,6 +448,10 @@ function s:SetUpForNewFiletype(filetype, forceReset)
                 let b:NERDCommenterDelims[i] = ''
             endif
         endfor
+        let varname = "g:NERD_".ft."_alt_style"
+        if eval("exists('".varname."') && ".varname)
+            call s:SwitchToAlternativeDelimiters(0)
+        endif
     else
         let b:NERDCommenterDelims = s:CreateDelimMapFromCms()
     endif
