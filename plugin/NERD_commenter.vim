@@ -421,6 +421,10 @@ augroup END
 "    set for this buffer.
 "
 function s:SetUpForNewFiletype(filetype, forceReset)
+    if exists("b:NERDCommenterDelims") && ! a:forceReset
+        return
+    endif
+    
     let ft = a:filetype
 
     "for compound filetypes, if we dont know how to handle the full filetype
