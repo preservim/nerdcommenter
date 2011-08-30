@@ -2753,7 +2753,7 @@ function! s:CreateMaps(target, combo)
     endif
 
     if !hasmapto(a:target, 'v')
-        exec 'vmap ' . a:combo . ' ' . a:target
+        exec 'xmap ' . a:combo . ' ' . a:target
     endif
 endfunction
 
