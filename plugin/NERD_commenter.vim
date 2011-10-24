@@ -314,7 +314,7 @@ let s:delimiterMap = {
     \ 'scheme': { 'left': ';', 'leftAlt': '#|', 'rightAlt': '|#' },
     \ 'scilab': { 'left': '//' },
     \ 'scsh': { 'left': ';' },
-    \ 'scss': { 'left': '/*','right': '*/' },
+    \ 'scss': { 'left': '/*', 'right': '*/', 'leftAlt': '//' },
     \ 'sed': { 'left': '#' },
     \ 'sgmldecl': { 'left': '--', 'right': '--' },
     \ 'sgmllnx': { 'left': '<!--', 'right': '-->' },
