@@ -211,6 +211,7 @@ let s:delimiterMap = {
     \ 'lace': { 'left': '--' },
     \ 'ldif': { 'left': '#' },
     \ 'less': { 'left': '/*','right': '*/' },
+    \ 'lhaskell': { 'left': '>{-','right': '-}', 'leftAlt': '>-- ' },
     \ 'lilo': { 'left': '#' },
     \ 'lilypond': { 'left': '%' },
     \ 'liquid': { 'left': '{% comment %}', 'right': '{% endcomment %}' },
