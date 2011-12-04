@@ -198,6 +198,7 @@ let s:delimiterMap = {
     \ 'ishd': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'iss': { 'left': ';' },
     \ 'ist': { 'left': '%' },
+    \ 'jade': { 'left': '//-', 'leftAlt': '//' },
     \ 'java': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'javacc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'javascript': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
