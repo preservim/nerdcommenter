@@ -3,7 +3,7 @@
 " Description: vim global plugin that provides easy code commenting
 " Maintainer:  Martin Grenfell <martin.grenfell at gmail dot com>
 " Version:     2.3.0
-" Last Change: 08th December, 2010
+" Last Change: Tue Dec 06 09:00 AM 2011 Eastern Standard Time
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -2785,31 +2785,32 @@ if g:NERDMenuMode != 0
 
     let menuRoot = ""
     if g:NERDMenuMode == 1
-        let menuRoot = 'comment'
+	let menuRoot = 'comment'
     elseif g:NERDMenuMode == 2
-        let menuRoot = '&comment'
+	let menuRoot = '&comment'
     elseif g:NERDMenuMode == 3
-        let menuRoot = '&Plugin.&comment'
+	let menuRoot = '&Plugin.&comment'
     endif
 
-    function! s:CreateMenuItems(target, desc, root)
-        exec 'nmenu <silent> ' . a:root . '.' . a:desc . ' ' . a:target
-        exec 'vmenu <silent> ' . a:root . '.' . a:desc . ' ' . a:target
+    function! s:CreateMenuItems(modes, target, desc)
+        for mode in split(a:modes, '\zs')
+            exec mode . 'menu <silent> ' . g:menuRoot . '.' . a:desc . ' ' . a:target
+        endfor
     endfunction
-    call s:CreateMenuItems("<plug>NERDCommenterComment",    'Comment', menuRoot)
-    call s:CreateMenuItems("<plug>NERDCommenterToggle",     'Toggle', menuRoot)
-    call s:CreateMenuItems('<plug>NERDCommenterMinimal',    'Minimal', menuRoot)
-    call s:CreateMenuItems('<plug>NERDCommenterNest',       'Nested', menuRoot)
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterComment',    'Comment')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterToggle',     'Toggle')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterMinimal',    'Minimal')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterNest',       'Nested')
     exec 'nmenu <silent> '. menuRoot .'.To\ EOL <plug>NERDCommenterToEOL'
-    call s:CreateMenuItems('<plug>NERDCommenterInvert',     'Invert', menuRoot)
-    call s:CreateMenuItems('<plug>NERDCommenterSexy',       'Sexy', menuRoot)
-    call s:CreateMenuItems('<plug>NERDCommenterYank',       'Yank\ then\ comment', menuRoot)
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterInvert',     'Invert')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterSexy',       'Sexy')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterYank',       'Yank\ then\ comment')
     exec 'nmenu <silent> '. menuRoot .'.Append <plug>NERDCommenterAppend'
     exec 'menu <silent> '. menuRoot .'.-Sep-    :'
-    call s:CreateMenuItems('<plug>NERDCommenterAlignLeft',  'Left\ aligned', menuRoot)
-    call s:CreateMenuItems('<plug>NERDCommenterAlignBoth',  'Left\ and\ right\ aligned', menuRoot)
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterAlignLeft',  'Left\ aligned')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterAlignBoth',  'Left\ and\ right\ aligned')
     exec 'menu <silent> '. menuRoot .'.-Sep2-    :'
-    call s:CreateMenuItems('<plug>NERDCommenterUncomment',  'Uncomment', menuRoot)
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterUncomment',  'Uncomment')
     exec 'nmenu <silent> '. menuRoot .'.Switch\ Delimiters <plug>NERDCommenterAltDelims'
     exec 'imenu <silent> '. menuRoot .'.Insert\ Comment\ Here <plug>NERDCommenterInInsert'
     exec 'menu <silent> '. menuRoot .'.-Sep3-    :'
