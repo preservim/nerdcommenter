@@ -3,7 +3,7 @@
 " Description: vim global plugin that provides easy code commenting
 " Maintainer:  Martin Grenfell <martin.grenfell at gmail dot com>
 " Version:     2.3.0
-" Last Change: Tue Dec 06 09:00 AM 2011 Eastern Standard Time
+" Last Change: Tue Dec 06 10:00 AM 2011 Eastern Standard Time
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -2783,19 +2783,13 @@ endif
 "check if the user wants the menu to be displayed
 if g:NERDMenuMode != 0
 
-    let menuRoot = ""
-    if g:NERDMenuMode == 1
-	let menuRoot = 'comment'
-    elseif g:NERDMenuMode == 2
-	let menuRoot = '&comment'
-    elseif g:NERDMenuMode == 3
-	let menuRoot = '&Plugin.&comment'
-    endif
-
     function! s:CreateMenuItems(modes, target, desc)
+        let menuRoot = get(['', 'comment', '&comment', '&Plugin.&comment'],
+                    \ g:NERDMenuMode, '')
+	let command = 'menu <silent> ' . menuRoot . '.'
         let modes = (a:modes == '') ? [''] : split(a:modes, '\zs')
         for mode in modes
-            exec mode . 'menu <silent> ' . g:menuRoot . '.' . a:desc . ' ' . a:target
+            exec mode . command . a:desc . ' ' . a:target
         endfor
     endfunction
     call s:CreateMenuItems('nv', '<plug>NERDCommenterComment',    'Comment')
