@@ -2793,7 +2793,8 @@ if g:NERDMenuMode != 0
     endif
 
     function! s:CreateMenuItems(modes, target, desc)
-        for mode in split(a:modes, '\zs')
+        let modes = (a:modes == '') ? [''] : split(a:modes, '\zs')
+        for mode in modes
             exec mode . 'menu <silent> ' . g:menuRoot . '.' . a:desc . ' ' . a:target
         endfor
     endfunction
@@ -2801,19 +2802,19 @@ if g:NERDMenuMode != 0
     call s:CreateMenuItems('nv', '<plug>NERDCommenterToggle',     'Toggle')
     call s:CreateMenuItems('nv', '<plug>NERDCommenterMinimal',    'Minimal')
     call s:CreateMenuItems('nv', '<plug>NERDCommenterNest',       'Nested')
-    exec 'nmenu <silent> '. menuRoot .'.To\ EOL <plug>NERDCommenterToEOL'
+    call s:CreateMenuItems('n',  '<plug>NERDCommenterToEOL', 	  'To\ EOL')
     call s:CreateMenuItems('nv', '<plug>NERDCommenterInvert',     'Invert')
     call s:CreateMenuItems('nv', '<plug>NERDCommenterSexy',       'Sexy')
     call s:CreateMenuItems('nv', '<plug>NERDCommenterYank',       'Yank\ then\ comment')
-    exec 'nmenu <silent> '. menuRoot .'.Append <plug>NERDCommenterAppend'
-    exec 'menu <silent> '. menuRoot .'.-Sep-    :'
+    call s:CreateMenuItems('n',  '<plug>NERDCommenterAppend',     'Append')
+    call s:CreateMenuItems('',   ':',                             '-Sep-')
     call s:CreateMenuItems('nv', '<plug>NERDCommenterAlignLeft',  'Left\ aligned')
     call s:CreateMenuItems('nv', '<plug>NERDCommenterAlignBoth',  'Left\ and\ right\ aligned')
-    exec 'menu <silent> '. menuRoot .'.-Sep2-    :'
+    call s:CreateMenuItems('',   ':',                             '-Sep2-')
     call s:CreateMenuItems('nv', '<plug>NERDCommenterUncomment',  'Uncomment')
-    exec 'nmenu <silent> '. menuRoot .'.Switch\ Delimiters <plug>NERDCommenterAltDelims'
-    exec 'imenu <silent> '. menuRoot .'.Insert\ Comment\ Here <plug>NERDCommenterInInsert'
-    exec 'menu <silent> '. menuRoot .'.-Sep3-    :'
-    exec 'menu <silent>'. menuRoot .'.Help :help NERDCommenterContents<CR>'
+    call s:CreateMenuItems('n',  '<plug>NERDCommenterAltDelims',  'Switch\ Delimiters')
+    call s:CreateMenuItems('i',  '<plug>NERDCommenterInInsert',   'Insert\ Comment\ Here')
+    call s:CreateMenuItems('',   ':',                             '-Sep3-')
+    call s:CreateMenuItems('',   ':help NERDCommenterContents<CR>', 'Help')
 endif
 " vim: set foldmethod=marker :
