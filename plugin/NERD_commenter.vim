@@ -2761,15 +2761,15 @@ if g:NERDCreateDefaultMappings
     call s:CreateMaps('<plug>NERDCommenterComment',    '<leader>cc')
     call s:CreateMaps('<plug>NERDCommenterToggle',     '<leader>c<space>')
     call s:CreateMaps('<plug>NERDCommenterMinimal',    '<leader>cm')
-    call s:CreateMaps('<plug>NERDCommenterSexy',       '<leader>cs')
+    call s:CreateMaps('<plug>NERDCommenterNest',       '<leader>cn')
+    call s:CreateMaps('<plug>NERDCommenterToEOL',      '<leader>c$')
     call s:CreateMaps('<plug>NERDCommenterInvert',     '<leader>ci')
+    call s:CreateMaps('<plug>NERDCommenterSexy',       '<leader>cs')
     call s:CreateMaps('<plug>NERDCommenterYank',       '<leader>cy')
+    call s:CreateMaps('<plug>NERDCommenterAppend',     '<leader>cA')
     call s:CreateMaps('<plug>NERDCommenterAlignLeft',  '<leader>cl')
     call s:CreateMaps('<plug>NERDCommenterAlignBoth',  '<leader>cb')
-    call s:CreateMaps('<plug>NERDCommenterNest',       '<leader>cn')
     call s:CreateMaps('<plug>NERDCommenterUncomment',  '<leader>cu')
-    call s:CreateMaps('<plug>NERDCommenterToEOL',      '<leader>c$')
-    call s:CreateMaps('<plug>NERDCommenterAppend',     '<leader>cA')
 
     if !hasmapto('<plug>NERDCommenterAltDelims', 'n')
         nmap <leader>ca <plug>NERDCommenterAltDelims
@@ -2783,32 +2783,37 @@ endif
 "check if the user wants the menu to be displayed
 if g:NERDMenuMode != 0
 
-    function! s:CreateMenuItems(modes, target, desc)
+    function! s:CreateMenuItems(modes, target, desc, combo)
         let menuRoot = get(['', 'comment', '&comment', '&Plugin.&comment'],
                     \ g:NERDMenuMode, '')
-	let command = 'menu <silent> ' . menuRoot . '.'
+	let command = 'menu <silent> ' . menuRoot . '.' . escape(a:desc, ' ')
+        let leader = escape(exists('mapleader') ? mapleader : '\', '\')
+	if strlen(a:combo)
+	  let command .= '<Tab>' . leader . a:combo
+	endif
+	let command .= ' ' . a:target
         let modes = (a:modes == '') ? [''] : split(a:modes, '\zs')
         for mode in modes
-            exec mode . command . a:desc . ' ' . a:target
+            exec mode . command
         endfor
     endfunction
-    call s:CreateMenuItems('nv', '<plug>NERDCommenterComment',    'Comment')
-    call s:CreateMenuItems('nv', '<plug>NERDCommenterToggle',     'Toggle')
-    call s:CreateMenuItems('nv', '<plug>NERDCommenterMinimal',    'Minimal')
-    call s:CreateMenuItems('nv', '<plug>NERDCommenterNest',       'Nested')
-    call s:CreateMenuItems('n',  '<plug>NERDCommenterToEOL', 	  'To\ EOL')
-    call s:CreateMenuItems('nv', '<plug>NERDCommenterInvert',     'Invert')
-    call s:CreateMenuItems('nv', '<plug>NERDCommenterSexy',       'Sexy')
-    call s:CreateMenuItems('nv', '<plug>NERDCommenterYank',       'Yank\ then\ comment')
-    call s:CreateMenuItems('n',  '<plug>NERDCommenterAppend',     'Append')
-    call s:CreateMenuItems('',   ':',                             '-Sep-')
-    call s:CreateMenuItems('nv', '<plug>NERDCommenterAlignLeft',  'Left\ aligned')
-    call s:CreateMenuItems('nv', '<plug>NERDCommenterAlignBoth',  'Left\ and\ right\ aligned')
-    call s:CreateMenuItems('',   ':',                             '-Sep2-')
-    call s:CreateMenuItems('nv', '<plug>NERDCommenterUncomment',  'Uncomment')
-    call s:CreateMenuItems('n',  '<plug>NERDCommenterAltDelims',  'Switch\ Delimiters')
-    call s:CreateMenuItems('i',  '<plug>NERDCommenterInInsert',   'Insert\ Comment\ Here')
-    call s:CreateMenuItems('',   ':',                             '-Sep3-')
-    call s:CreateMenuItems('',   ':help NERDCommenterContents<CR>', 'Help')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterComment',    'Comment', 'cc')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterToggle',     'Toggle', 'c<space>')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterMinimal',    'Minimal', 'cm')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterNest',       'Nested', 'cn')
+    call s:CreateMenuItems('n',  '<plug>NERDCommenterToEOL', 	  'To EOL', 'c$')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterInvert',     'Invert', 'ci')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterSexy',       'Sexy', 'cs')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterYank',       'Yank then comment', 'cy')
+    call s:CreateMenuItems('n',  '<plug>NERDCommenterAppend',     'Append', 'cA')
+    call s:CreateMenuItems('',   ':',                             '-Sep-', '')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterAlignLeft',  'Left aligned', 'cl')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterAlignBoth',  'Left and right aligned', 'cb')
+    call s:CreateMenuItems('',   ':',                             '-Sep2-', '')
+    call s:CreateMenuItems('nv', '<plug>NERDCommenterUncomment',  'Uncomment', 'cu')
+    call s:CreateMenuItems('n',  '<plug>NERDCommenterAltDelims',  'Switch Delimiters', 'ca')
+    call s:CreateMenuItems('i',  '<plug>NERDCommenterInInsert',   'Insert Comment Here', '')
+    call s:CreateMenuItems('',   ':',                             '-Sep3-', '')
+    call s:CreateMenuItems('',   ':help NERDCommenterContents<CR>', 'Help', '')
 endif
 " vim: set foldmethod=marker :
