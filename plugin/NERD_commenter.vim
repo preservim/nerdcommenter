@@ -3,7 +3,7 @@
 " Description: vim global plugin that provides easy code commenting
 " Maintainer:  Martin Grenfell <martin.grenfell at gmail dot com>
 " Version:     2.3.0
-" Last Change: Mon Dec 12 10:00 AM 2011 EST
+" Last Change: Mon Dec 12 11:00 AM 2011 EST
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -1016,16 +1016,16 @@ function s:InvertComment(firstLine, lastLine)
     endwhile
 endfunction
 
-" Function: NERDComment(isVisual, type) function {{{2
+" Function: s:NERDComment(mode, type) function {{{2
 " This function is a Wrapper for the main commenting functions
 "
 " Args:
-"   -isVisual: a flag indicating whether the comment is requested in visual
-"    mode or not
-"   -type: the type of commenting requested. Can be 'sexy', 'invert',
-"    'minimal', 'toggle', 'alignLeft', 'alignBoth', 'norm',
-"    'nested', 'toEOL', 'append', 'insert', 'uncomment', 'yank'
-function! NERDComment(isVisual, type) range
+"   -mode: a character indicating the mode in which the comment is requested:
+"   'n' for Normal mode, 'v' for Visual mode
+"   -type: the type of commenting requested. Can be 'Sexy', 'Invert',
+"    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Norm',
+"    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
+function! s:NERDComment(mode, type) range
     " we want case sensitivity when commenting
     let oldIgnoreCase = &ignorecase
     set noignorecase
@@ -1034,7 +1034,7 @@ function! NERDComment(isVisual, type) range
         call s:NerdEcho("filetype plugins should be enabled. See :help NERDComInstallation and :help :filetype-plugin-on", 0)
     endif
 
-    if a:isVisual
+    if a:mode == "v"
         let firstLine = line("'<")
         let lastLine = line("'>")
         let firstCol = col("'<")
@@ -1044,32 +1044,32 @@ function! NERDComment(isVisual, type) range
         let lastLine = a:lastline
     endif
 
-    let countWasGiven = (a:isVisual == 0 && firstLine != lastLine)
+    let countWasGiven = (a:mode != "v" && firstLine != lastLine)
 
-    let forceNested = (a:type == 'nested' || g:NERDDefaultNesting)
+    let forceNested = (a:type == 'Nested' || g:NERDDefaultNesting)
 
-    if a:type == 'norm' || a:type == 'nested'
-        if a:isVisual && visualmode() == "\<C-V>"
+    if a:type == 'Norm' || a:type == 'Nested'
+        if a:mode == "v" && visualmode() == "\<C-V>"
             call s:CommentBlock(firstLine, lastLine, firstCol, lastCol, forceNested)
-        elseif a:isVisual && visualmode() == "v" && (g:NERDCommentWholeLinesInVMode==0 || (g:NERDCommentWholeLinesInVMode==2 && s:HasMultipartDelims()))
+        elseif a:mode == "v" && visualmode() == "v" && (g:NERDCommentWholeLinesInVMode==0 || (g:NERDCommentWholeLinesInVMode==2 && s:HasMultipartDelims()))
             call s:CommentRegion(firstLine, firstCol, lastLine, lastCol, forceNested)
         else
             call s:CommentLines(forceNested, "none", firstLine, lastLine)
         endif
 
-    elseif a:type == 'alignLeft' || a:type == 'alignBoth'
+    elseif a:type == 'AlignLeft' || a:type == 'AlignBoth'
         let align = "none"
-        if a:type == "alignLeft"
+        if a:type == "AlignLeft"
             let align = "left"
-        elseif a:type == "alignBoth"
+        elseif a:type == "AlignBoth"
             let align = "both"
         endif
         call s:CommentLines(forceNested, align, firstLine, lastLine)
 
-    elseif a:type == 'invert'
+    elseif a:type == 'Invert'
         call s:InvertComment(firstLine, lastLine)
 
-    elseif a:type == 'sexy'
+    elseif a:type == 'Sexy'
         try
             call s:CommentLinesSexy(firstLine, lastLine)
         catch /NERDCommenter.Delimiters/
@@ -1078,7 +1078,7 @@ function! NERDComment(isVisual, type) range
             call s:NerdEcho("Sexy comment aborted. Nested sexy cannot be nested", 0)
         endtry
 
-    elseif a:type == 'toggle'
+    elseif a:type == 'Toggle'
         let theLine = getline(firstLine)
 
         if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
@@ -1087,7 +1087,7 @@ function! NERDComment(isVisual, type) range
             call s:CommentLinesToggle(forceNested, firstLine, lastLine)
         endif
 
-    elseif a:type == 'minimal'
+    elseif a:type == 'Minimal'
         try
             call s:CommentLinesMinimal(firstLine, lastLine)
         catch /NERDCommenter.Delimiters/
@@ -1096,29 +1096,29 @@ function! NERDComment(isVisual, type) range
             call s:NerdEcho("Place holders are required but disabled.", 0)
         endtry
 
-    elseif a:type == 'toEOL'
+    elseif a:type == 'ToEOL'
         call s:SaveScreenState()
         call s:CommentBlock(firstLine, firstLine, col("."), col("$")-1, 1)
         call s:RestoreScreenState()
 
-    elseif a:type == 'append'
+    elseif a:type == 'Append'
         call s:AppendCommentToLine()
 
-    elseif a:type == 'insert'
+    elseif a:type == 'Insert'
         call s:PlaceDelimitersAndInsBetween()
 
-    elseif a:type == 'uncomment'
+    elseif a:type == 'Uncomment'
         call s:UncommentLines(firstLine, lastLine)
 
-    elseif a:type == 'yank'
-        if a:isVisual
+    elseif a:type == 'Yank'
+        if a:mode == "v"
             normal! gvy
         elseif countWasGiven
             execute firstLine .','. lastLine .'yank'
         else
             normal! yy
         endif
-        execute firstLine .','. lastLine .'call NERDComment('. a:isVisual .', "norm")'
+        execute firstLine .','. lastLine .'call s:NERDComment('. a:mode .', "Norm")'
     endif
 
     let &ignorecase = oldIgnoreCase
@@ -2694,53 +2694,53 @@ endfunction
 nnoremap <plug>NERDCommenterAltDelims :call <SID>SwitchToAlternativeDelimiters(1)<cr>
 
 " comment out lines
-nnoremap <silent> <plug>NERDCommenterComment :call NERDComment(0, "norm")<cr>
-vnoremap <silent> <plug>NERDCommenterComment <ESC>:call NERDComment(1, "norm")<cr>
+nnoremap <silent> <plug>NERDCommenterComment :call <SID>NERDComment("n", "Norm")<cr>
+vnoremap <silent> <plug>NERDCommenterComment <ESC>:call <SID>NERDComment("v", "Norm")<cr>
 
 " toggle comments
-nnoremap <silent> <plug>NERDCommenterToggle :call NERDComment(0, "toggle")<cr>
-vnoremap <silent> <plug>NERDCommenterToggle <ESC>:call NERDComment(1, "toggle")<cr>
+nnoremap <silent> <plug>NERDCommenterToggle :call <SID>NERDComment("n", "Toggle")<cr>
+vnoremap <silent> <plug>NERDCommenterToggle <ESC>:call <SID>NERDComment("v", "Toggle")<cr>
 
 " minimal comments
-nnoremap <silent> <plug>NERDCommenterMinimal :call NERDComment(0, "minimal")<cr>
-vnoremap <silent> <plug>NERDCommenterMinimal <ESC>:call NERDComment(1, "minimal")<cr>
+nnoremap <silent> <plug>NERDCommenterMinimal :call <SID>NERDComment("n", "Minimal")<cr>
+vnoremap <silent> <plug>NERDCommenterMinimal <ESC>:call <SID>NERDComment("v", "Minimal")<cr>
 
 " sexy comments
-nnoremap <silent> <plug>NERDCommenterSexy :call NERDComment(0, "sexy")<CR>
-vnoremap <silent> <plug>NERDCommenterSexy <ESC>:call NERDComment(1, "sexy")<CR>
+nnoremap <silent> <plug>NERDCommenterSexy :call <SID>NERDComment("n", "Sexy")<CR>
+vnoremap <silent> <plug>NERDCommenterSexy <ESC>:call <SID>NERDComment("v", "Sexy")<CR>
 
 " invert comments
-nnoremap <silent> <plug>NERDCommenterInvert :call NERDComment(0, "invert")<CR>
-vnoremap <silent> <plug>NERDCommenterInvert <ESC>:call NERDComment(1, "invert")<CR>
+nnoremap <silent> <plug>NERDCommenterInvert :call <SID>NERDComment("n", "Invert")<CR>
+vnoremap <silent> <plug>NERDCommenterInvert <ESC>:call <SID>NERDComment("v", "Invert")<CR>
 
 " yank then comment
-nmap <silent> <plug>NERDCommenterYank :call NERDComment(0, "yank")<CR>
-vmap <silent> <plug>NERDCommenterYank <ESC>:call NERDComment(1, "yank")<CR>
+nmap <silent> <plug>NERDCommenterYank :call <SID>NERDComment("n", "Yank")<CR>
+vmap <silent> <plug>NERDCommenterYank <ESC>:call <SID>NERDComment("v", "Yank")<CR>
 
 " left aligned comments
-nnoremap <silent> <plug>NERDCommenterAlignLeft :call NERDComment(0, "alignLeft")<cr>
-vnoremap <silent> <plug>NERDCommenterAlignLeft <ESC>:call NERDComment(1, "alignLeft")<cr>
+nnoremap <silent> <plug>NERDCommenterAlignLeft :call <SID>NERDComment("n", "AlignLeft")<cr>
+vnoremap <silent> <plug>NERDCommenterAlignLeft <ESC>:call <SID>NERDComment("v", "AlignLeft")<cr>
 
 " left and right aligned comments
-nnoremap <silent> <plug>NERDCommenterAlignBoth :call NERDComment(0, "alignBoth")<cr>
-vnoremap <silent> <plug>NERDCommenterAlignBoth <ESC>:call NERDComment(1, "alignBoth")<cr>
+nnoremap <silent> <plug>NERDCommenterAlignBoth :call <SID>NERDComment("n", "AlignBoth")<cr>
+vnoremap <silent> <plug>NERDCommenterAlignBoth <ESC>:call <SID>NERDComment("v", "AlignBoth")<cr>
 
 " nested comments
-nnoremap <silent> <plug>NERDCommenterNest :call NERDComment(0, "nested")<cr>
-vnoremap <silent> <plug>NERDCommenterNest <ESC>:call NERDComment(1, "nested")<cr>
+nnoremap <silent> <plug>NERDCommenterNest :call <SID>NERDComment("n", "Nested")<cr>
+vnoremap <silent> <plug>NERDCommenterNest <ESC>:call <SID>NERDComment("v", "Nested")<cr>
 
 " uncomment
-nnoremap <silent> <plug>NERDCommenterUncomment :call NERDComment(0, "uncomment")<cr>
-vnoremap <silent> <plug>NERDCommenterUncomment :call NERDComment(1, "uncomment")<cr>
+nnoremap <silent> <plug>NERDCommenterUncomment :call <SID>NERDComment("n", "Uncomment")<cr>
+vnoremap <silent> <plug>NERDCommenterUncomment :call <SID>NERDComment("v", "Uncomment")<cr>
 
 " comment till the end of the line
-nnoremap <silent> <plug>NERDCommenterToEOL :call NERDComment(0, "toEOL")<cr>
+nnoremap <silent> <plug>NERDCommenterToEOL :call <SID>NERDComment("n", "ToEOL")<cr>
 
 " append comments
-nmap <silent> <plug>NERDCommenterAppend :call NERDComment(0, "append")<cr>
+nmap <silent> <plug>NERDCommenterAppend :call <SID>NERDComment("n", "Append")<cr>
 
 " insert comments
-inoremap <silent> <plug>NERDCommenterInInsert <SPACE><BS><ESC>:call NERDComment(0, "insert")<CR>
+inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call <SID>NERDComment("n", "Insert")<CR>
 
 " Section: Menu item setup {{{1
 " ===========================================================================
@@ -2782,7 +2782,7 @@ call s:CreateMaps('nx', 'NERDCommenterAlignBoth',  'Left and right aligned', 'cb
 call s:CreateMaps('',   ':',                       '-Sep2-', '')
 call s:CreateMaps('nx', 'NERDCommenterUncomment',  'Uncomment', 'cu')
 call s:CreateMaps('n',  'NERDCommenterAltDelims',  'Switch Delimiters', 'ca')
-call s:CreateMaps('i',  'NERDCommenterInInsert',   'Insert Comment Here', '')
+call s:CreateMaps('i',  'NERDCommenterInsert',     'Insert Comment Here', '')
 call s:CreateMaps('',   ':',                       '-Sep3-', '')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
 " vim: set foldmethod=marker :
