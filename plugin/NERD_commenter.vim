@@ -3,7 +3,7 @@
 " Description: vim global plugin that provides easy code commenting
 " Maintainer:  Martin Grenfell <martin.grenfell at gmail dot com>
 " Version:     2.3.0
-" Last Change: Mon Dec 12 08:00 AM 2011 EST
+" Last Change: Mon Dec 12 10:00 AM 2011 EST
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -61,10 +61,6 @@ call s:InitVariable("g:NERDRemoveAltComs", 1)
 call s:InitVariable("g:NERDRemoveExtraSpaces", 0)
 call s:InitVariable("g:NERDRPlace", "<]")
 call s:InitVariable("g:NERDSpaceDelims", 0)
-
-if !exists("g:NERDCustomDelimiters")
-    let g:NERDCustomDelimiters = {}
-endif
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -391,10 +387,9 @@ let s:delimiterMap = {
     \ 'z8a': { 'left': ';' }
     \ }
 
-"merge in the custom delimiters
-for ft in keys(g:NERDCustomDelimiters)
-    let s:delimiterMap[ft] = g:NERDCustomDelimiters[ft]
-endfor
+if exists("g:NERDCustomDelimiters")
+    call extend(s:delimiterMap, g:NERDCustomDelimiters)
+endif
 
 " Section: Comment mapping functions, autocommands and commands {{{1
 " ============================================================================
