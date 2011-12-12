@@ -1049,7 +1049,7 @@ function! NERDComment(isVisual, type) range
     let forceNested = (a:type == 'nested' || g:NERDDefaultNesting)
 
     if a:type == 'norm' || a:type == 'nested'
-        if a:isVisual && visualmode() == ""
+        if a:isVisual && visualmode() == "\<C-V>"
             call s:CommentBlock(firstLine, lastLine, firstCol, lastCol, forceNested)
         elseif a:isVisual && visualmode() == "v" && (g:NERDCommentWholeLinesInVMode==0 || (g:NERDCommentWholeLinesInVMode==2 && s:HasMultipartDelims()))
             call s:CommentRegion(firstLine, firstCol, lastLine, lastCol, forceNested)
