@@ -3,7 +3,7 @@
 " Description: vim global plugin that provides easy code commenting
 " Maintainer:  Martin Grenfell <martin.grenfell at gmail dot com>
 " Version:     2.3.0
-" Last Change: Tue Dec 06 11:00 AM 2011 Eastern Standard Time
+" Last Change: Mon Dec 12 08:00 AM 2011 EST
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -2772,20 +2772,20 @@ function! s:CreateMaps(modes, target, desc, combo)
         endif
     endfor
 endfunction
-call s:CreateMaps('nv', 'NERDCommenterComment',    'Comment', 'cc')
-call s:CreateMaps('nv', 'NERDCommenterToggle',     'Toggle', 'c<space>')
-call s:CreateMaps('nv', 'NERDCommenterMinimal',    'Minimal', 'cm')
-call s:CreateMaps('nv', 'NERDCommenterNest',       'Nested', 'cn')
+call s:CreateMaps('nx', 'NERDCommenterComment',    'Comment', 'cc')
+call s:CreateMaps('nx', 'NERDCommenterToggle',     'Toggle', 'c<space>')
+call s:CreateMaps('nx', 'NERDCommenterMinimal',    'Minimal', 'cm')
+call s:CreateMaps('nx', 'NERDCommenterNest',       'Nested', 'cn')
 call s:CreateMaps('n',  'NERDCommenterToEOL',      'To EOL', 'c$')
-call s:CreateMaps('nv', 'NERDCommenterInvert',     'Invert', 'ci')
-call s:CreateMaps('nv', 'NERDCommenterSexy',       'Sexy', 'cs')
-call s:CreateMaps('nv', 'NERDCommenterYank',       'Yank then comment', 'cy')
+call s:CreateMaps('nx', 'NERDCommenterInvert',     'Invert', 'ci')
+call s:CreateMaps('nx', 'NERDCommenterSexy',       'Sexy', 'cs')
+call s:CreateMaps('nx', 'NERDCommenterYank',       'Yank then comment', 'cy')
 call s:CreateMaps('n',  'NERDCommenterAppend',     'Append', 'cA')
 call s:CreateMaps('',   ':',                       '-Sep-', '')
-call s:CreateMaps('nv', 'NERDCommenterAlignLeft',  'Left aligned', 'cl')
-call s:CreateMaps('nv', 'NERDCommenterAlignBoth',  'Left and right aligned', 'cb')
+call s:CreateMaps('nx', 'NERDCommenterAlignLeft',  'Left aligned', 'cl')
+call s:CreateMaps('nx', 'NERDCommenterAlignBoth',  'Left and right aligned', 'cb')
 call s:CreateMaps('',   ':',                       '-Sep2-', '')
-call s:CreateMaps('nv', 'NERDCommenterUncomment',  'Uncomment', 'cu')
+call s:CreateMaps('nx', 'NERDCommenterUncomment',  'Uncomment', 'cu')
 call s:CreateMaps('n',  'NERDCommenterAltDelims',  'Switch Delimiters', 'ca')
 call s:CreateMaps('i',  'NERDCommenterInInsert',   'Insert Comment Here', '')
 call s:CreateMaps('',   ':',                       '-Sep3-', '')
