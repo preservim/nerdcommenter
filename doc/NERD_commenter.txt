@@ -162,7 +162,7 @@ lines were selected in visual-line mode.
 3.2.2 Nested comment map                                *NERDComNestedComment*
 
 Default mapping: [count]|<Leader>|cn
-Mapped to: <plug>NERDCommenterNest
+Mapped to: <plug>NERDCommenterNested
 Applicable modes: normal visual visual-line visual-block.
 
 Performs nested commenting.  Works the same as |<Leader>|cc except that if a line
@@ -288,7 +288,7 @@ to insert mode between the new delimiters.
 3.2.10 Insert comment map                               *NERDComInsertComment*
 
 Default mapping: disabled by default.
-Map it to: <plug>NERDCommenterInInsert
+Map it to: <plug>NERDCommenterInsert
 Applicable modes: insert.
 
 Adds comment delimiters at the current cursor position and inserts

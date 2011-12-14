@@ -3,7 +3,7 @@
 " Description: vim global plugin that provides easy code commenting
 " Maintainer:  Martin Grenfell <martin.grenfell at gmail dot com>
 " Version:     2.3.0
-" Last Change: Mon Dec 12 10:00 PM 2011 EST
+" Last Change: Wed Dec 14 08:00 AM 2011 EST
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -34,7 +34,7 @@ let loaded_nerd_comments = 1
 "   1 if the var is set, 0 otherwise
 function s:InitVariable(var, value)
     if !exists(a:var)
-        exec 'let ' . a:var . ' = ' . "'" . a:value . "'"
+        execute 'let ' . a:var . ' = ' . "'" . a:value . "'"
         return 1
     endif
     return 0
@@ -1021,11 +1021,12 @@ endfunction
 "
 " Args:
 "   -mode: a character indicating the mode in which the comment is requested:
-"   'n' for Normal mode, 'v' for Visual mode
+"   'n' for Normal mode, 'x' for Visual mode
 "   -type: the type of commenting requested. Can be 'Sexy', 'Invert',
 "    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Comment',
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
 function! s:NERDComment(mode, type) range
+    let isVisual = a:mode =~ '[vsx]'
     " we want case sensitivity when commenting
     let oldIgnoreCase = &ignorecase
     set noignorecase
@@ -1034,7 +1035,7 @@ function! s:NERDComment(mode, type) range
         call s:NerdEcho("filetype plugins should be enabled. See :help NERDComInstallation and :help :filetype-plugin-on", 0)
     endif
 
-    if a:mode == "v"
+    if isVisual
         let firstLine = line("'<")
         let lastLine = line("'>")
         let firstCol = col("'<")
@@ -1044,14 +1045,14 @@ function! s:NERDComment(mode, type) range
         let lastLine = a:lastline
     endif
 
-    let countWasGiven = (a:mode != "v" && firstLine != lastLine)
+    let countWasGiven = (!isVisual && firstLine != lastLine)
 
     let forceNested = (a:type == 'Nested' || g:NERDDefaultNesting)
 
     if a:type == 'Comment' || a:type == 'Nested'
-        if a:mode == "v" && visualmode() == "\<C-V>"
+        if isVisual && visualmode() == "\<C-V>"
             call s:CommentBlock(firstLine, lastLine, firstCol, lastCol, forceNested)
-        elseif a:mode == "v" && visualmode() == "v" && (g:NERDCommentWholeLinesInVMode==0 || (g:NERDCommentWholeLinesInVMode==2 && s:HasMultipartDelims()))
+        elseif isVisual && visualmode() == "v" && (g:NERDCommentWholeLinesInVMode==0 || (g:NERDCommentWholeLinesInVMode==2 && s:HasMultipartDelims()))
             call s:CommentRegion(firstLine, firstCol, lastLine, lastCol, forceNested)
         else
             call s:CommentLines(forceNested, "none", firstLine, lastLine)
@@ -1111,7 +1112,7 @@ function! s:NERDComment(mode, type) range
         call s:UncommentLines(firstLine, lastLine)
 
     elseif a:type == 'Yank'
-        if a:mode == "v"
+        if isVisual
             normal! gvy
         elseif countWasGiven
             execute firstLine .','. lastLine .'yank'
@@ -2693,43 +2694,52 @@ endfunction
 " Create menu items for the specified modes.  If a:combo is not empty, then
 " also define mappings and show a:combo in the menu items.
 function! s:CreateMaps(modes, target, desc, combo)
+    " Build up a map command like
+    " 'noremap <silent> <plug>NERDCommenterComment :call <SID>NERDComment("n", "Comment")'
+    let plug = '<plug>NERDCommenter' . a:target
+    let plug_start = 'noremap <silent> ' . plug . ' :call <SID>NERDComment("'
+    let plug_end = '", "' . a:target . '")<cr>'
+    " Build up a menu command like
+    " 'menu <silent> comment.Comment<Tab>\\cc <plug>NERDCommenterComment'
     let menuRoot = get(['', 'comment', '&comment', '&Plugin.&comment'],
                 \ g:NERDMenuMode, '')
-    let leader = escape(exists('mapleader') ? mapleader : '\', '\')
-    let command = 'menu <silent> ' . menuRoot . '.' . escape(a:desc, ' ')
+    let menu_command = 'menu <silent> ' . menuRoot . '.' . escape(a:desc, ' ')
     if strlen(a:combo)
-        let command .= '<Tab>' . leader . a:combo
+        let leader = exists('mapleader') ? mapleader : '\'
+        let menu_command .= '<Tab>' . escape(leader, '\') . a:combo
     endif
-    let command .= ' <plug>' . a:target
+    let menu_command .= ' ' . (strlen(a:combo) ? plug : a:target)
+    " Execute the commands built above for each requested mode.
     for mode in (a:modes == '') ? [''] : split(a:modes, '\zs')
-        exec mode . 'noremap <silent> <plug>' . a:target . ' :call <SID>NERDComment("' . mode . '", "' . substitute(a:target, 'NERDCommenter', '', '') . '")<cr>'
-        if g:NERDCreateDefaultMappings
-                    \ && strlen(a:combo) && !hasmapto(a:target, mode)
-            exec mode . 'map <leader>' . a:combo . ' <plug>' . a:target
+        if strlen(a:combo)
+            execute mode . plug_start . mode . plug_end
+            if g:NERDCreateDefaultMappings && !hasmapto(plug, mode)
+                execute mode . 'map <leader>' . a:combo . ' ' . plug
+            endif
         endif
-        "check if the user wants the menu to be displayed
+        " Check if the user wants the menu to be displayed.
         if g:NERDMenuMode != 0
-            exec mode . command
+            execute mode . menu_command
         endif
     endfor
 endfunction
-call s:CreateMaps('nx', 'NERDCommenterComment',    'Comment', 'cc')
-call s:CreateMaps('nx', 'NERDCommenterToggle',     'Toggle', 'c<space>')
-call s:CreateMaps('nx', 'NERDCommenterMinimal',    'Minimal', 'cm')
-call s:CreateMaps('nx', 'NERDCommenterNested',     'Nested', 'cn')
-call s:CreateMaps('n',  'NERDCommenterToEOL',      'To EOL', 'c$')
-call s:CreateMaps('nx', 'NERDCommenterInvert',     'Invert', 'ci')
-call s:CreateMaps('nx', 'NERDCommenterSexy',       'Sexy', 'cs')
-call s:CreateMaps('nx', 'NERDCommenterYank',       'Yank then comment', 'cy')
-call s:CreateMaps('n',  'NERDCommenterAppend',     'Append', 'cA')
-call s:CreateMaps('',   ':',                       '-Sep-', '')
-call s:CreateMaps('nx', 'NERDCommenterAlignLeft',  'Left aligned', 'cl')
-call s:CreateMaps('nx', 'NERDCommenterAlignBoth',  'Left and right aligned', 'cb')
-call s:CreateMaps('',   ':',                       '-Sep2-', '')
-call s:CreateMaps('nx', 'NERDCommenterUncomment',  'Uncomment', 'cu')
-call s:CreateMaps('n',  'NERDCommenterAltDelims',  'Switch Delimiters', 'ca')
-call s:CreateMaps('i',  'NERDCommenterInsert',     'Insert Comment Here', '')
-call s:CreateMaps('',   ':',                       '-Sep3-', '')
+call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
+call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<space>')
+call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
+call s:CreateMaps('nx', 'Nested',     'Nested', 'cn')
+call s:CreateMaps('n',  'ToEOL',      'To EOL', 'c$')
+call s:CreateMaps('nx', 'Invert',     'Invert', 'ci')
+call s:CreateMaps('nx', 'Sexy',       'Sexy', 'cs')
+call s:CreateMaps('nx', 'Yank',       'Yank then comment', 'cy')
+call s:CreateMaps('n',  'Append',     'Append', 'cA')
+call s:CreateMaps('',   ':',          '-Sep-', '')
+call s:CreateMaps('nx', 'AlignLeft',  'Left aligned', 'cl')
+call s:CreateMaps('nx', 'AlignBoth',  'Left and right aligned', 'cb')
+call s:CreateMaps('',   ':',          '-Sep2-', '')
+call s:CreateMaps('nx', 'Uncomment',  'Uncomment', 'cu')
+call s:CreateMaps('n',  'AltDelims',  'Switch Delimiters', 'ca')
+call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
+call s:CreateMaps('',   ':',          '-Sep3-', '')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
 
 " switch to/from alternative delimiters (does not use wrapper function)
