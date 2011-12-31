@@ -324,6 +324,7 @@ let s:delimiterMap = {
     \ 'skill': { 'left': ';' },
     \ 'slang': { 'left': '%' },
     \ 'slice': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'slim': { 'left': '/', 'leftAlt': '/!' },
     \ 'slrnrc': { 'left': '%' },
     \ 'sm': { 'left': '#' },
     \ 'smarty': { 'left': '{*', 'right': '*}' },
