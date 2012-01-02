@@ -372,16 +372,14 @@ Here the multipart delimiters are /* and */ and the marker is *.
 All of the NERD commenter mappings and menu items invoke a single function
 which delegates the commenting work to other functions. This function is
 public and has the prototype: >
-    function! NERDComment(isVisual, type)
+    function! NERDComment(mode, type)
 <
 The arguments to this function are simple:
-    - isVisual: if you wish to do any kind of visual comment then set this to
-      1 and the function will use the '< and '> marks to find the comment
-      boundries. If set to 0 then the function will operate on the current
-      line.
+    - mode: a character indicating the mode in which the comment is requested:
+     'n' for Normal mode, 'x' for Visual mode
     - type: is used to specify what type of commenting operation is to be
       performed, and it can be one of the following: "sexy", "invert",
-      "minimal", "toggle", "alignLeft", "alignBoth", "norm", "nested",
+      "minimal", "toggle", "alignLeft", "alignBoth", "comment", "nested",
       "toEOL", "append", "insert", "uncomment", "yank"
 
 For example, if you typed >
