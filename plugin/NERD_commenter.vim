@@ -1051,9 +1051,9 @@ function! NERDComment(mode, type) range
 
     let countWasGiven = (!isVisual && firstLine != lastLine)
 
-    let forceNested = (a:type == 'Nested' || g:NERDDefaultNesting)
+    let forceNested = (a:type ==? 'Nested' || g:NERDDefaultNesting)
 
-    if a:type == 'Comment' || a:type == 'Nested'
+    if a:type ==? 'Comment' || a:type ==? 'Nested'
         if isVisual && visualmode() == "\<C-V>"
             call s:CommentBlock(firstLine, lastLine, firstCol, lastCol, forceNested)
         elseif isVisual && visualmode() == "v" && (g:NERDCommentWholeLinesInVMode==0 || (g:NERDCommentWholeLinesInVMode==2 && s:HasMultipartDelims()))
@@ -1062,19 +1062,19 @@ function! NERDComment(mode, type) range
             call s:CommentLines(forceNested, "none", firstLine, lastLine)
         endif
 
-    elseif a:type == 'AlignLeft' || a:type == 'AlignBoth'
+    elseif a:type ==? 'AlignLeft' || a:type ==? 'AlignBoth'
         let align = "none"
-        if a:type == "AlignLeft"
+        if a:type ==? "AlignLeft"
             let align = "left"
-        elseif a:type == "AlignBoth"
+        elseif a:type ==? "AlignBoth"
             let align = "both"
         endif
         call s:CommentLines(forceNested, align, firstLine, lastLine)
 
-    elseif a:type == 'Invert'
+    elseif a:type ==? 'Invert'
         call s:InvertComment(firstLine, lastLine)
 
-    elseif a:type == 'Sexy'
+    elseif a:type ==? 'Sexy'
         try
             call s:CommentLinesSexy(firstLine, lastLine)
         catch /NERDCommenter.Delimiters/
@@ -1083,7 +1083,7 @@ function! NERDComment(mode, type) range
             call s:NerdEcho("Sexy comment aborted. Nested sexy cannot be nested", 0)
         endtry
 
-    elseif a:type == 'Toggle'
+    elseif a:type ==? 'Toggle'
         let theLine = getline(firstLine)
 
         if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
@@ -1092,7 +1092,7 @@ function! NERDComment(mode, type) range
             call s:CommentLinesToggle(forceNested, firstLine, lastLine)
         endif
 
-    elseif a:type == 'Minimal'
+    elseif a:type ==? 'Minimal'
         try
             call s:CommentLinesMinimal(firstLine, lastLine)
         catch /NERDCommenter.Delimiters/
@@ -1101,21 +1101,21 @@ function! NERDComment(mode, type) range
             call s:NerdEcho("Place holders are required but disabled.", 0)
         endtry
 
-    elseif a:type == 'ToEOL'
+    elseif a:type ==? 'ToEOL'
         call s:SaveScreenState()
         call s:CommentBlock(firstLine, firstLine, col("."), col("$")-1, 1)
         call s:RestoreScreenState()
 
-    elseif a:type == 'Append'
+    elseif a:type ==? 'Append'
         call s:AppendCommentToLine()
 
-    elseif a:type == 'Insert'
+    elseif a:type ==? 'Insert'
         call s:PlaceDelimitersAndInsBetween()
 
-    elseif a:type == 'Uncomment'
+    elseif a:type ==? 'Uncomment'
         call s:UncommentLines(firstLine, lastLine)
 
-    elseif a:type == 'Yank'
+    elseif a:type ==? 'Yank'
         if isVisual
             normal! gvy
         elseif countWasGiven
