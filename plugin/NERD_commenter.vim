@@ -1020,7 +1020,7 @@ function s:InvertComment(firstLine, lastLine)
     endwhile
 endfunction
 
-" Function: s:NERDComment(mode, type) function {{{2
+" Function: NERDComment(mode, type) function {{{2
 " This function is a Wrapper for the main commenting functions
 "
 " Args:
@@ -1029,7 +1029,7 @@ endfunction
 "   -type: the type of commenting requested. Can be 'Sexy', 'Invert',
 "    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Comment',
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
-function! s:NERDComment(mode, type) range
+function! NERDComment(mode, type) range
     let isVisual = a:mode =~ '[vsx]'
     " we want case sensitivity when commenting
     let oldIgnoreCase = &ignorecase
@@ -1123,7 +1123,7 @@ function! s:NERDComment(mode, type) range
         else
             normal! yy
         endif
-        execute firstLine .','. lastLine .'call s:NERDComment("'. a:mode .'", "Comment")'
+        execute firstLine .','. lastLine .'call NERDComment("'. a:mode .'", "Comment")'
     endif
 
     let &ignorecase = oldIgnoreCase
@@ -2699,9 +2699,9 @@ endfunction
 " also define mappings and show a:combo in the menu items.
 function! s:CreateMaps(modes, target, desc, combo)
     " Build up a map command like
-    " 'noremap <silent> <plug>NERDCommenterComment :call <SID>NERDComment("n", "Comment")'
+    " 'noremap <silent> <plug>NERDCommenterComment :call NERDComment("n", "Comment")'
     let plug = '<plug>NERDCommenter' . a:target
-    let plug_start = 'noremap <silent> ' . plug . ' :call <SID>NERDComment("'
+    let plug_start = 'noremap <silent> ' . plug . ' :call NERDComment("'
     let plug_end = '", "' . a:target . '")<cr>'
     " Build up a menu command like
     " 'menu <silent> comment.Comment<Tab>\\cc <plug>NERDCommenterComment'
