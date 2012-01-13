@@ -2709,7 +2709,7 @@ function! s:CreateMaps(modes, target, desc, combo)
                 \ g:NERDMenuMode, '')
     let menu_command = 'menu <silent> ' . menuRoot . '.' . escape(a:desc, ' ')
     if strlen(a:combo)
-        let leader = exists('mapleader') ? mapleader : '\'
+        let leader = exists('g:mapleader') ? g:mapleader : '\'
         let menu_command .= '<Tab>' . escape(leader, '\') . a:combo
     endif
     let menu_command .= ' ' . (strlen(a:combo) ? plug : a:target)
