@@ -79,6 +79,7 @@ let s:delimiterMap = {
     \ 'apachestyle': { 'left': '#' },
     \ 'asciidoc': { 'left': '//' },
     \ 'applescript': { 'left': '--', 'leftAlt': '(*', 'rightAlt': '*)' },
+    \ 'armasm': { 'left': ';' },
     \ 'asm68k': { 'left': ';' },
     \ 'asm': { 'left': ';', 'leftAlt': '#' },
     \ 'asn': { 'left': '--' },
