@@ -139,6 +139,10 @@ left side (|<Leader>|cl) or both sides (|<Leader>|cb).
 [count]|<Leader>|cu |NERDComUncommentLine|
 Uncomments the selected line(s).
 
+
+With the optional repeat.vim plugin (vimscript #2136), the mappings can also
+be repeated via |.|
+
 ------------------------------------------------------------------------------
 3.2 Functionality details                        *NERDComFunctionalityDetails*
 
