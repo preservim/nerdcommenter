@@ -1128,6 +1128,8 @@ function! NERDComment(mode, type) range
     endif
 
     let &ignorecase = oldIgnoreCase
+
+    silent! call repeat#set("\<Plug>NERDCommenter". a:type)
 endfunction
 
 " Function: s:PlaceDelimitersAndInsBetween() function {{{2
