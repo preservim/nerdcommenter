@@ -1129,7 +1129,12 @@ function! NERDComment(mode, type) range
 
     let &ignorecase = oldIgnoreCase
 
-    silent! call repeat#set("\<Plug>NERDCommenter". a:type)
+    if isVisual
+        let nlines = lastLine - firstLine
+        silent! call repeat#set("V" . nlines . "jo" . "\<Plug>NERDCommenter". a:type)
+    else
+        silent! call repeat#set("\<Plug>NERDCommenter". a:type)
+    endif
 endfunction
 
 " Function: s:PlaceDelimitersAndInsBetween() function {{{2
