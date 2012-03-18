@@ -154,6 +154,7 @@ let s:delimiterMap = {
     \ 'focexec': { 'left': '-*' },
     \ 'form': { 'left': '*' },
     \ 'foxpro': { 'left': '*' },
+    \ 'fsharp': { 'left': '(*', 'right': '*)', 'leftAlt': '//' },
     \ 'fstab': { 'left': '#' },
     \ 'fvwm': { 'left': '#' },
     \ 'fx': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
