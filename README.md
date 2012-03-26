@@ -2,9 +2,10 @@
 The NERD Commenter requires Vim 7 or higher. 
 
 Extract the plugin files in your ~/.vim (*nix) or ~/vimfiles (Windows). You 
-should have 2 files: 
-1. plugin/NERD_commenter.vim 
-2. doc/NERD_commenter.txt 
+should have 2 files:
+
+    plugin/NERD_commenter.vim  
+    doc/NERD_commenter.txt 
 
 Next, to finish installing the help file run: 
 * :helptags ~/.vim/doc 
@@ -14,7 +15,8 @@ See **|add-local-help|** for more details.
 Make sure that you have filetype plugins enabled, as the script makes use of 
 **|'commentstring'|** where possible (which is usually set in a filetype plugin). 
 See **|filetype-plugin-on|** for details, but basically, stick this in your vimrc:
-> filetype plugin on
+
+    filetype plugin on
 
 # Usage  
 
