@@ -1,18 +1,26 @@
 # Installation  
-The NERD Commenter requires Vim 7 or higher. 
 
-Extract the plugin files in your ~/.vim (*nix) or ~/vimfiles (Windows). You 
-should have 2 files:
+*\*For simplicity, let's use **[VIM_ROOT]** which will mean ~/.vim (\*nix) or ~/vimfiles (Windows)*  
+The NERD Commenter requires Vim 7 or higher is comprised of 2 files:  
 
     plugin/NERD_commenter.vim  
     doc/NERD_commenter.txt 
 
-Next, to finish installing the help file run: 
-* :helptags ~/.vim/doc 
+### Classic Install
+
+1. Extract the plugin files in your **[VIM_ROOT]**/pulgin and **[VIM_ROOT]**/doc folders respectively.
+2. Finish the install by updating your help files.  Run:
+
+<pre><code>:helptags **[VIM_ROOT]**/doc</code></pre>
 
 See **|add-local-help|** for more details. 
 
-Make sure that you have filetype plugins enabled, as the script makes use of 
+### Pathogen Install
+1. Navigate to your **[VIM_ROOT]/bundle** directory in your local Vim setup
+2. git clone https://github.com/scrooloose/nerdcommenter.git
+
+### Post Install  
+After the **'Classic'** or **'Pathogen'** install, make sure that you have filetype plugins enabled, as the script makes use of 
 **|'commentstring'|** where possible (which is usually set in a filetype plugin). 
 See **|filetype-plugin-on|** for details, but basically, stick this in your vimrc:
 
