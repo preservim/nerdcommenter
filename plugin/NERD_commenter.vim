@@ -407,7 +407,7 @@ augroup NERDCommenter
 
     "if the user enters a buffer or reads a buffer then we gotta set up
     "the comment delimiters for that new filetype
-    autocmd BufEnter,BufRead * :call s:SetUpForNewFiletype(&filetype, 0)
+    autocmd BufEnter * :call s:SetUpForNewFiletype(&filetype, 0)
 
     "if the filetype of a buffer changes, force the script to reset the
     "delims for the buffer
@@ -425,6 +425,10 @@ augroup END
 "    set for this buffer.
 "
 function s:SetUpForNewFiletype(filetype, forceReset)
+    if exists("b:NERDCommenterDelims") && ! a:forceReset
+        return
+    endif
+    
     let ft = a:filetype
 
     "for compound filetypes, if we dont know how to handle the full filetype
@@ -448,6 +452,10 @@ function s:SetUpForNewFiletype(filetype, forceReset)
                 let b:NERDCommenterDelims[i] = ''
             endif
         endfor
+        let ftaltstyle = "g:NERD_".ft."_alt_style"
+        if eval("exists('".ftaltstyle."') && ".ftaltstyle)
+            call s:SwitchToAlternativeDelimiters(0)
+        endif
     else
         let b:NERDCommenterDelims = s:CreateDelimMapFromCms()
     endif
