@@ -1,6 +1,6 @@
 # Installation  
 
-*\*For simplicity, let's use **[VIM_ROOT]** which will mean ~/.vim (\*nix) or ~/vimfiles (Windows)*
+_\*For simplicity, let's use **[VIM_ROOT]** which will mean ~/.vim (\*nix) or ~/vimfiles (Windows)_
 
 The NERD Commenter requires Vim 7 or higher is comprised of 2 files:  
 
