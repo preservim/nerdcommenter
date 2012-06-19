@@ -9,7 +9,7 @@ The NERD Commenter requires Vim 7 or higher is comprised of 2 files:
 
 ### Classic Install
 
-1. Extract the plugin files into your **[VIM_ROOT]**/pulgin and **[VIM_ROOT]**/doc folders respectively.
+1. Extract the plugin files into your **[VIM_ROOT]**/plugin and **[VIM_ROOT]**/doc folders respectively.
 2. Finish the install by updating your help files.  Run:
 
 <pre><code>:helptags [VIM_ROOT]/doc</code></pre>
