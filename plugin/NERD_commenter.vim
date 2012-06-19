@@ -249,6 +249,7 @@ let s:delimiterMap = {
     \ 'modula3': { 'left': '(*', 'right': '*)' },
     \ 'monk': { 'left': ';' },
     \ 'mush': { 'left': '#' },
+    \ 'mustache': { 'left': '{{!', 'right': '}}' },
     \ 'named': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'nasm': { 'left': ';' },
     \ 'nastran': { 'left': '$' },
