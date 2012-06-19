@@ -176,7 +176,7 @@ let s:delimiterMap = {
     \ 'gitconfig': { 'left': ';' },
     \ 'gitrebase': { 'left': '#' },
     \ 'gnuplot': { 'left': '#' },
-    \ 'go': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' }
+    \ 'go': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'groovy': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'gsp': { 'left': '<%--', 'right': '--%>', 'leftAlt': '<!--','rightAlt': '-->'},
     \ 'gtkrc': { 'left': '#' },
