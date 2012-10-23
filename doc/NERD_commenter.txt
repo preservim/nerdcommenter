@@ -300,7 +300,7 @@ between them.
 
 NOTE: prior to version 2.1.17 this was mapped to ctrl-c. To restore this
 mapping add >
-    let NERDComInsertMap='<c-c>'
+    imap <C-c> <plug>NERDCommenterInsert
 <
 to your vimrc.
 

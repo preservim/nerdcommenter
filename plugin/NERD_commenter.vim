@@ -2760,6 +2760,8 @@ call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
 call s:CreateMaps('',   ':',          '-Sep3-', '')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
 
+inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call NERDComment('i', "insert")<CR>
+
 " switch to/from alternative delimiters (does not use wrapper function)
 nnoremap <plug>NERDCommenterAltDelims :call <SID>SwitchToAlternativeDelimiters(1)<cr>
 " vim: set foldmethod=marker :
