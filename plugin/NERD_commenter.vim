@@ -1179,15 +1179,8 @@ function s:PlaceDelimitersAndInsBetween()
         execute ":normal! " . lenRight . "h"
     else
         execute ":normal! " . insOrApp . left
-
-        " if we are tacking the delim on the EOL then we gotta add a space
-        " after it cos when we go out of insert mode the cursor will move back
-        " one and the user wont be in position to type the comment.
-        if isDelimOnEOL
-            execute 'normal! a '
-        endif
     endif
-    normal! l
+    silent! normal! l
 
     "if needed convert spaces back to tabs and adjust the cursors col
     "accordingly
@@ -1197,7 +1190,11 @@ function s:PlaceDelimitersAndInsBetween()
         call cursor(line("."), tabbedCol)
     endif
 
-    startinsert
+    if isDelimOnEOL && lenRight == 0
+        startinsert!
+    else
+        startinsert
+    endif
 endfunction
 
 " Function: s:RemoveDelimiters(left, right, line) {{{2
