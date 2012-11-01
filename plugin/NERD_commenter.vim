@@ -376,6 +376,7 @@ let s:delimiterMap = {
     \ 'twig': { 'left': '{#', 'right': '#}' },
     \ 'uc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'uil': { 'left': '!' },
+    \ 'vala': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'vb': { 'left': "'" },
     \ 'velocity': { 'left': "##", 'right': "", 'leftAlt': '#*', 'rightAlt': '*#' },
     \ 'vera': { 'left': '/*','right': '*/', 'leftAlt': '//' },
