@@ -114,6 +114,7 @@ let s:delimiterMap = {
     \ 'cmake': { 'left': '#' },
     \ 'coffee': { 'left': '#' },
     \ 'conkyrc': { 'left': '#' },
+    \ 'context': { 'left': '%', 'leftAlt': '--' },
     \ 'cpp': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'cuda': { 'left': '/*','right': '*/', 'leftAlt': '//' },
     \ 'crontab': { 'left': '#' },
