@@ -304,6 +304,7 @@ let s:delimiterMap = {
     \ 'ptcap': { 'left': '#' },
     \ 'puppet': { 'left': '#' },
     \ 'python': { 'left': '#' },
+    \ 'racket': { 'left': ';' },
     \ 'radiance': { 'left': '#' },
     \ 'ratpoison': { 'left': '#' },
     \ 'r': { 'left': '#' },
