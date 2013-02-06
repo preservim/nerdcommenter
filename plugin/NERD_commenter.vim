@@ -441,6 +441,15 @@ function s:SetUpForNewFiletype(filetype, forceReset)
 endfunction
 
 function s:CreateDelimMapFromCms()
+    if exists('g:NERDDefaultDelims')
+        let delims = g:NERDDefaultDelims
+        for i in ['left', 'leftAlt', 'right', 'rightAlt']
+            if !has_key(delims, i)
+                let delims[i] = ''
+            endif
+        endfor
+        return delims
+    endif
     return {
         \ 'left': substitute(&commentstring, '\([^ \t]*\)\s*%s.*', '\1', ''),
         \ 'right': substitute(&commentstring, '.*%s\s*\(.*\)', '\1', 'g'),
