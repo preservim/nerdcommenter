@@ -229,7 +229,7 @@ Default mapping: |<Leader>|ci
 Mapped to: <plug>NERDCommenterInvert
 Applicable modes: normal visual-line.
 
-Inverts the commented state of each selected line. If the a selected line is
+Inverts the commented state of each selected line. If a selected line is
 commented then it is uncommented and vice versa. Each line is examined and
 commented/uncommented individually.
 
