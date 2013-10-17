@@ -399,38 +399,52 @@ then the script would do a sexy comment on the last visual selection.
 4.1 Options summary                                    *NERDComOptionsSummary*
 
 |'loaded_nerd_comments'|              Turns off the script.
+
 |'NERDAllowAnyVisualDelims'|          Allows multipart alternative delims to
                                       be used when commenting in
                                       visual/visual-block mode.
+                                      
 |'NERDBlockComIgnoreEmpty'|           Forces right delims to be placed when
                                       doing visual-block comments.
+                                      
 |'NERDCommentWholeLinesInVMode'|      Changes behaviour of visual comments.
+
 |'NERDCreateDefaultMappings'|         Turn the default mappings on/off.
+
 |'NERDCustomDelimiters'|              Add or override delimiters for any
                                       filetypes.
+                                      
 |'NERDDefaultNesting'|                Tells the script to use nested comments
                                       by default.
+                                      
 |'NERDMenuMode'|                      Specifies how the NERD commenter menu
                                       will appear (if at all).
+                                      
 |'NERDLPlace'|                        Specifies what to use as the left
                                       delimiter placeholder when nesting
                                       comments.
+                                      
 |'NERDUsePlaceHolders'|               Specifies which filetypes may use
                                       placeholders when nesting comments.
+                                      
 |'NERDRemoveAltComs'|                 Tells the script whether to remove
                                       alternative comment delimiters when
                                       uncommenting.
+                                      
 |'NERDRemoveExtraSpaces'|             Tells the script to always remove the
                                       extra spaces when uncommenting
                                       (regardless of whether NERDSpaceDelims
-                                      is set)
+                                      is set).
+                                      
 |'NERDRPlace'|                        Specifies what to use as the right
                                       delimiter placeholder when nesting
                                       comments.
+                                      
 |'NERDSpaceDelims'|                   Specifies whether to add extra spaces
                                       around delimiters when commenting, and
                                       whether to remove them when
                                       uncommenting.
+                                      
 |'NERDCompactSexyComs'|               Specifies whether to use the compact
                                       style sexy comments.
 
