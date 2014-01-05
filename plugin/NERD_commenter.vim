@@ -198,6 +198,7 @@ let s:delimiterMap = {
     \ 'icon': { 'left': '#' },
     \ 'idlang': { 'left': ';' },
     \ 'idl': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'idris': { 'leftAlt': '--', 'left': '{-', 'right': '-}' },
     \ 'inform': { 'left': '!' },
     \ 'inittab': { 'left': '#' },
     \ 'ishd': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
