@@ -61,6 +61,7 @@ call s:InitVariable("g:NERDRemoveAltComs", 1)
 call s:InitVariable("g:NERDRemoveExtraSpaces", 0)
 call s:InitVariable("g:NERDRPlace", "<]")
 call s:InitVariable("g:NERDSpaceDelims", 0)
+call s:InitVariable("g:NERDOnlySexyComments", 0)
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -797,113 +798,152 @@ endfunction
 "   -topline: the line num of the top line in the sexy comment
 "   -bottomline: the line num of the bottom line in the sexy comment
 function s:CommentLinesSexy(topline, bottomline)
-    let left = s:GetSexyComLeft(0, 0)
-    let right = s:GetSexyComRight(0, 0)
+    if g:NERDOnlySexyComments
+        " we jam the comment as far to the right as possible
+        let leftAlignIndx = s:LeftMostIndx(1, 1, a:topline, a:bottomline)
+        let left = ''
 
-    "check if we can do a sexy comment with the available delimiters
-    if left == -1 || right == -1
-        throw 'NERDCommenter.Delimiters exception: cannot perform sexy comments with available delimiters.'
-    endif
-
-    "make sure the lines arent already commented sexually
-    if !s:CanSexyCommentLines(a:topline, a:bottomline)
-        throw 'NERDCommenter.Nesting exception: cannot nest sexy comments'
-    endif
-
-
-    let sexyComMarker = s:GetSexyComMarker(0,0)
-    let sexyComMarkerSpaced = s:GetSexyComMarker(1,0)
-
-
-    " we jam the comment as far to the right as possible
-    let leftAlignIndx = s:LeftMostIndx(1, 1, a:topline, a:bottomline)
-
-    "check if we should use the compact style i.e that the left/right
-    "delimiters should appear on the first and last lines of the code and not
-    "on separate lines above/below the first/last lines of code
-    if g:NERDCompactSexyComs
-        let spaceString = (g:NERDSpaceDelims ? s:spaceStr : '')
-
-        "comment the top line
-        let theLine = getline(a:topline)
-        let lineHasTabs = s:HasLeadingTabs(theLine)
-        if lineHasTabs
-            let theLine = s:ConvertLeadingTabsToSpaces(theLine)
+        if s:HasCStyleComments()
+            let left = '//'
+        else
+            let left = b:NERDCommenterDelims['left']
         endif
-        let theLine = s:SwapOutterMultiPartDelimsForPlaceHolders(theLine)
-        let theLine = s:AddLeftDelimAligned(left . spaceString, theLine, leftAlignIndx)
-        if lineHasTabs
-            let theLine = s:ConvertLeadingSpacesToTabs(theLine)
-        endif
-        call setline(a:topline, theLine)
 
-        "comment the bottom line
-        if a:bottomline != a:topline
-            let theLine = getline(a:bottomline)
+        " go thru each line adding the sexyComMarker marker to the start of each
+        " line in the appropriate place to align them with the comment delims
+        let currentLine = a:topline
+        while currentLine <= a:bottomline
+            " get the line and convert the tabs to spaces
+            let theLine = getline(currentLine)
+            let lineHasTabs = s:HasLeadingTabs(theLine)
+            if lineHasTabs
+                let theLine = s:ConvertLeadingTabsToSpaces(theLine)
+            endif
+
+            let theLine = s:SwapOutterMultiPartDelimsForPlaceHolders(theLine)
+
+            " add the sexyComMarker
+            "
+            let theLine = repeat(' ', leftAlignIndx) . left . strpart(theLine, leftAlignIndx)
+
+            if lineHasTabs
+                let theLine = s:ConvertLeadingSpacesToTabs(theLine)
+            endif
+
+
+            " set the line and move onto the next one
+            call setline(currentLine, theLine)
+            let currentLine = currentLine + 1
+        endwhile
+
+    else
+        let left = s:GetSexyComLeft(0, 0)
+        let right = s:GetSexyComRight(0, 0)
+
+        "check if we can do a sexy comment with the available delimiters
+        if left == -1 || right == -1
+            throw 'NERDCommenter.Delimiters exception: cannot perform sexy comments with available delimiters.'
+        endif
+
+        "make sure the lines arent already commented sexually
+        if !s:CanSexyCommentLines(a:topline, a:bottomline)
+            throw 'NERDCommenter.Nesting exception: cannot nest sexy comments'
+        endif
+
+
+        let sexyComMarker = s:GetSexyComMarker(0,0)
+        let sexyComMarkerSpaced = s:GetSexyComMarker(1,0)
+
+
+        " we jam the comment as far to the right as possible
+        let leftAlignIndx = s:LeftMostIndx(1, 1, a:topline, a:bottomline)
+
+        "check if we should use the compact style i.e that the left/right
+        "delimiters should appear on the first and last lines of the code and not
+        "on separate lines above/below the first/last lines of code
+        if g:NERDCompactSexyComs
+            let spaceString = (g:NERDSpaceDelims ? s:spaceStr : '')
+
+            "comment the top line
+            let theLine = getline(a:topline)
             let lineHasTabs = s:HasLeadingTabs(theLine)
             if lineHasTabs
                 let theLine = s:ConvertLeadingTabsToSpaces(theLine)
             endif
             let theLine = s:SwapOutterMultiPartDelimsForPlaceHolders(theLine)
+            let theLine = s:AddLeftDelimAligned(left . spaceString, theLine, leftAlignIndx)
+            if lineHasTabs
+                let theLine = s:ConvertLeadingSpacesToTabs(theLine)
+            endif
+            call setline(a:topline, theLine)
+
+            "comment the bottom line
+            if a:bottomline != a:topline
+                let theLine = getline(a:bottomline)
+                let lineHasTabs = s:HasLeadingTabs(theLine)
+                if lineHasTabs
+                    let theLine = s:ConvertLeadingTabsToSpaces(theLine)
+                endif
+                let theLine = s:SwapOutterMultiPartDelimsForPlaceHolders(theLine)
+            endif
+            let theLine = s:AddRightDelim(spaceString . right, theLine)
+            if lineHasTabs
+                let theLine = s:ConvertLeadingSpacesToTabs(theLine)
+            endif
+            call setline(a:bottomline, theLine)
+        else
+
+            " add the left delimiter one line above the lines that are to be commented
+            call cursor(a:topline, 1)
+            execute 'normal! O'
+            let theLine = repeat(' ', leftAlignIndx) . left
+
+            " Make sure tabs are respected
+            if !&expandtab
+               let theLine = s:ConvertLeadingSpacesToTabs(theLine)
+            endif
+            call setline(a:topline, theLine)
+
+            " add the right delimiter after bottom line (we have to add 1 cos we moved
+            " the lines down when we added the left delim
+            call cursor(a:bottomline+1, 1)
+            execute 'normal! o'
+            let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . right
+
+            " Make sure tabs are respected
+            if !&expandtab
+               let theLine = s:ConvertLeadingSpacesToTabs(theLine)
+            endif
+            call setline(a:bottomline+2, theLine)
+
         endif
-        let theLine = s:AddRightDelim(spaceString . right, theLine)
-        if lineHasTabs
-            let theLine = s:ConvertLeadingSpacesToTabs(theLine)
-        endif
-        call setline(a:bottomline, theLine)
-    else
 
-        " add the left delimiter one line above the lines that are to be commented
-        call cursor(a:topline, 1)
-        execute 'normal! O'
-        let theLine = repeat(' ', leftAlignIndx) . left
+        " go thru each line adding the sexyComMarker marker to the start of each
+        " line in the appropriate place to align them with the comment delims
+        let currentLine = a:topline+1
+        while currentLine <= a:bottomline + !g:NERDCompactSexyComs
+            " get the line and convert the tabs to spaces
+            let theLine = getline(currentLine)
+            let lineHasTabs = s:HasLeadingTabs(theLine)
+            if lineHasTabs
+                let theLine = s:ConvertLeadingTabsToSpaces(theLine)
+            endif
 
-        " Make sure tabs are respected
-        if !&expandtab
-           let theLine = s:ConvertLeadingSpacesToTabs(theLine)
-        endif
-        call setline(a:topline, theLine)
+            let theLine = s:SwapOutterMultiPartDelimsForPlaceHolders(theLine)
 
-        " add the right delimiter after bottom line (we have to add 1 cos we moved
-        " the lines down when we added the left delim
-        call cursor(a:bottomline+1, 1)
-        execute 'normal! o'
-        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . right
+            " add the sexyComMarker
+            let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
 
-        " Make sure tabs are respected
-        if !&expandtab
-           let theLine = s:ConvertLeadingSpacesToTabs(theLine)
-        endif
-        call setline(a:bottomline+2, theLine)
+            if lineHasTabs
+                let theLine = s:ConvertLeadingSpacesToTabs(theLine)
+            endif
 
+
+            " set the line and move onto the next one
+            call setline(currentLine, theLine)
+            let currentLine = currentLine + 1
+        endwhile
     endif
-
-    " go thru each line adding the sexyComMarker marker to the start of each
-    " line in the appropriate place to align them with the comment delims
-    let currentLine = a:topline+1
-    while currentLine <= a:bottomline + !g:NERDCompactSexyComs
-        " get the line and convert the tabs to spaces
-        let theLine = getline(currentLine)
-        let lineHasTabs = s:HasLeadingTabs(theLine)
-        if lineHasTabs
-            let theLine = s:ConvertLeadingTabsToSpaces(theLine)
-        endif
-
-        let theLine = s:SwapOutterMultiPartDelimsForPlaceHolders(theLine)
-
-        " add the sexyComMarker
-        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
-
-        if lineHasTabs
-            let theLine = s:ConvertLeadingSpacesToTabs(theLine)
-        endif
-
-
-        " set the line and move onto the next one
-        call setline(currentLine, theLine)
-        let currentLine = currentLine + 1
-    endwhile
-
 endfunction
 
 " Function: s:CommentLinesToggle(forceNested, firstLine, lastLine) {{{2
@@ -1104,7 +1144,11 @@ function! NERDComment(mode, type) range
         if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
             call s:UncommentLines(firstLine, lastLine)
         else
-            call s:CommentLinesToggle(forceNested, firstLine, lastLine)
+            if g:NERDOnlySexyComments
+                call s:CommentLinesSexy(firstLine, lastLine)
+            else
+                call s:CommentLinesToggle(forceNested, firstLine, lastLine)
+            endif
         endif
 
     elseif a:type ==? 'Minimal'
