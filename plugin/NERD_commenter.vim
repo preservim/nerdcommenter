@@ -243,6 +243,7 @@ let s:delimiterMap = {
     \ 'matlab': { 'left': '%' },
     \ 'mel': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'mib': { 'left': '--' },
+    \ 'mips': { 'left': '#'},
     \ 'mirah': {'left': '#'},
     \ 'mkd': { 'left': '>' },
     \ 'mma': { 'left': '(*', 'right': '*)' },
