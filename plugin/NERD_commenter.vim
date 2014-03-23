@@ -61,6 +61,7 @@ call s:InitVariable("g:NERDRemoveAltComs", 1)
 call s:InitVariable("g:NERDRemoveExtraSpaces", 0)
 call s:InitVariable("g:NERDRPlace", "<]")
 call s:InitVariable("g:NERDSpaceDelims", 0)
+call s:InitVariable("g:NERDNumCommentCharsHR", 0)
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -671,6 +672,35 @@ function s:CommentBlock(top, bottom, lSide, rSide, forceNested )
     endif
 endfunction
 
+" Function: s:CommentHorizontalRule(firstLine, lastLine) {{{2
+" This function creates a "horizontal rule" out of comment characters for each
+" line specified
+"
+" Args:
+"   -firstLine/lastLine: the top and bottom lines to comment
+function s:CommentHorizontalRule(firstLine, lastLine)
+	let currentLine = a:firstLine
+	let lastLine = a:lastLine
+
+	while currentLine <= lastLine
+		let theLine = getline(currentLine)
+
+		" if this is a blank line, let's just insert the comment HR
+		if theLine =~ '\v^\s*$' 
+			call setline(currentLine, s:GetCommentCharsHR())
+			" if the line isn't blank, we insert our comment HR, and then add the existing line just below this one and increment our currentLine AND our lastLine counter by one so that we don't end up repeating lines
+		else 
+			call setline(currentLine, s:GetCommentCharsHR())
+			call append(currentLine, theLine)
+			let currentLine = currentLine + 1
+			let lastLine = lastLine + 1
+		endif
+		
+		let currentLine = currentLine + 1
+	endwhile
+
+endfunction
+
 " Function: s:CommentLines(forceNested, alignLeft, alignRight, firstLine, lastLine) {{{2
 " This function comments a range of lines.
 "
@@ -1139,6 +1169,8 @@ function! NERDComment(mode, type) range
             normal! yy
         endif
         execute firstLine .','. lastLine .'call NERDComment("'. a:mode .'", "Comment")'
+	elseif a:type ==? 'CommentHorizontalRule'
+		call s:CommentHorizontalRule(firstLine, lastLine)
     endif
 
     let &ignorecase = oldIgnoreCase
@@ -1427,60 +1459,69 @@ function s:UncommentLineNormal(line)
     let indxRight = s:FindDelimiterIndex(s:Right(), line)
     let indxRightAlt = s:FindDelimiterIndex(s:Right({'alt': 1}), line)
 
-    "get the comment status on the line so we know how it is commented
-    let lineCommentStatus =  s:IsCommentedOuttermost(s:Left(), s:Right(), s:Left({'alt': 1}), s:Right({'alt': 1}), line)
+	" here is an easy scenario for toggling horizontal rules: if the line
+	" consists solely of repetitions of s:Left(), then just set the entire
+	" line to be blank
+	" our comment string
+	if line =~ '\V\^\s\*\('. escape(s:Left(),'\/') . '\)\+\s\*\$'
+        let line = ''
+	else
+			"get the comment status on the line so we know how it is commented
+			let lineCommentStatus =  s:IsCommentedOuttermost(s:Left(), s:Right(), s:Left({'alt': 1}), s:Right({'alt': 1}), line)
 
-    "it is commented with s:Left() and s:Right() so remove these delims
-    if lineCommentStatus == 1
-        let line = s:RemoveDelimiters(s:Left(), s:Right(), line)
+			"it is commented with s:Left() and s:Right() so remove these delims
+			if lineCommentStatus == 1
+				let line = s:RemoveDelimiters(s:Left(), s:Right(), line)
 
-    "it is commented with s:Left({'alt': 1}) and s:Right({'alt': 1}) so remove these delims
-    elseif lineCommentStatus == 2 && g:NERDRemoveAltComs
-        let line = s:RemoveDelimiters(s:Left({'alt': 1}), s:Right({'alt': 1}), line)
+			"it is commented with s:Left({'alt': 1}) and s:Right({'alt': 1}) so remove these delims
+			elseif lineCommentStatus == 2 && g:NERDRemoveAltComs
+				let line = s:RemoveDelimiters(s:Left({'alt': 1}), s:Right({'alt': 1}), line)
 
-    "it is not properly commented with any delims so we check if it has
-    "any random left or right delims on it and remove the outtermost ones
-    else
-        "remove the outter most left comment delim
-        if indxLeft != -1 && (indxLeft < indxLeftAlt || indxLeftAlt == -1)
-            let line = s:RemoveDelimiters(s:Left(), '', line)
-        elseif indxLeftAlt != -1 && g:NERDRemoveAltComs
-            let line = s:RemoveDelimiters(s:Left({'alt': 1}), '', line)
-        endif
+			"it is not properly commented with any delims so we check if it has
+			"any random left or right delims on it and remove the outtermost ones
+			else
+				"remove the outter most left comment delim
+				if indxLeft != -1 && (indxLeft < indxLeftAlt || indxLeftAlt == -1)
+					let line = s:RemoveDelimiters(s:Left(), '', line)
+				elseif indxLeftAlt != -1 && g:NERDRemoveAltComs
+					let line = s:RemoveDelimiters(s:Left({'alt': 1}), '', line)
+				endif
 
-        "remove the outter most right comment delim
-        if indxRight != -1 && (indxRight < indxRightAlt || indxRightAlt == -1)
-            let line = s:RemoveDelimiters('', s:Right(), line)
-        elseif indxRightAlt != -1 && g:NERDRemoveAltComs
-            let line = s:RemoveDelimiters('', s:Right({'alt': 1}), line)
-        endif
-    endif
-
-
-    let indxLeftPlace = s:FindDelimiterIndex(g:NERDLPlace, line)
-    let indxRightPlace = s:FindDelimiterIndex(g:NERDRPlace, line)
-
-    let right = s:Right()
-    let left = s:Left()
-    if !s:Multipart()
-        let right = s:Right({'alt': 1})
-        let left = s:Left({'alt': 1})
-    endif
+				"remove the outter most right comment delim
+				if indxRight != -1 && (indxRight < indxRightAlt || indxRightAlt == -1)
+					let line = s:RemoveDelimiters('', s:Right(), line)
+				elseif indxRightAlt != -1 && g:NERDRemoveAltComs
+					let line = s:RemoveDelimiters('', s:Right({'alt': 1}), line)
+				endif
+			endif
 
 
-    "if there are place-holders on the line then we check to see if they are
-    "the outtermost delimiters on the line. If so then we replace them with
-    "real delimiters
-    if indxLeftPlace != -1
-        if (indxLeftPlace < indxLeft || indxLeft==-1) && (indxLeftPlace < indxLeftAlt || indxLeftAlt==-1)
-            let line = s:ReplaceDelims(g:NERDLPlace, g:NERDRPlace, left, right, line)
-        endif
-    elseif indxRightPlace != -1
-        if (indxRightPlace < indxLeft || indxLeft==-1) && (indxLeftPlace < indxLeftAlt || indxLeftAlt==-1)
-            let line = s:ReplaceDelims(g:NERDLPlace, g:NERDRPlace, left, right, line)
-        endif
+		let indxLeftPlace = s:FindDelimiterIndex(g:NERDLPlace, line)
+		let indxRightPlace = s:FindDelimiterIndex(g:NERDRPlace, line)
 
-    endif
+		let right = s:Right()
+		let left = s:Left()
+		if !s:Multipart()
+			let right = s:Right({'alt': 1})
+			let left = s:Left({'alt': 1})
+		endif
+
+
+		"if there are place-holders on the line then we check to see if they are
+		"the outtermost delimiters on the line. If so then we replace them with
+		"real delimiters
+		if indxLeftPlace != -1
+			if (indxLeftPlace < indxLeft || indxLeft==-1) && (indxLeftPlace < indxLeftAlt || indxLeftAlt==-1)
+				let line = s:ReplaceDelims(g:NERDLPlace, g:NERDRPlace, left, right, line)
+			endif
+		elseif indxRightPlace != -1
+			if (indxRightPlace < indxLeft || indxLeft==-1) && (indxLeftPlace < indxLeftAlt || indxLeftAlt==-1)
+				let line = s:ReplaceDelims(g:NERDLPlace, g:NERDRPlace, left, right, line)
+			endif
+
+		endif
+
+	endif
 
     let line = s:ConvertLeadingWhiteSpace(line)
 
@@ -2465,6 +2506,34 @@ function s:NumberOfLeadingTabs(s)
     return strlen(substitute(a:s, '^\(\t*\).*$', '\1', ""))
 endfunction
 
+" Function: s:GetCommentCharsHR() {{{2
+" returns a string of just left comment characters, the length of which is
+" determined via the following rules:
+function s:GetCommentCharsHR()
+	" this width of the horizontal rule gets set in one of three ways: 
+	" 1. NERDCommenter setting: NERDNumCommentCharsHR
+	" 2. looking at text width variable (only if textwrap is set)
+	" 3. hard-coded value of 72
+	if g:NERDNumCommentCharsHR == 0
+		if &wrap && &textwidth > 0
+			let numCharsForHR = &textwidth
+		else
+			let numCharsForHR = 72
+		endif
+	else
+		let numCharsForHR = g:NERDNumCommentCharsHR
+	endif
+	let commentHR = repeat( s:Left(), numCharsForHR)
+
+	" this handles the case where s:Left() actually contains more than two
+	" characters.
+	if strlen(commentHR) > numCharsForHR
+		let commentHR = strpart(commentHR, 0, numCharsForHR)
+	endif
+
+	return commentHR
+endfunction
+
 " Function: s:NumLinesInBuf() {{{2
 " Returns the number of lines in the current buffer
 function s:NumLinesInBuf()
@@ -2763,6 +2832,7 @@ call s:CreateMaps('nx', 'Uncomment',  'Uncomment', 'cu')
 call s:CreateMaps('n',  'AltDelims',  'Switch Delimiters', 'ca')
 call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
 call s:CreateMaps('',   ':',          '-Sep3-', '')
+call s:CreateMaps('nx', 'CommentHorizontalRule',    'Make a horizontal rule of comment chars', 'c_')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
 
 inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call NERDComment('i', "insert")<CR>
