@@ -314,6 +314,7 @@ let s:delimiterMap = {
     \ 'resolv': { 'left': '#' },
     \ 'rgb': { 'left': '!' },
     \ 'rib': { 'left': '#' },
+    \ 'rmd': { 'left': '#' },
     \ 'robots': { 'left': '#' },
     \ 'rspec': { 'left': '#' },
     \ 'ruby': { 'left': '#' },
