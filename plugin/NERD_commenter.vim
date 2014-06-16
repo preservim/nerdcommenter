@@ -119,6 +119,7 @@ let s:delimiterMap = {
     \ 'cuda': { 'left': '/*','right': '*/', 'leftAlt': '//' },
     \ 'crontab': { 'left': '#' },
     \ 'cs': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'teak': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'csp': { 'left': '--' },
     \ 'cterm': { 'left': '*' },
     \ 'cucumber': { 'left': '#' },
