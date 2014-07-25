@@ -462,6 +462,10 @@ function s:SetUpForNewFiletype(filetype, forceReset)
                 let b:NERDCommenterDelims[i] = ''
             endif
         endfor
+        " if g:NERD_<filetype>_alt_style is defined, use the alternate style
+        if exists('g:NERD_'.ft.'_alt_style') && eval('g:NERD_'.ft.'_alt_style')
+            call s:SwitchToAlternativeDelimiters(0)
+        endif
     else
         let b:NERDCommenterDelims = s:CreateDelimMapFromCms()
     endif
@@ -2379,7 +2383,7 @@ endfunction
 function s:Left(...)
     let params = a:0 ? a:1 : {}
 
-    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['leftAlt'] : b:NERDCommenterDelims['left'] 
+    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['leftAlt'] : b:NERDCommenterDelims['left']
 
     if delim == ''
         return ''
@@ -2558,7 +2562,7 @@ endfunction
 function s:Right(...)
     let params = a:0 ? a:1 : {}
 
-    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['rightAlt'] : b:NERDCommenterDelims['right'] 
+    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['rightAlt'] : b:NERDCommenterDelims['right']
 
     if delim == ''
         return ''
