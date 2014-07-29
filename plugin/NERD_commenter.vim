@@ -316,7 +316,7 @@ let s:delimiterMap = {
     \ 'rib': { 'left': '#' },
     \ 'robots': { 'left': '#' },
     \ 'rspec': { 'left': '#' },
-    \ 'ruby': { 'left': '#' },
+    \ 'ruby': { 'left': '#', 'leftAlt': '=begin', 'rightAlt': '=end' },
     \ 'sa': { 'left': '--' },
     \ 'samba': { 'left': ';', 'leftAlt': '#' },
     \ 'sass': { 'left': '//', 'leftAlt': '/*' },
