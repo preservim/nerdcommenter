@@ -297,6 +297,7 @@ let s:delimiterMap = {
     \ 'povini': { 'left': ';' },
     \ 'ppd': { 'left': '%' },
     \ 'ppwiz': { 'left': ';;' },
+    \ 'privoxy': { 'left': '#' },
     \ 'processing': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'prolog': { 'left': '%', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'ps1': { 'left': '#' },
