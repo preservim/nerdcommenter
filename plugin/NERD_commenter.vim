@@ -157,6 +157,7 @@ let s:delimiterMap = {
     \ 'fgl': { 'left': '#' },
     \ 'focexec': { 'left': '-*' },
     \ 'form': { 'left': '*' },
+    \ 'fortran': { 'left': 'C', 'leftalt': '!' },
     \ 'foxpro': { 'left': '*' },
     \ 'fsharp': { 'left': '(*', 'right': '*)', 'leftAlt': '//' },
     \ 'fstab': { 'left': '#' },
@@ -713,7 +714,7 @@ function s:CommentLines(forceNested, align, firstLine, lastLine)
             if !isCommented || g:NERDUsePlaceHolders || s:Multipart()
                 if a:align == "left" || a:align == "both"
                     let theLine = s:AddLeftDelimAligned(s:Left({'space': 1}), theLine, leftAlignIndx)
-                else if a:align == "farleft"
+                elseif a:align == "farleft"
                     let theLine = s:AddLeftDelimAligned(s:Left({'space': 1}), theLine, 0)
                 else
                     let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
