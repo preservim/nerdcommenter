@@ -102,7 +102,7 @@ let s:delimiterMap = {
     \ 'caos': { 'left': '*' },
     \ 'calibre': { 'left': '//' },
     \ 'catalog': { 'left': '--', 'right': '--' },
-    \ 'c': { 'left': '/*','right': '*/', 'leftAlt': '//' },
+    \ 'c': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'cf': { 'left': '<!---', 'right': '--->' },
     \ 'cfg': { 'left': '#' },
     \ 'cg': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
