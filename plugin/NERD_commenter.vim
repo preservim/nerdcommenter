@@ -61,6 +61,7 @@ call s:InitVariable("g:NERDRemoveAltComs", 1)
 call s:InitVariable("g:NERDRemoveExtraSpaces", 0)
 call s:InitVariable("g:NERDRPlace", "<]")
 call s:InitVariable("g:NERDSpaceDelims", 0)
+call s:InitVariable("g:NERDLeftStartFirstColumn", 0)
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -1509,7 +1510,8 @@ endfunction
 " Function: s:AddLeftDelim(delim, theLine) {{{2
 " Args:
 function s:AddLeftDelim(delim, theLine)
-    return substitute(a:theLine, '^\([ \t]*\)', '\1' . a:delim, '')
+    let pattern = g:NERDLeftStartFirstColumn ? '^' : '^\([ \t]*\)'
+    return substitute(a:theLine, pattern, '\1' . a:delim, '')
 endfunction
 
 " Function: s:AddLeftDelimAligned(delim, theLine) {{{2

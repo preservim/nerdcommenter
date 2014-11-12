@@ -431,6 +431,9 @@ then the script would do a sexy comment on the last visual selection.
                                       around delimiters when commenting, and
                                       whether to remove them when
                                       uncommenting.
+|'NERDLeftStartFirstColumn'|          Comment from the first column of the line
+                                      instead of from the first non whitespace
+                                      character.
 |'NERDCompactSexyComs'|               Specifies whether to use the compact
                                       style sexy comments.
 
