@@ -463,8 +463,10 @@ function s:SetUpForNewFiletype(filetype, forceReset)
             endif
         endfor
         " if g:NERD_<filetype>_alt_style is defined, use the alternate style
-        if exists('g:NERD_'.ft.'_alt_style') && eval('g:NERD_'.ft.'_alt_style')
+        let b:NERDCommenterFirstInit = getbufvar(1,"NERDCommenterFirstInit",0)
+        if exists('g:NERD_'.ft.'_alt_style') && eval('g:NERD_'.ft.'_alt_style') && !b:NERDCommenterFirstInit
             call s:SwitchToAlternativeDelimiters(0)
+            let b:NERDCommenterFirstInit = 1
         endif
     else
         let b:NERDCommenterDelims = s:CreateDelimMapFromCms()
