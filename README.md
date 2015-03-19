@@ -27,6 +27,8 @@ See **|filetype-plugin-on|** for details, but basically, stick this in your vimr
 
     filetype plugin on
 
+Note: Close and reopen vim after installation, re-sourcing the vimrc file will not work.
+
 # Usage  
 
 The following key mappings are provided by default (there is also a menu 
