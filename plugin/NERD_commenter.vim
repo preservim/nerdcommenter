@@ -83,6 +83,7 @@ let s:delimiterMap = {
     \ 'asm68k': { 'left': ';' },
     \ 'asm': { 'left': ';', 'leftAlt': '#' },
     \ 'asn': { 'left': '--' },
+    \ 'asp': { 'leftAlt': '%*','rightAlt': '*%', 'left': '%' },
     \ 'aspvbs': { 'left': '''', 'leftAlt': '<!--', 'rightAlt': '-->' },
     \ 'asterisk': { 'left': ';' },
     \ 'asy': { 'left': '//' },
