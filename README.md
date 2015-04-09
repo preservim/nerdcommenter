@@ -20,12 +20,18 @@ See **|add-local-help|** for more details.
 1. Navigate to your **[VIM_ROOT]/bundle** directory in your local Vim setup
 2. git clone https://github.com/scrooloose/nerdcommenter.git
 
+### Vundle Install
+1. Add `Plugin 'scrooloose/nerdcommenter'` to your .vimrc file.
+2. Run `:BundleInstall`
+
 ### Post Install  
 After the **'Classic'** or **'Pathogen'** install, make sure that you have filetype plugins enabled, as the script makes use of 
 **|'commentstring'|** where possible (which is usually set in a filetype plugin). 
 See **|filetype-plugin-on|** for details, but basically, stick this in your vimrc:
 
     filetype plugin on
+
+Note: Close and reopen vim after installation, re-sourcing the vimrc file will not work.
 
 # Usage  
 
@@ -42,7 +48,7 @@ Comment out the current line or text selected in visual mode.
 Same as \<leader\>cc but forces nesting. 
 
 
-**[count]\<leader\>c<space> |NERDComToggleComment|**  
+**[count]\<leader\>c\<space\> |NERDComToggleComment|**  
 Toggles the comment state of the selected line(s). If the topmost selected 
 line is commented, all selected lines are uncommented and vice versa. 
 
