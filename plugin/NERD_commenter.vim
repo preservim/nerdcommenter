@@ -51,6 +51,7 @@ let s:lenSpaceStr = strlen(s:spaceStr)
 call s:InitVariable("g:NERDAllowAnyVisualDelims", 1)
 call s:InitVariable("g:NERDBlockComIgnoreEmpty", 0)
 call s:InitVariable("g:NERDCommentWholeLinesInVMode", 0)
+call s:InitVariable("g:NERDCommentEmptyLines", 0)
 call s:InitVariable("g:NERDCompactSexyComs", 0)
 call s:InitVariable("g:NERDCreateDefaultMappings", 1)
 call s:InitVariable("g:NERDDefaultNesting", 1)
@@ -1571,8 +1572,9 @@ endfunction
 function s:CanCommentLine(forceNested, lineNum)
     let theLine = getline(a:lineNum)
 
-    " make sure we don't comment lines that are just spaces or tabs or empty.
-    if theLine =~ "^[ \t]*$"
+    " make sure we don't comment lines that are just spaces or tabs or empty,
+    " unless configured otherwise
+    if g:NERDCommentEmptyLines == 0 && theLine =~ "^[ \t]*$"
         return 0
     endif
 
