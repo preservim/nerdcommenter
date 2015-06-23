@@ -210,6 +210,7 @@ let s:delimiterMap = {
     \ 'javascript.jquery': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'jess': { 'left': ';' },
     \ 'jgraph': { 'left': '(*', 'right': '*)' },
+    \ 'jinja': { 'left': '{#', 'right': '#}' },
     \ 'jproperties': { 'left': '#' },
     \ 'jsp': { 'left': '<%--', 'right': '--%>' },
     \ 'kix': { 'left': ';' },
