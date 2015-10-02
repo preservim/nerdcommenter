@@ -433,6 +433,9 @@ then the script would do a sexy comment on the last visual selection.
                                       uncommenting.
 |'NERDCompactSexyComs'|               Specifies whether to use the compact
                                       style sexy comments.
+|'NERDDefaultAlign'|                  Specifies the default alignment to use,
+                                      one of 'none', 'left', 'start', or
+                                      'both'.
 
 ------------------------------------------------------------------------------
 4.3 Options details                                    *NERDComOptionsDetails*
@@ -623,6 +626,14 @@ Otherwise they would become: >
     int baz = foo + bar
 <
 
+Note: When using 'start' as the default alignment, the enabling of
+NERDRemoveExtraSpaces will still result in the removal of a space after the
+delimiter.  This can be undesirable since aligning the delimiters at the very
+start of the line (index 0) will usually result in spaces between the comment
+delimiters and the text which probably shouldn't be removed.  So when using
+'start' as the default alignment, take care to also disable
+NERDRemoveExtraSpaces.
+
 ------------------------------------------------------------------------------
                                                                   *'NERDLPlace'*
                                                                   *'NERDRPlace'*
@@ -680,6 +691,17 @@ as opposed to this: >
 If you want spaces to be added then set NERDSpaceDelims to 1 in your vimrc.
 
 See also |'NERDRemoveExtraSpaces'|.
+
+------------------------------------------------------------------------------
+                                                             *'NERDDefaultAlign'*
+Values: 'none', 'left', 'start', 'both'
+Default 'none'.
+
+Specifies the default alignment to use when inserting comments.
+
+Note: When using 'start' as the default alignment be sure to disable
+NERDRemoveExtraSpaces.  See the note at the bottom of |NERDRemoveExtraSpaces|
+for more details.
 
 ------------------------------------------------------------------------------
                                                          *'NERDCompactSexyComs'*
