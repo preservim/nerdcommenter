@@ -28,6 +28,7 @@ CONTENTS                                               *NERDCommenterContents*
             3.2.11 Use alternate delims map...|NERDComAltDelim|
             3.2.12 Comment aligned maps.......|NERDComAlignedComment|
             3.2.13 Uncomment line map.........|NERDComUncommentLine|
+            3.2.14 Comment horiz. line........|NERDComCommentHorizontalRule|
         3.4 Sexy Comments.....................|NERDComSexyComments|
         3.5 The NERDComment function..........|NERDComNERDComment|
     4.Options.................................|NERDComOptions|
@@ -139,6 +140,9 @@ left side (|<Leader>|cl) or both sides (|<Leader>|cb).
 [count]|<Leader>|cu |NERDComUncommentLine|
 Uncomments the selected line(s).
 
+
+[count]|<Leader|c_ |NERDComCommentHR|
+Will create a line or horizontal rule out of comment characters.
 
 With the optional repeat.vim plugin (vimscript #2136), the mappings can also
 be repeated via |.|
@@ -354,7 +358,21 @@ lines were selected in visual-line mode.
 Related  options:
 |'NERDRemoveAltComs'|
 |'NERDRemoveExtraSpaces'|
+------------------------------------------------------------------------------
+3.2.14 Make horiz. line of comments              *NERDComCommentHorizontalRule*
 
+Default mappings: [count]|<Leader>|c_
+Mapped to: <plug>NERDCommenterCommentHorizontalRule
+Applicable modes: normal visual-line.
+
+Will create a line or horizontal rule out of comment characters. The width of
+the rule is determined as follows:
+	1. If NERDNumCommentCharsHR is defined and greater than 0, use that value.
+    2. If &wrap is set and &textwidth is greater than 0, use that value.
+    3. Default to 72
+
+Related  options:
+|'NERDNumCommentCharsHR'|
 ------------------------------------------------------------------------------
 3.3 Sexy Comments                                        *NERDComSexyComments*
 These are comments that use one set of multipart comment delimiters as well as
@@ -433,6 +451,8 @@ then the script would do a sexy comment on the last visual selection.
                                       uncommenting.
 |'NERDCompactSexyComs'|               Specifies whether to use the compact
                                       style sexy comments.
+|'NERDNumCommentCharsHR'|             Specifies how many comment characters to 
+                                      use to create a horizontal rule.
 
 ------------------------------------------------------------------------------
 4.3 Options details                                    *NERDComOptionsDetails*
@@ -710,6 +730,18 @@ you hit |<Leader>|cc on a line that is already commented it will be commented
 again.
 
 ------------------------------------------------------------------------------
+                                                       *'NERDNumCommentCharsHR'*
+Values: Any number.
+Default 0.
+
+When this option is something besides 0, it specifies how many comment
+characters we'll use for creating a horizontal rule out of comments i.e. when
+we use the |<Leader>|c_.  If it is zero, the CommentHorizontalRule command
+will determine the number of characters to use by using the &textwidth option
+if it is greater than 0 and &wrap is set.  Otherwise, it defaults to 72.
+
+------------------------------------------------------------------------------
+
 3.3 Default delimiter customisation                     *NERDComDefaultDelims*
 
 If you want the NERD commenter to use the alternative delimiters for a
