@@ -131,9 +131,11 @@ Switches to the alternative set of delimiters.
 
 
 [count]|<Leader>|cl
+[count]|<Leader>|c0
 [count]|<Leader>|cb    |NERDComAlignedComment|
 Same as |NERDComComment| except that the delimiters are aligned down the
-left side (|<Leader>|cl) or both sides (|<Leader>|cb).
+left side (|<Leader>|cl), first column (|<Leader>|c0) or both sides
+(|<Leader>|cb).
 
 
 [count]|<Leader>|cu |NERDComUncommentLine|

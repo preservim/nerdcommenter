@@ -157,6 +157,7 @@ let s:delimiterMap = {
     \ 'fgl': { 'left': '#' },
     \ 'focexec': { 'left': '-*' },
     \ 'form': { 'left': '*' },
+    \ 'fortran': { 'left': 'C', 'leftalt': '!' },
     \ 'foxpro': { 'left': '*' },
     \ 'fsharp': { 'left': '(*', 'right': '*)', 'leftAlt': '//' },
     \ 'fstab': { 'left': '#' },
@@ -679,7 +680,7 @@ endfunction
 " Args:
 "   -forceNested: a flag indicating whether the called is requesting the comment
 "    to be nested if need be
-"   -align: should be "left" or "both" or "none"
+"   -align: should be "left" or "farleft" or "both" or "none"
 "   -firstLine/lastLine: the top and bottom lines to comment
 function s:CommentLines(forceNested, align, firstLine, lastLine)
     " we need to get the left and right indexes of the leftmost char in the
@@ -715,6 +716,8 @@ function s:CommentLines(forceNested, align, firstLine, lastLine)
             if !isCommented || g:NERDUsePlaceHolders || s:Multipart()
                 if a:align == "left" || a:align == "both"
                     let theLine = s:AddLeftDelimAligned(s:Left({'space': 1}), theLine, leftAlignIndx)
+                elseif a:align == "farleft"
+                    let theLine = s:AddLeftDelimAligned(s:Left({'space': 1}), theLine, 0)
                 else
                     let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
                 endif
@@ -1044,7 +1047,7 @@ endfunction
 "   -mode: a character indicating the mode in which the comment is requested:
 "   'n' for Normal mode, 'x' for Visual mode
 "   -type: the type of commenting requested. Can be 'Sexy', 'Invert',
-"    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Comment',
+"    'Minimal', 'Toggle', 'AlignLeft', 'AlignFarLeft', 'AlignBoth', 'Comment',
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
 function! NERDComment(mode, type) range
     let isVisual = a:mode =~ '[vsx]'
@@ -1079,10 +1082,12 @@ function! NERDComment(mode, type) range
             call s:CommentLines(forceNested, "none", firstLine, lastLine)
         endif
 
-    elseif a:type ==? 'AlignLeft' || a:type ==? 'AlignBoth'
+    elseif a:type ==? 'AlignLeft' || a:type ==? 'AlignFarLeft' || a:type ==? 'AlignBoth'
         let align = "none"
         if a:type ==? "AlignLeft"
             let align = "left"
+        elseif a:type ==? "AlignFarLeft"
+            let align = "farleft"
         elseif a:type ==? "AlignBoth"
             let align = "both"
         endif
@@ -2759,6 +2764,7 @@ call s:CreateMaps('nx', 'Yank',       'Yank then comment', 'cy')
 call s:CreateMaps('n',  'Append',     'Append', 'cA')
 call s:CreateMaps('',   ':',          '-Sep-', '')
 call s:CreateMaps('nx', 'AlignLeft',  'Left aligned', 'cl')
+call s:CreateMaps('nx', 'AlignFarLeft',  'Far left aligned', 'c0')
 call s:CreateMaps('nx', 'AlignBoth',  'Left and right aligned', 'cb')
 call s:CreateMaps('',   ':',          '-Sep2-', '')
 call s:CreateMaps('nx', 'Uncomment',  'Uncomment', 'cu')

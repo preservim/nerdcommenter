@@ -82,9 +82,11 @@ Switches to the alternative set of delimiters.
 
 
 **[count]\<leader\>cl**  
+**[count]\<leader\>c0**  
 **[count]\<leader\>cb    |NERDComAlignedComment|**  
 Same as |NERDComComment| except that the delimiters are aligned down the 
-left side (\<leader\>cl) or both sides (\<leader\>cb). 
+left side (\<leader\>cl), first column (\<leader\>c0) or both sides
+(\<leader\>cb). 
 
 
 **[count]\<leader\>cu |NERDComUncommentLine|**  
