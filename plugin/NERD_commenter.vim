@@ -61,6 +61,7 @@ call s:InitVariable("g:NERDRemoveAltComs", 1)
 call s:InitVariable("g:NERDRemoveExtraSpaces", 0)
 call s:InitVariable("g:NERDRPlace", "<]")
 call s:InitVariable("g:NERDSpaceDelims", 0)
+call s:InitVariable("g:NERDDefaultAlign", "none")
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -314,6 +315,7 @@ let s:delimiterMap = {
     \ 'resolv': { 'left': '#' },
     \ 'rgb': { 'left': '!' },
     \ 'rib': { 'left': '#' },
+    \ 'rmd': { 'left': '#' },
     \ 'robots': { 'left': '#' },
     \ 'rspec': { 'left': '#' },
     \ 'ruby': { 'left': '#' },
@@ -469,6 +471,15 @@ function s:SetUpForNewFiletype(filetype, forceReset)
 endfunction
 
 function s:CreateDelimMapFromCms()
+    if &ft == '' && exists('g:NERDDefaultDelims')
+        let delims = g:NERDDefaultDelims
+        for i in ['left', 'leftAlt', 'right', 'rightAlt']
+            if !has_key(delims, i)
+                let delims[i] = ''
+            endif
+        endfor
+        return delims
+    endif
     return {
         \ 'left': substitute(&commentstring, '\([^ \t]*\)\s*%s.*', '\1', ''),
         \ 'right': substitute(&commentstring, '.*%s\s*\(.*\)', '\1', 'g'),
@@ -679,13 +690,13 @@ endfunction
 " Args:
 "   -forceNested: a flag indicating whether the called is requesting the comment
 "    to be nested if need be
-"   -align: should be "left" or "both" or "none"
+"   -align: should be "left", "start", "both" or "none"
 "   -firstLine/lastLine: the top and bottom lines to comment
 function s:CommentLines(forceNested, align, firstLine, lastLine)
     " we need to get the left and right indexes of the leftmost char in the
     " block of of lines and the right most char so that we can do alignment of
     " the delimiters if the user has specified
-    let leftAlignIndx = s:LeftMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
+    let leftAlignIndx = a:align == "start" ? 0 : s:LeftMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
     let rightAlignIndx = s:RightMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
 
     " gotta add the length of the left delimiter onto the rightAlignIndx cos
@@ -713,7 +724,7 @@ function s:CommentLines(forceNested, align, firstLine, lastLine)
 
             " check if we can comment this line
             if !isCommented || g:NERDUsePlaceHolders || s:Multipart()
-                if a:align == "left" || a:align == "both"
+                if a:align == "left" || a:align == "start" || a:align == "both"
                     let theLine = s:AddLeftDelimAligned(s:Left({'space': 1}), theLine, leftAlignIndx)
                 else
                     let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
@@ -917,6 +928,12 @@ endfunction
 "   -firstLine/lastLine: the top and bottom lines to comment
 function s:CommentLinesToggle(forceNested, firstLine, lastLine)
     let currentLine = a:firstLine
+
+    let align = g:NERDDefaultAlign
+    let leftAlignIndx = align == "start" ? 0 : s:LeftMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
+    let rightAlignIndx = s:RightMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
+    let rightAlignIndx = rightAlignIndx + strlen(s:Left({'space': 1}))
+
     while currentLine <= a:lastLine
 
         " get the next line, check commentability and convert spaces to tabs
@@ -931,8 +948,16 @@ function s:CommentLinesToggle(forceNested, firstLine, lastLine)
                 let theLine = s:SwapOutterMultiPartDelimsForPlaceHolders(theLine)
             endif
 
-            let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
-            let theLine = s:AddRightDelim(s:Right({'space': 1}), theLine)
+            if align == 'left' || align == 'start' || align == 'both'
+                let theLine = s:AddLeftDelimAligned(s:Left({'space': 1}), theLine, leftAlignIndx)
+            else
+                let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
+            endif
+            if align == "both"
+                let theLine = s:AddRightDelimAligned(s:Right({'space': 1}), theLine, rightAlignIndx)
+            else
+                let theLine = s:AddRightDelim(s:Right({'space': 1}), theLine)
+            endif
         endif
 
         " restore leading tabs if appropriate
@@ -979,7 +1004,7 @@ function s:CommentRegion(topLine, topCol, bottomLine, bottomCol, forceNested)
         let topOfRange = a:topLine+1
         let bottomOfRange = a:bottomLine-1
         if topOfRange <= bottomOfRange
-            call s:CommentLines(a:forceNested, "none", topOfRange, bottomOfRange)
+            call s:CommentLines(a:forceNested, g:NERDDefaultAlign, topOfRange, bottomOfRange)
         endif
 
         "comment the bottom line
@@ -1076,7 +1101,7 @@ function! NERDComment(mode, type) range
         elseif isVisual && visualmode() == "v" && (g:NERDCommentWholeLinesInVMode==0 || (g:NERDCommentWholeLinesInVMode==2 && s:HasMultipartDelims()))
             call s:CommentRegion(firstLine, firstCol, lastLine, lastCol, forceNested)
         else
-            call s:CommentLines(forceNested, "none", firstLine, lastLine)
+            call s:CommentLines(forceNested, g:NERDDefaultAlign, firstLine, lastLine)
         endif
 
     elseif a:type ==? 'AlignLeft' || a:type ==? 'AlignBoth'
@@ -1095,7 +1120,7 @@ function! NERDComment(mode, type) range
         try
             call s:CommentLinesSexy(firstLine, lastLine)
         catch /NERDCommenter.Delimiters/
-            call s:CommentLines(forceNested, "none", firstLine, lastLine)
+            call s:CommentLines(forceNested, g:NERDDefaultAlign, firstLine, lastLine)
         catch /NERDCommenter.Nesting/
             call s:NerdEcho("Sexy comment aborted. Nested sexy cannot be nested", 0)
         endtry
