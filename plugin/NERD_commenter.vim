@@ -359,6 +359,7 @@ let s:delimiterMap = {
     \ 'squid': { 'left': '#' },
     \ 'st': { 'left': '"' },
     \ 'stp': { 'left': '--' },
+    \ 'swift': { 'left': '/*','right': '*/', 'leftAlt': '//' },
     \ 'supercollider': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'systemverilog': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'tads': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
