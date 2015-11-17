@@ -18,7 +18,7 @@ See **|add-local-help|** for more details.
 
 ### Pathogen Install
 1. Navigate to your **[VIM_ROOT]/bundle** directory in your local Vim setup
-2. git clone https://github.com/scrooloose/nerdcommenter.git
+2. `git clone https://github.com/scrooloose/nerdcommenter.git`
 
 ### Post Install  
 After the **'Classic'** or **'Pathogen'** install, make sure that you have filetype plugins enabled, as the script makes use of 
