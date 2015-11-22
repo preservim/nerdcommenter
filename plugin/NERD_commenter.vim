@@ -147,6 +147,7 @@ let s:delimiterMap = {
     \ 'eclass': { 'left': '#' },
     \ 'eiffel': { 'left': '--' },
     \ 'elf': { 'left': "'" },
+    \ 'elixir': { 'left': '#' }
     \ 'elmfilt': { 'left': '#' },
     \ 'erlang': { 'left': '%', 'leftAlt': '%%' },
     \ 'eruby': { 'left': '<%#', 'right': '%>', 'leftAlt': '<!--', 'rightAlt': '-->' },
@@ -2379,7 +2380,7 @@ endfunction
 function s:Left(...)
     let params = a:0 ? a:1 : {}
 
-    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['leftAlt'] : b:NERDCommenterDelims['left'] 
+    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['leftAlt'] : b:NERDCommenterDelims['left']
 
     if delim == ''
         return ''
@@ -2558,7 +2559,7 @@ endfunction
 function s:Right(...)
     let params = a:0 ? a:1 : {}
 
-    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['rightAlt'] : b:NERDCommenterDelims['right'] 
+    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['rightAlt'] : b:NERDCommenterDelims['right']
 
     if delim == ''
         return ''
