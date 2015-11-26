@@ -42,7 +42,7 @@ Comment out the current line or text selected in visual mode.
 Same as \<leader\>cc but forces nesting. 
 
 
-**[count]\<leader\>c<space> |NERDComToggleComment|**  
+**[count]\<leader\>c\<space\> |NERDComToggleComment|**  
 Toggles the comment state of the selected line(s). If the topmost selected 
 line is commented, all selected lines are uncommented and vice versa. 
 
