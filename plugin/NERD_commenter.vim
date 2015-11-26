@@ -259,7 +259,7 @@ let s:delimiterMap = {
     \ 'mib': { 'left': '--' },
     \ 'mips': { 'left': '#'},
     \ 'mirah': {'left': '#'},
-    \ 'mkd': { 'left': '>' },
+    \ 'mkd': { 'left': '<!---', 'right': '-->' },
     \ 'mma': { 'left': '(*', 'right': '*)' },
     \ 'model': { 'left': '$', 'right': '$' },
     \ 'moduala.': { 'left': '(*', 'right': '*)' },
