@@ -366,6 +366,7 @@ let s:delimiterMap = {
     \ 'tak': { 'left': '$' },
     \ 'tasm': { 'left': ';' },
     \ 'tcl': { 'left': '#' },
+    \ 'terraform': { 'left': '#', 'leftAlt': '/*', 'rightAlt': '*/'  },
     \ 'texinfo': { 'left': "@c " },
     \ 'texmf': { 'left': '%' },
     \ 'tf': { 'left': ';' },
