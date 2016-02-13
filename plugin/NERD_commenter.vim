@@ -1048,9 +1048,6 @@ endfunction
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
 function! NERDComment(mode, type) range
     let isVisual = a:mode =~ '[vsx]'
-    " we want case sensitivity when commenting
-    let oldIgnoreCase = &ignorecase
-    set noignorecase
 
     if !exists("g:did_load_ftplugin") || g:did_load_ftplugin != 1
         call s:NerdEcho("filetype plugins should be enabled. See :help NERDComInstallation and :help :filetype-plugin-on", 0)
@@ -1065,6 +1062,9 @@ function! NERDComment(mode, type) range
         let firstLine = a:firstline
         let lastLine = a:lastline
     endif
+    "
+    " Save options we need to change so we can recover them later
+    let state = s:SetupStateBeforeLineComment(firstLine, lastLine)
 
     let countWasGiven = (!isVisual && firstLine != lastLine)
 
@@ -1143,7 +1143,7 @@ function! NERDComment(mode, type) range
         execute firstLine .','. lastLine .'call NERDComment("'. a:mode .'", "Comment")'
     endif
 
-    let &ignorecase = oldIgnoreCase
+    call s:RecoverStateAfterLineComment(state)
 
     if isVisual
         let nlines = lastLine - firstLine
@@ -1251,6 +1251,51 @@ function s:RemoveDelimiters(left, right, line)
     endif
 
     return line
+endfunction
+
+" Function: s:SetupStateBeforeLineComment(topLine, bottomLine) {{{2
+" Changes ignorecase and foldmethod options before commenting lines and saves
+" their original values in a dict, which is returned as a result
+"
+" Args:
+" topLine: the top line of the visual selection to uncomment
+" bottomLine: the bottom line of the visual selection to uncomment
+"
+" Return: a dict with the state prior to configuration changes
+"
+function s:SetupStateBeforeLineComment(topLine, bottomLine)
+    let state = {'foldmethod' : &foldmethod,
+                \'ignorecase' : &ignorecase}
+
+    " Vim's foldmethods are evaluated every time we use 'setline', which can 
+    " make commenting wide ranges of lines VERY slow. We'll change it to
+    " manual, do the commenting stuff and recover it later. To avoid slowing
+    " down commenting few lines, we avoid doing this for ranges smaller than
+    " 10 lines
+    if a:bottomLine - a:topLine >= 10 && &foldmethod != "manual"
+        set foldmethod=manual
+    endif
+
+    " we want case sensitivity when commenting
+    set noignorecase
+
+    return state
+endfunction
+
+" Function: s:RecoverStateAfterLineComment(state) {{{2
+" Receives the state returned by s:SetupStateBeforeLineComment and restores
+" the state accordingly
+"
+" Args:
+" state: the top line of the visual selection to uncomment
+" bottomLine: the bottom line of the visual selection to uncomment
+function s:RecoverStateAfterLineComment(state)
+    if a:state['foldmethod'] != &foldmethod
+        let &foldmethod = a:state['foldmethod']
+    endif
+    if a:state['ignorecase'] != &ignorecase
+        let &ignorecase = a:state['ignorecase']
+    endif
 endfunction
 
 " Function: s:UncommentLines(topLine, bottomLine) {{{2
