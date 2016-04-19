@@ -193,6 +193,7 @@ let s:delimiterMap = {
     \ 'htmlcheetah': { 'left': '##' },
     \ 'htmldjango': { 'left': '<!--','right': '-->', 'leftAlt': '{#', 'rightAlt': '#}' },
     \ 'htmlos': { 'left': '#', 'right': '/#' },
+    \ 'hyphy': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'hxml': { 'left': '#' },
     \ 'ia64': { 'left': '#' },
     \ 'icon': { 'left': '#' },
