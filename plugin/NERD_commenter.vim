@@ -1082,50 +1082,6 @@ function s:InvertComment(firstLine, lastLine)
     endwhile
 endfunction
 
-" Function: NERDCommentYank(mode, type) function {{{2
-" This function handles yanking
-"
-" Args:
-"   -mode: a flag indicating whether the comment is requested in visual
-"    mode or not
-"   -register: the register to yank into
-function NERDCommentYank(mode, register) range
-    let isVisual = a:mode =~ '[vsx]'
-    if isVisual
-        let firstLine = line("'<")
-        let lastLine = line("'>")
-        let firstCol = col("'<")
-        let lastCol = col("'>") - (&selection == 'exclusive' ? 1 : 0)
-    else
-        let firstLine = a:firstline
-        let lastLine = a:lastline
-    endif
-
-    let reg = ''
-    let range = ''
-    let rangeCount = ''
-
-    if a:register != ""
-        let reg = '"'.a:register
-    endif
-
-    if firstLine != lastLine
-        let range = firstLine .','. lastLine
-        let rangeCount = lastLine - firstLine + 1
-    endif
-
-    if isVisual
-        normal! gvy
-    else
-        execute range .'yank '. a:register
-    endif
-    execute range .'call NERDComment('. a:mode .', "Comment")'
-
-    if !isVisual
-        silent! call repeat#set(rangeCount.reg.'\<plug>NERDCommenterYank',-1)
-    endif
-endfunction
-
 " Function: NERDComment(mode, type) function {{{2
 " This function is a Wrapper for the main commenting functions
 "
@@ -1134,7 +1090,7 @@ endfunction
 "   'n' for Normal mode, 'x' for Visual mode
 "   -type: the type of commenting requested. Can be 'Sexy', 'Invert',
 "    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Comment',
-"    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment'
+"    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
 function! NERDComment(mode, type) range
     let isVisual = a:mode =~ '[vsx]'
 
@@ -1154,6 +1110,8 @@ function! NERDComment(mode, type) range
     "
     " Save options we need to change so we can recover them later
     let state = s:SetupStateBeforeLineComment(firstLine, lastLine)
+
+    let countWasGiven = (!isVisual && firstLine != lastLine)
 
     let forceNested = (a:type ==? 'Nested' || g:NERDDefaultNesting)
 
@@ -1219,6 +1177,15 @@ function! NERDComment(mode, type) range
     elseif a:type ==? 'Uncomment'
         call s:UncommentLines(firstLine, lastLine)
 
+    elseif a:type ==? 'Yank'
+        if isVisual
+            normal! gvy
+        elseif countWasGiven
+            execute firstLine .','. lastLine .'yank'
+        else
+            normal! yy
+        endif
+        execute firstLine .','. lastLine .'call NERDComment("'. a:mode .'", "Comment")'
     endif
 
     call s:RecoverStateAfterLineComment(state)
@@ -2846,15 +2813,8 @@ function! s:CreateMaps(modes, target, desc, combo)
     " Build up a map command like
     " 'noremap <silent> <plug>NERDCommenterComment :call NERDComment("n", "Comment")'
     let plug = '<plug>NERDCommenter' . a:target
-    if a:target ==? 'Yank'
-        let func_name = 'NERDCommentYank'
-        let target = 'v:register'
-    else
-        let func_name = 'NERDComment'
-        let target = "'" . a:target . "'"
-    endif
-    let plug_start = 'noremap <silent> ' . plug . ' :call ' . func_name . '("'
-    let plug_end = '", "' . target . '")<cr>'
+    let plug_start = 'noremap <silent> ' . plug . ' :call NERDComment("'
+    let plug_end = '", "' . a:target . '")<cr>'
     " Build up a menu command like
     " 'menu <silent> comment.Comment<Tab>\\cc <plug>NERDCommenterComment'
     let menuRoot = get(['', 'comment', '&comment', '&Plugin.&comment'],
