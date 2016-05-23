@@ -382,6 +382,7 @@ let s:delimiterMap = {
     \ 'tidy': { 'left': '#' },
     \ 'tli': { 'left': '#' },
     \ 'tmux': { 'left': '#' },
+    \ 'toml': { 'left': '#' },
     \ 'trasys': { 'left': "$" },
     \ 'tsalt': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'tsscl': { 'left': '#' },
