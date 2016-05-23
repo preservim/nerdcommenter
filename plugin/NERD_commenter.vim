@@ -150,6 +150,7 @@ let s:delimiterMap = {
     \ 'elf': { 'left': "'" },
     \ 'elixir': { 'left': '#' },
     \ 'elmfilt': { 'left': '#' },
+    \ 'ember-script': { 'left': '#' },
     \ 'erlang': { 'left': '%', 'leftAlt': '%%' },
     \ 'eruby': { 'left': '<%#', 'right': '%>', 'leftAlt': '<!--', 'rightAlt': '-->' },
     \ 'expect': { 'left': '#' },
