@@ -160,6 +160,7 @@ let s:delimiterMap = {
     \ 'fgl': { 'left': '#' },
     \ 'focexec': { 'left': '-*' },
     \ 'form': { 'left': '*' },
+    \ 'fortran': { 'left': '!' },
     \ 'foxpro': { 'left': '*' },
     \ 'fsharp': { 'left': '(*', 'right': '*)', 'leftAlt': '//' },
     \ 'fstab': { 'left': '#' },
@@ -406,6 +407,7 @@ let s:delimiterMap = {
     \ 'xmath': { 'left': '#' },
     \ 'xpm2': { 'left': '!' },
     \ 'xquery': { 'left': '(:', 'right': ':)' },
+    \ 'yaml': { 'left': '#' },
     \ 'z8a': { 'left': ';' }
     \ }
 
