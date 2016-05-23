@@ -347,6 +347,7 @@ let s:delimiterMap = {
     \ 'sgmllnx': { 'left': '<!--', 'right': '-->' },
     \ 'sh': { 'left': '#' },
     \ 'sicad': { 'left': '*' },
+    \ 'sile': { 'left': '%' },
     \ 'simula': { 'left': '%', 'leftAlt': '--' },
     \ 'sinda': { 'left': '$' },
     \ 'skill': { 'left': ';' },
