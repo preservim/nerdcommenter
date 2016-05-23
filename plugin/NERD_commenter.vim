@@ -193,6 +193,8 @@ let s:delimiterMap = {
     \ 'h': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'haml': { 'left': '-#', 'leftAlt': '/' },
     \ 'haxe': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'handlebars': { 'left': '{{!-- ', 'right': ' --}}' },
+    \ 'hbs': { 'left': '{{!-- ', 'right': ' --}}' },
     \ 'hercules': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'hog': { 'left': '#' },
     \ 'hostsaccess': { 'left': '#' },
