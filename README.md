@@ -1,4 +1,8 @@
-# Installation  
+**Fork notice:** With the upstream project sitting stale after nearly 8 months since the last activity, 71 outstanding pull requests, no comments from the original developer, and dozens of developers duplicating efforts while scratching their own itches, I've decided to step in and run a fork for a while. Hopefully the original developer will eventually consider picking this plugin up again or adding more maintainers so that the user base doesn't end up fragmented, but for now I would invite anyone interested in the latest updates to consider installing from and contributing pull requests to this fork.
+
+----
+
+# Installation
 
 _\*For simplicity, let's use **[VIM_ROOT]** which will mean ~/.vim (\*nix) or ~/vimfiles (Windows)_
 
@@ -18,7 +22,7 @@ See **|add-local-help|** for more details.
 
 ### Pathogen Install
 1. Navigate to your **[VIM_ROOT]/bundle** directory in your local Vim setup
-2. `git clone https://github.com/scrooloose/nerdcommenter.git`
+2. `git clone https://github.com/alerque/nerdcommenter.git`
 
 ### Post Install  
 After the **'Classic'** or **'Pathogen'** install, make sure that you have filetype plugins enabled, as the script makes use of 
