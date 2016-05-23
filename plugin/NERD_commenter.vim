@@ -346,7 +346,7 @@ let s:delimiterMap = {
     \ 'scheme': { 'left': ';', 'leftAlt': '#|', 'rightAlt': '|#' },
     \ 'scilab': { 'left': '//' },
     \ 'scsh': { 'left': ';' },
-    \ 'scss': { 'left': '/*', 'right': '*/', 'leftAlt': '//' },
+    \ 'scss': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/'},
     \ 'sed': { 'left': '#' },
     \ 'sgmldecl': { 'left': '--', 'right': '--' },
     \ 'sgmllnx': { 'left': '<!--', 'right': '-->' },
