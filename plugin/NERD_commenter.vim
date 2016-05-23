@@ -1,7 +1,8 @@
 " ============================================================================
 " File:        NERD_commenter.vim
 " Description: vim global plugin that provides easy code commenting
-" Maintainer:  Martin Grenfell <martin.grenfell at gmail dot com>
+" Author:      Martin Grenfell <martin.grenfell at gmail dot com>
+" Maintainer:  Caleb Maclennan <caleb@alerque.com>
 " Version:     2.3.0
 " Last Change: Wed Dec 14 08:00 AM 2011 EST
 " License:     This program is free software. It comes without any warranty,
