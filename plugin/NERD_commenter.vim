@@ -317,6 +317,7 @@ let s:delimiterMap = {
     \ 'ptcap': { 'left': '#' },
     \ 'puppet': { 'left': '#' },
     \ 'python': { 'left': '# ', 'leftAlt': '#' },
+    \ 'racket': { 'left': ';' },
     \ 'radiance': { 'left': '#' },
     \ 'ratpoison': { 'left': '#' },
     \ 'r': { 'left': '#' },
