@@ -255,7 +255,7 @@ let s:delimiterMap = {
     \ 'mel': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'mib': { 'left': '--' },
     \ 'mirah': {'left': '#'},
-    \ 'mkd': { 'left': '>' },
+    \ 'mkd': { 'left': '<!---', 'right': '-->' },
     \ 'mma': { 'left': '(*', 'right': '*)' },
     \ 'model': { 'left': '$', 'right': '$' },
     \ 'moduala.': { 'left': '(*', 'right': '*)' },
