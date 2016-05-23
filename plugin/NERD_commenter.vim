@@ -551,12 +551,12 @@ function s:AppendCommentToLine()
 
     "stick the delimiters down at the end of the line. We have to format the
     "comment with spaces as appropriate
-    execute ":normal! " . insOrApp . (isLineEmpty ? '' : ' ') . left . right . " "
+    execute ":normal! " . insOrApp . (isLineEmpty ? '' : ' ') . left . right 
 
     " if there is a right delimiter then we gotta move the cursor left
     " by the len of the right delimiter so we insert between the delimiters
     if lenRight > 0
-        let leftMoveAmount = lenRight
+        let leftMoveAmount = lenRight - 1
         execute ":normal! " . leftMoveAmount . "h"
     endif
     startinsert
