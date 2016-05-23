@@ -346,6 +346,7 @@ let s:delimiterMap = {
     \ 'slice': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'slim': { 'left': '/', 'leftAlt': '/!' },
     \ 'slrnrc': { 'left': '%' },
+    \ 'sls': { 'left': '#' },
     \ 'sm': { 'left': '#' },
     \ 'smarty': { 'left': '{*', 'right': '*}' },
     \ 'smil': { 'left': '<!', 'right': '>' },
