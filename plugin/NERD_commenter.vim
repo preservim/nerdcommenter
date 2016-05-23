@@ -367,6 +367,7 @@ let s:delimiterMap = {
     \ 'sqlj': { 'left': '-- ' },
     \ 'sqr': { 'left': '!' },
     \ 'squid': { 'left': '#' },
+    \ 'sshdconfig': { 'left': '#' },
     \ 'st': { 'left': '"' },
     \ 'stp': { 'left': '/*','right': '*/', 'leftAlt': '//' },
     \ 'supercollider': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
