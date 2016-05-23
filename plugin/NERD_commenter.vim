@@ -113,7 +113,7 @@ let s:delimiterMap = {
     \ 'clipper': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'clojure': { 'left': ';' },
     \ 'cmake': { 'left': '#' },
-    \ 'coffee': { 'left': '#' },
+    \ 'coffee': { 'left': '//' },
     \ 'conkyrc': { 'left': '#' },
     \ 'context': { 'left': '%', 'leftAlt': '--' },
     \ 'cpp': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
