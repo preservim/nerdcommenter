@@ -267,6 +267,7 @@ let s:delimiterMap = {
     \ 'monk': { 'left': ';' },
     \ 'mush': { 'left': '#' },
     \ 'mustache': { 'left': '{{!', 'right': '}}' },
+    \ 'nagios': { 'left': ';' },
     \ 'named': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'nasm': { 'left': ';' },
     \ 'nastran': { 'left': '$' },
