@@ -20,6 +20,10 @@ See **|add-local-help|** for more details.
 1. Navigate to your **[VIM_ROOT]/bundle** directory in your local Vim setup
 2. git clone https://github.com/scrooloose/nerdcommenter.git
 
+### Vundle Install
+1. Add `Plugin 'scrooloose/nerdcommenter'` to your .vimrc file.
+2. Run `:BundleInstall`
+
 ### Post Install  
 After the **'Classic'** or **'Pathogen'** install, make sure that you have filetype plugins enabled, as the script makes use of 
 **|'commentstring'|** where possible (which is usually set in a filetype plugin). 
