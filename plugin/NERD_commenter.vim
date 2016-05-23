@@ -51,6 +51,7 @@ let s:lenSpaceStr = strlen(s:spaceStr)
 call s:InitVariable("g:NERDAllowAnyVisualDelims", 1)
 call s:InitVariable("g:NERDBlockComIgnoreEmpty", 0)
 call s:InitVariable("g:NERDCommentWholeLinesInVMode", 0)
+call s:InitVariable("g:NERDCommentEmptyLines", 0)
 call s:InitVariable("g:NERDCompactSexyComs", 0)
 call s:InitVariable("g:NERDCreateDefaultMappings", 1)
 call s:InitVariable("g:NERDDefaultNesting", 1)
@@ -61,6 +62,7 @@ call s:InitVariable("g:NERDRemoveAltComs", 1)
 call s:InitVariable("g:NERDRemoveExtraSpaces", 0)
 call s:InitVariable("g:NERDRPlace", "<]")
 call s:InitVariable("g:NERDSpaceDelims", 0)
+call s:InitVariable("g:NERDDefaultAlign", "none")
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -94,7 +96,7 @@ let s:delimiterMap = {
     \ 'basic': { 'left': "'", 'leftAlt': 'REM ' },
     \ 'bbx': { 'left': '%' },
     \ 'bc': { 'left': '#' },
-    \ 'bib': { 'left': '%' },
+    \ 'bib': { 'left': '//' },
     \ 'bindzone': { 'left': ';' },
     \ 'bst': { 'left': '%' },
     \ 'btm': { 'left': '::' },
@@ -135,6 +137,7 @@ let s:delimiterMap = {
     \ 'django': { 'left': '<!--','right': '-->', 'leftAlt': '{#', 'rightAlt': '#}' },
     \ 'docbk': { 'left': '<!--', 'right': '-->' },
     \ 'dns': { 'left': ';' },
+    \ 'dockerfile': { 'left': '#' },
     \ 'dosbatch': { 'left': 'REM ', 'leftAlt': '::' },
     \ 'dosini': { 'left': ';' },
     \ 'dot': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
@@ -147,9 +150,13 @@ let s:delimiterMap = {
     \ 'eclass': { 'left': '#' },
     \ 'eiffel': { 'left': '--' },
     \ 'elf': { 'left': "'" },
+    \ 'elixir': { 'left': '#' },
     \ 'elmfilt': { 'left': '#' },
+    \ 'ember-script': { 'left': '#' },
+    \ 'emblem': { 'left': '/' },
     \ 'erlang': { 'left': '%', 'leftAlt': '%%' },
     \ 'eruby': { 'left': '<%#', 'right': '%>', 'leftAlt': '<!--', 'rightAlt': '-->' },
+    \ 'esmtprc': { 'left': '#' },
     \ 'expect': { 'left': '#' },
     \ 'exports': { 'left': '#' },
     \ 'fancy': { 'left': '#' },
@@ -157,6 +164,7 @@ let s:delimiterMap = {
     \ 'fgl': { 'left': '#' },
     \ 'focexec': { 'left': '-*' },
     \ 'form': { 'left': '*' },
+    \ 'fortran': { 'left': '!' },
     \ 'foxpro': { 'left': '*' },
     \ 'fsharp': { 'left': '(*', 'right': '*)', 'leftAlt': '//' },
     \ 'fstab': { 'left': '#' },
@@ -187,6 +195,8 @@ let s:delimiterMap = {
     \ 'h': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'haml': { 'left': '-#', 'leftAlt': '/' },
     \ 'haxe': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'handlebars': { 'left': '{{!-- ', 'right': ' --}}' },
+    \ 'hbs': { 'left': '{{!-- ', 'right': ' --}}' },
     \ 'hercules': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'hog': { 'left': '#' },
     \ 'hostsaccess': { 'left': '#' },
@@ -198,6 +208,7 @@ let s:delimiterMap = {
     \ 'icon': { 'left': '#' },
     \ 'idlang': { 'left': ';' },
     \ 'idl': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'idris': { 'leftAlt': '--', 'left': '{-', 'right': '-}' },
     \ 'inform': { 'left': '!' },
     \ 'inittab': { 'left': '#' },
     \ 'ishd': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
@@ -210,8 +221,10 @@ let s:delimiterMap = {
     \ 'javascript.jquery': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'jess': { 'left': ';' },
     \ 'jgraph': { 'left': '(*', 'right': '*)' },
+    \ 'jinja': { 'left': '{#', 'right': '#}' },
     \ 'jproperties': { 'left': '#' },
     \ 'jsp': { 'left': '<%--', 'right': '--%>' },
+    \ 'julia': { 'left': '#' },
     \ 'kix': { 'left': ';' },
     \ 'kscript': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'lace': { 'left': '--' },
@@ -244,7 +257,7 @@ let s:delimiterMap = {
     \ 'mel': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'mib': { 'left': '--' },
     \ 'mirah': {'left': '#'},
-    \ 'mkd': { 'left': '>' },
+    \ 'mkd': { 'left': '<!---', 'right': '-->' },
     \ 'mma': { 'left': '(*', 'right': '*)' },
     \ 'model': { 'left': '$', 'right': '$' },
     \ 'moduala.': { 'left': '(*', 'right': '*)' },
@@ -253,6 +266,7 @@ let s:delimiterMap = {
     \ 'monk': { 'left': ';' },
     \ 'mush': { 'left': '#' },
     \ 'mustache': { 'left': '{{!', 'right': '}}' },
+    \ 'nagios': { 'left': ';' },
     \ 'named': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'nasm': { 'left': ';' },
     \ 'nastran': { 'left': '$' },
@@ -297,13 +311,15 @@ let s:delimiterMap = {
     \ 'povini': { 'left': ';' },
     \ 'ppd': { 'left': '%' },
     \ 'ppwiz': { 'left': ';;' },
+    \ 'privoxy': { 'left': '#' },
     \ 'processing': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'prolog': { 'left': '%', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'ps1': { 'left': '#' },
     \ 'psf': { 'left': '#' },
     \ 'ptcap': { 'left': '#' },
     \ 'puppet': { 'left': '#' },
-    \ 'python': { 'left': '# ', 'leftAlt': '#' },
+    \ 'python': { 'left': '# ' },
+    \ 'racket': { 'left': ';' },
     \ 'radiance': { 'left': '#' },
     \ 'ratpoison': { 'left': '#' },
     \ 'r': { 'left': '#' },
@@ -314,9 +330,11 @@ let s:delimiterMap = {
     \ 'resolv': { 'left': '#' },
     \ 'rgb': { 'left': '!' },
     \ 'rib': { 'left': '#' },
+    \ 'rmd': { 'left': '#' },
     \ 'robots': { 'left': '#' },
     \ 'rspec': { 'left': '#' },
     \ 'ruby': { 'left': '#' },
+    \ 'rust': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'sa': { 'left': '--' },
     \ 'samba': { 'left': ';', 'leftAlt': '#' },
     \ 'sass': { 'left': '//', 'leftAlt': '/*' },
@@ -326,12 +344,13 @@ let s:delimiterMap = {
     \ 'scheme': { 'left': ';', 'leftAlt': '#|', 'rightAlt': '|#' },
     \ 'scilab': { 'left': '//' },
     \ 'scsh': { 'left': ';' },
-    \ 'scss': { 'left': '/*', 'right': '*/', 'leftAlt': '//' },
+    \ 'scss': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/'},
     \ 'sed': { 'left': '#' },
     \ 'sgmldecl': { 'left': '--', 'right': '--' },
     \ 'sgmllnx': { 'left': '<!--', 'right': '-->' },
     \ 'sh': { 'left': '#' },
     \ 'sicad': { 'left': '*' },
+    \ 'sile': { 'left': '%' },
     \ 'simula': { 'left': '%', 'leftAlt': '--' },
     \ 'sinda': { 'left': '$' },
     \ 'skill': { 'left': ';' },
@@ -339,6 +358,7 @@ let s:delimiterMap = {
     \ 'slice': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'slim': { 'left': '/', 'leftAlt': '/!' },
     \ 'slrnrc': { 'left': '%' },
+    \ 'sls': { 'left': '#' },
     \ 'sm': { 'left': '#' },
     \ 'smarty': { 'left': '{*', 'right': '*}' },
     \ 'smil': { 'left': '<!', 'right': '>' },
@@ -357,8 +377,9 @@ let s:delimiterMap = {
     \ 'sqlj': { 'left': '-- ' },
     \ 'sqr': { 'left': '!' },
     \ 'squid': { 'left': '#' },
+    \ 'sshdconfig': { 'left': '#' },
     \ 'st': { 'left': '"' },
-    \ 'stp': { 'left': '--' },
+    \ 'stp': { 'left': '/*','right': '*/', 'leftAlt': '//' },
     \ 'supercollider': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'systemverilog': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'tads': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
@@ -366,20 +387,24 @@ let s:delimiterMap = {
     \ 'tak': { 'left': '$' },
     \ 'tasm': { 'left': ';' },
     \ 'tcl': { 'left': '#' },
+    \ 'terraform': { 'left': '#', 'leftAlt': '/*', 'rightAlt': '*/'  },
     \ 'texinfo': { 'left': "@c " },
     \ 'texmf': { 'left': '%' },
     \ 'tf': { 'left': ';' },
     \ 'tidy': { 'left': '#' },
     \ 'tli': { 'left': '#' },
     \ 'tmux': { 'left': '#' },
+    \ 'toml': { 'left': '#' },
     \ 'trasys': { 'left': "$" },
     \ 'tsalt': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'tsscl': { 'left': '#' },
     \ 'tssgm': { 'left': "comment = '", 'right': "'" },
+    \ 'tup': { 'left': '#' },
     \ 'txt2tags': { 'left': '%' },
     \ 'twig': { 'left': '{#', 'right': '#}' },
     \ 'uc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'uil': { 'left': '!' },
+    \ 'upstart': { 'left': '#' },
     \ 'vala': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'vb': { 'left': "'" },
     \ 'velocity': { 'left': "##", 'right': "", 'leftAlt': '#*', 'rightAlt': '*#' },
@@ -403,6 +428,7 @@ let s:delimiterMap = {
     \ 'xmath': { 'left': '#' },
     \ 'xpm2': { 'left': '!' },
     \ 'xquery': { 'left': '(:', 'right': ':)' },
+    \ 'yaml': { 'left': '#' },
     \ 'z8a': { 'left': ';' }
     \ }
 
@@ -469,6 +495,15 @@ function s:SetUpForNewFiletype(filetype, forceReset)
 endfunction
 
 function s:CreateDelimMapFromCms()
+    if &ft == '' && exists('g:NERDDefaultDelims')
+        let delims = g:NERDDefaultDelims
+        for i in ['left', 'leftAlt', 'right', 'rightAlt']
+            if !has_key(delims, i)
+                let delims[i] = ''
+            endif
+        endfor
+        return delims
+    endif
     return {
         \ 'left': substitute(&commentstring, '\([^ \t]*\)\s*%s.*', '\1', ''),
         \ 'right': substitute(&commentstring, '.*%s\s*\(.*\)', '\1', 'g'),
@@ -679,13 +714,13 @@ endfunction
 " Args:
 "   -forceNested: a flag indicating whether the called is requesting the comment
 "    to be nested if need be
-"   -align: should be "left" or "both" or "none"
+"   -align: should be "left", "start", "both" or "none"
 "   -firstLine/lastLine: the top and bottom lines to comment
 function s:CommentLines(forceNested, align, firstLine, lastLine)
     " we need to get the left and right indexes of the leftmost char in the
     " block of of lines and the right most char so that we can do alignment of
     " the delimiters if the user has specified
-    let leftAlignIndx = s:LeftMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
+    let leftAlignIndx = a:align == "start" ? 0 : s:LeftMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
     let rightAlignIndx = s:RightMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
 
     " gotta add the length of the left delimiter onto the rightAlignIndx cos
@@ -713,7 +748,7 @@ function s:CommentLines(forceNested, align, firstLine, lastLine)
 
             " check if we can comment this line
             if !isCommented || g:NERDUsePlaceHolders || s:Multipart()
-                if a:align == "left" || a:align == "both"
+                if a:align == "left" || a:align == "start" || a:align == "both"
                     let theLine = s:AddLeftDelimAligned(s:Left({'space': 1}), theLine, leftAlignIndx)
                 else
                     let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
@@ -917,6 +952,12 @@ endfunction
 "   -firstLine/lastLine: the top and bottom lines to comment
 function s:CommentLinesToggle(forceNested, firstLine, lastLine)
     let currentLine = a:firstLine
+
+    let align = g:NERDDefaultAlign
+    let leftAlignIndx = align == "start" ? 0 : s:LeftMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
+    let rightAlignIndx = s:RightMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
+    let rightAlignIndx = rightAlignIndx + strlen(s:Left({'space': 1}))
+
     while currentLine <= a:lastLine
 
         " get the next line, check commentability and convert spaces to tabs
@@ -931,8 +972,16 @@ function s:CommentLinesToggle(forceNested, firstLine, lastLine)
                 let theLine = s:SwapOutterMultiPartDelimsForPlaceHolders(theLine)
             endif
 
-            let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
-            let theLine = s:AddRightDelim(s:Right({'space': 1}), theLine)
+            if align == 'left' || align == 'start' || align == 'both'
+                let theLine = s:AddLeftDelimAligned(s:Left({'space': 1}), theLine, leftAlignIndx)
+            else
+                let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
+            endif
+            if align == "both"
+                let theLine = s:AddRightDelimAligned(s:Right({'space': 1}), theLine, rightAlignIndx)
+            else
+                let theLine = s:AddRightDelim(s:Right({'space': 1}), theLine)
+            endif
         endif
 
         " restore leading tabs if appropriate
@@ -979,7 +1028,7 @@ function s:CommentRegion(topLine, topCol, bottomLine, bottomCol, forceNested)
         let topOfRange = a:topLine+1
         let bottomOfRange = a:bottomLine-1
         if topOfRange <= bottomOfRange
-            call s:CommentLines(a:forceNested, "none", topOfRange, bottomOfRange)
+            call s:CommentLines(a:forceNested, g:NERDDefaultAlign, topOfRange, bottomOfRange)
         endif
 
         "comment the bottom line
@@ -1048,9 +1097,6 @@ endfunction
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
 function! NERDComment(mode, type) range
     let isVisual = a:mode =~ '[vsx]'
-    " we want case sensitivity when commenting
-    let oldIgnoreCase = &ignorecase
-    set noignorecase
 
     if !exists("g:did_load_ftplugin") || g:did_load_ftplugin != 1
         call s:NerdEcho("filetype plugins should be enabled. See :help NERDComInstallation and :help :filetype-plugin-on", 0)
@@ -1065,6 +1111,9 @@ function! NERDComment(mode, type) range
         let firstLine = a:firstline
         let lastLine = a:lastline
     endif
+    "
+    " Save options we need to change so we can recover them later
+    let state = s:SetupStateBeforeLineComment(firstLine, lastLine)
 
     let countWasGiven = (!isVisual && firstLine != lastLine)
 
@@ -1076,7 +1125,7 @@ function! NERDComment(mode, type) range
         elseif isVisual && visualmode() == "v" && (g:NERDCommentWholeLinesInVMode==0 || (g:NERDCommentWholeLinesInVMode==2 && s:HasMultipartDelims()))
             call s:CommentRegion(firstLine, firstCol, lastLine, lastCol, forceNested)
         else
-            call s:CommentLines(forceNested, "none", firstLine, lastLine)
+            call s:CommentLines(forceNested, g:NERDDefaultAlign, firstLine, lastLine)
         endif
 
     elseif a:type ==? 'AlignLeft' || a:type ==? 'AlignBoth'
@@ -1095,7 +1144,7 @@ function! NERDComment(mode, type) range
         try
             call s:CommentLinesSexy(firstLine, lastLine)
         catch /NERDCommenter.Delimiters/
-            call s:CommentLines(forceNested, "none", firstLine, lastLine)
+            call s:CommentLines(forceNested, g:NERDDefaultAlign, firstLine, lastLine)
         catch /NERDCommenter.Nesting/
             call s:NerdEcho("Sexy comment aborted. Nested sexy cannot be nested", 0)
         endtry
@@ -1143,7 +1192,7 @@ function! NERDComment(mode, type) range
         execute firstLine .','. lastLine .'call NERDComment("'. a:mode .'", "Comment")'
     endif
 
-    let &ignorecase = oldIgnoreCase
+    call s:RecoverStateAfterLineComment(state)
 
     if isVisual
         let nlines = lastLine - firstLine
@@ -1251,6 +1300,51 @@ function s:RemoveDelimiters(left, right, line)
     endif
 
     return line
+endfunction
+
+" Function: s:SetupStateBeforeLineComment(topLine, bottomLine) {{{2
+" Changes ignorecase and foldmethod options before commenting lines and saves
+" their original values in a dict, which is returned as a result
+"
+" Args:
+" topLine: the top line of the visual selection to uncomment
+" bottomLine: the bottom line of the visual selection to uncomment
+"
+" Return: a dict with the state prior to configuration changes
+"
+function s:SetupStateBeforeLineComment(topLine, bottomLine)
+    let state = {'foldmethod' : &foldmethod,
+                \'ignorecase' : &ignorecase}
+
+    " Vim's foldmethods are evaluated every time we use 'setline', which can 
+    " make commenting wide ranges of lines VERY slow. We'll change it to
+    " manual, do the commenting stuff and recover it later. To avoid slowing
+    " down commenting few lines, we avoid doing this for ranges smaller than
+    " 10 lines
+    if a:bottomLine - a:topLine >= 10 && &foldmethod != "manual"
+        set foldmethod=manual
+    endif
+
+    " we want case sensitivity when commenting
+    set noignorecase
+
+    return state
+endfunction
+
+" Function: s:RecoverStateAfterLineComment(state) {{{2
+" Receives the state returned by s:SetupStateBeforeLineComment and restores
+" the state accordingly
+"
+" Args:
+" state: the top line of the visual selection to uncomment
+" bottomLine: the bottom line of the visual selection to uncomment
+function s:RecoverStateAfterLineComment(state)
+    if a:state['foldmethod'] != &foldmethod
+        let &foldmethod = a:state['foldmethod']
+    endif
+    if a:state['ignorecase'] != &ignorecase
+        let &ignorecase = a:state['ignorecase']
+    endif
 endfunction
 
 " Function: s:UncommentLines(topLine, bottomLine) {{{2
@@ -1571,8 +1665,9 @@ endfunction
 function s:CanCommentLine(forceNested, lineNum)
     let theLine = getline(a:lineNum)
 
-    " make sure we don't comment lines that are just spaces or tabs or empty.
-    if theLine =~ "^[ \t]*$"
+    " make sure we don't comment lines that are just spaces or tabs or empty,
+    " unless configured otherwise
+    if g:NERDCommentEmptyLines == 0 && theLine =~ "^[ \t]*$"
         return 0
     endif
 
@@ -2379,7 +2474,7 @@ endfunction
 function s:Left(...)
     let params = a:0 ? a:1 : {}
 
-    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['leftAlt'] : b:NERDCommenterDelims['left'] 
+    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['leftAlt'] : b:NERDCommenterDelims['left']
 
     if delim == ''
         return ''
@@ -2558,7 +2653,7 @@ endfunction
 function s:Right(...)
     let params = a:0 ? a:1 : {}
 
-    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['rightAlt'] : b:NERDCommenterDelims['right'] 
+    let delim = has_key(params, 'alt') ? b:NERDCommenterDelims['rightAlt'] : b:NERDCommenterDelims['right']
 
     if delim == ''
         return ''
