@@ -124,6 +124,7 @@ let s:delimiterMap = {
     \ 'cuda': { 'left': '/*','right': '*/', 'leftAlt': '//' },
     \ 'crontab': { 'left': '#' },
     \ 'cs': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'teak': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'csp': { 'left': '--' },
     \ 'cterm': { 'left': '*' },
     \ 'cucumber': { 'left': '#' },
@@ -1123,6 +1124,11 @@ function s:InvertComment(firstLine, lastLine)
         endif
 
     endwhile
+endfunction
+
+function! NERDCommentIsLineCommented(lineNo)
+    let theLine = getline(a:lineNo)
+    return s:IsInSexyComment(a:lineNo) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
 endfunction
 
 " Function: NERDComment(mode, type) function {{{2
