@@ -48,8 +48,7 @@ See **|filetype-plugin-on|** for details, but basically, stick this in your vimr
 ###### Unix
 
 ```sh
-curl -fLo ~/.vim/plugin/NERD_commenter.vim --create-dirs \
-    https://raw.githubusercontent.com/scrooloose/nerdcommenter/master/plugin/NERD_commenter.vim
+git clone https://github.com/scrooloose/nerdcommenter.git ~/.vim/plugin
 ```
 
 ###### Windows (PowerShell)
@@ -63,8 +62,7 @@ $uri = 'https://raw.githubusercontent.com/scrooloose/nerdcommenter/master/plugin
 #### Neovim
 
 ```sh
-curl -fLo ~/.config/nvim/plugin/NERD_commenter.vim --create-dirs \
-    https://raw.githubusercontent.com/scrooloose/nerdcommenter/master/plugin/NERD_commenter.vim
+git clone https://github.com/scrooloose/nerdcommenter.git ~/.config/nvim/plugin
 ```
 
 
