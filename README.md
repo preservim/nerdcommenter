@@ -1,35 +1,72 @@
 # Installation  
 
-_\*For simplicity, let's use **[VIM_ROOT]** which will mean ~/.vim (\*nix) or ~/vimfiles (Windows)_
-
 The NERD Commenter requires Vim 7 or higher is comprised of 2 files:  
 
     plugin/NERD_commenter.vim  
     doc/NERD_commenter.txt 
 
-### Classic Install
+## Via Plugin Manager (Recommended)
 
-1. Extract the plugin files into your **[VIM_ROOT]**/plugin and **[VIM_ROOT]**/doc folders respectively.
-2. Finish the install by updating your help files.  Run:
+#### Pathogen Install
 
-<pre><code>:helptags [VIM_ROOT]/doc</code></pre>
+###### Unix
 
-See **|add-local-help|** for more details. 
+```sh
+git clone https://github.com/scrooloose/nerdcommenter.git ~/.vim/bundle
+```
 
-### Pathogen Install
-1. Navigate to your **[VIM_ROOT]/bundle** directory in your local Vim setup
-2. `git clone https://github.com/scrooloose/nerdcommenter.git`
+###### Neovim
 
-### Vundle Install
+```sh
+git clone https://github.com/scrooloose/nerdcommenter.git ~/.config/nvim/bundle
+```
+
+#### Vim-Plug Install
+1. Add `Plug 'Plug scrooloose/nerdcommenter'` to your .vimrc file.
+2. Reload .vimrc (`:so %` from vimrc, or just restart vim)
+3. Run `:PlugInstall`
+
+#### Vundle Install
 1. Add `Plugin 'scrooloose/nerdcommenter'` to your .vimrc file.
 2. Run `:BundleInstall`
 
-### Post Install  
+#### NeoBundle Install
+1. Add `NeoBundle 'scrooloose/nerdcommenter'` to your .vimrc file.
+2. Run `:NeoUpdate``
+
+#### Post Install  
 After the **'Classic'** or **'Pathogen'** install, make sure that you have filetype plugins enabled, as the script makes use of 
 **|'commentstring'|** where possible (which is usually set in a filetype plugin). 
 See **|filetype-plugin-on|** for details, but basically, stick this in your vimrc:
 
     filetype plugin on
+
+## Install Manually
+
+#### Vim
+
+###### Unix
+
+```sh
+curl -fLo ~/.vim/plugin/NERD_commenter.vim --create-dirs \
+    https://raw.githubusercontent.com/scrooloose/nerdcommenter/master/plugin/NERD_commenter.vim
+```
+
+###### Windows (PowerShell)
+
+```powershell
+md ~\vimfiles\plugin
+$uri = 'https://raw.githubusercontent.com/scrooloose/nerdcommenter/master/plugin/NERD_commenter.vim'
+(New-Object Net.WebClient).DownloadFile($uri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\autoload\NERD_commenter.vim"))
+```
+
+#### Neovim
+
+```sh
+curl -fLo ~/.config/nvim/plugin/NERD_commenter.vim --create-dirs \
+    https://raw.githubusercontent.com/scrooloose/nerdcommenter/master/plugin/NERD_commenter.vim
+```
+
 
 # Usage  
 
