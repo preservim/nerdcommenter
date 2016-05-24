@@ -297,6 +297,7 @@ let s:delimiterMap = {
     \ 'opl': { 'left': "REM" },
     \ 'ora': { 'left': '#' },
     \ 'ox': { 'left': '//' },
+    \ 'paludis-use-conf': { 'left': '#' },
     \ 'pandoc': { 'left': '<!--', 'right': '-->' },
     \ 'pascal': { 'left': '{','right': '}', 'leftAlt': '(*', 'rightAlt': '*)' },
     \ 'patran': { 'left': '$', 'leftAlt': '/*', 'rightAlt': '*/' },
