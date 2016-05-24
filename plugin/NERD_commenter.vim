@@ -405,6 +405,7 @@ let s:delimiterMap = {
     \ 'tsalt': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'tsscl': { 'left': '#' },
     \ 'tssgm': { 'left': "comment = '", 'right': "'" },
+    \ 'tup': { 'left': '#' },
     \ 'txt2tags': { 'left': '%' },
     \ 'typescript': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'twig': { 'left': '{#', 'right': '#}' },
