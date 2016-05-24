@@ -369,6 +369,7 @@ let s:delimiterMap = {
     \ 'smil': { 'left': '<!', 'right': '>' },
     \ 'smith': { 'left': ';' },
     \ 'sml': { 'left': '(*', 'right': '*)' },
+    \ 'snippets': { 'left': '#' },
     \ 'snnsnet': { 'left': '#' },
     \ 'snnspat': { 'left': '#' },
     \ 'snnsres': { 'left': '#' },
