@@ -1103,6 +1103,50 @@ function s:InvertComment(firstLine, lastLine)
     endwhile
 endfunction
 
+" Function: NERDCommentYank(mode, register) function {{{2
+" This function handles yanking
+"
+" Args:
+"   -mode: a character indicating the mode in which the comment is requested:
+"   'n' for Normal mode, 'x' for Visual mode
+"   -register: the register to yank into
+function NERDCommentYank(mode, register) range
+    let isVisual = a:mode =~ '[vsx]'
+    if isVisual
+        let firstLine = line("'<")
+        let lastLine = line("'>")
+        let firstCol = col("'<")
+        let lastCol = col("'>") - (&selection == 'exclusive' ? 1 : 0)
+    else
+        let firstLine = a:firstline
+        let lastLine = a:lastline
+    endif
+
+    let reg = ''
+    let range = ''
+    let rangeCount = ''
+
+    if a:register != ""
+        let reg = '"'.a:register
+    endif
+
+    if firstLine != lastLine
+        let range = firstLine .','. lastLine
+        let rangeCount = lastLine - firstLine + 1
+    endif
+
+    if isVisual
+        normal! gvy
+    else
+        execute range .'yank '. a:register
+    endif
+    execute range .'call NERDComment('. isVisual .', "norm")'
+
+    if !isVisual
+        silent! call repeat#set(rangeCount.reg.'\<plug>NERDCommenterYank',-1)
+    endif
+endfunction
+
 " Function: NERDComment(mode, type) function {{{2
 " This function is a Wrapper for the main commenting functions
 "
@@ -1111,7 +1155,7 @@ endfunction
 "   'n' for Normal mode, 'x' for Visual mode
 "   -type: the type of commenting requested. Can be 'Sexy', 'Invert',
 "    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Comment',
-"    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
+"    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment'
 function! NERDComment(mode, type) range
     let isVisual = a:mode =~ '[vsx]'
 
@@ -1197,16 +1241,6 @@ function! NERDComment(mode, type) range
 
     elseif a:type ==? 'Uncomment'
         call s:UncommentLines(firstLine, lastLine)
-
-    elseif a:type ==? 'Yank'
-        if isVisual
-            normal! gvy
-        elseif countWasGiven
-            execute firstLine .','. lastLine .'yank'
-        else
-            normal! yy
-        endif
-        execute firstLine .','. lastLine .'call NERDComment("'. a:mode .'", "Comment")'
     endif
 
     call s:RecoverStateAfterLineComment(state)
@@ -2860,6 +2894,40 @@ function! s:CreateMaps(modes, target, desc, combo)
         endif
     endfor
 endfunction
+
+" Create menu items for the specified modes.  If a:combo is not empty, then
+" also define mappings and show a:combo in the menu items.
+function! s:CreateYankMaps(modes, target, desc, combo)
+    " Build up a map command like
+    " 'noremap <silent> <plug>NERDCommenterYank :call NERDCommentYank("n", v:register)'
+    let plug = '<plug>NERDCommenter' . a:target
+    let plug_start = 'noremap <silent> ' . plug . ' :call NERDCommentYank("'
+    let plug_end = '", v:register)<cr>'
+    " Build up a menu command like
+    " 'menu <silent> comment.Comment<Tab>\\cc <plug>NERDCommenterComment'
+    let menuRoot = get(['', 'comment', '&comment', '&Plugin.&comment'],
+                \ g:NERDMenuMode, '')
+    let menu_command = 'menu <silent> ' . menuRoot . '.' . escape(a:desc, ' ')
+    if strlen(a:combo)
+        let leader = exists('g:mapleader') ? g:mapleader : '\'
+        let menu_command .= '<Tab>' . escape(leader, '\') . a:combo
+    endif
+    let menu_command .= ' ' . (strlen(a:combo) ? plug : a:target)
+    " Execute the commands built above for each requested mode.
+    for mode in (a:modes == '') ? [''] : split(a:modes, '\zs')
+        if strlen(a:combo)
+            execute mode . plug_start . mode . plug_end
+            if g:NERDCreateDefaultMappings && !hasmapto(plug, mode)
+                execute mode . 'map <leader>' . a:combo . ' ' . plug
+            endif
+        endif
+        " Check if the user wants the menu to be displayed.
+        if g:NERDMenuMode != 0
+            execute mode . menu_command
+        endif
+    endfor
+endfunction
+
 call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
 call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<space>')
 call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
@@ -2867,7 +2935,7 @@ call s:CreateMaps('nx', 'Nested',     'Nested', 'cn')
 call s:CreateMaps('n',  'ToEOL',      'To EOL', 'c$')
 call s:CreateMaps('nx', 'Invert',     'Invert', 'ci')
 call s:CreateMaps('nx', 'Sexy',       'Sexy', 'cs')
-call s:CreateMaps('nx', 'Yank',       'Yank then comment', 'cy')
+call s:CreateYankMaps('nx', 'Yank',   'Yank then comment', 'cy')
 call s:CreateMaps('n',  'Append',     'Append', 'cA')
 call s:CreateMaps('',   ':',          '-Sep-', '')
 call s:CreateMaps('nx', 'AlignLeft',  'Left aligned', 'cl')
