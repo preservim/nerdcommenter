@@ -232,6 +232,7 @@ let s:delimiterMap = {
     \ 'kix': { 'left': ';' },
     \ 'kscript': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'lace': { 'left': '--' },
+	\ 'laravel': { 'left': '{{--', 'right': '--}}' },
     \ 'ldif': { 'left': '#' },
     \ 'less': { 'left': '/*','right': '*/' },
     \ 'lhaskell': { 'left': '>{-','right': '-}', 'leftAlt': '>-- ' },
