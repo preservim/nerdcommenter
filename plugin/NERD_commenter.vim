@@ -815,7 +815,7 @@ function s:CommentLinesMinimal(firstLine, lastLine)
     let sexyNested = s:SexyNested()
 
     "if we need to use place holders for the comment, make sure they are
-    "enabled for this filetype, or the delims allow nesting
+    "enabled for this filetype, or the delimiterss allow nesting
     if !g:NERDUsePlaceHolders && !sexyNested && s:DoesBlockHaveMultipartDelim(a:firstLine, a:lastLine)
         throw 'NERDCommenter.Settings exception: Place holders are required but disabled.'
     endif
@@ -1693,7 +1693,7 @@ function s:AltMultipart()
 endfunction
 
 " Function: s:AltNested() {{{2
-" returns 1 if the alternate multipart (if any) delims allow nesting
+" returns 1 if the alternate multipart (if any) delimiters allow nesting
 function s:AltNested()
     return b:NERDCommenterDelims['nestedAlt']
 endfunction
@@ -2629,7 +2629,7 @@ function s:NerdEcho(msg, typeOfMsg)
 endfunction
 
 " Function: s:Nested() {{{2
-" returns 1 if the current multipart (if any) delims allow nesting
+" returns 1 if the current multipart (if any) delimiters allow nesting
 function s:Nested()
     return b:NERDCommenterDelims['nested']
 endfunction
