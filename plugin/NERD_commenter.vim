@@ -2878,4 +2878,9 @@ inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call NERDComment('i
 
 " switch to/from alternative delimiters (does not use wrapper function)
 nnoremap <plug>NERDCommenterAltDelims :call <SID>SwitchToAlternativeDelimiters(1)<cr>
+
+" This is a workaround to enable lazy-loading from supported plugin managers:
+" See https://github.com/scrooloose/nerdcommenter/issues/176
+call s:SetUpForNewFiletype(&filetype, 1)
+
 " vim: set foldmethod=marker :
