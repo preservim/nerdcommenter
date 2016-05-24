@@ -751,11 +751,11 @@ again.
 
 If you want the NERD commenter to use the alternative delimiters for a
 specific filetype by default then put a line of this form into your vimrc: >
-    let g:NERD_<filetype>_alt_style=1
+    let g:NERDAltDelims_<filetype> = 1
 <
 Example: java uses // style comments by default, but you want it to default to
 /* */ style comments instead. You would put this line in your vimrc: >
-    let g:NERD_java_alt_style=1
+    let g:NERDAltDelims_java = 1
 <
 
 See |NERDComAltDelim| for switching commenting styles at runtime.
