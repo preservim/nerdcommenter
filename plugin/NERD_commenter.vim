@@ -256,7 +256,7 @@ let s:delimiterMap = {
     \ 'masm': { 'left': ';' },
     \ 'mason': { 'left': '<% #', 'right': '%>' },
     \ 'master': { 'left': '$' },
-    \ 'matlab': { 'left': '%' },
+    \ 'matlab': { 'left': '%', 'leftAlt': '%{', 'rightAlt': '%}' },
     \ 'mel': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'mib': { 'left': '--' },
     \ 'mips': { 'left': '#'},
