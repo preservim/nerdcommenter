@@ -244,6 +244,7 @@ let s:delimiterMap = {
     \ 'llvm': { 'left': ';' },
     \ 'lotos': { 'left': '(*', 'right': '*)' },
     \ 'lout': { 'left': '#' },
+    \ 'lpc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'lprolog': { 'left': '%' },
     \ 'lscript': { 'left': "'" },
     \ 'lss': { 'left': '#' },
