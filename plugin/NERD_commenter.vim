@@ -515,7 +515,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
             endif
         endfor
         " if g:NERD_<filetype>_alt_style is defined, use the alternate style
-        let b:NERDCommenterFirstInit = getbufvar(1,"NERDCommenterFirstInit",0)
+        let b:NERDCommenterFirstInit = getbufvar(1,"NERDCommenterFirstInit")
         if exists('g:NERDAltDelims_'.ft) && eval('g:NERDAltDelims_'.ft) && !b:NERDCommenterFirstInit
             call s:SwitchToAlternativeDelimiters(0)
             let b:NERDCommenterFirstInit = 1
