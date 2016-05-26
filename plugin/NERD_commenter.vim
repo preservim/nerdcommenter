@@ -348,7 +348,7 @@ let s:delimiterMap = {
     \ 'robots': { 'left': '#' },
     \ 'rspec': { 'left': '#' },
     \ 'ruby': { 'left': '#', 'leftAlt': '=begin', 'rightAlt': '=end' },
-    \ 'rust': { 'left': '//', 'leftAlt': '///', 'rightAlt': '///' },
+    \ 'rust': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'sa': { 'left': '--' },
     \ 'samba': { 'left': ';', 'leftAlt': '#' },
     \ 'sass': { 'left': '//', 'leftAlt': '/*' },
