@@ -612,8 +612,10 @@ function s:AppendCommentToLine()
     if lenRight > 0
         let leftMoveAmount = lenRight - 1
         execute ":normal! " . leftMoveAmount . "h"
+        startinsert
+    else
+        startinsert!
     endif
-    startinsert
 endfunction
 
 " Function: s:CommentBlock(top, bottom, lSide, rSide, forceNested ) {{{2
