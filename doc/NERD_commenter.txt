@@ -28,8 +28,9 @@ CONTENTS                                               *NERDCommenterContents*
             3.2.11 Use alternate delims map...|NERDComAltDelim|
             3.2.12 Comment aligned maps.......|NERDComAlignedComment|
             3.2.13 Uncomment line map.........|NERDComUncommentLine|
-        3.4 Sexy Comments.....................|NERDComSexyComments|
-        3.5 The NERDComment function..........|NERDComNERDComment|
+        3.3 Sexy Comments.....................|NERDComSexyComments|
+        3.4 The NERDComment function..........|NERDComNERDComment|
+        3.5 The Hooks.........................|NERDComHooks|
     4.Options.................................|NERDComOptions|
         4.1 Options summary...................|NERDComOptionsSummary|
         4.2 Options details...................|NERDComOptionsDetails|
@@ -391,6 +392,35 @@ For example, if you typed >
 <
 then the script would do a sexy comment on the last visual selection.
 
+------------------------------------------------------------------------------
+3.5 The hooks                                                   *NERDComHooks*
+|fu! NERDCommenter_before()|  Before NERDComment/SwitchToAlternativeDelimiters
+|fu! NERDCommenter_after()|    After NERDComment/SwitchToAlternativeDelimiters
+
+For example, in order to handle different language blocks embedded in the same
+file such as |vim-vue|, you can change the filetype, comment something and
+change the filetype back: >
+    let g:ft = ''
+    fu! NERDCommenter_before()
+        if &ft == 'vue'
+            let g:ft = 'vue'
+            let stack = synstack(line('.'), col('.'))
+            if len(stack) > 0
+                let syn = synIDattr((stack)[0], 'name')
+                if len(syn) > 0
+                    let syn = tolower(syn)
+                    exe 'setf '.syn
+                endif
+            endif
+        endif
+    endfu
+    fu! NERDCommenter_after()
+        if g:ft == 'vue'
+            setf vue
+            let g:ft = ''
+        endif
+    endfu
+<
 
 ==============================================================================
 4. Options                                                    *NERDComOptions*
