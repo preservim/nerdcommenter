@@ -555,6 +555,9 @@ endfunction
 "   -printMsgs: if this is 1 then a message is echoed to the user telling them
 "    if this function changed the delimiters or not
 function s:SwitchToAlternativeDelimiters(printMsgs)
+    if exists('*NERDCommenter_before')
+        exe "call NERDCommenter_before()"
+    endif
     "if both of the alternative delimiters are empty then there is no
     "alternative comment style so bail out
     if b:NERDCommenterDelims['leftAlt'] == '' && b:NERDCommenterDelims['rightAlt'] == ''
@@ -583,6 +586,10 @@ function s:SwitchToAlternativeDelimiters(printMsgs)
     "tell the user what comment delimiters they are now using
     if a:printMsgs
         call s:NerdEcho("Now using " . s:Left() . " " . s:Right() . " to delimit comments", 1)
+    endif
+
+    if exists('*NERDCommenter_after')
+        exe "call NERDCommenter_after()"
     endif
 
     return 1
@@ -1151,6 +1158,10 @@ endfunction
 "    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Comment',
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
 function! NERDComment(mode, type) range
+    if exists('*NERDCommenter_before')
+        exe "call NERDCommenter_before()"
+    endif
+
     let isVisual = a:mode =~ '[vsx]'
 
     if !exists("g:did_load_ftplugin") || g:did_load_ftplugin != 1
@@ -1255,6 +1266,11 @@ function! NERDComment(mode, type) range
     else
         silent! call repeat#set("\<Plug>NERDCommenter". a:type)
     endif
+
+    if exists('*NERDCommenter_after')
+        exe "call NERDCommenter_after()"
+    endif
+
 endfunction
 
 " Function: s:PlaceDelimitersAndInsBetween() function {{{2
