@@ -329,6 +329,7 @@ let s:delimiterMap = {
     \ 'ps1': { 'left': '#' },
     \ 'psf': { 'left': '#' },
     \ 'ptcap': { 'left': '#' },
+    \ 'pug': { 'left': '//-', 'leftAlt': '//' },
     \ 'puppet': { 'left': '#' },
     \ 'pyrex': { 'left': '# ', 'leftAlt': '#' },
     \ 'python': { 'left': '# ', 'leftAlt': '#' },
