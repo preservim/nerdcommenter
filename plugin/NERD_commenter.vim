@@ -1465,6 +1465,15 @@ function s:UncommentLines(topLine, bottomLine)
 
 endfunction
 
+" Function: s:TrimTrailingWhitespace(line) {{{2
+" This function removes all the trailing whitespace
+" Args:
+"   -line: the target line
+function s:TrimTrailingWhitespace(line)
+    let toReturn = substitute(a:line, '\s\+$', '', 'g')
+    return toReturn
+endfunction
+
 " Function: s:UncommentLinesSexy(topline, bottomline) {{{2
 " This function removes all the comment characters associated with the sexy
 " comment spanning the given lines
@@ -1510,6 +1519,8 @@ function s:UncommentLinesSexy(topline, bottomline)
         let theLine = s:SwapOuterPlaceHoldersForMultiPartDelims(theLine)
 
         let theLine = s:ConvertLeadingWhiteSpace(theLine)
+
+        let theLine = s:TrimTrailingWhitespace(theLine)
 
         " move onto the next line
         call setline(currentLine, theLine)
@@ -1651,6 +1662,7 @@ function s:UncommentLineNormal(line)
     endif
 
     let line = s:ConvertLeadingWhiteSpace(line)
+    let line = s:TrimTrailingWhitespace(line)
 
     return line
 endfunction
@@ -1810,8 +1822,9 @@ function s:CanToggleCommentLine(forceNested, lineNum)
         return 0
     endif
 
-    " make sure we don't comment lines that are just spaces or tabs or empty.
-    if theLine =~ "^[ \t]*$"
+    " make sure we don't comment lines that are just spaces or tabs or empty,
+    " unless configured otherwise
+    if g:NERDCommentEmptyLines == 0 && theLine =~ "^[ \t]*$"
         return 0
     endif
 
