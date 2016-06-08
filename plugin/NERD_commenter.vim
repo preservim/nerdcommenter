@@ -1810,8 +1810,9 @@ function s:CanToggleCommentLine(forceNested, lineNum)
         return 0
     endif
 
-    " make sure we don't comment lines that are just spaces or tabs or empty.
-    if theLine =~ "^[ \t]*$"
+    " make sure we don't comment lines that are just spaces or tabs or empty,
+    " unless configured otherwise
+    if g:NERDCommentEmptyLines == 0 && theLine =~ "^[ \t]*$"
         return 0
     endif
 

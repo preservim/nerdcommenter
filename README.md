@@ -88,6 +88,9 @@ let g:NERDAltDelims_java = 1
 
 " Add your own custom formats or override the defaults
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+g:NERDCommentEmptyLines = 1
 ```
 
 ### Default mappings

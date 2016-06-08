@@ -437,6 +437,9 @@ change the filetype back: >
 |'NERDBlockComIgnoreEmpty'|           Forces right delimiters to be placed
                                       when doing visual-block comments.
 
+|'NERDCommentEmptyLines'|             Specifies if empty lines should be
+                                      commented (useful with regions).
+
 |'NERDCommentWholeLinesInVMode'|      Changes behaviour of visual comments.
 
 |'NERDCreateDefaultMappings'|         Turn the default mappings on/off.
@@ -559,6 +562,15 @@ Otherwise, the code block would become: >
     }
     /*}  */
 <
+------------------------------------------------------------------------------
+                                                     *'NERDCommentEmptyLines'*
+Values: 0 or 1.
+Default: 0.
+
+This option affects commenting of empty lines. If this option is turned on,
+then empty lines will be commented as well. Useful when commenting regions of
+code.
+
 ------------------------------------------------------------------------------
                                                 *'NERDCommentWholeLinesInVMode'*
 Values: 0, 1 or 2.
