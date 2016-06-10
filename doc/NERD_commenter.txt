@@ -478,6 +478,9 @@ change the filetype back: >
                                       whether to remove them when
                                       uncommenting.
                                       
+|'NERDTrimTrailingWhitespace'|        Specifies if trailing whitespace
+                                      should be deleted when uncommenting.
+
 |'NERDCompactSexyComs'|               Specifies whether to use the compact
                                       style sexy comments.
 
@@ -748,6 +751,15 @@ as opposed to this: >
 If you want spaces to be added then set NERDSpaceDelims to 1 in your vimrc.
 
 See also |'NERDRemoveExtraSpaces'|.
+
+------------------------------------------------------------------------------
+                                                  *'NERDTrimTrailingWhitespace'*
+Values: 0 or 1.
+Default 0.
+
+When uncommenting an empty line some whitespace may be left as a result of
+alignment padding. With this option enabled any trailing whitespace will be
+deleted when uncommenting a line.
 
 ------------------------------------------------------------------------------
                                                              *'NERDDefaultAlign'*
