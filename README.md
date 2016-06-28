@@ -8,7 +8,7 @@ Comment functions so powerful—no comment necessary.
 
 #### [Vim-Plug](https://github.com/junegunn/vim-plug)
 
-1. Add `Plug 'Plug scrooloose/nerdcommenter'` to your vimrc file.
+1. Add `Plug 'scrooloose/nerdcommenter'` to your vimrc file.
 2. Reload your vimrc or restart
 3. Run `:PlugInstall`
 
