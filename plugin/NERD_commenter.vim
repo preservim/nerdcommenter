@@ -205,6 +205,7 @@ let s:delimiterMap = {
     \ 'hb': { 'left': '#' },
     \ 'hbs': { 'left': '{{!-- ', 'right': ' --}}' },
     \ 'hercules': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'hive': { 'left': '-- ' },
     \ 'hog': { 'left': '#' },
     \ 'hostsaccess': { 'left': '#' },
     \ 'htmlcheetah': { 'left': '##' },
