@@ -92,7 +92,7 @@ let s:delimiterMap = {
     \ 'asterisk': { 'left': ';' },
     \ 'asy': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'atlas': { 'left': 'C', 'right': '$' },
-    \ 'autohotkey': { 'left': ';' },
+    \ 'autohotkey': { 'left': ';', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'autoit': { 'left': ';' },
     \ 'ave': { 'left': "'" },
     \ 'awk': { 'left': '#' },
