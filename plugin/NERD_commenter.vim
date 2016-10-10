@@ -255,6 +255,7 @@ let s:delimiterMap = {
     \ 'lua': { 'left': '--', 'leftAlt': '--[[', 'rightAlt': ']]' },
     \ 'lynx': { 'left': '#' },
     \ 'lytex': { 'left': '%' },
+    \ 'm4': { 'left': 'dnl ' },
     \ 'mail': { 'left': '> ' },
     \ 'mako': { 'left': '##' },
     \ 'man': { 'left': '."' },
