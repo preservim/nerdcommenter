@@ -1620,6 +1620,16 @@ function s:UncommentLinesSexy(topline, bottomline)
         let theLine = s:SwapOuterPlaceHoldersForMultiPartDelims(theLine)
         call setline(bottomline, theLine)
     endif
+    
+    " remove trailing whitespaces for first and last line
+    if g:NERDTrimTrailingWhitespace == 1
+        let theLine = getline(a:bottomline)
+        let theLine = s:TrimTrailingWhitespace(theLine)
+        call setline(a:bottomline, theLine)
+        let theLine = getline(a:topline)
+        let theLine = s:TrimTrailingWhitespace(theLine)
+        call setline(a:topline, theLine)
+    endif
 endfunction
 
 " Function: s:UncommentLineNormal(line) {{{2
