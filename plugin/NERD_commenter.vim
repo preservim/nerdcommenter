@@ -79,6 +79,7 @@ let s:delimiterMap = {
     \ 'amiga': { 'left': ';' },
     \ 'aml': { 'left': '/*' },
     \ 'ampl': { 'left': '#' },
+    \ 'ansible': { 'left': '#' },
     \ 'apache': { 'left': '#' },
     \ 'apachestyle': { 'left': '#' },
     \ 'applescript': { 'left': '--', 'leftAlt': '(*', 'rightAlt': '*)' },
