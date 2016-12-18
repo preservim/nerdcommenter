@@ -47,7 +47,6 @@ call s:InitVariable("g:NERDBlockComIgnoreEmpty", 0)
 call s:InitVariable("g:NERDCommentWholeLinesInVMode", 0)
 call s:InitVariable("g:NERDCommentEmptyLines", 0)
 call s:InitVariable("g:NERDCompactSexyComs", 0)
-call s:InitVariable("g:NERDCreateDefaultMappings", 0)
 call s:InitVariable("g:NERDDefaultNesting", 1)
 call s:InitVariable("g:NERDMenuMode", 3)
 call s:InitVariable("g:NERDLPlace", "[>")
@@ -2999,9 +2998,6 @@ function! s:CreateMaps(modes, target, desc, combo)
     for mode in (a:modes == '') ? [''] : split(a:modes, '\zs')
         if strlen(a:combo)
             execute mode . plug_start . mode . plug_end
-            if g:NERDCreateDefaultMappings && !hasmapto(plug, mode)
-                execute mode . 'map <leader>' . a:combo . ' ' . plug
-            endif
         endif
         " Check if the user wants the menu to be displayed.
         if g:NERDMenuMode != 0
