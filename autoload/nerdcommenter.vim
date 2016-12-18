@@ -1,5 +1,5 @@
 " ============================================================================
-" File:        NERD_commenter.vim
+" File:        nerdcommenter.vim
 " Description: vim global plugin that provides easy code commenting
 " Author:      Martin Grenfell <martin.grenfell at gmail dot com>
 " Maintainer:  Caleb Maclennan <caleb@alerque.com>
@@ -2980,7 +2980,7 @@ endfunction
 " also define mappings and show a:combo in the menu items.
 function! s:CreateMaps(modes, target, desc, combo)
     " Build up a map command like
-    " 'noremap <silent> <plug>NERDCommenterComment :call NERDComment("n", "Comment")'
+    " 'noremap <silent> <plug>NERDCommenterComment :call nerdcommenter#Comment("n", "Comment")'
     let plug = '<plug>NERDCommenter' . a:target
     let plug_start = 'noremap <silent> ' . plug . ' :call nerdcommenter#Comment("'
     let plug_end = '", "' . a:target . '")<cr>'
