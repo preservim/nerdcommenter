@@ -1,5 +1,5 @@
 " ============================================================================
-" File:        NERD_commenter.vim
+" File:        nerdcommenter.vim
 " Description: vim global plugin that provides easy code commenting
 " Author:      Martin Grenfell <martin.grenfell at gmail dot com>
 " Maintainer:  Caleb Maclennan <caleb@alerque.com>
@@ -1173,12 +1173,12 @@ function s:InvertComment(firstLine, lastLine)
     endwhile
 endfunction
 
-function! NERDCommentIsLineCommented(lineNo)
+function! nerdcommenter#IsLineCommented(lineNo)
     let theLine = getline(a:lineNo)
     return s:IsInSexyComment(a:lineNo) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
 endfunction
 
-" Function: NERDComment(mode, type) function {{{2
+" Function: nerdcommenter#Comment(mode, type) function {{{2
 " This function is a Wrapper for the main commenting functions
 "
 " Args:
@@ -1187,7 +1187,7 @@ endfunction
 "   -type: the type of commenting requested. Can be 'Sexy', 'Invert',
 "    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Comment',
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
-function! NERDComment(mode, type) range
+function! nerdcommenter#Comment(mode, type) range
     if exists('*NERDCommenter_before')
         exe "call NERDCommenter_before()"
     endif
@@ -1285,7 +1285,7 @@ function! NERDComment(mode, type) range
         else
             normal! yy
         endif
-        execute firstLine .','. lastLine .'call NERDComment("'. a:mode .'", "Comment")'
+        execute firstLine .','. lastLine .'call nerdcommenter#Comment("'. a:mode .'", "Comment")'
     endif
 
     call s:RecoverStateAfterLineComment(state)
@@ -2980,13 +2980,17 @@ endfunction
 " Section: Comment mapping and menu item setup {{{1
 " ===========================================================================
 
+function! nerdcommenter#Plug(target)
+    return "\<Plug>NERDCommenter". a:target
+endfunction
+
 " Create menu items for the specified modes.  If a:combo is not empty, then
 " also define mappings and show a:combo in the menu items.
 function! s:CreateMaps(modes, target, desc, combo)
     " Build up a map command like
-    " 'noremap <silent> <plug>NERDCommenterComment :call NERDComment("n", "Comment")'
+    " 'noremap <silent> <plug>NERDCommenterComment :call nerdcommenter#Comment("n", "Comment")'
     let plug = '<plug>NERDCommenter' . a:target
-    let plug_start = 'noremap <silent> ' . plug . ' :call NERDComment("'
+    let plug_start = 'noremap <silent> ' . plug . ' :call nerdcommenter#Comment("'
     let plug_end = '", "' . a:target . '")<cr>'
     " Build up a menu command like
     " 'menu <silent> comment.Comment<Tab>\\cc <plug>NERDCommenterComment'
@@ -3031,7 +3035,7 @@ call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
 call s:CreateMaps('',   ':',          '-Sep3-', '')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
 
-inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call NERDComment('i', "insert")<CR>
+inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call nerdcommenter#Comment('i', "insert")<CR>
 
 " switch to/from alternative delimiters (does not use wrapper function)
 nnoremap <plug>NERDCommenterAltDelims :call <SID>SwitchToAlternativeDelimiters(1)<cr>
