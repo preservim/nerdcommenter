@@ -2980,12 +2980,12 @@ endfunction
 " also define mappings and show a:combo in the menu items.
 function! s:CreateMaps(modes, target, desc, combo)
     " Build up a map command like
-    " 'noremap <silent> <plug>NERDCommenterComment :call nerdcommenter#Comment("n", "Comment")'
-    let plug = '<plug>NERDCommenter' . a:target
+    " 'noremap <silent> <Plug>NERDCommenterComment :call nerdcommenter#Comment("n", "Comment")'
+    let plug = '<Plug>NERDCommenter' . a:target
     let plug_start = 'noremap <silent> ' . plug . ' :call nerdcommenter#Comment("'
-    let plug_end = '", "' . a:target . '")<cr>'
+    let plug_end = '", "' . a:target . '")<CR>'
     " Build up a menu command like
-    " 'menu <silent> comment.Comment<Tab>\\cc <plug>NERDCommenterComment'
+    " 'menu <silent> comment.Comment<Tab>\\cc <Plug>NERDCommenterComment'
     let menuRoot = get(['', 'comment', '&comment', '&Plugin.&comment'],
                 \ g:NERDMenuMode, '')
     let menu_command = 'menu <silent> ' . menuRoot . '.' . escape(a:desc, ' ')
@@ -3006,7 +3006,7 @@ function! s:CreateMaps(modes, target, desc, combo)
     endfor
 endfunction
 call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
-call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<space>')
+call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<Space>')
 call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
 call s:CreateMaps('nx', 'Nested',     'Nested', 'cn')
 call s:CreateMaps('n',  'ToEOL',      'To EOL', 'c$')
@@ -3024,10 +3024,10 @@ call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
 call s:CreateMaps('',   ':',          '-Sep3-', '')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
 
-inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call nerdcommenter#Comment('i', "insert")<CR>
+inoremap <silent> <Plug>NERDCommenterInsert <Space><BS><Esc>:call nerdcommenter#Comment('i', "insert")<CR>
 
 " switch to/from alternative delimiters (does not use wrapper function)
-nnoremap <plug>NERDCommenterAltDelims :call <SID>SwitchToAlternativeDelimiters(1)<cr>
+nnoremap <Plug>NERDCommenterAltDelims :call <SID>SwitchToAlternativeDelimiters(1)<CR>
 
 " This is a workaround to enable lazy-loading from supported plugin managers:
 " See https://github.com/scrooloose/nerdcommenter/issues/176
