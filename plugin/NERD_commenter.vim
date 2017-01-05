@@ -349,6 +349,7 @@ let s:delimiterMap = {
     \ 'rebol': { 'left': ';' },
     \ 'registry': { 'left': ';' },
     \ 'remind': { 'left': '#' },
+    \ 'renpy': { 'left': '#', 'leftAlt': '#' },
     \ 'resolv': { 'left': '#' },
     \ 'rgb': { 'left': '!' },
     \ 'rib': { 'left': '#' },
