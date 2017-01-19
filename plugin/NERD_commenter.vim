@@ -159,7 +159,7 @@ let s:delimiterMap = {
     \ 'eiffel': { 'left': '--' },
     \ 'elf': { 'left': "'" },
     \ 'elixir': { 'left': '#' },
-    \ 'elm': { 'left': '--' },
+    \ 'elm': { 'left': '--', 'leftAlt': '{--', 'rightAlt': '--}' },
     \ 'elmfilt': { 'left': '#' },
     \ 'ember-script': { 'left': '#' },
     \ 'emblem': { 'left': '/' },
@@ -622,7 +622,7 @@ function s:AppendCommentToLine()
 
     "stick the delimiters down at the end of the line. We have to format the
     "comment with spaces as appropriate
-    execute ":normal! " . insOrApp . (isLineEmpty ? '' : ' ') . left . right 
+    execute ":normal! " . insOrApp . (isLineEmpty ? '' : ' ') . left . right
 
     " if there is a right delimiter then we gotta move the cursor left
     " by the length of the right delimiter so we insert between the delimiters
@@ -1417,7 +1417,7 @@ function s:SetupStateBeforeLineComment(topLine, bottomLine)
     let state = {'foldmethod' : &foldmethod,
                 \'ignorecase' : &ignorecase}
 
-    " Vim's foldmethods are evaluated every time we use 'setline', which can 
+    " Vim's foldmethods are evaluated every time we use 'setline', which can
     " make commenting wide ranges of lines VERY slow. We'll change it to
     " manual, do the commenting stuff and recover it later. To avoid slowing
     " down commenting few lines, we avoid doing this for ranges smaller than
@@ -1622,7 +1622,7 @@ function s:UncommentLinesSexy(topline, bottomline)
         let theLine = s:SwapOuterPlaceHoldersForMultiPartDelims(theLine)
         call setline(bottomline, theLine)
     endif
-    
+
     " remove trailing whitespaces for first and last line
     if g:NERDTrimTrailingWhitespace == 1
         let theLine = getline(a:bottomline)
