@@ -192,6 +192,7 @@ let s:delimiterMap = {
     \ 'gentoo-package-use': { 'left': '#' },
     \ 'gitcommit': { 'left': '#' },
     \ 'gitconfig': { 'left': ';' },
+    \ 'gitignore': { 'left': '#' },
     \ 'gitrebase': { 'left': '#' },
     \ 'gnuplot': { 'left': '#' },
     \ 'go': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
