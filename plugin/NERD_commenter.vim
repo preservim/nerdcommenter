@@ -159,7 +159,7 @@ let s:delimiterMap = {
     \ 'eiffel': { 'left': '--' },
     \ 'elf': { 'left': "'" },
     \ 'elixir': { 'left': '#' },
-    \ 'elm': { 'left': '--' },
+    \ 'elm': { 'left': '--', 'leftAlt': '{--', 'rightAlt': '--}' },
     \ 'elmfilt': { 'left': '#' },
     \ 'ember-script': { 'left': '#' },
     \ 'emblem': { 'left': '/' },
