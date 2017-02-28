@@ -271,6 +271,7 @@ let s:delimiterMap = {
     \ 'master': { 'left': '$' },
     \ 'matlab': { 'left': '%', 'leftAlt': '%{', 'rightAlt': '%}' },
     \ 'mel': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'meson': { 'left': '#' },
     \ 'mib': { 'left': '--' },
     \ 'mips': { 'left': '#'},
     \ 'mirah': {'left': '#'},
