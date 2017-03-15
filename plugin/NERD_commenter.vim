@@ -232,7 +232,6 @@ let s:delimiterMap = {
     \ 'javacc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'javascript': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'javascript.jquery': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
-    \ 'javascript.jsx': { 'left': '{/*', 'right': '*/}' },
     \ 'jess': { 'left': ';' },
     \ 'jgraph': { 'left': '(*', 'right': '*)' },
     \ 'jinja': { 'left': '<!--','right': '-->', 'leftAlt': '{#', 'rightAlt': '#}' },
