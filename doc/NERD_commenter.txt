@@ -1093,6 +1093,7 @@ Simon Hengel                        htmlcheetah
 Matt Tolton                         javacc
 Ivan Devat                          javascript.jquery
 tpope                               cucumber,pdf
+Lyude Paul                          piglit shader_test
 ==============================================================================
 10. License                                                   *NERDComLicense*
 
