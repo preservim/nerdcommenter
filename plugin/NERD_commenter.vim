@@ -195,6 +195,7 @@ let s:delimiterMap = {
     \ 'gitconfig': { 'left': ';' },
     \ 'gitignore': { 'left': '#' },
     \ 'gitrebase': { 'left': '#' },
+    \ 'glsl': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'gnuplot': { 'left': '#' },
     \ 'go': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'groovy': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
