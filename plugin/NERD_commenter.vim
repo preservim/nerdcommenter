@@ -343,7 +343,7 @@ let s:delimiterMap = {
     \ 'pug': { 'left': '//-', 'leftAlt': '//' },
     \ 'puppet': { 'left': '#' },
     \ 'pyrex': { 'left': '# ', 'leftAlt': '#' },
-    \ 'python': { 'left': '# ', 'leftAlt': '#' },
+    \ 'python': { 'left': '# ', 'leftAlt': '"""', 'rightAlt': '"""' },
     \ 'r': { 'left': '#', 'leftAlt': '#''' },
     \ 'racket': { 'left': ';', 'nested': 1, 'leftAlt': '#|', 'rightAlt': '|#', 'nestedAlt': 1 },
     \ 'radiance': { 'left': '#' },
