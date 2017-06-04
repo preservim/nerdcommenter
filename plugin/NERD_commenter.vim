@@ -1004,7 +1004,7 @@ function s:CommentLinesSexy(topline, bottomline)
         " get the line and convert the tabs to spaces
         let theLine = getline(currentLine)
         
-        if (s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)) && s:HasCStyleComments() 
+        if s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine) && s:HasCStyleComments() 
             let comMarker = sexyComMarker . s:spaceStr
         else
             let comMarker = sexyComMarkerSpaced
