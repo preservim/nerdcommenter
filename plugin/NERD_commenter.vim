@@ -1003,6 +1003,13 @@ function s:CommentLinesSexy(topline, bottomline)
     while currentLine <= a:bottomline + !g:NERDCompactSexyComs
         " get the line and convert the tabs to spaces
         let theLine = getline(currentLine)
+
+        if s:IsCommentedFromStartOfLine("/", theLine) && s:HasCStyleComments() 
+            let comMarker = sexyComMarker . s:spaceStr
+        else
+            let comMarker = sexyComMarkerSpaced
+        endif
+
         let lineHasTabs = s:HasLeadingTabs(theLine)
         if lineHasTabs
             let theLine = s:ConvertLeadingTabsToSpaces(theLine)
@@ -1013,7 +1020,7 @@ function s:CommentLinesSexy(topline, bottomline)
         endif
 
         " add the sexyComMarker
-        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
+        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . comMarker . strpart(theLine, leftAlignIndx)
 
         if lineHasTabs
             let theLine = s:ConvertLeadingSpacesToTabs(theLine)
