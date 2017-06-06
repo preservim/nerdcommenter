@@ -1003,6 +1003,13 @@ function s:CommentLinesSexy(topline, bottomline)
     while currentLine <= a:bottomline + !g:NERDCompactSexyComs
         " get the line and convert the tabs to spaces
         let theLine = getline(currentLine)
+        
+        if s:IsCommentedFromStartOfLine("/", theLine) && s:HasCStyleComments() 
+            let comMarker = sexyComMarker . s:spaceStr
+        else
+            let comMarker = sexyComMarkerSpaced
+        endif
+
         let lineHasTabs = s:HasLeadingTabs(theLine)
         if lineHasTabs
             let theLine = s:ConvertLeadingTabsToSpaces(theLine)
@@ -1013,7 +1020,7 @@ function s:CommentLinesSexy(topline, bottomline)
         endif
 
         " add the sexyComMarker
-        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
+        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . comMarker . strpart(theLine, leftAlignIndx)
 
         if lineHasTabs
             let theLine = s:ConvertLeadingSpacesToTabs(theLine)
@@ -1210,7 +1217,15 @@ function! NERDComment(mode, type) range
     else
         let firstLine = a:firstline
         let lastLine = a:lastline
+
+            if a:type[0:0] == "r"
+                let firstLine = a:firstline - (a:lastline - a:firstline)
+                let lastLine = a:firstline
+            endif
     endif
+
+
+
     "
     " Save options we need to change so we can recover them later
     let state = s:SetupStateBeforeLineComment(firstLine, lastLine)
@@ -1219,7 +1234,13 @@ function! NERDComment(mode, type) range
 
     let forceNested = (a:type ==? 'Nested' || g:NERDDefaultNesting)
 
-    if a:type ==? 'Comment' || a:type ==? 'Nested'
+    let ctype = a:type
+
+    if a:type[0:0] == "r"
+        let ctype = strpart(a:type, 1)
+    endif
+
+    if ctype ==? 'Comment' || ctype ==? 'Nested'
         if isVisual && visualmode() == "\<C-V>"
             call s:CommentBlock(firstLine, lastLine, firstCol, lastCol, forceNested)
         elseif isVisual && visualmode() == "v" && (g:NERDCommentWholeLinesInVMode==0 || (g:NERDCommentWholeLinesInVMode==2 && s:HasMultipartDelims()))
@@ -1228,19 +1249,19 @@ function! NERDComment(mode, type) range
             call s:CommentLines(forceNested, g:NERDDefaultAlign, firstLine, lastLine)
         endif
 
-    elseif a:type ==? 'AlignLeft' || a:type ==? 'AlignBoth'
+    elseif ctype ==? 'AlignLeft' || ctype ==? 'AlignBoth'
         let align = "none"
-        if a:type ==? "AlignLeft"
+        if ctype ==? "AlignLeft"
             let align = "left"
-        elseif a:type ==? "AlignBoth"
+        elseif ctype ==? "AlignBoth"
             let align = "both"
         endif
         call s:CommentLines(forceNested, align, firstLine, lastLine)
 
-    elseif a:type ==? 'Invert'
+    elseif ctype ==? 'Invert'
         call s:InvertComment(firstLine, lastLine)
 
-    elseif a:type ==? 'Sexy'
+    elseif ctype ==? 'Sexy'
         try
             call s:CommentLinesSexy(firstLine, lastLine)
         catch /NERDCommenter.Delimiters/
@@ -1249,7 +1270,7 @@ function! NERDComment(mode, type) range
             call s:NerdEcho("Sexy comment aborted. Nested sexy cannot be nested", 0)
         endtry
 
-    elseif a:type ==? 'Toggle'
+    elseif ctype ==? 'Toggle'
         let theLine = getline(firstLine)
 
         if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
@@ -1258,7 +1279,7 @@ function! NERDComment(mode, type) range
             call s:CommentLinesToggle(forceNested, firstLine, lastLine)
         endif
 
-    elseif a:type ==? 'Minimal'
+    elseif ctype ==? 'Minimal'
         try
             call s:CommentLinesMinimal(firstLine, lastLine)
         catch /NERDCommenter.Delimiters/
@@ -1267,21 +1288,21 @@ function! NERDComment(mode, type) range
             call s:NerdEcho("Place holders are required but disabled.", 0)
         endtry
 
-    elseif a:type ==? 'ToEOL'
+    elseif ctype ==? 'ToEOL'
         call s:SaveScreenState()
         call s:CommentBlock(firstLine, firstLine, col("."), col("$")-1, 1)
         call s:RestoreScreenState()
 
-    elseif a:type ==? 'Append'
+    elseif ctype ==? 'Append'
         call s:AppendCommentToLine()
 
-    elseif a:type ==? 'Insert'
+    elseif ctype ==? 'Insert'
         call s:PlaceDelimitersAndInsBetween()
 
-    elseif a:type ==? 'Uncomment'
+    elseif ctype ==? 'Uncomment'
         call s:UncommentLines(firstLine, lastLine)
 
-    elseif a:type ==? 'Yank'
+    elseif ctype ==? 'Yank'
         if isVisual
             normal! gvy
         elseif countWasGiven
@@ -1296,9 +1317,9 @@ function! NERDComment(mode, type) range
 
     if isVisual
         let nlines = lastLine - firstLine
-        silent! call repeat#set("V" . nlines . "jo" . "\<Plug>NERDCommenter". a:type)
+        silent! call repeat#set("V" . nlines . "jo" . "\<Plug>NERDCommenter". ctype)
     else
-        silent! call repeat#set("\<Plug>NERDCommenter". a:type)
+        silent! call repeat#set("\<Plug>NERDCommenter". ctype)
     endif
 
     if exists('*NERDCommenter_after')
@@ -3017,20 +3038,33 @@ function! s:CreateMaps(modes, target, desc, combo)
     endfor
 endfunction
 call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
+call s:CreateMaps('nx', 'rComment',    'rComment', '<leader>cc')
 call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<space>')
+call s:CreateMaps('nx', 'rToggle',     'rToggle', '<leader>c<space>')
 call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
+call s:CreateMaps('nx', 'rMinimal',    'rMinimal', '<leader>cm')
 call s:CreateMaps('nx', 'Nested',     'Nested', 'cn')
+call s:CreateMaps('nx', 'rNested',     'rNested', '<leader>cn')
 call s:CreateMaps('n',  'ToEOL',      'To EOL', 'c$')
+call s:CreateMaps('n',  'rToEOL',      'rTo EOL', '<leader>c$')
 call s:CreateMaps('nx', 'Invert',     'Invert', 'ci')
+call s:CreateMaps('nx', 'rInvert',     'rInvert', '<leader>ci')
 call s:CreateMaps('nx', 'Sexy',       'Sexy', 'cs')
+call s:CreateMaps('nx', 'rSexy',       'rSexy', '<leader>cs')
 call s:CreateMaps('nx', 'Yank',       'Yank then comment', 'cy')
+call s:CreateMaps('nx', 'rYank',       'rYank then comment', '<leader>cy')
 call s:CreateMaps('n',  'Append',     'Append', 'cA')
+call s:CreateMaps('n',  'rAppend',     'rAppend', '<leader>cA')
 call s:CreateMaps('',   ':',          '-Sep-', '')
 call s:CreateMaps('nx', 'AlignLeft',  'Left aligned', 'cl')
+call s:CreateMaps('nx', 'rAlignLeft',  'rLeft aligned', '<leaer>cl')
 call s:CreateMaps('nx', 'AlignBoth',  'Left and right aligned', 'cb')
+call s:CreateMaps('nx', 'rAlignBoth',  'rLeft and right aligned', '<leader>cb')
 call s:CreateMaps('',   ':',          '-Sep2-', '')
 call s:CreateMaps('nx', 'Uncomment',  'Uncomment', 'cu')
+call s:CreateMaps('nx', 'rUncomment',  'rUncomment', '<leader>cu')
 call s:CreateMaps('n',  'AltDelims',  'Switch Delimiters', 'ca')
+call s:CreateMaps('n',  'rAltDelims',  'rSwitch Delimiters', '<leader>ca')
 call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
 call s:CreateMaps('',   ':',          '-Sep3-', '')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
