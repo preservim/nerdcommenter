@@ -274,6 +274,7 @@ let s:delimiterMap = {
     \ 'mel': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'meson': { 'left': '#' },
     \ 'mib': { 'left': '--' },
+    \ 'minizinc': { 'left': '% ', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'mips': { 'left': '#' },
     \ 'mirah': {'left': '#' },
     \ 'mkd': { 'left': '<!---', 'right': '-->' },
