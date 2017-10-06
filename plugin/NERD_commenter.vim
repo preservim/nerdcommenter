@@ -238,7 +238,7 @@ let s:delimiterMap = {
     \ 'jinja': { 'left': '<!--', 'right': '-->', 'leftAlt': '{#', 'rightAlt': '#}' },
     \ 'jproperties': { 'left': '#' },
     \ 'jsp': { 'left': '<%--', 'right': '--%>' },
-    \ 'julia': { 'left': '#' },
+    \ 'julia': { 'left': '# ', 'leftAlt': '#=', 'rightAlt': '=#' },
     \ 'kix': { 'left': ';' },
     \ 'kscript': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'lace': { 'left': '--' },
