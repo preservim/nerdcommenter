@@ -28,7 +28,7 @@ let nerdcommenter#loaded = 1
 "   1 if the var is set, 0 otherwise
 function s:InitVariable(var, value)
     if !exists(a:var)
-        execute 'let ' . a:var . ' = ' . "'" . a:value . "'"
+        execute 'let ' . a:var . ' = ' . string(a:value)
         return 1
     endif
     return 0
