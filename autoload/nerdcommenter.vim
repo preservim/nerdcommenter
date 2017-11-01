@@ -2991,7 +2991,7 @@ function! s:CreateMaps(modes, target, desc, combo)
     let plug_end = '", "' . a:target . '")<CR>'
     " Build up a menu command like
     " 'menu <silent> comment.Comment<Tab>\\cc <Plug>NERDCommenterComment'
-    let menuRoot = get(['', 'comment', '&comment', '&Plugin.&comment'],
+    let menuRoot = get(['', 'comment', '&comment', '&Plugin.&comment', '&Plugin.Nerd\ &Commenter'],
                 \ g:NERDMenuMode, '')
     let menu_command = 'menu <silent> ' . menuRoot . '.' . escape(a:desc, ' ')
     if strlen(a:combo)
