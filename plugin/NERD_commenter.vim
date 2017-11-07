@@ -408,6 +408,7 @@ let s:delimiterMap = {
     \ 'sqr': { 'left': '!' },
     \ 'squid': { 'left': '#' },
     \ 'ss': { 'left': ';', 'leftAlt': '#|', 'rightAlt': '|#' },
+    \ 'sshconfig': { 'left': '#' },
     \ 'sshdconfig': { 'left': '#' },
     \ 'st': { 'left': '"' },
     \ 'stan': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
