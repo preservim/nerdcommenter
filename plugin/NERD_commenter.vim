@@ -3,8 +3,8 @@
 " Description: vim global plugin that provides easy code commenting
 " Author:      Martin Grenfell <martin.grenfell at gmail dot com>
 " Maintainer:  Caleb Maclennan <caleb@alerque.com>
-" Version:     2.4.0
-" Last Change: Tue May 24 14:03:29 EEST 2016
+" Version:     2.5.1
+" Last Change: Tue Nov  7 10:45:53 +03 2017
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
