@@ -22,7 +22,7 @@ Comment functions so powerful—no comment necessary.
 
 1. Add `NeoBundle 'scrooloose/nerdcommenter'` to your vimrc file.
 2. Reload your vimrc or restart
-3. Run `:NeoUpdate``
+3. Run `:NeoUpdate`
 
 #### [Pathogen](https://github.com/tpope/vim-pathogen)
 
