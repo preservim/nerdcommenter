@@ -360,6 +360,7 @@ let s:delimiterMap = {
     \ 'rgb': { 'left': '!' },
     \ 'rib': { 'left': '#' },
     \ 'rmd': { 'left': '#' },
+    \ 'robot': { 'left': '#' },
     \ 'robots': { 'left': '#' },
     \ 'rspec': { 'left': '#' },
     \ 'ruby': { 'left': '#', 'leftAlt': '=begin', 'rightAlt': '=end' },
