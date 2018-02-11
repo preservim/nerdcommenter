@@ -65,6 +65,7 @@ call s:InitVariable("g:NERDRPlace", "<]")
 call s:InitVariable("g:NERDSpaceDelims", 0)
 call s:InitVariable("g:NERDDefaultAlign", "none")
 call s:InitVariable("g:NERDTrimTrailingWhitespace", 0)
+call s:InitVariable("g:NERDToggleSexyComments", 0)
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -1261,8 +1262,16 @@ function! NERDComment(mode, type) range
 
         if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
             call s:UncommentLines(firstLine, lastLine)
-        else
-            call s:CommentLinesToggle(forceNested, firstLine, lastLine)
+		elseif g:NERDToggleSexyComments == 1
+			try
+				call s:CommentLinesSexy(firstLine, lastLine)
+			catch /NERDCommenter.Delimiters/
+				call s:CommentLines(forceNested, g:NERDDefaultAlign, firstLine, lastLine)
+			catch /NERDCommenter.Nesting/
+				call s:NerdEcho("Sexy comment aborted. Nested sexy cannot be nested", 0)
+			endtry
+		else
+			call s:CommentLinesToggle(forceNested, firstLine, lastLine)
         endif
 
     elseif a:type ==? 'Minimal'
