@@ -65,6 +65,7 @@ call s:InitVariable("g:NERDRPlace", "<]")
 call s:InitVariable("g:NERDSpaceDelims", 0)
 call s:InitVariable("g:NERDDefaultAlign", "none")
 call s:InitVariable("g:NERDTrimTrailingWhitespace", 0)
+call s:InitVariable("g:NERDToggleCheckAllLines", 0)
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -1258,12 +1259,29 @@ function! NERDComment(mode, type) range
         endtry
 
     elseif a:type ==? 'Toggle'
-        let theLine = getline(firstLine)
-
-        if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
-            call s:UncommentLines(firstLine, lastLine)
+        if g:NERDToggleCheckAllLines ==# 0
+          let theLine = getline(firstLine)
+          if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
+              call s:UncommentLines(firstLine, lastLine)
+          else
+              call s:CommentLinesToggle(forceNested, firstLine, lastLine)
+          endif
         else
+          let l:commentAllLines = 0
+          for i in range(firstLine, lastLine)
+            let theLine = getline(i)
+            " if have one line no comment, then comment all lines
+            if !s:IsInSexyComment(firstLine) && !s:IsCommentedFromStartOfLine(s:Left(), theLine) && !s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
+              let l:commentAllLines = 1
+              break
+            else
+          endif
+          endfor
+          if l:commentAllLines ==# 1
             call s:CommentLinesToggle(forceNested, firstLine, lastLine)
+          else
+            call s:UncommentLines(firstLine, lastLine)
+          endif
         endif
 
     elseif a:type ==? 'Minimal'
