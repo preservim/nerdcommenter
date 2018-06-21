@@ -488,6 +488,9 @@ change the filetype back: >
                                       one of 'none', 'left', 'start', or
                                       'both'.
 
+|'NERDToggleCheckAllLines'|           Enable NERDCommenterToggle to check 
+                                      all selected lines is commented or not.
+
 ------------------------------------------------------------------------------
 4.3 Options details                                    *NERDComOptionsDetails*
 
@@ -799,6 +802,15 @@ Default 1.
 When this option is set to 1, comments are nested automatically. That is, if
 you hit |<Leader>|cc on a line that is already commented it will be commented
 again.
+
+------------------------------------------------------------------------------
+                                                   *'NERDToggleCheckAllLines'*
+Values: 0 or 1.
+Default 0.
+
+When this option is set to 1, NERDCommenterToggle will check all selected line, 
+if there have oneline not be commented, then comment all lines.
+
 
 ------------------------------------------------------------------------------
 3.3 Default delimiter customisation                     *NERDComDefaultDelims*
