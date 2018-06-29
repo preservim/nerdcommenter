@@ -70,7 +70,8 @@ filetype plugin on
 To generate the vim help system documentation 
 
 ```sh
-vim -u NONE -c "helptags nerdcommenter/doc" -c q
+cd ~/.vim/bundle
+vim -c "helptags nerdcommenter/doc" -c q
 ```
 The vim help system can then be used to access the full documentation of all options: `:help nerdcommenter`
 
