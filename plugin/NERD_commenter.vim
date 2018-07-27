@@ -206,7 +206,7 @@ let s:delimiterMap = {
     \ 'h': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'haml': { 'left': '-#', 'leftAlt': '/' },
     \ 'handlebars': { 'left': '{{!-- ', 'right': ' --}}' },
-    \ 'haskell': { 'left': '{-', 'right': '-}', 'nested': 1, 'leftAlt': '--', 'nestedAlt': 1 },
+    \ 'haskell': { 'left': '--', 'nested': 1, 'leftAlt': '{-', 'rightAlt': '-}', 'nestedAlt': 1 },
     \ 'haxe': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'hb': { 'left': '#' },
     \ 'hbs': { 'left': '{{!-- ', 'right': ' --}}' },
