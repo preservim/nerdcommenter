@@ -431,7 +431,7 @@ let s:delimiterMap = {
     \ 'tex': { 'left': '%' },
     \ 'texinfo': { 'left': "@c " },
     \ 'texmf': { 'left': '%' },
-    \ 'tf': { 'left': ';' },
+    \ 'tf': { 'left': '#' },
     \ 'tidy': { 'left': '#' },
     \ 'tli': { 'left': '#' },
     \ 'tmux': { 'left': '#' },
