@@ -1270,8 +1270,8 @@ function! NERDComment(mode, type) range
           let l:commentAllLines = 0
           for i in range(firstLine, lastLine)
             let theLine = getline(i)
-            " if have one line no comment, then comment all lines
-            if !s:IsInSexyComment(firstLine) && !s:IsCommentedFromStartOfLine(s:Left(), theLine) && !s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
+            " if have one line no comment(not include blank/whitespace-only lines), then comment all lines
+            if theLine =~ '[^ \t]\+' && !s:IsInSexyComment(firstLine) && !s:IsCommentedFromStartOfLine(s:Left(), theLine) && !s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
               let l:commentAllLines = 1
               break
             else
