@@ -284,7 +284,6 @@ let s:delimiterMap = {
     \ 'mkd': { 'left': '<!---', 'right': '-->' },
     \ 'mma': { 'left': '(*', 'right': '*)' },
     \ 'model': { 'left': '$', 'right': '$' },
-    \ 'moduala.': { 'left': '(*', 'right': '*)' },
     \ 'modula2': { 'left': '(*', 'right': '*)' },
     \ 'modula3': { 'left': '(*', 'right': '*)' },
     \ 'molpro': { 'left': '!' },
