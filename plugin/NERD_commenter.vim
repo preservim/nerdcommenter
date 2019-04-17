@@ -66,6 +66,7 @@ call s:InitVariable("g:NERDSpaceDelims", 0)
 call s:InitVariable("g:NERDDefaultAlign", "none")
 call s:InitVariable("g:NERDTrimTrailingWhitespace", 0)
 call s:InitVariable("g:NERDToggleCheckAllLines", 0)
+call s:InitVariable("g:NERDDisableTabsInBlockComm", 0)
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -997,7 +998,11 @@ function s:CommentLinesSexy(topline, bottomline)
         " the lines down when we added the left delimiter
         call cursor(a:bottomline+1, 1)
         execute 'normal! o'
-        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . right
+        if g:NERDDisableTabsInBlockComm
+          let theLine = repeat(' ', leftAlignIndx) . right
+        else
+          let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . right
+        endif
 
         " Make sure tabs are respected
         if !&expandtab
@@ -1023,7 +1028,11 @@ function s:CommentLinesSexy(topline, bottomline)
         endif
 
         " add the sexyComMarker
-        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
+        if g:NERDDisableTabsInBlockComm
+          let theLine = repeat(' ', leftAlignIndx) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
+        else
+          let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
+        endif
 
         if lineHasTabs
             let theLine = s:ConvertLeadingSpacesToTabs(theLine)

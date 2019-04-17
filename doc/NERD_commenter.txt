@@ -811,6 +811,30 @@ Default 0.
 When this option is set to 1, NERDCommenterToggle will check all selected line, 
 if there have oneline not be commented, then comment all lines.
 
+------------------------------------------------------------------------------
+                                                *'NERDDisableTabsInBlockComm'*
+Values: 0 or 1.
+Default 0.
+
+When this option is set to 1, NERDDisableTabsInBlockComm will not add
+whitespaces align the start location of the ending comment symbol with the
+end location of the starting comment symbol. For example, in Fortran, the new
+style will be as the following: >
+    close (inpt,iostat=ierr,iomsg=error_message)
+    call io_error(pname,input_fname,2,__LINE__,__FILE__,ierr,error_message)
+<
+to >
+    !===BEGIN===!
+    ! close (inpt,iostat=ierr,iomsg=error_message)
+    ! call io_error(pname,input_fname,2,__LINE__,__FILE__,ierr,error_message)
+    !===END===!
+<
+for the block comment style if customized comment symbols are set up in vimrc
+file by the following line >
+    let g:NERDCustomDelimiters = {
+    \ 'fortran':{'left':'!','leftAlt':'!===BEGIN===!','rightAlt':'!===END===!'}
+    \ }
+<
 
 ------------------------------------------------------------------------------
 3.3 Default delimiter customisation                     *NERDComDefaultDelims*
