@@ -66,6 +66,7 @@ call s:InitVariable("g:NERDSpaceDelims", 0)
 call s:InitVariable("g:NERDDefaultAlign", "none")
 call s:InitVariable("g:NERDTrimTrailingWhitespace", 0)
 call s:InitVariable("g:NERDToggleCheckAllLines", 0)
+call s:InitVariable("g:NERDDisableTabsInBlockComm", 0)
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -986,19 +987,22 @@ function s:CommentLinesSexy(topline, bottomline)
         call cursor(a:topline, 1)
         execute 'normal! O'
         let theLine = repeat(' ', leftAlignIndx) . left
-
         " Make sure tabs are respected
         if !&expandtab
            let theLine = s:ConvertLeadingSpacesToTabs(theLine)
         endif
         call setline(a:topline, theLine)
-
+        " let result = confirm(theLine)
+        " execute "confirm"
         " add the right delimiter after bottom line (we have to add 1 cos we moved
         " the lines down when we added the left delimiter
         call cursor(a:bottomline+1, 1)
         execute 'normal! o'
-        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . right
-
+        if g:NERDDisableTabsInBlockComm
+          let theLine = repeat(' ', leftAlignIndx) . right
+        else
+          let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . right
+        endif
         " Make sure tabs are respected
         if !&expandtab
            let theLine = s:ConvertLeadingSpacesToTabs(theLine)
@@ -1023,7 +1027,11 @@ function s:CommentLinesSexy(topline, bottomline)
         endif
 
         " add the sexyComMarker
-        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
+        if g:NERDDisableTabsInBlockComm
+          let theLine = repeat(' ', leftAlignIndx) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
+        else
+          let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
+        endif
 
         if lineHasTabs
             let theLine = s:ConvertLeadingSpacesToTabs(theLine)
