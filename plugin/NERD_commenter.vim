@@ -992,8 +992,6 @@ function s:CommentLinesSexy(topline, bottomline)
            let theLine = s:ConvertLeadingSpacesToTabs(theLine)
         endif
         call setline(a:topline, theLine)
-        " let result = confirm(theLine)
-        " execute "confirm"
         " add the right delimiter after bottom line (we have to add 1 cos we moved
         " the lines down when we added the left delimiter
         call cursor(a:bottomline+1, 1)
