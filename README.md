@@ -22,7 +22,7 @@ Comment functions so powerful—no comment necessary.
 
 1. Add `NeoBundle 'scrooloose/nerdcommenter'` to your vimrc file.
 2. Reload your vimrc or restart
-3. Run `:NeoUpdate``
+3. Run `:NeoUpdate`
 
 #### [Pathogen](https://github.com/tpope/vim-pathogen)
 
@@ -94,6 +94,9 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
 ```
 
 ### Default mappings
