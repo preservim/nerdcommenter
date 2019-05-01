@@ -3071,7 +3071,7 @@ nnoremap <Plug>NERDCommenterAltDelims :call <SID>SwitchToAlternativeDelimiters(1
 
 " This is a workaround to enable lazy-loading from supported plugin managers:
 " See https://github.com/scrooloose/nerdcommenter/issues/176
-if !has('vim_starting') && &filetype != ""
+if !has('vim_starting')
     call s:SetUpForNewFiletype(&filetype, 1)
 endif
 
