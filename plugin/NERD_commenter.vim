@@ -87,7 +87,7 @@ let s:delimiterMap = {
     \ 'applescript': { 'left': '--', 'leftAlt': '(*', 'rightAlt': '*)' },
     \ 'armasm': { 'left': ';' },
     \ 'asciidoc': { 'left': '//' },
-    \ 'asm': { 'left': ';', 'leftAlt': '#' },
+    \ 'asm': { 'left': '#', 'leftAlt': ';' },
     \ 'asm68k': { 'left': ';' },
     \ 'asn': { 'left': '--' },
     \ 'asp': { 'left': '%', 'leftAlt': '%*', 'rightAlt': '*%' },
@@ -1257,7 +1257,7 @@ function! NERDComment(mode, type) range
             call s:NerdEcho("Sexy comment aborted. Nested sexy cannot be nested", 0)
         endtry
 
-    elseif a:type ==? 'Toggle'
+    elseif a:type ==? 'SexyToggle'
         let theLine = getline(firstLine)
 
         if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
@@ -1274,6 +1274,18 @@ function! NERDComment(mode, type) range
 			call s:CommentLinesToggle(forceNested, firstLine, lastLine)
         endif
 
+    elseif a:type ==? 'NormalToggle'
+        let theLine = getline(firstLine)
+
+        if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
+            call s:UncommentLines(firstLine, lastLine)
+		elseif g:NERDToggleSexyComments == 1
+			call s:SwitchToAlternativeDelimiters(0)
+			call s:CommentLinesToggle(forceNested, firstLine, lastLine)
+			call s:SwitchToAlternativeDelimiters(0)
+		else
+			call s:CommentLinesToggle(forceNested, firstLine, lastLine)
+        endif
     elseif a:type ==? 'Minimal'
         try
             call s:CommentLinesMinimal(firstLine, lastLine)
@@ -3033,7 +3045,8 @@ function! s:CreateMaps(modes, target, desc, combo)
     endfor
 endfunction
 call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
-call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<space>')
+call s:CreateMaps('nx', 'SexyToggle',     'SexyToggle', 'c<space>')
+call s:CreateMaps('nx', 'NormalToggle',     'NormalToggle', 'c<space>')
 call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
 call s:CreateMaps('nx', 'Nested',     'Nested', 'cn')
 call s:CreateMaps('n',  'ToEOL',      'To EOL', 'c$')
