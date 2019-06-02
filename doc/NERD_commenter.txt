@@ -1042,6 +1042,7 @@ JaGoTerr
 Elias Pipping
 mntnoe
 Mark S.
+James P. Harvey
 
 
 Thanks to the following people for sending me new filetypes to support:
