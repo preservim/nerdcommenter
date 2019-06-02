@@ -149,8 +149,8 @@ Most of the following mappings are for normal/visual mode only. The **|NERDComme
 
     Switches to the alternative set of delimiters.
 
-  * `[count]<leader>cl`  
-    `[count]<leader>cb` **|NERDComAlignedComment|**
+  * `[count]<leader>cl` **|NERDCommenterAlignLeft**
+    `[count]<leader>cb` **|NERDCommenterAlignBoth**
 
     Same as **|NERDCommenterComment|** except that the delimiters are aligned down the left side (`<leader>cl`) or both sides (`<leader>cb`).
 

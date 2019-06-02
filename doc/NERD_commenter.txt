@@ -26,7 +26,8 @@ CONTENTS                                               *NERDCommenterContents*
             3.2.9 Append com to line map......|NERDCommenterAppend|
             3.2.10 Insert comment map.........|NERDCommenterInsert|
             3.2.11 Use alternate delims map...|NERDCommenterAltDelims|
-            3.2.12 Comment aligned maps.......|NERDComAlignedComment|
+            3.2.12 Comment aligned maps.......|NERDCommenterAlignLeft|
+                                              |NERDCommenterAlignBoth|
             3.2.13 Uncomment line map.........|NERDCommenterUncomment|
         3.3 Sexy Comments.....................|NERDComSexyComments|
         3.4 The NERDComment function..........|NERDComNERDComment|
@@ -131,8 +132,8 @@ Disabled by default.
 Switches to the alternative set of delimiters.
 
 
-[count]|<Leader>|cl
-[count]|<Leader>|cb    |NERDComAlignedComment|
+[count]|<Leader>|cl    |NERDCommenterAlignLeft|
+[count]|<Leader>|cb    |NERDCommenterAlignBoth|
 Same as |NERDCommenterComment| except that the delimiters are aligned down the
 left side (|<Leader>|cl) or both sides (|<Leader>|cb).
 
@@ -319,7 +320,8 @@ then they will be switched over to /**/ comments.
 See also |NERDComDefaultDelims|
 
 ------------------------------------------------------------------------------
-3.2.12 Comment aligned maps                            *NERDComAlignedComment*
+3.2.12 Comment aligned maps                           *NERDCommenterAlignLeft*
+                                                      *NERDCommenterAlignBoth*
 
 Default mappings: [count]|<Leader>|cl   [count]|<Leader>|cb
 Mapped to: <plug>NERDCommenterAlignLeft
