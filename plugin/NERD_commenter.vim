@@ -186,6 +186,7 @@ let s:delimiterMap = {
     \ 'gams': { 'left': '*' },
     \ 'gdb': { 'left': '#' },
     \ 'gdmo': { 'left': '--' },
+    \ 'gdscript3': { 'left': '# ', 'leftAlt': '#' },
     \ 'geek': { 'left': 'GEEK_COMMENT:' },
     \ 'genshi': { 'left': '<!--', 'right': '-->', 'leftAlt': '{#', 'rightAlt': '#}' },
     \ 'gentoo-conf-d': { 'left': '#' },
