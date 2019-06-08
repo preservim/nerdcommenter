@@ -250,6 +250,7 @@ let s:delimiterMap = {
     \ 'lace': { 'left': '--' },
     \ 'laravel': { 'left': '{{--', 'right': '--}}' },
     \ 'ldif': { 'left': '#' },
+    \ 'ledger': { 'left': '#', 'leftAlt': ';' },
     \ 'less': { 'left': '/*', 'right': '*/' },
     \ 'lhaskell': { 'left': '>{-', 'right': '-}', 'leftAlt': '>-- ' },
     \ 'lilo': { 'left': '#' },
