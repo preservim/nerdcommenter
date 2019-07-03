@@ -412,7 +412,7 @@ let s:delimiterMap = {
     \ 'spectre': { 'left': '//', 'leftAlt': '*' },
     \ 'spice': { 'left': '$' },
     \ 'spin': { 'left': '''', 'leftAlt': '{', 'rightAlt': '}' },
-    \ 'sql': { 'left': '-- ' },
+    \ 'sql': { 'left': '-- ', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'sqlforms': { 'left': '-- ' },
     \ 'sqlj': { 'left': '-- ' },
     \ 'sqr': { 'left': '!' },
