@@ -11,6 +11,7 @@
 CONTENTS                                               *NERDCommenterContents*
 
     1.Intro...................................|NERDCommenter|
+        1.1 Leader............................|NERDCommenterLeader|
     2.Installation............................|NERDCommenterInstallation|
     3.Functionality provided..................|NERDCommenterFunctionality|
         3.1 Functionality Summary.............|NERDCommenterFunctionalitySummary|
@@ -54,6 +55,20 @@ for most filetypes.
 
 There are also options that allow to tweak the commenting engine to your
 taste.
+
+------------------------------------------------------------------------------
+1.1 Leader key                                           *NERDCommenterLeader*
+
+Most NERD commenter commands are executed using the |<Leader>| key. In Vim
+this is a key dedicated for user-specific customizations. It effectively
+creates a namespace so that custom commands don't interfere with Vim's
+built-in shortcuts.
+
+The leader key can be mapped to whatever the user likes (see :help mapleader).
+In the definition of custom commands |<Leader>| is the placeholder for the 
+leader key. To see the current mapping for |<Leader>| type :echo mapleader.
+If it reports an undefined variable it means the leader key is set to the
+default of '\'.
 
 ==============================================================================
 2. Installation                                    *NERDCommenterInstallation*
