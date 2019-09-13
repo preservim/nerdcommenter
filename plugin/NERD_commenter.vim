@@ -181,6 +181,7 @@ let s:delimiterMap = {
     \ 'foxpro': { 'left': '*' },
     \ 'fsharp': { 'left': '(*', 'right': '*)', 'leftAlt': '//' },
     \ 'fstab': { 'left': '#' },
+    \ 'ftl': { 'left': '#', 'leftAlt': '##' },
     \ 'fvwm': { 'left': '#' },
     \ 'fx': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'gams': { 'left': '*' },
