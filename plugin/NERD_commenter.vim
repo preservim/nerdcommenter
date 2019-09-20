@@ -133,7 +133,7 @@ let s:delimiterMap = {
     \ 'csp': { 'left': '--' },
     \ 'cterm': { 'left': '*' },
     \ 'cucumber': { 'left': '#' },
-    \ 'cuda': { 'left': '/*', 'right': '*/', 'leftAlt': '//' },
+    \ 'cuda': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'cvs': { 'left': 'CVS:' },
     \ 'cython': { 'left': '# ', 'leftAlt': '#' },
     \ 'd': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
