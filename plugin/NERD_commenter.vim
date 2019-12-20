@@ -408,6 +408,7 @@ let s:delimiterMap = {
     \ 'smil': { 'left': '<!', 'right': '>' },
     \ 'smith': { 'left': ';' },
     \ 'sml': { 'left': '(*', 'right': '*)', 'nested': 1 },
+    \ 'snakemake': { 'left': '#' },
     \ 'snippets': { 'left': '#' },
     \ 'snnsnet': { 'left': '#' },
     \ 'snnspat': { 'left': '#' },
