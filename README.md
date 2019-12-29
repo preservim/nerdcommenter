@@ -8,19 +8,19 @@ Comment functions so powerful—no comment necessary.
 
 #### [Vim-Plug](https://github.com/junegunn/vim-plug)
 
-1. Add `Plug 'scrooloose/nerdcommenter'` to your vimrc file.
+1. Add `Plug 'preservim/nerdcommenter'` to your vimrc file.
 2. Reload your vimrc or restart
 3. Run `:PlugInstall`
 
 #### [Vundle](https://github.com/VundleVim/Vundle.vim) or similar
 
-1. Add `Plugin 'scrooloose/nerdcommenter'` to your vimrc file.
+1. Add `Plugin 'preservim/nerdcommenter'` to your vimrc file.
 2. Reload your vimrc or restart
 3. Run `:BundleInstall`
 
 #### [NeoBundle](https://github.com/Shougo/neobundle.vim)
 
-1. Add `NeoBundle 'scrooloose/nerdcommenter'` to your vimrc file.
+1. Add `NeoBundle 'preservim/nerdcommenter'` to your vimrc file.
 2. Reload your vimrc or restart
 3. Run `:NeoUpdate`
 
@@ -28,7 +28,7 @@ Comment functions so powerful—no comment necessary.
 
 ```sh
 cd ~/.vim/bundle
-git clone https://github.com/scrooloose/nerdcommenter.git
+git clone https://github.com/preservim/nerdcommenter.git
 ```
 
 ### Manual Installation
@@ -39,9 +39,9 @@ git clone https://github.com/scrooloose/nerdcommenter.git
 
 ```sh
 curl -fLo ~/.vim/plugin/NERD_Commenter.vim --create-dirs \
-  https://raw.githubusercontent.com/scrooloose/nerdcommenter/master/plugin/NERD_commenter.vim
+  https://raw.githubusercontent.com/preservim/nerdcommenter/master/plugin/NERD_commenter.vim
 curl -fLo ~/.vim/doc/NERD_Commenter.txt --create-dirs \
-  https://raw.githubusercontent.com/scrooloose/nerdcommenter/master/doc/NERD_commenter.txt
+  https://raw.githubusercontent.com/preservim/nerdcommenter/master/doc/NERD_commenter.txt
 ```
 
 #### Windows (PowerShell)
@@ -49,8 +49,8 @@ curl -fLo ~/.vim/doc/NERD_Commenter.txt --create-dirs \
 ```powershell
 md ~\vimfiles\plugin
 md ~\vimfiles\doc
-$pluguri = 'https://raw.githubusercontent.com/scrooloose/nerdcommenter/master/plugin/NERD_commenter.vim'
-$docsuri = 'https://raw.githubusercontent.com/scrooloose/nerdcommenter/master/doc/NERD_commenter.txt'
+$pluguri = 'https://raw.githubusercontent.com/preservim/nerdcommenter/master/plugin/NERD_commenter.vim'
+$docsuri = 'https://raw.githubusercontent.com/preservim/nerdcommenter/master/doc/NERD_commenter.txt'
 (New-Object Net.WebClient).DownloadFile($pluguri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\plugin\NERD_commenter.vim"))
 (New-Object Net.WebClient).DownloadFile($docsuri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\doc\NERD_commenter.txt"))
 ```

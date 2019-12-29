@@ -941,7 +941,7 @@ The latest stable versions can be found at
     http://www.vim.org/scripts/script.php?script_id=1218
 
 The latest dev versions are on github
-    http://github.com/scrooloose/nerdcommenter
+    http://github.com/preservim/nerdcommenter
 
 ==============================================================================
 8. Changelog                                          *NERDCommenterChangelog*
