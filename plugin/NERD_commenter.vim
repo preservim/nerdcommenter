@@ -524,15 +524,15 @@ augroup END
 "    set for this buffer.
 "
 function s:SetUpForNewFiletype(filetype, forceReset)
-    let ft = a:filetype
+    let filetype = a:filetype
 
     "for compound filetypes, if we don't know how to handle the full filetype
     "then break it down and use the first part that we know how to handle
-    if ft =~# '\.' && !has_key(s:delimiterMap, ft)
+    if filetype =~# '\.' && !has_key(s:delimiterMap, filetype)
         let filetypes = split(a:filetype, '\.')
         for i in filetypes
             if has_key(s:delimiterMap, i)
-                let ft = i
+                let filetype = i
                 break
             endif
         endfor
@@ -540,8 +540,8 @@ function s:SetUpForNewFiletype(filetype, forceReset)
 
     let b:NERDSexyComMarker = ''
 
-    if has_key(s:delimiterMap, ft)
-        let b:NERDCommenterDelims = s:delimiterMap[ft]
+    if has_key(s:delimiterMap, filetype)
+        let b:NERDCommenterDelims = s:delimiterMap[filetype]
         for i in ['left', 'leftAlt', 'right', 'rightAlt']
             if !has_key(b:NERDCommenterDelims, i)
                 let b:NERDCommenterDelims[i] = ''
@@ -554,7 +554,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         endfor
         " if g:NERD_<filetype>_alt_style is defined, use the alternate style
         let b:NERDCommenterFirstInit = getbufvar(1,'NERDCommenterFirstInit')
-        if exists('g:NERDAltDelims_'.ft) && eval('g:NERDAltDelims_'.ft) && !b:NERDCommenterFirstInit
+        if exists('g:NERDAltDelims_'.filetype) && eval('g:NERDAltDelims_'.filetype) && !b:NERDCommenterFirstInit
             call s:SwitchToAlternativeDelimiters(0)
             let b:NERDCommenterFirstInit = 1
         endif
@@ -565,7 +565,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
 endfunction
 
 function s:CreateDelimMapFromCms()
-    if &ft ==# '' && exists('g:NERDDefaultDelims')
+    if &filetype ==# '' && exists('g:NERDDefaultDelims')
         let delims = g:NERDDefaultDelims
         for i in ['left', 'leftAlt', 'right', 'rightAlt']
             if !has_key(delims, i)
@@ -690,15 +690,15 @@ function s:CommentBlock(top, bottom, lSide, rSide, forceNested )
         "boundary accordingly
         let numTabs = s:NumberOfLeadingTabs(topline)
         if lSide < numTabs
-            let lSide = &ts * lSide
+            let lSide = &tabstop * lSide
         else
-            let lSide = (lSide - numTabs) + (&ts * numTabs)
+            let lSide = (lSide - numTabs) + (&tabstop * numTabs)
         endif
 
         "find out how many tabs are in the bottom line and adjust the right
         "boundary accordingly
         let numTabs = s:NumberOfLeadingTabs(bottomline)
-        let rSide = (rSide - numTabs) + (&ts * numTabs)
+        let rSide = (rSide - numTabs) + (&tabstop * numTabs)
     endif
 
     "we must check that bottom IS actually below top, if it is not then we
@@ -1965,7 +1965,7 @@ function s:ConvertLeadingTabsToSpaces(line)
 endfunction
 
 " Function: s:ConvertLeadingWhiteSpace(line) {{{2
-" Converts the leading white space to tabs/spaces depending on &ts
+" Converts the leading white space to tabs/spaces depending on &tabstop
 "
 " Args:
 "   -line: the line to convert
