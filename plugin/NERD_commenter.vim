@@ -2591,8 +2591,8 @@ function s:IsSexyComment(topline, bottomline)
     let topline = a:topline
     let bottomline = a:bottomline
     if bottomline < topline
-        topline = bottomline
-        bottomline = a:topline
+        let topline = bottomline
+        let bottomline = a:topline
     endif
 
     "if there is < 2 lines in the comment it cannot be sexy
