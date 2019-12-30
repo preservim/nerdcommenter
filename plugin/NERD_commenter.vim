@@ -14,7 +14,7 @@
 " ============================================================================
 
 " Section: script init stuff {{{1
-if exists("loaded_nerd_comments")
+if exists('loaded_nerd_comments')
     finish
 endif
 if v:version < 700
@@ -49,24 +49,24 @@ let s:spaceStr = ' '
 let s:lenSpaceStr = strlen(s:spaceStr)
 
 " Section: variable initialization {{{2
-call s:InitVariable("g:NERDAllowAnyVisualDelims", 1)
-call s:InitVariable("g:NERDBlockComIgnoreEmpty", 0)
-call s:InitVariable("g:NERDCommentWholeLinesInVMode", 0)
-call s:InitVariable("g:NERDCommentEmptyLines", 0)
-call s:InitVariable("g:NERDCompactSexyComs", 0)
-call s:InitVariable("g:NERDCreateDefaultMappings", 1)
-call s:InitVariable("g:NERDDefaultNesting", 1)
-call s:InitVariable("g:NERDMenuMode", 3)
-call s:InitVariable("g:NERDLPlace", "[>")
-call s:InitVariable("g:NERDUsePlaceHolders", 1)
-call s:InitVariable("g:NERDRemoveAltComs", 1)
-call s:InitVariable("g:NERDRemoveExtraSpaces", 0)
-call s:InitVariable("g:NERDRPlace", "<]")
-call s:InitVariable("g:NERDSpaceDelims", 0)
-call s:InitVariable("g:NERDDefaultAlign", "none")
-call s:InitVariable("g:NERDTrimTrailingWhitespace", 0)
-call s:InitVariable("g:NERDToggleCheckAllLines", 0)
-call s:InitVariable("g:NERDDisableTabsInBlockComm", 0)
+call s:InitVariable('g:NERDAllowAnyVisualDelims', 1)
+call s:InitVariable('g:NERDBlockComIgnoreEmpty', 0)
+call s:InitVariable('g:NERDCommentWholeLinesInVMode', 0)
+call s:InitVariable('g:NERDCommentEmptyLines', 0)
+call s:InitVariable('g:NERDCompactSexyComs', 0)
+call s:InitVariable('g:NERDCreateDefaultMappings', 1)
+call s:InitVariable('g:NERDDefaultNesting', 1)
+call s:InitVariable('g:NERDMenuMode', 3)
+call s:InitVariable('g:NERDLPlace', '[>')
+call s:InitVariable('g:NERDUsePlaceHolders', 1)
+call s:InitVariable('g:NERDRemoveAltComs', 1)
+call s:InitVariable('g:NERDRemoveExtraSpaces', 0)
+call s:InitVariable('g:NERDRPlace', '<]')
+call s:InitVariable('g:NERDSpaceDelims', 0)
+call s:InitVariable('g:NERDDefaultAlign', 'none')
+call s:InitVariable('g:NERDTrimTrailingWhitespace', 0)
+call s:InitVariable('g:NERDToggleCheckAllLines', 0)
+call s:InitVariable('g:NERDDisableTabsInBlockComm', 0)
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -320,7 +320,7 @@ let s:delimiterMap = {
     \ 'omnimark': { 'left': ';' },
     \ 'ooc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'openroad': { 'left': '//' },
-    \ 'opl': { 'left': "REM" },
+    \ 'opl': { 'left': 'REM' },
     \ 'ora': { 'left': '#' },
     \ 'ox': { 'left': '//' },
     \ 'paludis-use-conf': { 'left': '#' },
@@ -442,14 +442,14 @@ let s:delimiterMap = {
     \ 'teak': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'terraform': { 'left': '#', 'leftAlt': '/*', 'rightAlt': '*/'  },
     \ 'tex': { 'left': '%' },
-    \ 'texinfo': { 'left': "@c " },
+    \ 'texinfo': { 'left': '@c ' },
     \ 'texmf': { 'left': '%' },
     \ 'tf': { 'left': '#' },
     \ 'tidy': { 'left': '#' },
     \ 'tli': { 'left': '#' },
     \ 'tmux': { 'left': '#' },
     \ 'toml': { 'left': '#' },
-    \ 'trasys': { 'left': "$" },
+    \ 'trasys': { 'left': '$' },
     \ 'troff': { 'left': '.\\"' },
     \ 'tsalt': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'tsscl': { 'left': '#' },
@@ -466,7 +466,7 @@ let s:delimiterMap = {
     \ 'vala': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'vasp': { 'left': '!' },
     \ 'vb': { 'left': "'" },
-    \ 'velocity': { 'left': "##", 'right': "", 'leftAlt': '#*', 'rightAlt': '*#' },
+    \ 'velocity': { 'left': '##', 'right': '', 'leftAlt': '#*', 'rightAlt': '*#' },
     \ 'vera': { 'left': '/*', 'right': '*/', 'leftAlt': '//' },
     \ 'verilog': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'verilog_systemverilog': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
@@ -493,7 +493,7 @@ let s:delimiterMap = {
 
 let g:NERDDelimiterMap = s:delimiterMap
 
-if exists("g:NERDCustomDelimiters")
+if exists('g:NERDCustomDelimiters')
     call extend(s:delimiterMap, g:NERDCustomDelimiters)
 endif
 
@@ -553,7 +553,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
             endif
         endfor
         " if g:NERD_<filetype>_alt_style is defined, use the alternate style
-        let b:NERDCommenterFirstInit = getbufvar(1,"NERDCommenterFirstInit")
+        let b:NERDCommenterFirstInit = getbufvar(1,'NERDCommenterFirstInit')
         if exists('g:NERDAltDelims_'.ft) && eval('g:NERDAltDelims_'.ft) && !b:NERDCommenterFirstInit
             call s:SwitchToAlternativeDelimiters(0)
             let b:NERDCommenterFirstInit = 1
@@ -594,13 +594,13 @@ endfunction
 "    if this function changed the delimiters or not
 function s:SwitchToAlternativeDelimiters(printMsgs)
     if exists('*NERDCommenter_before')
-        exe "call NERDCommenter_before()"
+        exe 'call NERDCommenter_before()'
     endif
     "if both of the alternative delimiters are empty then there is no
     "alternative comment style so bail out
     if b:NERDCommenterDelims['leftAlt'] == '' && b:NERDCommenterDelims['rightAlt'] == ''
         if a:printMsgs
-            call s:NerdEcho("Cannot use alternative delimiters, none are specified", 0)
+            call s:NerdEcho('Cannot use alternative delimiters, none are specified', 0)
         endif
         return 0
     endif
@@ -623,11 +623,11 @@ function s:SwitchToAlternativeDelimiters(printMsgs)
 
     "tell the user what comment delimiters they are now using
     if a:printMsgs
-        call s:NerdEcho("Now using " . s:Left() . " " . s:Right() . " to delimit comments", 1)
+        call s:NerdEcho('Now using ' . s:Left() . ' ' . s:Right() . ' to delimit comments', 1)
     endif
 
     if exists('*NERDCommenter_after')
-        exe "call NERDCommenter_after()"
+        exe 'call NERDCommenter_after()'
     endif
 
     return 1
@@ -645,18 +645,18 @@ function s:AppendCommentToLine()
     " get the length of the right delimiter
     let lenRight = strlen(right)
 
-    let isLineEmpty = strlen(getline(".")) == 0
+    let isLineEmpty = strlen(getline('.')) == 0
     let insOrApp = (isLineEmpty==1 ? 'i' : 'A')
 
     "stick the delimiters down at the end of the line. We have to format the
     "comment with spaces as appropriate
-    execute ":normal! " . insOrApp . (isLineEmpty ? '' : ' ') . left . right
+    execute ':normal! ' . insOrApp . (isLineEmpty ? '' : ' ') . left . right
 
     " if there is a right delimiter then we gotta move the cursor left
     " by the length of the right delimiter so we insert between the delimiters
     if lenRight > 0
         let leftMoveAmount = lenRight - 1
-        execute ":normal! " . leftMoveAmount . "h"
+        execute ':normal! ' . leftMoveAmount . 'h'
         startinsert
     else
         startinsert!
@@ -809,7 +809,7 @@ function s:CommentLines(forceNested, align, firstLine, lastLine)
     " we need to get the left and right indexes of the leftmost char in the
     " block of of lines and the right most char so that we can do alignment of
     " the delimiters if the user has specified
-    let leftAlignIndx = a:align == "start" ? 0 : s:LeftMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
+    let leftAlignIndx = a:align == 'start' ? 0 : s:LeftMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
     let rightAlignIndx = s:RightMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
 
     " gotta add the length of the left delimiter onto the rightAlignIndx cos
@@ -837,12 +837,12 @@ function s:CommentLines(forceNested, align, firstLine, lastLine)
 
             " check if we can comment this line
             if !isCommented || g:NERDUsePlaceHolders || s:Multipart()
-                if a:align == "left" || a:align == "start" || a:align == "both"
+                if a:align == 'left' || a:align == 'start' || a:align == 'both'
                     let theLine = s:AddLeftDelimAligned(s:Left({'space': 1}), theLine, leftAlignIndx)
                 else
                     let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
                 endif
-                if a:align == "both"
+                if a:align == 'both'
                     let theLine = s:AddRightDelimAligned(s:Right({'space': 1}), theLine, rightAlignIndx)
                 else
                     let theLine = s:AddRightDelim(s:Right({'space': 1}), theLine)
@@ -1073,7 +1073,7 @@ function s:CommentLinesToggle(forceNested, firstLine, lastLine)
     let currentLine = a:firstLine
 
     let align = g:NERDDefaultAlign
-    let leftAlignIndx = align == "start" ? 0 : s:LeftMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
+    let leftAlignIndx = align == 'start' ? 0 : s:LeftMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
     let rightAlignIndx = s:RightMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
     let rightAlignIndx = rightAlignIndx + strlen(s:Left({'space': 1}))
 
@@ -1096,7 +1096,7 @@ function s:CommentLinesToggle(forceNested, firstLine, lastLine)
             else
                 let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
             endif
-            if align == "both"
+            if align == 'both'
                 let theLine = s:AddRightDelimAligned(s:Right({'space': 1}), theLine, rightAlignIndx)
             else
                 let theLine = s:AddRightDelim(s:Right({'space': 1}), theLine)
@@ -1225,13 +1225,13 @@ endfunction
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
 function! NERDComment(mode, type) range
     if exists('*NERDCommenter_before')
-        exe "call NERDCommenter_before()"
+        exe 'call NERDCommenter_before()'
     endif
 
     let isVisual = a:mode =~ '[vsx]'
 
-    if !exists("g:did_load_ftplugin") || g:did_load_ftplugin != 1
-        call s:NerdEcho("filetype plugins should be enabled. See :help NERDComInstallation and :help :filetype-plugin-on", 0)
+    if !exists('g:did_load_ftplugin') || g:did_load_ftplugin != 1
+        call s:NerdEcho('filetype plugins should be enabled. See :help NERDComInstallation and :help :filetype-plugin-on', 0)
     endif
 
     if isVisual
@@ -1254,18 +1254,18 @@ function! NERDComment(mode, type) range
     if a:type ==? 'Comment' || a:type ==? 'Nested'
         if isVisual && visualmode() == "\<C-V>"
             call s:CommentBlock(firstLine, lastLine, firstCol, lastCol, forceNested)
-        elseif isVisual && visualmode() == "v" && (g:NERDCommentWholeLinesInVMode==0 || (g:NERDCommentWholeLinesInVMode==2 && s:HasMultipartDelims()))
+        elseif isVisual && visualmode() == 'v' && (g:NERDCommentWholeLinesInVMode==0 || (g:NERDCommentWholeLinesInVMode==2 && s:HasMultipartDelims()))
             call s:CommentRegion(firstLine, firstCol, lastLine, lastCol, forceNested)
         else
             call s:CommentLines(forceNested, g:NERDDefaultAlign, firstLine, lastLine)
         endif
 
     elseif a:type ==? 'AlignLeft' || a:type ==? 'AlignBoth'
-        let align = "none"
-        if a:type ==? "AlignLeft"
-            let align = "left"
-        elseif a:type ==? "AlignBoth"
-            let align = "both"
+        let align = 'none'
+        if a:type ==? 'AlignLeft'
+            let align = 'left'
+        elseif a:type ==? 'AlignBoth'
+            let align = 'both'
         endif
         call s:CommentLines(forceNested, align, firstLine, lastLine)
 
@@ -1278,7 +1278,7 @@ function! NERDComment(mode, type) range
         catch /NERDCommenter.Delimiters/
             call s:CommentLines(forceNested, g:NERDDefaultAlign, firstLine, lastLine)
         catch /NERDCommenter.Nesting/
-            call s:NerdEcho("Sexy comment aborted. Nested sexy cannot be nested", 0)
+            call s:NerdEcho('Sexy comment aborted. Nested sexy cannot be nested', 0)
         endtry
 
     elseif a:type ==? 'Toggle'
@@ -1311,14 +1311,14 @@ function! NERDComment(mode, type) range
         try
             call s:CommentLinesMinimal(firstLine, lastLine)
         catch /NERDCommenter.Delimiters/
-            call s:NerdEcho("Minimal comments can only be used for filetypes that have multipart delimiters.", 0)
+            call s:NerdEcho('Minimal comments can only be used for filetypes that have multipart delimiters.', 0)
         catch /NERDCommenter.Settings/
-            call s:NerdEcho("Place holders are required but disabled.", 0)
+            call s:NerdEcho('Place holders are required but disabled.', 0)
         endtry
 
     elseif a:type ==? 'ToEOL'
         call s:SaveScreenState()
-        call s:CommentBlock(firstLine, firstLine, col("."), col("$")-1, 1)
+        call s:CommentBlock(firstLine, firstLine, col('.'), col('$')-1, 1)
         call s:RestoreScreenState()
 
     elseif a:type ==? 'Append'
@@ -1345,13 +1345,13 @@ function! NERDComment(mode, type) range
 
     if isVisual
         let nlines = lastLine - firstLine
-        silent! call repeat#set("V" . nlines . "jo" . "\<Plug>NERDCommenter". a:type)
+        silent! call repeat#set('V' . nlines . 'jo' . "\<Plug>NERDCommenter". a:type)
     else
         silent! call repeat#set("\<Plug>NERDCommenter". a:type)
     endif
 
     if exists('*NERDCommenter_after')
-        exe "call NERDCommenter_after()"
+        exe 'call NERDCommenter_after()'
     endif
 
 endfunction
@@ -1364,40 +1364,40 @@ function s:PlaceDelimitersAndInsBetween()
     let left = s:Left({'space': 1})
     let right = s:Right({'space': 1})
 
-    let theLine = getline(".")
+    let theLine = getline('.')
     let lineHasLeadTabs = s:HasLeadingTabs(theLine) || (theLine =~ '^ *$' && !&expandtab)
 
     "convert tabs to spaces and adjust the cursors column to take this into
     "account
-    let untabbedCol = s:UntabbedCol(theLine, col("."))
-    call setline(line("."), s:ConvertLeadingTabsToSpaces(theLine))
-    call cursor(line("."), untabbedCol)
+    let untabbedCol = s:UntabbedCol(theLine, col('.'))
+    call setline(line('.'), s:ConvertLeadingTabsToSpaces(theLine))
+    call cursor(line('.'), untabbedCol)
 
     " get the length of the right delimiter
     let lenRight = strlen(right)
 
-    let isDelimOnEOL = col(".") >= strlen(getline("."))
+    let isDelimOnEOL = col('.') >= strlen(getline('.'))
 
     " if the cursor is in the first col then we gotta insert rather than
     " append the comment delimiters here
-    let insOrApp = (col(".")==1 ? 'i' : 'a')
+    let insOrApp = (col('.')==1 ? 'i' : 'a')
 
     " place the delimiters down. We do it differently depending on whether
     " there is a left AND right delimiter
     if lenRight > 0
-        execute ":normal! " . insOrApp . left . right
-        execute ":normal! " . lenRight . "h"
+        execute ':normal! ' . insOrApp . left . right
+        execute ':normal! ' . lenRight . 'h'
     else
-        execute ":normal! " . insOrApp . left
+        execute ':normal! ' . insOrApp . left
     endif
     silent! normal! l
 
     "if needed convert spaces back to tabs and adjust the cursors col
     "accordingly
     if lineHasLeadTabs
-        let tabbedCol = s:TabbedCol(getline("."), col("."))
-        call setline(line("."), s:ConvertLeadingSpacesToTabs(getline(".")))
-        call cursor(line("."), tabbedCol)
+        let tabbedCol = s:TabbedCol(getline('.'), col('.'))
+        call setline(line('.'), s:ConvertLeadingSpacesToTabs(getline('.')))
+        call cursor(line('.'), tabbedCol)
     endif
 
     if isDelimOnEOL && lenRight == 0
@@ -1412,7 +1412,7 @@ endfunction
 " last right delimiter of the given line.
 "
 " The arguments left and right must be strings. If there is no right delimiter (as
-" is the case for e.g vim file comments) them the argument right should be ""
+" is the case for e.g vim file comments) them the argument right should be ''
 "
 " Args:
 "   -left: the left comment delimiter
@@ -1475,7 +1475,7 @@ function s:SetupStateBeforeLineComment(topLine, bottomLine)
     " manual, do the commenting stuff and recover it later. To avoid slowing
     " down commenting few lines, we avoid doing this for ranges smaller than
     " 10 lines
-    if a:bottomLine - a:topLine >= 10 && &foldmethod != "manual"
+    if a:bottomLine - a:topLine >= 10 && &foldmethod != 'manual'
         set foldmethod=manual
     endif
 
@@ -1814,7 +1814,7 @@ endfunction
 " Function: s:AddRightDelimAligned(delim, theLine, alignIndx) {{{2
 " Args:
 function s:AddRightDelimAligned(delim, theLine, alignIndx)
-    if a:delim == ""
+    if a:delim == ''
         return a:theLine
     else
 
@@ -1881,10 +1881,10 @@ endfunction
 " Function: s:CanPlaceCursor(line, col) {{{2
 " returns 1 if the cursor can be placed exactly in the given position
 function s:CanPlaceCursor(line, col)
-    let c = col(".")
-    let l = line(".")
+    let c = col('.')
+    let l = line('.')
     call cursor(a:line, a:col)
-    let success = (line(".") == a:line && col(".") == a:col)
+    let success = (line('.') == a:line && col('.') == a:col)
     call cursor(l,c)
     return success
 endfunction
@@ -1942,7 +1942,7 @@ endfunction
 function s:ConvertLeadingSpacesToTabs(line)
     let toReturn  = a:line
     while toReturn =~ '^\t*' . s:TabSpace() . '\(.*\)$'
-        let toReturn = substitute(toReturn, '^\(\t*\)' . s:TabSpace() . '\(.*\)$'  ,  '\1\t\2' , "")
+        let toReturn = substitute(toReturn, '^\(\t*\)' . s:TabSpace() . '\(.*\)$'  ,  '\1\t\2' , '')
     endwhile
 
     return toReturn
@@ -1958,7 +1958,7 @@ endfunction
 function s:ConvertLeadingTabsToSpaces(line)
     let toReturn  = a:line
     while toReturn =~ '^\( *\)\t'
-        let toReturn = substitute(toReturn, '^\( *\)\t',  '\1' . s:TabSpace() , "")
+        let toReturn = substitute(toReturn, '^\( *\)\t',  '\1' . s:TabSpace() , '')
     endwhile
 
     return toReturn
@@ -1972,7 +1972,7 @@ endfunction
 function s:ConvertLeadingWhiteSpace(line)
     let toReturn = a:line
     while toReturn =~ '^ *\t'
-        let toReturn = substitute(toReturn, '^ *\zs\t\ze', s:TabSpace(), "g")
+        let toReturn = substitute(toReturn, '^ *\zs\t\ze', s:TabSpace(), 'g')
     endwhile
 
     if !&expandtab
@@ -2062,7 +2062,7 @@ endfunction
 function s:FindDelimiterIndex(delimiter, line)
 
     "make sure the delimiter isn't empty otherwise we go into an infinite loop.
-    if a:delimiter == ""
+    if a:delimiter == ''
         return -1
     endif
 
@@ -2474,13 +2474,13 @@ function s:IsDelimValid(delimiter, delIndx, line)
     "to check if the delimiter is real, make sure it isn't preceded by
     "an odd number of quotes and followed by the same (which would indicate
     "that it is part of a string and therefore is not a comment)
-    if !s:IsNumEven(s:CountNonESCedOccurances(preComStr, '"', "\\")) && !s:IsNumEven(s:CountNonESCedOccurances(postComStr, '"', "\\"))
+    if !s:IsNumEven(s:CountNonESCedOccurances(preComStr, '"', "\\")) && !s:IsNumEven(s:CountNonESCedOccurances(postComStr, '"', '\\'))
         return 0
     endif
-    if !s:IsNumEven(s:CountNonESCedOccurances(preComStr, "'", "\\")) && !s:IsNumEven(s:CountNonESCedOccurances(postComStr, "'", "\\"))
+    if !s:IsNumEven(s:CountNonESCedOccurances(preComStr, "'", '\\')) && !s:IsNumEven(s:CountNonESCedOccurances(postComStr, "'", '\\'))
         return 0
     endif
-    if !s:IsNumEven(s:CountNonESCedOccurances(preComStr, "`", "\\")) && !s:IsNumEven(s:CountNonESCedOccurances(postComStr, "`", "\\"))
+    if !s:IsNumEven(s:CountNonESCedOccurances(preComStr, '`', '\\')) && !s:IsNumEven(s:CountNonESCedOccurances(postComStr, '`', '\\'))
         return 0
     endif
 
@@ -2493,7 +2493,7 @@ function s:IsDelimValid(delimiter, delIndx, line)
     "vim comments are so fucking stupid!! Why the hell do they have comment
     "delimiters that are used elsewhere in the syntax?!?! We need to check
     "some conditions especially for vim
-    if &filetype == "vim"
+    if &filetype == 'vim'
         if !s:IsNumEven(s:CountNonESCedOccurances(preComStr, '"', "\\"))
             return 0
         endif
@@ -2504,8 +2504,8 @@ function s:IsDelimValid(delimiter, delIndx, line)
             return 1
         endif
 
-        let numLeftParen =s:CountNonESCedOccurances(preComStr, "(", "\\")
-        let numRightParen =s:CountNonESCedOccurances(preComStr, ")", "\\")
+        let numLeftParen =s:CountNonESCedOccurances(preComStr, '(', '\\')
+        let numRightParen =s:CountNonESCedOccurances(preComStr, ')', '\\')
 
         "if the quote is inside brackets then assume it isn't a comment
         if numLeftParen > numRightParen
@@ -2514,7 +2514,7 @@ function s:IsDelimValid(delimiter, delIndx, line)
 
         "if the line has an even num of unescaped "'s then we can assume that
         "any given " is not a comment delimiter
-        if s:IsNumEven(s:CountNonESCedOccurances(a:line, "\"", "\\"))
+        if s:IsNumEven(s:CountNonESCedOccurances(a:line, '"', '\\'))
             return 0
         endif
     endif
@@ -2781,7 +2781,7 @@ endfunction
 " Function: s:NumberOfLeadingTabs(s) {{{2
 " returns the number of leading tabs in the given string
 function s:NumberOfLeadingTabs(s)
-    return strlen(substitute(a:s, '^\(\t*\).*$', '\1', ""))
+    return strlen(substitute(a:s, '^\(\t*\).*$', '\1', ''))
 endfunction
 
 " Function: s:NumLinesInBuf() {{{2
@@ -2861,13 +2861,13 @@ endfunction
 "called.
 "
 function s:RestoreScreenState()
-    if !exists("t:NERDComOldTopLine") || !exists("t:NERDComOldPos")
+    if !exists('t:NERDComOldTopLine') || !exists('t:NERDComOldPos')
         throw 'NERDCommenter exception: cannot restore screen'
     endif
 
     call cursor(t:NERDComOldTopLine, 0)
     normal! zt
-    call setpos(".", t:NERDComOldPos)
+    call setpos('.', t:NERDComOldPos)
 endfunction
 
 " Function: s:Right(...) {{{2
@@ -2935,8 +2935,8 @@ endfunction
 "Saves the current cursor position in the current buffer and the window
 "scroll position
 function s:SaveScreenState()
-    let t:NERDComOldPos = getpos(".")
-    let t:NERDComOldTopLine = line("w0")
+    let t:NERDComOldPos = getpos('.')
+    let t:NERDComOldTopLine = line('w0')
 endfunction
 
 " Function: s:SwapOuterMultiPartDelimsForPlaceHolders(line) {{{2
@@ -3001,10 +3001,10 @@ endfunction
 "FUNCTION: s:TabSpace() {{{2
 "returns a string of spaces equal in length to &tabstop
 function s:TabSpace()
-    let tabSpace = ""
+    let tabSpace = ''
     let spacesPerTab = &tabstop
     while spacesPerTab > 0
-        let tabSpace = tabSpace . " "
+        let tabSpace = tabSpace . ' '
         let spacesPerTab = spacesPerTab - 1
     endwhile
     return tabSpace
@@ -3016,7 +3016,7 @@ endfunction
 "   -str: the string to remove esc chars from
 "   -escChar: the escape char to be removed
 function s:UnEsc(str, escChar)
-    return substitute(a:str, a:escChar, "", "g")
+    return substitute(a:str, a:escChar, '', 'g')
 endfunction
 
 " Function: s:UntabbedCol(line, col) {{{2
@@ -3084,7 +3084,7 @@ call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
 call s:CreateMaps('',   ':',          '-Sep3-', '')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
 
-inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call NERDComment('i', "insert")<CR>
+inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call NERDComment('i', 'insert')<CR>
 
 " switch to/from alternative delimiters (does not use wrapper function)
 nnoremap <plug>NERDCommenterAltDelims :call <SID>SwitchToAlternativeDelimiters(1)<cr>
