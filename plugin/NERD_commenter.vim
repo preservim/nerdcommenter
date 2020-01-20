@@ -1365,7 +1365,7 @@ endfunction
 "   -col        the column number of the character
 " Return: Number, 1 if the character is inside a comment, 0 if is not
 function! NERDCommentIsCharCommented(line, col) abort
-  " Function: searchfor(str, line, col, direction, [maxline])
+  " Function: s:searchfor(str, line, col, direction, [maxline])
   " search str in the buffer, including the character at [line, col]
   " Args: 
   "   -str:       the string for search
@@ -1378,13 +1378,13 @@ function! NERDCommentIsCharCommented(line, col) abort
   " Return: List, in the format of [line, col], where line and col is the
   "         position of first found result; If str cannot be found, returns
   "         [0, 0]
-  function! l:searchfor(str, line, col, direction, ...) abort
+  function! s:searchfor(str, line, col, direction, ...) abort
     let l:curlinenr = a:line
-    let l:maxline = (a:0 > 4) ? a:5 : (direction ? a:line : line('$') - a:line + 1)
+    let l:maxline = (a:0 > 0) ? a:1 : (a:direction ? a:line : line('$') - a:line + 1)
     while abs(curlinenr - a:line) < maxline
-      let linestr = getline(a:line)
+      let linestr = getline(curlinenr)
       if curlinenr == a:line
-        if direction == 0
+        if !a:direction
           let l:partstr = strpart(linestr, a:col - strlen(a:str))
         else
           let l:partstr = strpart(linestr, 0, a:col + strlen(a:str) - 1)
@@ -1392,45 +1392,61 @@ function! NERDCommentIsCharCommented(line, col) abort
       else
         let l:partstr = linestr
       endif
-      if !direction
-        let idx = stridx(a:str, partstr)
+      if !a:direction
+        " forward
+        let idx = stridx(partstr, a:str)
         if idx != -1
+          if curlinenr == a:line
+            let idx += a:col - strlen(a:str)
+          else
+          endif
           return [curlinenr, idx + 1]
         endif
       else
-        let idx = strridx(a:str, partstr)
+        " backward
+        let idx = strridx(partstr, a:str)
         if idx != -1
           return [curlinenr, idx + 1]
         endif
       endif
-      let curlinenr += direction ? 1 : -1
+      let curlinenr += a:direction ? -1 : 1
     endwhile
     return [0, 0]
   endfunction
-  function! l:checkwith(left, right, line, col) abort
+  " Function: s:checkwith(left, right, line, col) abort
+  " check if the char at [line, col] is commented using [left, right] pair
+  " Args:
+  "   -left:      the string begins a comment
+  "   -right:     the string ends a comment
+  "   -line:      the line position of the character
+  "   -col:       the column position of the character
+  " Return: Number, 1 if is in a comment, 0 else
+  function! s:checkwith(left, right, line, col) abort
     let linecommented  = 0
     let blockcommented = 0
     if a:right ==# ''
-      let leftpos = searchfor(a:left, a:line, a:col, 1, 1)
+      let leftpos = s:searchfor(a:left, a:line, a:col, 1, 1)
       if leftpos == [0, 0]
         if !linecommented | let linecommented = 0 | endif
       else
         if !linecommented | let linecommented = 1 | endif
       endif
     else
-      let leftpos = searchfor(a:left, a:line, a:col, 1)
+      let leftpos = s:searchfor(a:left, a:line, a:col, 1)
       if leftpos == [0, 0]
-        if !blockcommented | let linecommented = 0 | endif
+        if !blockcommented | let blockcommented = 0 | endif
       else 
-        call searchfor(a:right, a:line, a:col, 0)
-        let rightpos = searchfor(a:right, a:line, a:col, 0)
+        " call s:searchfor(a:right, a:line, a:col, 0)
+        let rightpos = s:searchfor(a:right, leftpos[0], leftpos[1] + strlen(a:right) + 1, 0)
         if rightpos != [0, 0]
           if rightpos[0] < a:line
             if !blockcommented | let blockcommented = 0 | endif
-          else
+          elseif rightpos[0] == a:line
             if !blockcommented 
-              let blockcommented = (rightpos[1] + strlen(a:right) >= a:col) ? 0 : 1
+              let blockcommented = (rightpos[1] + strlen(a:right) > a:col) ? 1 : 0
             endif
+          else " rightpos > a:line
+            if !blockcommented | let blockcommented = 1 | endif
           endif
         else
           if !blockcommented | let blockcommented = 1 | endif
@@ -1439,12 +1455,12 @@ function! NERDCommentIsCharCommented(line, col) abort
     endif
     return linecommented || blockcommented
   endfunction
-  return checkwith(
+  return s:checkwith(
           \ b:NERDCommenterDelims['left'], 
           \ b:NERDCommenterDelims['right'], 
           \ a:line, 
           \ a:col) || 
-        checkwith(
+        \ s:checkwith(
           \ b:NERDCommenterDelims['leftAlt'], 
           \ b:NERDCommenterDelims['rightAlt'], 
           \ a:line, 
