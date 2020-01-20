@@ -1356,6 +1356,101 @@ function! NERDComment(mode, type) range
 
 endfunction
 
+" Function: NERDCommentIsCharCommented(line, col) abort
+" Check if the character at [line, col] is inside a comment
+" Note the Comment delimeter it self is considered as part of the comment
+" 
+" Args:
+"   -line       the line number of the character
+"   -col        the column number of the character
+" Return: Number, 1 if the character is inside a comment, 0 if is not
+function! NERDCommentIsCharCommented(line, col) abort
+  " Function: searchfor(str, line, col, direction, [maxline])
+  " search str in the buffer, including the character at [line, col]
+  " Args: 
+  "   -str:       the string for search
+  "   -line:      the line number where search begins
+  "   -col:       the column number where search begins
+  "   -direction: 0 if forward, and 1 if backward
+  "   -maxline:   the max lines the search would look up
+  "               1 if search only one line
+  "               if not given, search until reaches the begining or end of file
+  " Return: List, in the format of [line, col], where line and col is the
+  "         position of first found result; If str cannot be found, returns
+  "         [0, 0]
+  function! l:searchfor(str, line, col, direction, ...) abort
+    let l:curlinenr = a:line
+    let l:maxline = (a:0 > 4) ? a:5 : (direction ? a:line : line('$') - a:line + 1)
+    while abs(curlinenr - a:line) < maxline
+      let linestr = getline(a:line)
+      if curlinenr == a:line
+        if direction == 0
+          let l:partstr = strpart(linestr, a:col - strlen(a:str))
+        else
+          let l:partstr = strpart(linestr, 0, a:col + strlen(a:str) - 1)
+        endif
+      else
+        let l:partstr = linestr
+      endif
+      if !direction
+        let idx = stridx(a:str, partstr)
+        if idx != -1
+          return [curlinenr, idx + 1]
+        endif
+      else
+        let idx = strridx(a:str, partstr)
+        if idx != -1
+          return [curlinenr, idx + 1]
+        endif
+      endif
+      let curlinenr += direction ? 1 : -1
+    endwhile
+    return [0, 0]
+  endfunction
+  function! l:checkwith(left, right, line, col) abort
+    let linecommented  = 0
+    let blockcommented = 0
+    if a:right ==# ''
+      let leftpos = searchfor(a:left, a:line, a:col, 1, 1)
+      if leftpos == [0, 0]
+        if !linecommented | let linecommented = 0 | endif
+      else
+        if !linecommented | let linecommented = 1 | endif
+      endif
+    else
+      let leftpos = searchfor(a:left, a:line, a:col, 1)
+      if leftpos == [0, 0]
+        if !blockcommented | let linecommented = 0 | endif
+      else 
+        call searchfor(a:right, a:line, a:col, 0)
+        let rightpos = searchfor(a:right, a:line, a:col, 0)
+        if rightpos != [0, 0]
+          if rightpos[0] < a:line
+            if !blockcommented | let blockcommented = 0 | endif
+          else
+            if !blockcommented 
+              let blockcommented = (rightpos[1] + strlen(a:right) >= a:col) ? 0 : 1
+            endif
+          endif
+        else
+          if !blockcommented | let blockcommented = 1 | endif
+        endif
+      endif
+    endif
+    return linecommented || blockcommented
+  endfunction
+  return checkwith(
+          \ b:NERDCommenterDelims['left'], 
+          \ b:NERDCommenterDelims['right'], 
+          \ a:line, 
+          \ a:col) || 
+        checkwith(
+          \ b:NERDCommenterDelims['leftAlt'], 
+          \ b:NERDCommenterDelims['rightAlt'], 
+          \ a:line, 
+          \ a:col)
+endfunction
+
 " Function: s:PlaceDelimitersAndInsBetween() function {{{2
 " This is function is called to place comment delimiters down and place the
 " cursor between them
