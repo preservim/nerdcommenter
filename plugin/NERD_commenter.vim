@@ -1209,6 +1209,12 @@ function s:InvertComment(firstLine, lastLine)
     endwhile
 endfunction
 
+" Function: NERDCommentIsLineCommented(lineNo)
+" Check if the line is a comment
+" Note this function checks if the line is **completely** a comment
+" Args:
+"   -lineNo:    the line number of the line to check
+" Return: Number, 1 if the line is a comment, 0 else
 function! NERDCommentIsLineCommented(lineNo)
     let theLine = getline(a:lineNo)
     return s:IsInSexyComment(a:lineNo) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
