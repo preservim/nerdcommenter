@@ -370,7 +370,7 @@ let s:delimiterMap = {
     \ 'resolv': { 'left': '#' },
     \ 'rgb': { 'left': '!' },
     \ 'rib': { 'left': '#' },
-    \ 'rmd': { 'left': '#' },
+    \ 'rmd': { 'left': '<!--', 'right': '-->', 'leftalt': '#' },
     \ 'robot': { 'left': '#' },
     \ 'robots': { 'left': '#' },
     \ 'rspec': { 'left': '#' },
