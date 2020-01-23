@@ -38,13 +38,14 @@ CONTENTS                                               *NERDCommenterContents*
         4.2 Options details...................|NERDCommenterOptionsDetails|
         4.3 Default delimiter Options.........|NERDCommenterDefaultDelims|
     5. Customising key mappings...............|NERDCommenterMappings|
-    6. Issues with the script.................|NERDCommenterIssues|
-        6.1 Delimiter detection heuristics....|NERDCommenterHeuristics|
-        6.2 Nesting issues....................|NERDCommenterNesting|
-    7.About..     ............................|NERDCommenterAbout|
-    8.Changelog...............................|NERDCommenterChangelog|
-    9.Credits.................................|NERDCommenterCredits|
-    10.License................................|NERDCommenterLicense|
+    6. Interfaces............................. NERDCommenterInterfaces
+    7. Issues with the script.................|NERDCommenterIssues|
+        7.1 Delimiter detection heuristics....|NERDCommenterHeuristics|
+        7.2 Nesting issues....................|NERDCommenterNesting|
+    8.About..     ............................|NERDCommenterAbout|
+    9.Changelog...............................|NERDCommenterChangelog|
+    10.Credits................................|NERDCommenterCredits|
+    11.License................................|NERDCommenterLicense|
 
 ==============================================================================
 1. Intro                                                       *NERDCommenter*
@@ -883,11 +884,46 @@ map to.
 See also |'NERDCreateDefaultMappings'|.
 
 ==============================================================================
-6. Issues with the script                                *NERDCommenterIssues*
+6. Interfaces                                        *NERDCommenterInterfaces*
+
+NERDCommentIsLineCommented({lineNo})            *NERDCommentIsLineCommented()*
+            Check if the line is a comment
+            Note this function checks if the line is **completely** a comment
+            Args:
+              {lineNo}:     the line number of the line to check
+            Return: Number, 1 if the line is a comment, 0 else
+
+
+NERDComment({mode}, {type})                                    *NERDComment()*
+            This function is a Wrapper for the main commenting functions
+
+            Args:
+              {mode}:       character indicating the mode in which the comment
+                            is requested:
+                            'n' for Normal mode, 'x' for Visual mode
+              {type}:       the type of commenting requested. Can be 'Sexy', 
+                            'Invert', 'Minimal', 'Toggle', 'AlignLeft', 
+                            'AlignBoth', 'Comment', 'Nested', 'ToEOL', 'Append',
+                            'Insert', 'Uncomment', 'Yank'
+
+
+NERDCommentIsCharCommented({line}, {col})       *NERDCommentIsCharCommented()*
+            Check if the character at [{line}, {col}] is inside a comment
+            Note the Comment delimeter it self is considered as part of the 
+            comment
+
+            Args:
+              {line}       the line number of the character
+              {col}        the column number of the character
+            Return: Number, 1 if the character is inside a comment, 0 else
+
+
+==============================================================================
+7. Issues with the script                                *NERDCommenterIssues*
 
 
 ------------------------------------------------------------------------------
-6.1 Delimiter detection heuristics                   *NERDCommenterHeuristics*
+7.1 Delimiter detection heuristics                   *NERDCommenterHeuristics*
 
 Heuristics are used to distinguish the real comment delimiters
 
@@ -907,7 +943,7 @@ string. These heuristics, while usually pretty accurate, will not work for all
 cases.
 
 ------------------------------------------------------------------------------
-6.2 Nesting issues                                      *NERDCommenterNesting*
+7.2 Nesting issues                                      *NERDCommenterNesting*
 
 If we have some line of code like this: >
     /*int foo */ = /*5 + 9;*/
@@ -927,7 +963,7 @@ will become: >
 for simplicity)
 
 ==============================================================================
-7. About                                                  *NERDCommenterAbout*
+8. About                                                  *NERDCommenterAbout*
 
 The author of the NERD commenter is Martyzillatron --- the half robot, half
 dinosaur bastard son of Megatron and Godzilla. He enjoys destroying
@@ -944,7 +980,7 @@ The latest dev versions are on github
     http://github.com/preservim/nerdcommenter
 
 ==============================================================================
-8. Changelog                                          *NERDCommenterChangelog*
+9. Changelog                                          *NERDCommenterChangelog*
 
 2.3.0
     - remove all filetypes which have a &commentstring in the standard vim
@@ -1010,7 +1046,7 @@ The latest dev versions are on github
       NERDCommenterInsert if you wish to restore it
 
 ==============================================================================
-9. Credits                                              *NERDCommenterCredits*
+10. Credits                                              *NERDCommenterCredits*
 
 Thanks to the follow people for suggestions and patches:
 
@@ -1149,7 +1185,7 @@ Ivan Devat                          javascript.jquery
 tpope                               cucumber,pdf
 Lyude Paul                          piglit shader_test
 ==============================================================================
-10. License                                             *NERDCommenterLicense*
+11. License                                             *NERDCommenterLicense*
 
 The NERD commenter is released under the wtfpl.
 See http://sam.zoy.org/wtfpl/COPYING.
