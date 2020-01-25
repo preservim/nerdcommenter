@@ -38,7 +38,7 @@ CONTENTS                                               *NERDCommenterContents*
         4.2 Options details...................|NERDCommenterOptionsDetails|
         4.3 Default delimiter Options.........|NERDCommenterDefaultDelims|
     5. Customising key mappings...............|NERDCommenterMappings|
-    6. Interfaces............................. NERDCommenterInterfaces
+    6. Interfaces.............................|NERDCommenterInterfaces|
     7. Issues with the script.................|NERDCommenterIssues|
         7.1 Delimiter detection heuristics....|NERDCommenterHeuristics|
         7.2 Nesting issues....................|NERDCommenterNesting|
