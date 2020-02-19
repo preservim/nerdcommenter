@@ -1507,7 +1507,6 @@ function s:PlaceDelimitersAndInsBetween()
     else
         execute ':normal! ' . insOrApp . left
     endif
-    silent! normal! l
 
     "if needed convert spaces back to tabs and adjust the cursors col
     "accordingly
@@ -1520,7 +1519,7 @@ function s:PlaceDelimitersAndInsBetween()
     if isDelimOnEOL && lenRight ==# 0
         startinsert!
     else
-        startinsert
+        call feedkeys('a', 'ni')
     endif
 endfunction
 
