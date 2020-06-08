@@ -1187,5 +1187,5 @@ Lyude Paul                          piglit shader_test
 ==============================================================================
 11. License                                             *NERDCommenterLicense*
 
-The NERD commenter is released under the wtfpl.
-See http://sam.zoy.org/wtfpl/COPYING.
+NERD Commenter is released under the Creative-Commons CCO 1.0 Universal
+license. See the included LICENE file for details.
