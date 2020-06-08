@@ -1,12 +1,5 @@
-" Section: script init stuff
-if exists('loaded_nerd_comments')
-    finish
-endif
-if v:version < 700
-    echoerr "NERDCommenter: this plugin requires vim >= 7. DOWNLOAD IT! You'll thank me later!"
-    finish
-endif
-let loaded_nerd_comments = 1
+" Section: script init stuff {{{1
+let nerdcommenter#loaded = 1
 
 " Function: s:InitVariable() function
 " This function is used to initialise a given variable to a given value. The
@@ -20,7 +13,7 @@ let loaded_nerd_comments = 1
 "   1 if the var is set, 0 otherwise
 function s:InitVariable(var, value)
     if !exists(a:var)
-        execute 'let ' . a:var . ' = ' . "'" . a:value . "'"
+        execute 'let ' . a:var . ' = ' . string(a:value)
         return 1
     endif
     return 0
@@ -1194,18 +1187,18 @@ function s:InvertComment(firstLine, lastLine)
     endwhile
 endfunction
 
-" Function: NERDCommentIsLineCommented(lineNo)
+" Function: nerdcommenter#IsLineCommented(lineNo)
 " Check if the line is a comment
 " Note this function checks if the line is **completely** a comment
 " Args:
 "   -lineNo:    the line number of the line to check
 " Return: Number, 1 if the line is a comment, 0 else
-function! NERDCommentIsLineCommented(lineNo)
+function! nerdcommenter#IsLineCommented(lineNo) abort
     let theLine = getline(a:lineNo)
     return s:IsInSexyComment(a:lineNo) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
 endfunction
 
-" Function: NERDComment(mode, type) function
+" Function: nerdcommenter#Comment(mode, type) function
 " This function is a Wrapper for the main commenting functions
 "
 " Args:
@@ -1214,7 +1207,7 @@ endfunction
 "   -type: the type of commenting requested. Can be 'Sexy', 'Invert',
 "    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Comment',
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
-function! NERDComment(mode, type) range
+function! nerdcommenter#Comment(mode, type) range abort
     if exists('*NERDCommenter_before')
         exe 'call NERDCommenter_before()'
     endif
@@ -1329,7 +1322,7 @@ function! NERDComment(mode, type) range
         else
             normal! yy
         endif
-        execute firstLine .','. lastLine .'call NERDComment("'. a:mode .'", "Comment")'
+        execute firstLine .','. lastLine .'call nerdcommenter#Comment("'. a:mode .'", "Comment")'
     endif
 
     call s:RecoverStateAfterLineComment(state)
@@ -3136,17 +3129,21 @@ endfunction
 " Section: Comment mapping and menu item setup
 " ===========================================================================
 
+function! nerdcommenter#Plug(target) abort
+    return "\<Plug>NERDCommenter". a:target
+endfunction
+
 " Create menu items for the specified modes.  If a:combo is not empty, then
 " also define mappings and show a:combo in the menu items.
 function! s:CreateMaps(modes, target, desc, combo)
     " Build up a map command like
-    " 'noremap <silent> <plug>NERDCommenterComment :call NERDComment("n", "Comment")'
-    let plug = '<plug>NERDCommenter' . a:target
-    let plug_start = 'noremap <silent> ' . plug . ' :call NERDComment("'
-    let plug_end = '", "' . a:target . '")<cr>'
+    " 'noremap <silent> <Plug>NERDCommenterComment :call nerdcommenter#Comment("n", "Comment")'
+    let plug = '<Plug>NERDCommenter' . a:target
+    let plug_start = 'noremap <silent> ' . plug . ' :call nerdcommenter#Comment("'
+    let plug_end = '", "' . a:target . '")<CR>'
     " Build up a menu command like
-    " 'menu <silent> comment.Comment<Tab>\\cc <plug>NERDCommenterComment'
-    let menuRoot = get(['', 'comment', '&comment', '&Plugin.&comment'],
+    " 'menu <silent> comment.Comment<Tab>\\cc <Plug>NERDCommenterComment'
+    let menuRoot = get(['', 'comment', '&comment', '&Plugin.&comment', '&Plugin.Nerd\ &Commenter'],
                 \ g:NERDMenuMode, '')
     let menu_command = 'menu <silent> ' . menuRoot . '.' . escape(a:desc, ' ')
     if strlen(a:combo)
@@ -3169,7 +3166,7 @@ function! s:CreateMaps(modes, target, desc, combo)
     endfor
 endfunction
 call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
-call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<space>')
+call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<Space>')
 call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
 call s:CreateMaps('nx', 'Nested',     'Nested', 'cn')
 call s:CreateMaps('n',  'ToEOL',      'To EOL', 'c$')
@@ -3187,11 +3184,13 @@ call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
 call s:CreateMaps('',   ':',          '-Sep3-', '')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
 
-inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call NERDComment('i', 'insert')<CR>
+inoremap <silent> <Plug>NERDCommenterInsert <Space><BS><Esc>:call nerdcommenter#Comment('i', "insert")<CR>
 
 " switch to/from alternative delimiters (does not use wrapper function)
-nnoremap <plug>NERDCommenterAltDelims :call <SID>SwitchToAlternativeDelimiters(1)<cr>
+nnoremap <Plug>NERDCommenterAltDelims :call <SID>SwitchToAlternativeDelimiters(1)<CR>
 
 " This is a workaround to enable lazy-loading from supported plugin managers:
 " See https://github.com/preservim/nerdcommenter/issues/176
-call s:SetUpForNewFiletype(&filetype, 1)
+if !has('vim_starting')
+	call s:SetUpForNewFiletype(&filetype, 1)
+endif
