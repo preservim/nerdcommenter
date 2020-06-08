@@ -1,3 +1,23 @@
+# Changelog
+
+### 2.5.2
+
+* Minor update to include new file types contributed by the community over the last few months.
+* Also adds a customization option to the sexy comment style.
+
+### 2.5.1
+
+* Minor update release that adds a few new contributed filetypes and normalizes the code format a little bit.
+
+### 2.5.0
+
+* Add lots of new contributed file types, cleanup some odds and ends.
+* Bump "release" for the sake of plugin managers still not tracking master.
+
+### 2.4.0
+
+* Bump release number for the benefit of plugin managers that update to tags
+
 ### 2.3.0
 
 *  remove all filetypes which have a &commentstring in the standard vim runtime
