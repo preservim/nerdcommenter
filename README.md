@@ -1,4 +1,6 @@
-# NERD Commenter [![Vint](https://github.com/preservim/nerdcommenter/workflows/Vint/badge.svg)](https://github.com/preservim/nerdcommenter/actions?workflow=Vint)
+# NERD Commenter
+
+[![Vint](https://github.com/preservim/nerdcommenter/workflows/Vint/badge.svg)](https://github.com/preservim/nerdcommenter/actions?workflow=Vint)
 
 Comment functions so powerful—no comment necessary.
 
