@@ -965,225 +965,38 @@ for simplicity)
 ==============================================================================
 8. About                                                  *NERDCommenterAbout*
 
-The author of the NERD commenter is Martyzillatron --- the half robot, half
-dinosaur bastard son of Megatron and Godzilla. He enjoys destroying
-metropolises and eating tourist buses.
+This plugin was originally written in 2007 by Martin Grenfell, aka @scrooloose
+on Github: https://github.com/scrooloose
 
-Drop him a line at martin_grenfell at msn.com. He would love to hear from you.
-It's a lonely life being the worlds premier terror machine. How would you feel
-if your face looked like a toaster and a t-rex put together? :(
+Since 2016 it has been maintained primarily by Caleb Maclennan, aka @alerque
+on Github: https://github.com/alerque
 
-The latest stable versions can be found at
-    http://www.vim.org/scripts/script.php?script_id=1218
+Lots of features and many of the supported filetypes have come from the
+community, see |NERDCommenterCredits|.
 
-The latest dev versions are on github
-    http://github.com/preservim/nerdcommenter
+Additional file type support, bug fixes, and new feature contributons are all
+welcome, please send them as Pull Requests on Github. If you can't contribute
+yourself please also feel free to open issues to report problems or request
+features: https://github.com/preservim/nerdcommenter
 
 ==============================================================================
 9. Changelog                                          *NERDCommenterChangelog*
 
-2.3.0
-    - remove all filetypes which have a &commentstring in the standard vim
-      runtime for vim > 7.0 unless the script stores an alternate set of
-      delimiters
-    - make the script complain if the user doesn't have filetype plugins enabled
-    - use |<Leader>| instead of comma to start the default mappings
-    - fix a couple of bugs with sexy comments - thanks to Tim Smart
-    - lots of refactoring
+See the included CHANGELOG.md file or the Github Releases page for the latest
+info on tagged releases. https://github.com/preservim/nerdcommenter/releases
 
-2.2.2
-    - remove the NERDShutup option and the message is suppresses, this makes
-      the plugin silently rely on &commentstring for unknown filetypes.
-    - add support for dhcpd, limits, ntp, resolv, rgb, sysctl, udevconf and
-      udevrules. Thanks to Thilo Six.
-    - match filetypes case insensitively
-    - add support for mp (metapost), thanks to Andrey Skvortsov.
-    - add support for htmlcheetah, thanks to Simon Hengel.
-    - add support for javacc, thanks to Matt Tolton.
-    - make <%# %> the default delims for eruby, thanks to tpope.
-    - add support for javascript.jquery, thanks to Ivan Devat.
-    - add support for cucumber and pdf. Fix sass and railslog delims,
-      thanks to tpope
-
-2.2.1
-    - add support for newlisp and clojure, thanks to Matthew Lee Hinman.
-    - fix automake comments, thanks to Elias Pipping
-    - make haml comments default to -# with / as the alternative delimiter,
-      thanks to tpope
-    - add support for actionscript and processing thanks to Edwin Benavides
-    - add support for ps1 (powershell), thanks to Jason Mills
-    - add support for hostsaccess, thanks to Thomas Rowe
-    - add support for CVScommit
-    - add support for asciidoc, git and gitrebase. Thanks to Simon Ruderich.
-    - use # for gitcommit comments, thanks to Simon Ruderich.
-    - add support for mako and genshi, thanks to Keitheis.
-    - add support for conkyrc, thanks to David
-    - add support for SVNannotate, thanks to Miguel Jaque Barbero.
-    - add support for sieve, thanks to Stefan Walk
-    - add support for objj, thanks to Adam Thorsen.
-
-2.2.0
-    - rewrote the mappings system to be more "standard".
-      - removed all the mapping options. Now, mappings to <plug> mappings are
-        used
-      - see :help NERDComMappings, and :help NERDCreateDefaultMappings for
-        more info
-    - remove "prepend comments" and "right aligned comments".
-    - add support for applescript, calbire, man, SVNcommit, potwiki, txt2tags and SVNinfo.
-      Thanks to nicothakis, timberke, sgronblo, mntnoe, Bernhard Grotz, John
-      O'Shea, François and Giacomo Mariani respectively.
-    - bugfix for haskell delimiters. Thanks to mntnoe.
-2.1.18
-    - add support for llvm. Thanks to nicothakis.
-    - add support for xquery. Thanks to Phillip Kovalev.
-2.1.17
-    - fixed haskell delimiters (hackily). Thanks to Elias Pipping.
-    - add support for mailcap. Thanks to Pascal Brueckner.
-    - add support for stata. Thanks to Jerónimo Carballo.
-    - applied a patch from ewfalor to fix an error in the help file with the
-      NERDMapleader doc
-    - disable the insert mode ctrl-c mapping by default, see :help
-      NERDCommenterInsert if you wish to restore it
+The `master` branch is considered stable and will have the latest filetype
+support and bugfixes.
 
 ==============================================================================
 10. Credits                                              *NERDCommenterCredits*
 
-Thanks to the follow people for suggestions and patches:
+Well over 100 people have contributed towards this plugin, it's functions, and
+specific filetype support. Please check out the up do date list of all
+contributors on Github:
 
-Nick Brettell
-Matthew Hawkins
-Mathieu Clabaut
-Greg Searle
-Nguyen
-Litchi
-Jorge Scandaliaris
-Shufeng Zheng
-Martin Stubenschrott
-Markus Erlmann
-Brent Rice
-Richard Willis
-Igor Prischepoff
-Harry
-David Bourgeois
-Eike Von Seggern
-Torsten Blix
-Alexander Bosecke
-Stefano Zacchiroli
-Norick Chen
-Joseph Barker
-Gary Church
-Tim Carey-Smith
-Markus Klinik
-Anders
-Seth Mason
-James Hales
-Heptite
-Cheng Fang
-Yongwei Wu
-David Miani
-Jeremy Hinegardner
-Marco
-Ingo Karkat
-Zhang Shuhan
-tpope
-Ben Schmidt
-David Fishburn
-Erik Falor
-JaGoTerr
-Elias Pipping
-mntnoe
-Mark S.
-James P. Harvey
+https://github.com/preservim/nerdcommenter/graphs/contributors
 
-
-Thanks to the following people for sending me new filetypes to support:
-
-The hackers                         The filetypes~
-Sam R                               verilog
-Jonathan                            Derque context, plaintext and mail
-Vigil                               fetchmail
-Michael Brunner                     kconfig
-Antono Vasiljev                     netdict
-Melissa Reid                        omlet
-Ilia N Ternovich                    quickfix
-John O'Shea                         RTF, SVNcommitlog and vcscommit, SVNCommit
-Anders                              occam
-Mark Woodward                       csv
-fREW                                gentoo-package-mask,
-                                    gentoo-package-keywords,
-                                    gentoo-package-use, and vo_base
-Alexey                              verilog_systemverilog, systemverilog
-Lizendir                            fstab
-Michael Böhler                      autoit, autohotkey and docbk
-Aaron Small                         cmake
-Ramiro                              htmldjango and django
-Stefano Zacchiroli                  debcontrol, debchangelog, mkd
-Alex Tarkovsky                      ebuild and eclass
-Jorge Rodrigues                     gams
-Rainer Müller                       Objective C
-Jason Mills                         Groovy, ps1
-Normandie Azucena                   vera
-Florian Apolloner                   ldif
-David Fishburn                      lookupfile
-Niels Aan de Brugh                  rst
-Don Hatlestad                       ahk
-Christophe Benz                     Desktop and xsd
-Eyolf Østrem                        lilypond, bbx and lytex
-Ingo Karkat                         dosbatch
-Nicolas Weber                       markdown, objcpp
-tinoucas                            gentoo-conf-d
-Greg Weber                          D, haml
-Bruce Sherrod                       velocity
-timberke                            cobol, calibre
-Aaron Schaefer                      factor
-Mr X                                asterisk, mplayerconf
-Kuchma Michael                      plsql
-Brett Warneke                       spectre
-Pipp                                lhaskell
-Renald Buter                        scala
-Vladimir Lomov                      asymptote
-Marco                               mrxvtrc, aap
-nicothakis                          SVNAnnotate, CVSAnnotate, SVKAnnotate,
-                                    SVNdiff, gitAnnotate, gitdiff, dtrace
-                                    llvm, applescript
-Chen Xing                           Wikipedia
-Jacobo Diaz                         dakota, patran
-Li Jin                              gentoo-env-d, gentoo-init-d,
-                                    gentoo-make-conf, grub, modconf, sudoers
-SpookeyPeanut                       rib
-Greg Jandl                          pyrex/cython
-Christophe Benz                     services, gitcommit
-A Pontus                            vimperator
-Stromnov                            slice, bzr
-Martin Kustermann                   pamconf
-Indriði Einarsson                   mason
-Chris                               map
-Krzysztof A. Adamski                group
-Pascal Brueckner                    mailcap
-Jerónimo Carballo                   stata
-Phillip Kovalev                     xquery
-Bernhard Grotz                      potwiki
-sgronblo                            man
-François                            txt2tags
-Giacomo Mariani                     SVNinfo
-Matthew Lee Hinman                  newlisp, clojure
-Elias Pipping                       automake
-Edwin Benavides                     actionscript, processing
-Thomas Rowe                         hostsaccess
-Simon Ruderich                      asciidoc, git, gitcommit, gitrebase
-Keitheis                            mako, genshi
-David                               conkyrc
-Miguel Jaque Barbero                SVNannotate
-Stefan Walk                         sieve
-Adam Thorsen                        objj
-Thilo Six                           dhcpd, limits, ntp, resolv, rgb, sysctl,
-                                    udevconf, udevrules
-Andrey Skvortsov                    mp
-Simon Hengel                        htmlcheetah
-Matt Tolton                         javacc
-Ivan Devat                          javascript.jquery
-tpope                               cucumber,pdf
-Lyude Paul                          piglit shader_test
 ==============================================================================
 11. License                                             *NERDCommenterLicense*
 
