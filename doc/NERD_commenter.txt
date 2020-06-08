@@ -929,19 +929,19 @@ for simplicity)
 ==============================================================================
 7. About                                                  *NERDCommenterAbout*
 
-The author of the NERD commenter is Martyzillatron --- the half robot, half
-dinosaur bastard son of Megatron and Godzilla. He enjoys destroying
-metropolises and eating tourist buses.
+This plugin was originally written in 2007 by Martin Grenfell, aka @scrooloose
+on Github: https://github.com/scrooloose
 
-Drop him a line at martin_grenfell at msn.com. He would love to hear from you.
-It's a lonely life being the worlds premier terror machine. How would you feel
-if your face looked like a toaster and a t-rex put together? :(
+Since 2016 it has been maintained primarily by Caleb Maclennan, aka @alerque
+on Github: https://github.com/alerque
 
-The latest stable versions can be found at
-    http://www.vim.org/scripts/script.php?script_id=1218
+Lots of features and many of the supported filetypes have come from the
+community, see |NERDCommenterCredits|.
 
-The latest dev versions are on github
-    http://github.com/preservim/nerdcommenter
+Additional file type support, bug fixes, and new feature contributons are all
+welcome, please send them as Pull Requests on Github. If you can't contribute
+yourself please also feel free to open issues to report problems or request
+features: https://github.com/preservim/nerdcommenter
 
 ==============================================================================
 8. Changelog                                          *NERDCommenterChangelog*
@@ -977,7 +977,7 @@ The latest dev versions are on github
     - add support for actionscript and processing thanks to Edwin Benavides
     - add support for ps1 (powershell), thanks to Jason Mills
     - add support for hostsaccess, thanks to Thomas Rowe
-    - add support for CVScommit
+   - add support for CVScommit
     - add support for asciidoc, git and gitrebase. Thanks to Simon Ruderich.
     - use # for gitcommit comments, thanks to Simon Ruderich.
     - add support for mako and genshi, thanks to Keitheis.
