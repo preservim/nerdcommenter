@@ -1193,7 +1193,7 @@ endfunction
 " Args:
 "   -lineNo:    the line number of the line to check
 " Return: Number, 1 if the line is a comment, 0 else
-function! nerdcommenter#IsLineCommented(lineNo)
+function! nerdcommenter#IsLineCommented(lineNo) abort
     let theLine = getline(a:lineNo)
     return s:IsInSexyComment(a:lineNo) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
 endfunction
@@ -1207,7 +1207,7 @@ endfunction
 "   -type: the type of commenting requested. Can be 'Sexy', 'Invert',
 "    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Comment',
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
-function! nerdcommenter#Comment(mode, type) range
+function! nerdcommenter#Comment(mode, type) range abort
     if exists('*NERDCommenter_before')
         exe 'call NERDCommenter_before()'
     endif
@@ -3129,7 +3129,7 @@ endfunction
 " Section: Comment mapping and menu item setup
 " ===========================================================================
 
-function! nerdcommenter#Plug(target)
+function! nerdcommenter#Plug(target) abort
     return "\<Plug>NERDCommenter". a:target
 endfunction
 
