@@ -76,6 +76,9 @@ Please see the vim help system for full documentation of all options: `:help ner
 Several settings can be added to your vimrc to change the default behavior. Some examples:
 
 ```vim
+" Change nerdcommenter leader key. default is 'c'
+let g:NERDLeaderKey = 'v' " v is for the example, you can set anything
+
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
