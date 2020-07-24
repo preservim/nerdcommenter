@@ -3168,21 +3168,27 @@ function! s:CreateMaps(modes, target, desc, combo)
         endif
     endfor
 endfunction
-call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
-call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<space>')
-call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
-call s:CreateMaps('nx', 'Nested',     'Nested', 'cn')
-call s:CreateMaps('n',  'ToEOL',      'To EOL', 'c$')
-call s:CreateMaps('nx', 'Invert',     'Invert', 'ci')
-call s:CreateMaps('nx', 'Sexy',       'Sexy', 'cs')
-call s:CreateMaps('nx', 'Yank',       'Yank then comment', 'cy')
-call s:CreateMaps('n',  'Append',     'Append', 'cA')
+
+" check if custom NERDLeaderKey is used, and set it to 'c' if not set
+if !exists('g:NERDLeaderKey') || type('g:NERDLeaderKey') != 1
+  let g:NERDLeaderKey = 'c'
+endif
+
+call s:CreateMaps('nx', 'Comment',    'Comment', g:NERDLeaderKey . 'c')
+call s:CreateMaps('nx', 'Toggle',     'Toggle', g:NERDLeaderKey . '<space>')
+call s:CreateMaps('nx', 'Minimal',    'Minimal', g:NERDLeaderKey . 'm')
+call s:CreateMaps('nx', 'Nested',     'Nested', g:NERDLeaderKey . 'n')
+call s:CreateMaps('n',  'ToEOL',      'To EOL', g:NERDLeaderKey . '$')
+call s:CreateMaps('nx', 'Invert',     'Invert', g:NERDLeaderKey . 'i')
+call s:CreateMaps('nx', 'Sexy',       'Sexy', g:NERDLeaderKey . 's')
+call s:CreateMaps('nx', 'Yank',       'Yank then comment', g:NERDLeaderKey . 'y')
+call s:CreateMaps('n',  'Append',     'Append', g:NERDLeaderKey . 'A')
 call s:CreateMaps('',   ':',          '-Sep-', '')
-call s:CreateMaps('nx', 'AlignLeft',  'Left aligned', 'cl')
-call s:CreateMaps('nx', 'AlignBoth',  'Left and right aligned', 'cb')
+call s:CreateMaps('nx', 'AlignLeft',  'Left aligned', g:NERDLeaderKey . 'l')
+call s:CreateMaps('nx', 'AlignBoth',  'Left and right aligned', g:NERDLeaderKey . 'b')
 call s:CreateMaps('',   ':',          '-Sep2-', '')
-call s:CreateMaps('nx', 'Uncomment',  'Uncomment', 'cu')
-call s:CreateMaps('n',  'AltDelims',  'Switch Delimiters', 'ca')
+call s:CreateMaps('nx', 'Uncomment',  'Uncomment', g:NERDLeaderKey . 'u')
+call s:CreateMaps('n',  'AltDelims',  'Switch Delimiters', g:NERDLeaderKey . 'a')
 call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
 call s:CreateMaps('',   ':',          '-Sep3-', '')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
