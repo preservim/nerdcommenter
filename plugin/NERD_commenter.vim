@@ -292,6 +292,7 @@ let s:delimiterMap = {
     \ 'newlisp': { 'left': ';' },
     \ 'nginx': { 'left': '#' },
     \ 'nimrod': { 'left': '#' },
+    \ 'nix': { 'left': '#' },
     \ 'nroff': { 'left': '\"' },
     \ 'nsis': { 'left': '#' },
     \ 'ntp': { 'left': '#' },
