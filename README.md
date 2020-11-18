@@ -76,6 +76,9 @@ Please see the vim help system for full documentation of all options: `:help ner
 Several settings can be added to your vimrc to change the default behavior. Some examples:
 
 ```vim
+" Use default mappings (set to 0 to set own from scratch)
+let g:NERDUseDefaultMappings = 1
+
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 

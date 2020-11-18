@@ -34,6 +34,7 @@ let s:spaceStr = ' '
 let s:lenSpaceStr = strlen(s:spaceStr)
 
 " Section: variable initialization
+call s:InitVariable('g:NERDUseDefaultMappings', 1)
 call s:InitVariable('g:NERDAllowAnyVisualDelims', 1)
 call s:InitVariable('g:NERDBlockComIgnoreEmpty', 0)
 call s:InitVariable('g:NERDCommentWholeLinesInVMode', 0)
@@ -3169,24 +3170,27 @@ function! s:CreateMaps(modes, target, desc, combo)
         endif
     endfor
 endfunction
-call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
-call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<space>')
-call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
-call s:CreateMaps('nx', 'Nested',     'Nested', 'cn')
-call s:CreateMaps('n',  'ToEOL',      'To EOL', 'c$')
-call s:CreateMaps('nx', 'Invert',     'Invert', 'ci')
-call s:CreateMaps('nx', 'Sexy',       'Sexy', 'cs')
-call s:CreateMaps('nx', 'Yank',       'Yank then comment', 'cy')
-call s:CreateMaps('n',  'Append',     'Append', 'cA')
-call s:CreateMaps('',   ':',          '-Sep-', '')
-call s:CreateMaps('nx', 'AlignLeft',  'Left aligned', 'cl')
-call s:CreateMaps('nx', 'AlignBoth',  'Left and right aligned', 'cb')
-call s:CreateMaps('',   ':',          '-Sep2-', '')
-call s:CreateMaps('nx', 'Uncomment',  'Uncomment', 'cu')
-call s:CreateMaps('n',  'AltDelims',  'Switch Delimiters', 'ca')
-call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
-call s:CreateMaps('',   ':',          '-Sep3-', '')
-call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
+
+if g:NERDUseDefaultMappings !=# 0
+    call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
+    call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<space>')
+    call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
+    call s:CreateMaps('nx', 'Nested',     'Nested', 'cn')
+    call s:CreateMaps('n',  'ToEOL',      'To EOL', 'c$')
+    call s:CreateMaps('nx', 'Invert',     'Invert', 'ci')
+    call s:CreateMaps('nx', 'Sexy',       'Sexy', 'cs')
+    call s:CreateMaps('nx', 'Yank',       'Yank then comment', 'cy')
+    call s:CreateMaps('n',  'Append',     'Append', 'cA')
+    call s:CreateMaps('',   ':',          '-Sep-', '')
+    call s:CreateMaps('nx', 'AlignLeft',  'Left aligned', 'cl')
+    call s:CreateMaps('nx', 'AlignBoth',  'Left and right aligned', 'cb')
+    call s:CreateMaps('',   ':',          '-Sep2-', '')
+    call s:CreateMaps('nx', 'Uncomment',  'Uncomment', 'cu')
+    call s:CreateMaps('n',  'AltDelims',  'Switch Delimiters', 'ca')
+    call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
+    call s:CreateMaps('',   ':',          '-Sep3-', '')
+    call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
+endif
 
 inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call NERDComment('i', 'insert')<CR>
 
