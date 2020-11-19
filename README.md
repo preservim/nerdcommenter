@@ -76,6 +76,9 @@ Please see the vim help system for full documentation of all options: `:help ner
 Several settings can be added to your vimrc to change the default behavior. Some examples:
 
 ```vim
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -102,6 +105,8 @@ let g:NERDToggleCheckAllLines = 1
 ```
 
 ### Default mappings
+
+> **Note:** You can turn off settings default mappings to provide your own from scratch (look at the [Settings list](#settings) above)
 
 The following key mappings are provided by default (there is also a menu provided that contains menu items corresponding to all the below mappings):
 
