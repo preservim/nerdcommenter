@@ -351,6 +351,7 @@ let s:delimiterMap = {
     \ 'rc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'rebol': { 'left': ';' },
     \ 'registry': { 'left': ';' },
+    \ 'rego': { 'left': ';' },
     \ 'remind': { 'left': '#' },
     \ 'renpy': { 'left': '# ' },
     \ 'resolv': { 'left': '#' },
