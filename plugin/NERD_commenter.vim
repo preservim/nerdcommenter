@@ -231,6 +231,7 @@ let s:delimiterMap = {
     \ 'jgraph': { 'left': '(*', 'right': '*)' },
     \ 'jinja': { 'left': '{#', 'right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' },
     \ 'jproperties': { 'left': '#' },
+    \ 'jsonnet': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'jsp': { 'left': '<%--', 'right': '--%>' },
     \ 'julia': { 'left': '# ', 'leftAlt': '#=', 'rightAlt': '=#' },
     \ 'kivy': { 'left': '#' },
