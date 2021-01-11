@@ -165,6 +165,14 @@ Most of the following mappings are for normal/visual mode only. The **|NERDComme
 
     Uncomments the selected line(s).
 
+## Motions
+
+While the plugin does not directly support motions, you can leverage its support for selections to do something very similar. For example, to add motions to toggle comments on the paragraph text object you could use:
+```vim
+nnoremap <silent> <leader>c} V}:call NERDComment('x', 'toggle')<CR>
+nnoremap <silent> <leader>c{ V{:call NERDComment('x', 'toggle')<CR>
+```
+
 ## Contributions
 
 This plugin was originally written in 2007 by [Martin Grenfell (@scrooloose)](https://github.com/scrooloose/). Lots of features and many of the supported filetypes have come from [community contributors](https://github.com/preservim/nerdcommenter/graphs/contributors). Since 2016 it has been maintained primarily by [Caleb Maclennan (@alerque)](https://github.com/alerque). Additional file type support, bug fixes, and new feature contributons are all welcome, please send them as Pull Requests on Github. If you can't contribute yourself please also feel free to open issues to report problems or request features.
