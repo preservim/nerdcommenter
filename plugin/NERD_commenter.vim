@@ -2153,7 +2153,7 @@ endfunction
 " Function: s:Esc(str)
 " Escapes all the tricky chars in the given string
 function s:Esc(str)
-    let charsToEsc = '*/\."&$+'
+    let charsToEsc = '*/\."&$+[]'
     return escape(a:str, charsToEsc)
 endfunction
 
