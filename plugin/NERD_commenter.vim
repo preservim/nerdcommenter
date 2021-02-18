@@ -450,7 +450,7 @@ let s:delimiterMap = {
     \ 'typescript': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'typescriptreact': { 'left': '//', 'leftAlt': '{/*', 'rightAlt': '*/}' },
     \ 'uc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
-    \ 'uc4': { 'left': '!' },
+    \ 'uc4': { 'left': '! ', 'leftAlt': '!' },
     \ 'uil': { 'left': '!' },
     \ 'upstart': { 'left': '#' },
     \ 'vala': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
