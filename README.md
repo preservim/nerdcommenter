@@ -52,6 +52,12 @@ git clone https://github.com/preservim/nerdcommenter.git
 ```
 </details>
 
+<details>
+  <summary>Vim 8+ Packages</summary>
+
+    git clone https://github.com/preservim/nerdcommenter.git ~/.vim/pack/vendor/start/nerdcommenter
+</details>
+
 ### Manual Installation
 
 <details>
