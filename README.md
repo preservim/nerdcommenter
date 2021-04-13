@@ -8,11 +8,19 @@ Comment functions so powerful—no comment necessary.
 
 ### Via Plugin Manager (Recommended)
 
+<details>
+  <summary>Vim Plug</summary>
+    
 #### [Vim-Plug](https://github.com/junegunn/vim-plug)
 
 1. Add `Plug 'preservim/nerdcommenter'` to your vimrc file.
 2. Reload your vimrc or restart
 3. Run `:PlugInstall`
+
+</details>
+
+<details>
+  <summary>Vundle</summary>
 
 #### [Vundle](https://github.com/VundleVim/Vundle.vim) or similar
 
@@ -20,21 +28,35 @@ Comment functions so powerful—no comment necessary.
 2. Reload your vimrc or restart
 3. Run `:BundleInstall`
 
+</details>
+
+<details>
+  <summary>NeoBundle</summary>
+  
 #### [NeoBundle](https://github.com/Shougo/neobundle.vim)
 
 1. Add `NeoBundle 'preservim/nerdcommenter'` to your vimrc file.
 2. Reload your vimrc or restart
 3. Run `:NeoUpdate`
 
+</details>
+
+<details>
+  <summary>Pathogen</summary>
+  
 #### [Pathogen](https://github.com/tpope/vim-pathogen)
 
 ```sh
 cd ~/.vim/bundle
 git clone https://github.com/preservim/nerdcommenter.git
 ```
+</details>
 
 ### Manual Installation
 
+<details>
+  <summary>Unix</summary>
+  
 #### Unix
 
 (For Neovim, change `~/.vim/` to `~/.config/nvim/`.)
@@ -45,7 +67,10 @@ curl -fLo ~/.vim/plugin/NERD_Commenter.vim --create-dirs \
 curl -fLo ~/.vim/doc/NERD_Commenter.txt --create-dirs \
   https://raw.githubusercontent.com/preservim/nerdcommenter/master/doc/NERD_commenter.txt
 ```
+</details>
 
+<details>
+  <summary>Windows</summary>
 #### Windows (PowerShell)
 
 ```powershell
@@ -56,6 +81,7 @@ $docsuri = 'https://raw.githubusercontent.com/preservim/nerdcommenter/master/doc
 (New-Object Net.WebClient).DownloadFile($pluguri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\plugin\NERD_commenter.vim"))
 (New-Object Net.WebClient).DownloadFile($docsuri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\doc\NERD_commenter.txt"))
 ```
+</details>
 
 ### Post Installation
 
