@@ -52,6 +52,7 @@ call s:InitVariable('g:NERDDefaultAlign', 'none')
 call s:InitVariable('g:NERDTrimTrailingWhitespace', 0)
 call s:InitVariable('g:NERDToggleCheckAllLines', 0)
 call s:InitVariable('g:NERDDisableTabsInBlockComm', 0)
+call s:InitVariable("g:NERDToggleSexyComments", 0)
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -73,7 +74,7 @@ let s:delimiterMap = {
     \ 'applescript': { 'left': '--', 'leftAlt': '(*', 'rightAlt': '*)' },
     \ 'armasm': { 'left': ';' },
     \ 'asciidoc': { 'left': '//' },
-    \ 'asm': { 'left': ';', 'leftAlt': '#' },
+    \ 'asm': { 'left': '#', 'leftAlt': ';' },
     \ 'asm68k': { 'left': ';' },
     \ 'asn': { 'left': '--' },
     \ 'asp': { 'left': '%', 'leftAlt': '%*', 'rightAlt': '*%' },
@@ -91,9 +92,6 @@ let s:delimiterMap = {
     \ 'bc': { 'left': '#' },
     \ 'bib': { 'left': '//' },
     \ 'bindzone': { 'left': ';' },
-    \ 'blade': { 'left': '{{--', 'right': '--}}' },
-    \ 'bst': { 'left': '%' },
-    \ 'btm': { 'left': '::' },
     \ 'c': { 'left': '/*', 'right': '*/', 'leftAlt': '//' },
     \ 'cabal': { 'left': '--' },
     \ 'calibre': { 'left': '//' },
@@ -1305,6 +1303,15 @@ function! NERDComment(mode, type) range
           endif
         endif
 
+        if s:IsInSexyComment(firstLine) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
+            call s:UncommentLines(firstLine, lastLine)
+		elseif g:NERDToggleSexyComments == 1
+			call s:SwitchToAlternativeDelimiters(0)
+			call s:CommentLinesToggle(forceNested, firstLine, lastLine)
+			call s:SwitchToAlternativeDelimiters(0)
+		else
+			call s:CommentLinesToggle(forceNested, firstLine, lastLine)
+        endif
     elseif a:type ==? 'Minimal'
         try
             call s:CommentLinesMinimal(firstLine, lastLine)
@@ -3176,7 +3183,8 @@ function! s:CreateMaps(modes, target, desc, combo)
     endfor
 endfunction
 call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
-call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<space>')
+call s:CreateMaps('nx', 'SexyToggle',     'SexyToggle', 'c<space>')
+call s:CreateMaps('nx', 'NormalToggle',     'NormalToggle', 'c<space>')
 call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
 call s:CreateMaps('nx', 'Nested',     'Nested', 'cn')
 call s:CreateMaps('n',  'ToEOL',      'To EOL', 'c$')
