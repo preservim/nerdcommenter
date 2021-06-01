@@ -269,7 +269,7 @@ let s:delimiterMap = {
     \ 'mandoc': { 'left': '.\\"' },
     \ 'map': { 'left': '%' },
     \ 'maple': { 'left': '#' },
-    \ 'markdown': { 'left': '<!--', 'right': '-->' },
+    \ 'markdown': { 'left': '[//]: # (', 'right': ')' },
     \ 'masm': { 'left': ';' },
     \ 'mason': { 'left': '<% #', 'right': '%>' },
     \ 'master': { 'left': '$' },
