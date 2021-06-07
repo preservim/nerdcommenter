@@ -125,7 +125,7 @@ function! NERDCommentIsCharCommented(line, col)
     return nerdcommenter#IsCharCommented(a:line, a:col)
 endfunction
 
-inoremap <silent> <Plug>NERDCommenterInsert <Space><BS><Esc>:call nerdcommenter#Comment('i', "insert")<CR>
+inoremap <silent> <Plug>NERDCommenterInsert <C-\><C-O>:call nerdcommenter#Comment('i', "Insert")<CR>
 
 " switch to/from alternative delimiters (does not use wrapper function)
 nnoremap <Plug>NERDCommenterAltDelims :call nerdcommenter#SwitchToAlternativeDelimiters(1)<CR>
