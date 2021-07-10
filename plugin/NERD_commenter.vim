@@ -2185,6 +2185,14 @@ function s:FindDelimiterIndex(delimiter, line)
     "get the index of the first occurrence of the delimiter
     let delIndx = stridx(a:line, l:delimiter)
 
+    "if there is no match and the delimiter contains two backslashes
+    "then try indexing again but replace those backslashes with only a
+    "single backslash on the assumption that the two backslashes really
+    "are an escape for a single backslash
+    if delIndx == -1 && stridx(l:delimiter, '\\') > 0
+        let delIndx = stridx(a:line, substitute(l:delimiter, '\\\\', '\', ''))
+    endif
+
     "keep looping thru the line till we either find a real comment delimiter
     "or run off the EOL
     while delIndx !=# -1
