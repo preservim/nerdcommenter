@@ -438,6 +438,7 @@ let s:delimiterMap = {
     \ }
 
 let g:NERDDelimiterMap = s:delimiterMap
+let nerdcommenter#delimiterMap = s:delimiterMap
 
 if exists('g:NERDCustomDelimiters')
     call extend(s:delimiterMap, g:NERDCustomDelimiters)
