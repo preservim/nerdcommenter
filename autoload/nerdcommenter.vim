@@ -1,50 +1,9 @@
-" Section: script init stuff {{{1
-let nerdcommenter#loaded = 1
-
-" Function: s:InitVariable() function
-" This function is used to initialise a given variable to a given value. The
-" variable is only initialised if it does not exist prior
-"
-" Args:
-"   -var: the name of the var to be initialised
-"   -value: the value to initialise var to
-"
-" Returns:
-"   1 if the var is set, 0 otherwise
-function s:InitVariable(var, value)
-    if !exists(a:var)
-        execute 'let ' . a:var . ' = ' . string(a:value)
-        return 1
-    endif
-    return 0
-endfunction
-
 " Section: space string init
 " When putting spaces after the left delimiter and before the right we use
 " s:spaceStr for the space char. This way we can make it add anything after
 " the left and before the right by modifying this variable
 let s:spaceStr = ' '
 let s:lenSpaceStr = strlen(s:spaceStr)
-
-" Section: variable initialization
-call s:InitVariable('g:NERDAllowAnyVisualDelims', 1)
-call s:InitVariable('g:NERDBlockComIgnoreEmpty', 0)
-call s:InitVariable('g:NERDCommentWholeLinesInVMode', 0)
-call s:InitVariable('g:NERDCommentEmptyLines', 0)
-call s:InitVariable('g:NERDCompactSexyComs', 0)
-call s:InitVariable('g:NERDCreateDefaultMappings', 1)
-call s:InitVariable('g:NERDDefaultNesting', 1)
-call s:InitVariable('g:NERDMenuMode', 3)
-call s:InitVariable('g:NERDLPlace', '[>')
-call s:InitVariable('g:NERDUsePlaceHolders', 1)
-call s:InitVariable('g:NERDRemoveAltComs', 1)
-call s:InitVariable('g:NERDRemoveExtraSpaces', 0)
-call s:InitVariable('g:NERDRPlace', '<]')
-call s:InitVariable('g:NERDSpaceDelims', 0)
-call s:InitVariable('g:NERDDefaultAlign', 'none')
-call s:InitVariable('g:NERDTrimTrailingWhitespace', 0)
-call s:InitVariable('g:NERDToggleCheckAllLines', 0)
-call s:InitVariable('g:NERDDisableTabsInBlockComm', 0)
 
 let s:NERDFileNameEscape="[]#*$%'\" ?`!&();<>\\"
 
@@ -486,22 +445,8 @@ endif
 
 " Section: Comment mapping functions, autocommands and commands
 " ============================================================================
-" Section: Comment enabler autocommands
-" ============================================================================
 
-augroup NERDCommenter
-
-    "if the user enters a buffer or reads a buffer then we gotta set up
-    "the comment delimiters for that new filetype
-    autocmd BufEnter,BufRead * :call s:SetUpForNewFiletype(&filetype, 0)
-
-    "if the filetype of a buffer changes, force the script to reset the
-    "delimiters for the buffer
-    autocmd Filetype * :call s:SetUpForNewFiletype(&filetype, 1)
-augroup END
-
-
-" Function: s:SetUpForNewFiletype(filetype) function
+" Function: nerdcommenter#SetUpForNewFiletype(filetype) function
 " This function is responsible for setting up buffer scoped variables for the
 " given filetype.
 "
@@ -510,8 +455,17 @@ augroup END
 "   -forceReset: 1 if the delimiters should be reset if they have already be
 "    set for this buffer.
 "
-function s:SetUpForNewFiletype(filetype, forceReset)
+
+" used to avoid calculating things inside nerdcommenter#SetUpForNewFiletype
+let s:last_filetype = '_force_setup_the_first_time_'
+
+function nerdcommenter#SetUpForNewFiletype(filetype, forceReset)
     let filetype = a:filetype
+    if s:last_filetype == filetype
+        return 0
+    else
+        let s:last_filetype = filetype
+    endif
 
     "for compound filetypes, if we don't know how to handle the full filetype
     "then break it down and use the first part that we know how to handle
@@ -542,7 +496,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
         " if g:NERD_<filetype>_alt_style is defined, use the alternate style
         let b:NERDCommenterFirstInit = getbufvar(1,'NERDCommenterFirstInit')
         if exists('g:NERDAltDelims_'.filetype) && eval('g:NERDAltDelims_'.filetype) && !b:NERDCommenterFirstInit
-            call s:SwitchToAlternativeDelimiters(0)
+            call nerdcommenter#SwitchToAlternativeDelimiters(0)
             let b:NERDCommenterFirstInit = 1
         endif
     else
@@ -570,7 +524,7 @@ function s:CreateDelimMapFromCms()
         \ 'nestedAlt': 0}
 endfunction
 
-" Function: s:SwitchToAlternativeDelimiters(printMsgs) function
+" Function: nerdcommenter#SwitchToAlternativeDelimiters(printMsgs) function
 " This function is used to swap the delimiters that are being used to the
 " alternative delimiters for that filetype. For example, if a c++ file is
 " being edited and // comments are being used, after this function is called
@@ -579,7 +533,9 @@ endfunction
 " Args:
 "   -printMsgs: if this is 1 then a message is echoed to the user telling them
 "    if this function changed the delimiters or not
-function s:SwitchToAlternativeDelimiters(printMsgs)
+" function nerdcommenter#SwitchToAlternativeDelimiters(printMsgs)
+function nerdcommenter#SwitchToAlternativeDelimiters(printMsgs)
+    call nerdcommenter#SetUpForNewFiletype(&filetype, 1)
     if exists('*NERDCommenter_before')
         exe 'call NERDCommenter_before()'
     endif
@@ -707,7 +663,7 @@ function s:CommentBlock(top, bottom, lSide, rSide, forceNested )
     let switchedDelims = 0
     if !s:Multipart() && !g:NERDAllowAnyVisualDelims && s:AltMultipart()
         let switchedDelims = 1
-        call s:SwitchToAlternativeDelimiters(0)
+        call nerdcommenter#SwitchToAlternativeDelimiters(0)
     endif
 
     "start the commenting from the top and keep commenting till we reach the
@@ -782,7 +738,7 @@ function s:CommentBlock(top, bottom, lSide, rSide, forceNested )
 
     "if we switched delimiterss then we gotta go back to what they were before
     if switchedDelims ==# 1
-        call s:SwitchToAlternativeDelimiters(0)
+        call nerdcommenter#SwitchToAlternativeDelimiters(0)
     endif
 endfunction
 
@@ -1124,7 +1080,7 @@ function s:CommentRegion(topLine, topCol, bottomLine, bottomCol, forceNested)
     let switchedDelims = 0
     if !s:Multipart() && s:AltMultipart() && !g:NERDAllowAnyVisualDelims
         let switchedDelims = 1
-        call s:SwitchToAlternativeDelimiters(0)
+        call nerdcommenter#SwitchToAlternativeDelimiters(0)
     endif
 
     "if there is only one line in the comment then just do it
@@ -1155,7 +1111,7 @@ function s:CommentRegion(topLine, topCol, bottomLine, bottomCol, forceNested)
 
     "if we switched delimiters then we gotta go back to what they were before
     if switchedDelims ==# 1
-        call s:SwitchToAlternativeDelimiters(0)
+        call nerdcommenter#SwitchToAlternativeDelimiters(0)
     endif
 
 endfunction
@@ -1219,6 +1175,7 @@ endfunction
 "    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Comment',
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
 function! nerdcommenter#Comment(mode, type) range abort
+    call nerdcommenter#SetUpForNewFiletype(&filetype, 1)
     if exists('*NERDCommenter_before')
         exe 'call NERDCommenter_before()'
     endif
@@ -3137,71 +3094,3 @@ function s:UntabbedCol(line, col)
     let lineTabsToSpaces = substitute(lineTruncated, '\t', s:TabSpace(), 'g')
     return strlen(lineTabsToSpaces)
 endfunction
-" Section: Comment mapping and menu item setup
-" ===========================================================================
-
-function! nerdcommenter#Plug(target) abort
-    return "\<Plug>NERDCommenter". a:target
-endfunction
-
-" Create menu items for the specified modes.  If a:combo is not empty, then
-" also define mappings and show a:combo in the menu items.
-function! s:CreateMaps(modes, target, desc, combo)
-    " Build up a map command like
-    " 'noremap <silent> <Plug>NERDCommenterComment :call nerdcommenter#Comment("n", "Comment")'
-    let plug = '<Plug>NERDCommenter' . a:target
-    let plug_start = 'noremap <silent> ' . plug . ' :call nerdcommenter#Comment("'
-    let plug_end = '", "' . a:target . '")<CR>'
-    " Build up a menu command like
-    " 'menu <silent> comment.Comment<Tab>\\cc <Plug>NERDCommenterComment'
-    let menuRoot = get(['', 'comment', '&comment', '&Plugin.&comment', '&Plugin.Nerd\ &Commenter'],
-                \ g:NERDMenuMode, '')
-    let menu_command = 'menu <silent> ' . menuRoot . '.' . escape(a:desc, ' ')
-    if strlen(a:combo)
-        let leader = exists('g:mapleader') ? g:mapleader : '\'
-        let menu_command .= '<Tab>' . escape(leader, '\') . a:combo
-    endif
-    let menu_command .= ' ' . (strlen(a:combo) ? plug : a:target)
-    " Execute the commands built above for each requested mode.
-    for mode in (a:modes ==# '') ? [''] : split(a:modes, '\zs')
-        if strlen(a:combo)
-            execute mode . plug_start . mode . plug_end
-            if g:NERDCreateDefaultMappings && !hasmapto(plug, mode)
-                execute mode . 'map <leader>' . a:combo . ' ' . plug
-            endif
-        endif
-        " Check if the user wants the menu to be displayed.
-        if g:NERDMenuMode !=# 0
-            execute mode . menu_command
-        endif
-    endfor
-endfunction
-call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
-call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<Space>')
-call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
-call s:CreateMaps('nx', 'Nested',     'Nested', 'cn')
-call s:CreateMaps('n',  'ToEOL',      'To EOL', 'c$')
-call s:CreateMaps('nx', 'Invert',     'Invert', 'ci')
-call s:CreateMaps('nx', 'Sexy',       'Sexy', 'cs')
-call s:CreateMaps('nx', 'Yank',       'Yank then comment', 'cy')
-call s:CreateMaps('n',  'Append',     'Append', 'cA')
-call s:CreateMaps('',   ':',          '-Sep-', '')
-call s:CreateMaps('nx', 'AlignLeft',  'Left aligned', 'cl')
-call s:CreateMaps('nx', 'AlignBoth',  'Left and right aligned', 'cb')
-call s:CreateMaps('',   ':',          '-Sep2-', '')
-call s:CreateMaps('nx', 'Uncomment',  'Uncomment', 'cu')
-call s:CreateMaps('n',  'AltDelims',  'Switch Delimiters', 'ca')
-call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
-call s:CreateMaps('',   ':',          '-Sep3-', '')
-call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
-
-inoremap <silent> <Plug>NERDCommenterInsert <Space><BS><Esc>:call nerdcommenter#Comment('i', "insert")<CR>
-
-" switch to/from alternative delimiters (does not use wrapper function)
-nnoremap <Plug>NERDCommenterAltDelims :call <SID>SwitchToAlternativeDelimiters(1)<CR>
-
-" This is a workaround to enable lazy-loading from supported plugin managers:
-" See https://github.com/preservim/nerdcommenter/issues/176
-if !has('vim_starting')
-	call s:SetUpForNewFiletype(&filetype, 1)
-endif
