@@ -447,31 +447,20 @@ endif
 " Section: Comment mapping functions, autocommands and commands
 " ============================================================================
 
-" Function: nerdcommenter#SetUpForNewFiletype(filetype) function
+" Function: nerdcommenter#SetUp() function
 " This function is responsible for setting up buffer scoped variables for the
-" given filetype.
-"
-" Args:
-"   -filetype: the filetype to set delimiters for
-"   -forceReset: 1 if the delimiters should be reset if they have already be
-"    set for this buffer.
-"
-
-" used to avoid calculating things inside nerdcommenter#SetUpForNewFiletype
-let s:last_filetype = '_force_setup_the_first_time_'
-
-function! nerdcommenter#SetUpForNewFiletype(filetype, forceReset) abort
-    let filetype = a:filetype
-    if s:last_filetype == filetype
-        return 0
-    else
-        let s:last_filetype = filetype
+" current buffer.
+function! nerdcommenter#SetUp() abort
+    if exists('b:NERDCommenterDelims')
+        return
     endif
+
+    let filetype = &filetype
 
     "for compound filetypes, if we don't know how to handle the full filetype
     "then break it down and use the first part that we know how to handle
     if filetype =~# '\.' && !has_key(s:delimiterMap, filetype)
-        let filetypes = split(a:filetype, '\.')
+        let filetypes = split(filetype, '\.')
         for i in filetypes
             if has_key(s:delimiterMap, i)
                 let filetype = i
@@ -536,7 +525,7 @@ endfunction
 "    if this function changed the delimiters or not
 " function nerdcommenter#SwitchToAlternativeDelimiters(printMsgs)
 function! nerdcommenter#SwitchToAlternativeDelimiters(printMsgs) abort
-    call nerdcommenter#SetUpForNewFiletype(&filetype, 1)
+    call nerdcommenter#SetUp()
     if exists('*NERDCommenter_before')
         exe 'call NERDCommenter_before()'
     endif
@@ -1176,7 +1165,7 @@ endfunction
 "    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Comment',
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
 function! nerdcommenter#Comment(mode, type) range abort
-    call nerdcommenter#SetUpForNewFiletype(&filetype, 1)
+    call nerdcommenter#SetUp()
     if exists('*NERDCommenter_before')
         exe 'call NERDCommenter_before()'
     endif
