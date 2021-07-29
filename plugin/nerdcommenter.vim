@@ -42,6 +42,7 @@ call s:InitVariable('g:NERDDefaultAlign', 'none')
 call s:InitVariable('g:NERDTrimTrailingWhitespace', 0)
 call s:InitVariable('g:NERDToggleCheckAllLines', 0)
 call s:InitVariable('g:NERDDisableTabsInBlockComm', 0)
+call s:InitVariable('g:NERDSuppressWarnings', 0)
 
 " Section: Comment mapping and menu item setup
 " ===========================================================================
@@ -78,6 +79,7 @@ function! s:CreateMaps(modes, target, desc, combo)
         endif
     endfor
 endfunction
+
 call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
 call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<Space>')
 call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
@@ -96,6 +98,32 @@ call s:CreateMaps('n',  'AltDelims',  'Switch Delimiters', 'ca')
 call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
 call s:CreateMaps('',   ':',          '-Sep3-', '')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
+
+" Shim functions so old code gets passed through to the autoload functions
+function! NERDComment(mode, type) range
+    if !g:NERDSuppressWarnings
+        echom 'Function NERDComment() has been deprecated, please use nerdcommenter#Comment() instead'
+    endif
+	if a:firstline != a:lastline
+		echoerr "Sorry! We can't pass a range through this deprecation shim, please update your code."
+		return v:false
+	endif
+    return nerdcommenter#Comment(a:mode, a:type)
+endfunction
+
+function! NERDCommentIsLineCommented(lineNo)
+    if !g:NERDSuppressWarnings
+        echom 'Function NERDCommentIsLineCommented() has been deprecated, please use nerdcommenter#IsLineCommented() instead'
+    endif
+    return nerdcommenter#IsLineCommented(a:lineNo)
+endfunction
+
+function! NERDCommentIsCharCommented(line, col)
+    if !g:NERDSuppressWarnings
+        echom 'Function NERDCommentIsCharCommented() has been deprecated, please use nerdcommenter#IsCharCommented() instead'
+    endif
+    return nerdcommenter#IsCharCommented(a:line, a:col)
+endfunction
 
 inoremap <silent> <Plug>NERDCommenterInsert <Space><BS><Esc>:call nerdcommenter#Comment('i', "insert")<CR>
 
