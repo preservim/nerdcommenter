@@ -102,7 +102,7 @@ call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
 " Shim functions so old code gets passed through to the autoload functions
 function! NERDComment(mode, type) range
     if !g:NERDSuppressWarnings
-        echom "Function NERDComment() has been deprecated, please use nerdcommenter#Comment() instead"
+        echom 'Function NERDComment() has been deprecated, please use nerdcommenter#Comment() instead'
     endif
 	if a:firstline != a:lastline
 		echoerr "Sorry! We can't pass a range through this deprecation shim, please update your code."
@@ -113,14 +113,14 @@ endfunction
 
 function! NERDCommentIsLineCommented(lineNo)
     if !g:NERDSuppressWarnings
-        echom "Function NERDCommentIsLineCommented() has been deprecated, please use nerdcommenter#IsLineCommented() instead"
+        echom 'Function NERDCommentIsLineCommented() has been deprecated, please use nerdcommenter#IsLineCommented() instead'
     endif
     return nerdcommenter#IsLineCommented(a:lineNo)
 endfunction
 
 function! NERDCommentIsCharCommented(line, col)
     if !g:NERDSuppressWarnings
-        echom "Function NERDCommentIsCharCommented() has been deprecated, please use nerdcommenter#IsCharCommented() instead"
+        echom 'Function NERDCommentIsCharCommented() has been deprecated, please use nerdcommenter#IsCharCommented() instead'
     endif
     return nerdcommenter#IsCharCommented(a:line, a:col)
 endfunction
