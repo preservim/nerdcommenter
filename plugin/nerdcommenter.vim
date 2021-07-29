@@ -78,6 +78,7 @@ function! s:CreateMaps(modes, target, desc, combo)
         endif
     endfor
 endfunction
+
 call s:CreateMaps('nx', 'Comment',    'Comment', 'cc')
 call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<Space>')
 call s:CreateMaps('nx', 'Minimal',    'Minimal', 'cm')
@@ -96,6 +97,15 @@ call s:CreateMaps('n',  'AltDelims',  'Switch Delimiters', 'ca')
 call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
 call s:CreateMaps('',   ':',          '-Sep3-', '')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
+
+" Shim functions so old code gets passed through to the autoload functions
+function! NERDComment(mode, type)
+    return nerdcommenter#Comment(a:mode, a:type)
+endfunction
+
+function! NERDCommentIsLineCommented(lineNo)
+    return nerdcommenter#IsLineCommented(a:lineNo)
+endfunction
 
 inoremap <silent> <Plug>NERDCommenterInsert <Space><BS><Esc>:call nerdcommenter#Comment('i', "insert")<CR>
 
