@@ -1298,7 +1298,7 @@ function! nerdcommenter#Comment(mode, type) range abort
 
 endfunction
 
-" Function: NERDCommentIsCharCommented(line, col) abort
+" Function: nerdcommenter#IsCharCommented(line, col) abort
 " Check if the character at [line, col] is inside a comment
 " Note the Comment delimeter it self is considered as part of the comment
 " 
@@ -1306,7 +1306,7 @@ endfunction
 "   -line       the line number of the character
 "   -col        the column number of the character
 " Return: Number, 1 if the character is inside a comment, 0 if is not
-function! NERDCommentIsCharCommented(line, col) abort
+function! nerdcommenter#IsCharCommented(line, col) abort
   " Function: s:searchfor(str, line, col, direction, [maxline])
   " search str in the buffer, including the character at [line, col]
   " Args: 

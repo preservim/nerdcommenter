@@ -107,6 +107,10 @@ function! NERDCommentIsLineCommented(lineNo)
     return nerdcommenter#IsLineCommented(a:lineNo)
 endfunction
 
+function! NERDCommentIsCharCommented(line, col)
+    return nerdcommenter#IsCharCommented(a:line, a:col)
+endfunction
+
 inoremap <silent> <Plug>NERDCommenterInsert <Space><BS><Esc>:call nerdcommenter#Comment('i', "insert")<CR>
 
 " switch to/from alternative delimiters (does not use wrapper function)
