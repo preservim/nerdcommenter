@@ -1,4 +1,4 @@
-*NERD_commenter.txt*         Plugin for commenting code
+*nerdcommenter.txt*         Plugin for commenting code
 
 
                         NERD COMMENTER REFERENCE MANUAL~
@@ -78,8 +78,8 @@ The NERD Commenter requires Vim 7 or higher.
 
 Extract the plugin files in your ~/.vim (*nix) or ~/vimfiles (Windows). You
 should have 2 files: >
-    plugin/NERD_commenter.vim
-    doc/NERD_commenter.txt
+    plugin/nerdcommenter.vim
+    doc/nerdcommenter.txt
 <
 Next, to finish installing the help file run: >
     :helptags ~/.vim/doc

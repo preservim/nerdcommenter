@@ -69,9 +69,9 @@ git clone https://github.com/preservim/nerdcommenter.git
 
 ```sh
 curl -fLo ~/.vim/plugin/NERD_Commenter.vim --create-dirs \
-  https://raw.githubusercontent.com/preservim/nerdcommenter/master/plugin/NERD_commenter.vim
+  https://raw.githubusercontent.com/preservim/nerdcommenter/master/plugin/nerdcommenter.vim
 curl -fLo ~/.vim/doc/NERD_Commenter.txt --create-dirs \
-  https://raw.githubusercontent.com/preservim/nerdcommenter/master/doc/NERD_commenter.txt
+  https://raw.githubusercontent.com/preservim/nerdcommenter/master/doc/nerdcommenter.txt
 ```
 </details>
 
@@ -82,10 +82,10 @@ curl -fLo ~/.vim/doc/NERD_Commenter.txt --create-dirs \
 ```powershell
 md ~\vimfiles\plugin
 md ~\vimfiles\doc
-$pluguri = 'https://raw.githubusercontent.com/preservim/nerdcommenter/master/plugin/NERD_commenter.vim'
-$docsuri = 'https://raw.githubusercontent.com/preservim/nerdcommenter/master/doc/NERD_commenter.txt'
-(New-Object Net.WebClient).DownloadFile($pluguri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\plugin\NERD_commenter.vim"))
-(New-Object Net.WebClient).DownloadFile($docsuri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\doc\NERD_commenter.txt"))
+$pluguri = 'https://raw.githubusercontent.com/preservim/nerdcommenter/master/plugin/nerdcommenter.vim'
+$docsuri = 'https://raw.githubusercontent.com/preservim/nerdcommenter/master/doc/nerdcommenter.txt'
+(New-Object Net.WebClient).DownloadFile($pluguri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\plugin\nerdcommenter.vim"))
+(New-Object Net.WebClient).DownloadFile($docsuri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\doc\nerdcommenter.txt"))
 ```
 </details>
 
