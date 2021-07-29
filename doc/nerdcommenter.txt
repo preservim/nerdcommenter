@@ -1,7 +1,7 @@
 *nerdcommenter.txt*         Plugin for commenting code
 
 
-                        NERD COMMENTER REFERENCE MANUAL~
+                        NERD COMMENTER REFERENCE MANUAL
 
 
 
@@ -48,7 +48,7 @@ CONTENTS                                               *NERDCommenterContents*
     11.License................................|NERDCommenterLicense|
 
 ==============================================================================
-1. Intro                                                       *NERDCommenter*
+1. Intro                                                         *NERDCommenter*
 
 The NERD commenter provides many different commenting operations and styles
 which are invoked via key mappings and a menu. These operations are available
@@ -58,7 +58,7 @@ There are also options that allow to tweak the commenting engine to your
 taste.
 
 ------------------------------------------------------------------------------
-1.1 Leader key                                           *NERDCommenterLeader*
+1.1 Leader key                                             *NERDCommenterLeader*
 
 Most NERD commenter commands are executed using the |<Leader>| key. In Vim
 this is a key dedicated for user-specific customizations. It effectively
@@ -72,7 +72,7 @@ If it reports an undefined variable it means the leader key is set to the
 default of '\'.
 
 ==============================================================================
-2. Installation                                    *NERDCommenterInstallation*
+2. Installation                                      *NERDCommenterInstallation*
 
 The NERD Commenter requires Vim 7 or higher.
 
@@ -93,10 +93,10 @@ See |filetype-plugin-on| for details, but basically, stick this in your vimrc >
 <
 
 ==============================================================================
-3. Functionality provided                         *NERDCommenterFunctionality*
+3. Functionality provided                           *NERDCommenterFunctionality*
 
 ------------------------------------------------------------------------------
-3.1 Functionality summary                  *NERDCommenterFunctionalitySummary*
+3.1 Functionality summary                    *NERDCommenterFunctionalitySummary*
 
 The following key mappings are provided by default (there is also a menu
 with items corresponding to all the mappings below):
@@ -162,10 +162,10 @@ With the optional repeat.vim plugin (vimscript #2136), the mappings can also
 be repeated via |.|
 
 ------------------------------------------------------------------------------
-3.2 Functionality details                  *NERDCommenterFunctionalityDetails*
+3.2 Functionality details                    *NERDCommenterFunctionalityDetails*
 
 ------------------------------------------------------------------------------
-3.2.1 Comment map                                       *NERDCommenterComment*
+3.2.1 Comment map                                         *NERDCommenterComment*
 
 Default mapping: [count]|<Leader>|cc
 Mapped to: <plug>NERDCommenterComment
@@ -181,7 +181,7 @@ If a [count] is given in normal mode, the mapping works as though that many
 lines were selected in visual-line mode.
 
 ------------------------------------------------------------------------------
-3.2.2 Nested comment map                                 *NERDCommenterNested*
+3.2.2 Nested comment map                                   *NERDCommenterNested*
 
 Default mapping: [count]|<Leader>|cn
 Mapped to: <plug>NERDCommenterNested
@@ -202,7 +202,7 @@ Related options:
 |'NERDDefaultNesting'|
 
 ------------------------------------------------------------------------------
-3.2.3 Toggle comment map                                 *NERDCommenterToggle*
+3.2.3 Toggle comment map                                   *NERDCommenterToggle*
 
 Default mapping: [count]|<Leader>|c<space>
 Mapped to: <plug>NERDCommenterToggle
@@ -219,7 +219,7 @@ If a [count] is given in normal mode, the mapping works as though that many
 lines were selected in visual-line mode.
 
 ------------------------------------------------------------------------------
-3.2.4 Minimal comment map                               *NERDCommenterMinimal*
+3.2.4 Minimal comment map                                 *NERDCommenterMinimal*
 
 Default mapping: [count]|<Leader>|cm
 Mapped to: <plug>NERDCommenterMinimal
@@ -241,7 +241,7 @@ If a [count] is given in normal mode, the mapping works as though that many
 lines were selected in visual-line mode.
 
 ------------------------------------------------------------------------------
-3.2.5 Invert comment map                                 *NERDCommenterInvert*
+3.2.5 Invert comment map                                   *NERDCommenterInvert*
 
 Default mapping: |<Leader>|ci
 Mapped to: <plug>NERDCommenterInvert
@@ -258,7 +258,7 @@ If a [count] is given in normal mode, the mapping works as though that many
 lines were selected in visual-line mode.
 
 ------------------------------------------------------------------------------
-3.2.6 Sexy comment map                                     *NERDCommenterSexy*
+3.2.6 Sexy comment map                                       *NERDCommenterSexy*
 
 Default mapping: [count]|<Leader>|cs
 Mapped to: <plug>NERDCommenterSexy
@@ -278,7 +278,7 @@ Related options:
 |'NERDCompactSexyComs'|
 
 ------------------------------------------------------------------------------
-3.2.7 Yank comment map                                     *NERDCommenterYank*
+3.2.7 Yank comment map                                       *NERDCommenterYank*
 
 Default mapping: [count]|<Leader>|cy
 Mapped to: <plug>NERDCommenterYank
@@ -287,7 +287,7 @@ Applicable modes: normal visual visual-line visual-block.
 Same as |<Leader>|cc except that it yanks the line(s) that are commented first.
 
 ------------------------------------------------------------------------------
-3.2.8 Comment to EOL map                                  *NERDCommenterToEOL*
+3.2.8 Comment to EOL map                                    *NERDCommenterToEOL*
 
 Default mapping: |<Leader>|c$
 Mapped to: <plug>NERDCommenterToEOL
@@ -297,7 +297,7 @@ Comments the current line from the current cursor position up to the end of
 the line.
 
 ------------------------------------------------------------------------------
-3.2.9 Append com to line map                             *NERDCommenterAppend*
+3.2.9 Append com to line map                               *NERDCommenterAppend*
 
 Default mapping: |<Leader>|cA
 Mapped to: <plug>NERDCommenterAppend
@@ -307,7 +307,7 @@ Appends comment delimiters to the end of the current line and goes
 to insert mode between the new delimiters.
 
 ------------------------------------------------------------------------------
-3.2.10 Insert comment map                                *NERDCommenterInsert*
+3.2.10 Insert comment map                                  *NERDCommenterInsert*
 
 Default mapping: disabled by default.
 Map it to: <plug>NERDCommenterInsert
@@ -323,7 +323,7 @@ mapping add >
 to your vimrc.
 
 ------------------------------------------------------------------------------
-3.2.11 Use alternate delims map                       *NERDCommenterAltDelims*
+3.2.11 Use alternate delims map                         *NERDCommenterAltDelims*
 
 Default mapping: |<Leader>|ca
 Mapped to: <plug>NERDCommenterAltDelims
@@ -336,8 +336,8 @@ then they will be switched over to /**/ comments.
 See also |NERDCommenterDefaultDelims|
 
 ------------------------------------------------------------------------------
-3.2.12 Comment aligned maps                           *NERDCommenterAlignLeft*
-                                                      *NERDCommenterAlignBoth*
+3.2.12 Comment aligned maps                             *NERDCommenterAlignLeft*
+                                                        *NERDCommenterAlignBoth*
 
 Default mappings: [count]|<Leader>|cl   [count]|<Leader>|cb
 Mapped to: <plug>NERDCommenterAlignLeft
@@ -352,7 +352,7 @@ If a [count] is given in normal mode, the mapping works as though that many
 lines were selected in visual-line mode.
 
 ------------------------------------------------------------------------------
-3.2.13 Uncomment line map                             *NERDCommenterUncomment*
+3.2.13 Uncomment line map                               *NERDCommenterUncomment*
 
 Default mapping: [count]|<Leader>|cu
 Mapped to: <plug>NERDCommenterUncomment
@@ -375,7 +375,7 @@ Related  options:
 |'NERDRemoveExtraSpaces'|
 
 ------------------------------------------------------------------------------
-3.3 Sexy Comments                                  *NERDCommenterSexyComments*
+3.3 Sexy Comments                                    *NERDCommenterSexyComments*
 These are comments that use one set of multipart comment delimiters as well as
 one other marker symbol. For example: >
     /*
@@ -390,7 +390,7 @@ one other marker symbol. For example: >
 Here the multipart delimiters are /* and */ and the marker is *.
 
 ------------------------------------------------------------------------------
-3.4 The NERDComment function                        *NERDCommenterNERDComment*
+3.4 The NERDComment function                          *NERDCommenterNERDComment*
 
 All of the NERD commenter mappings and menu items invoke a single function
 which delegates the commenting work to other functions. This function is
@@ -411,7 +411,7 @@ For example, if you typed >
 then the script would do a sexy comment on the last visual selection.
 
 ------------------------------------------------------------------------------
-3.5 The hooks                                             *NERDCommenterHooks*
+3.5 The hooks                                               *NERDCommenterHooks*
 |fu! NERDCommenter_before()|  Before NERDComment/SwitchToAlternativeDelimiters
 |fu! NERDCommenter_after()|    After NERDComment/SwitchToAlternativeDelimiters
 
@@ -441,10 +441,10 @@ change the filetype back: >
 <
 
 ==============================================================================
-4. Options                                              *NERDCommenterOptions*
+4. Options                                                *NERDCommenterOptions*
 
 ------------------------------------------------------------------------------
-4.1 Options summary                              *NERDCommenterOptionsSummary*
+4.1 Options summary                                *NERDCommenterOptionsSummary*
 
 |'loaded_nerd_comments'|              Turns off the script.
 
@@ -510,12 +510,12 @@ change the filetype back: >
                                       all selected lines is commented or not.
 
 ------------------------------------------------------------------------------
-4.3 Options details                              *NERDCommenterOptionsDetails*
+4.3 Options details                                *NERDCommenterOptionsDetails*
 
 To enable any of the below options you should put the given line in your
 ~/.vimrc
 
-                                                       *'loaded_nerd_comments'*
+                                                        *'loaded_nerd_comments'*
 If this script is driving you insane you can turn it off by setting this
 option >
     let loaded_nerd_comments=1
@@ -587,7 +587,7 @@ Otherwise, the code block would become: >
     /*}  */
 <
 ------------------------------------------------------------------------------
-                                                     *'NERDCommentEmptyLines'*
+                                                       *'NERDCommentEmptyLines'*
 Values: 0 or 1.
 Default: 0.
 
@@ -638,7 +638,7 @@ Note that this option does not affect the behaviour of commenting in
 |visual-block| mode.
 
 ------------------------------------------------------------------------------
-                                                 *'NERDCreateDefaultMappings'*
+                                                   *'NERDCreateDefaultMappings'*
 Values: 0 or 1.
 Default: 1.
 
@@ -647,7 +647,7 @@ If set to 0, none of the default mappings will be created.
 See also |NERDCommenterMappings|.
 
 ------------------------------------------------------------------------------
-                                                      *'NERDCustomDelimiters'*
+                                                        *'NERDCustomDelimiters'*
 Values: A map (format specified below).
 Default: {}
 
@@ -783,7 +783,7 @@ alignment padding. With this option enabled any trailing whitespace will be
 deleted when uncommenting a line.
 
 ------------------------------------------------------------------------------
-                                                             *'NERDDefaultAlign'*
+                                                            *'NERDDefaultAlign'*
 Values: 'none', 'left', 'start', 'both'
 Default 'none'.
 
@@ -822,15 +822,15 @@ you hit |<Leader>|cc on a line that is already commented it will be commented
 again.
 
 ------------------------------------------------------------------------------
-                                                   *'NERDToggleCheckAllLines'*
+                                             ..      *'NERDToggleCheckAllLines'*
 Values: 0 or 1.
 Default 0.
 
-When this option is set to 1, NERDCommenterToggle will check all selected line, 
+When this option is set to 1, NERDCommenterToggle will check all selected line,
 if there have oneline not be commented, then comment all lines.
 
 ------------------------------------------------------------------------------
-                                                *'NERDDisableTabsInBlockComm'*
+                                        ..        *'NERDDisableTabsInBlockComm'*
 Values: 0 or 1.
 Default 0.
 
@@ -855,7 +855,7 @@ file by the following line >
 <
 
 ------------------------------------------------------------------------------
-3.3 Default delimiter customisation               *NERDCommenterDefaultDelims*
+3.3 Default delimiter customisation                 *NERDCommenterDefaultDelims*
 
 If you want the NERD commenter to use the alternative delimiters for a
 specific filetype by default then put a line of this form into your vimrc: >
@@ -869,7 +869,7 @@ Example: java uses // style comments by default, but you want it to default to
 See |NERDCommenterAltDelims| for switching commenting styles at runtime.
 
 ==============================================================================
-5. Key mapping customisation                           *NERDCommenterMappings*
+5. Key mapping customisation                             *NERDCommenterMappings*
 
 To change a mapping just map another key combo to the internal <plug> mapping.
 For example, to remap the |NERDCommenterComment| mapping to ",omg" you would put
@@ -884,9 +884,9 @@ map to.
 See also |'NERDCreateDefaultMappings'|.
 
 ==============================================================================
-6. Interfaces                                        *NERDCommenterInterfaces*
+6. Interfaces                                          *NERDCommenterInterfaces*
 
-NERDCommentIsLineCommented({lineNo})            *NERDCommentIsLineCommented()*
+NERDCommentIsLineCommented({lineNo})              *NERDCommentIsLineCommented()*
             Check if the line is a comment
             Note this function checks if the line is **completely** a comment
             Args:
@@ -894,7 +894,7 @@ NERDCommentIsLineCommented({lineNo})            *NERDCommentIsLineCommented()*
             Return: Number, 1 if the line is a comment, 0 else
 
 
-NERDComment({mode}, {type})                                    *NERDComment()*
+NERDComment({mode}, {type})                                      *NERDComment()*
             This function is a Wrapper for the main commenting functions
 
             Args:
@@ -907,7 +907,7 @@ NERDComment({mode}, {type})                                    *NERDComment()*
                             'Insert', 'Uncomment', 'Yank'
 
 
-NERDCommentIsCharCommented({line}, {col})       *NERDCommentIsCharCommented()*
+NERDCommentIsCharCommented({line}, {col})         *NERDCommentIsCharCommented()*
             Check if the character at [{line}, {col}] is inside a comment
             Note the Comment delimeter it self is considered as part of the 
             comment
@@ -919,11 +919,11 @@ NERDCommentIsCharCommented({line}, {col})       *NERDCommentIsCharCommented()*
 
 
 ==============================================================================
-7. Issues with the script                                *NERDCommenterIssues*
+7. Issues with the script                                  *NERDCommenterIssues*
 
 
 ------------------------------------------------------------------------------
-7.1 Delimiter detection heuristics                   *NERDCommenterHeuristics*
+7.1 Delimiter detection heuristics                     *NERDCommenterHeuristics*
 
 Heuristics are used to distinguish the real comment delimiters
 
@@ -943,7 +943,7 @@ string. These heuristics, while usually pretty accurate, will not work for all
 cases.
 
 ------------------------------------------------------------------------------
-7.2 Nesting issues                                      *NERDCommenterNesting*
+7.2 Nesting issues                                        *NERDCommenterNesting*
 
 If we have some line of code like this: >
     /*int foo */ = /*5 + 9;*/
@@ -963,7 +963,7 @@ will become: >
 for simplicity)
 
 ==============================================================================
-8. About                                                  *NERDCommenterAbout*
+8. About                                                    *NERDCommenterAbout*
 
 This plugin was originally written in 2007 by Martin Grenfell, aka @scrooloose
 on Github: https://github.com/scrooloose
@@ -980,7 +980,7 @@ yourself please also feel free to open issues to report problems or request
 features: https://github.com/preservim/nerdcommenter
 
 ==============================================================================
-9. Changelog                                          *NERDCommenterChangelog*
+9. Changelog                                            *NERDCommenterChangelog*
 
 See the included CHANGELOG.md file or the Github Releases page for the latest
 info on tagged releases. https://github.com/preservim/nerdcommenter/releases
@@ -989,7 +989,7 @@ The `master` branch is considered stable and will have the latest filetype
 support and bugfixes.
 
 ==============================================================================
-10. Credits                                              *NERDCommenterCredits*
+10. Credits                                               *NERDCommenterCredits*
 
 Well over 100 people have contributed towards this plugin, it's functions, and
 specific filetype support. Please check out the up do date list of all
@@ -998,7 +998,7 @@ contributors on Github:
 https://github.com/preservim/nerdcommenter/graphs/contributors
 
 ==============================================================================
-11. License                                             *NERDCommenterLicense*
+11. License                                               *NERDCommenterLicense*
 
 NERD Commenter is released under the Creative-Commons CCO 1.0 Universal
-license. See the included LICENE file for details.
+license. See the included LICENSE file for details.
