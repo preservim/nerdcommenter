@@ -506,8 +506,8 @@ function! s:CreateDelimMapFromCms() abort
         return delims
     endif
     return {
-        \ 'left': substitute(&commentstring, '\(\S*\)\s*%s.*', '\1', ''),
-        \ 'right': substitute(&commentstring, '.*%s\s*\(.*\)', '\1', 'g'),
+        \ 'left': matchstr(&commentstring, '^\S*\ze\s*%s'),
+        \ 'right': matchstr(&commentstring, '%s\s*\zs.*$'),
         \ 'nested': 0,
         \ 'leftAlt': '',
         \ 'rightAlt': '',
@@ -1091,7 +1091,7 @@ function! s:CommentRegion(topLine, topCol, bottomLine, bottomCol, forceNested) a
 
         "comment the bottom line
         let bottom = getline(a:bottomLine)
-        let numLeadingSpacesTabs = strlen(substitute(bottom, '^\(\s*\).*$', '\1', ''))
+        let numLeadingSpacesTabs = strlen(matchstr(bottom, '^\s*'))
         call s:CommentBlock(a:bottomLine, a:bottomLine, numLeadingSpacesTabs+1, a:bottomCol, a:forceNested)
 
     endif
@@ -2450,7 +2450,7 @@ endfunction
 "   -left: the left delimiter to check for
 function! s:IsCommentedFromStartOfLine(left, line) abort
     let theLine = s:ConvertLeadingTabsToSpaces(a:line)
-    let numSpaces = strlen(substitute(theLine, '^\( *\).*$', '\1', ''))
+    let numSpaces = strlen(matchstr(theLine, '^ *'))
     let delimIndx = s:FindDelimiterIndex(a:left, theLine)
     return delimIndx ==# numSpaces
 endfunction
@@ -2785,7 +2785,7 @@ function! s:LeftMostIndx(countCommentedLines, countEmptyLines, topline, bottomli
                 " convert spaces to tabs and get the number of leading spaces for
                 " this line and update leftMostIndx if need be
                 let theLine = s:ConvertLeadingTabsToSpaces(theLine)
-                let leadSpaceOfLine = strlen( substitute(theLine, '\(^\s*\).*$','\1','') )
+                let leadSpaceOfLine = strlen(matchstr(theLine, '^\s*'))
                 if leadSpaceOfLine < leftMostIndx
                     let leftMostIndx = leadSpaceOfLine
                 endif
@@ -2833,7 +2833,7 @@ endfunction
 " Function: s:NumberOfLeadingTabs(s)
 " returns the number of leading tabs in the given string
 function! s:NumberOfLeadingTabs(s) abort
-    return strlen(substitute(a:s, '^\(\t*\).*$', '\1', ''))
+    return strlen(matchstr(a:s, '^\t*'))
 endfunction
 
 " Function: s:NumLinesInBuf()
