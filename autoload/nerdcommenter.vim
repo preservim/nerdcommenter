@@ -506,7 +506,7 @@ function! s:CreateDelimMapFromCms() abort
         return delims
     endif
     return {
-        \ 'left': substitute(&commentstring, '\([^ \t]*\)\s*%s.*', '\1', ''),
+        \ 'left': substitute(&commentstring, '\(\S*\)\s*%s.*', '\1', ''),
         \ 'right': substitute(&commentstring, '.*%s\s*\(.*\)', '\1', 'g'),
         \ 'nested': 0,
         \ 'leftAlt': '',
@@ -1091,7 +1091,7 @@ function! s:CommentRegion(topLine, topCol, bottomLine, bottomCol, forceNested) a
 
         "comment the bottom line
         let bottom = getline(a:bottomLine)
-        let numLeadingSpacesTabs = strlen(substitute(bottom, '^\([ \t]*\).*$', '\1', ''))
+        let numLeadingSpacesTabs = strlen(substitute(bottom, '^\(\s*\).*$', '\1', ''))
         call s:CommentBlock(a:bottomLine, a:bottomLine, numLeadingSpacesTabs+1, a:bottomCol, a:forceNested)
 
     endif
@@ -1236,7 +1236,7 @@ function! nerdcommenter#Comment(mode, type) range abort
           for i in range(firstLine, lastLine)
             let theLine = getline(i)
             " if have one line no comment(not include blank/whitespace-only lines), then comment all lines
-            if theLine =~# '[^ \t]\+' && !s:IsInSexyComment(firstLine) && !s:IsCommentedFromStartOfLine(s:Left(), theLine) && !s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
+            if theLine =~# '\S\+' && !s:IsInSexyComment(firstLine) && !s:IsCommentedFromStartOfLine(s:Left(), theLine) && !s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
               let l:commentAllLines = 1
               break
             else
@@ -1671,7 +1671,7 @@ function! s:UncommentLinesSexy(topline, bottomline) abort
     let theLine = getline(a:topline)
 
     " if the first line contains only the left delimiter then just delete it
-    if theLine =~# '^[ \t]*' . left . '[ \t]*$' && !g:NERDCompactSexyComs
+    if theLine =~# '^\s*' . left . '\s*$' && !g:NERDCompactSexyComs
         call cursor(a:topline, 1)
         normal! dd
         let bottomline = bottomline - 1
@@ -1695,7 +1695,7 @@ function! s:UncommentLinesSexy(topline, bottomline) abort
     let theLine = getline(bottomline)
 
     " if the bottomline contains only the right delimiter then just delete it
-    if theLine =~# '^[ \t]*' . right . '[ \t]*$'
+    if theLine =~# '^\s*' . right . '\s*$'
         call cursor(bottomline, 1)
         normal! dd
 
@@ -1712,7 +1712,7 @@ function! s:UncommentLinesSexy(topline, bottomline) abort
 
         " if the last line also starts with a sexy comment marker then we
         " remove this as well
-        if theLine =~# '^[ \t]*' . sexyComMarker
+        if theLine =~# '^\s*' . sexyComMarker
 
             " remove the sexyComMarker. If there is a space after it then
             " remove that too
@@ -1836,7 +1836,7 @@ endfunction
 " Function: s:AddLeftDelim(delim, theLine)
 " Args:
 function! s:AddLeftDelim(delim, theLine) abort
-    return substitute(a:theLine, '^\([ \t]*\)', '\1' . a:delim, '')
+    return substitute(a:theLine, '^\(\s*\)', '\1' . a:delim, '')
 endfunction
 
 " Function: s:AddLeftDelimAligned(delim, theLine)
@@ -1906,7 +1906,7 @@ function! s:CanCommentLine(forceNested, lineNum) abort
 
     " make sure we don't comment lines that are just spaces or tabs or empty,
     " unless configured otherwise
-    if g:NERDCommentEmptyLines ==# 0 && theLine =~# "^[ \t]*$"
+    if g:NERDCommentEmptyLines ==# 0 && theLine =~# "^\s*$"
         return 0
     endif
 
@@ -1973,7 +1973,7 @@ function! s:CanToggleCommentLine(forceNested, lineNum) abort
 
     " make sure we don't comment lines that are just spaces or tabs or empty,
     " unless configured otherwise
-    if g:NERDCommentEmptyLines ==# 0 && theLine =~# "^[ \t]*$"
+    if g:NERDCommentEmptyLines ==# 0 && theLine =~# "^\s*$"
         return 0
     endif
 
@@ -2194,16 +2194,16 @@ function! s:FindBoundingLinesOfSexyCom(lineNum) abort
         let theLine = getline(currentLine)
 
         "check if the current line is the top of the sexy comment
-        if currentLine <= a:lineNum && theLine =~# '^[ \t]*' . left && theLine !~# '.*' . right && currentLine < s:NumLinesInBuf()
+        if currentLine <= a:lineNum && theLine =~# '^\s*' . left && theLine !~# '.*' . right && currentLine < s:NumLinesInBuf()
             let top = currentLine
             let currentLine = a:lineNum
 
         "check if the current line is the bottom of the sexy comment
-        elseif theLine =~# '^[ \t]*' . right && theLine !~# '.*' . left && currentLine > 1
+        elseif theLine =~# '^\s*' . right && theLine !~# '.*' . left && currentLine > 1
             let bottom = currentLine
 
         "the right delimiter is on the same line as the last sexyComMarker
-        elseif theLine =~# '^[ \t]*' . sexyComMarker . '.*' . right
+        elseif theLine =~# '^\s*' . sexyComMarker . '.*' . right
             let bottom = currentLine
 
         "we have not found the top or bottom line so we assume currentLine is an
@@ -2212,7 +2212,7 @@ function! s:FindBoundingLinesOfSexyCom(lineNum) abort
 
             "if the line doesn't start with a sexyComMarker then it is not a sexy
             "comment
-            if theLine !~# '^[ \t]*' . sexyComMarker
+            if theLine !~# '^\s*' . sexyComMarker
                 return []
             endif
 
@@ -2552,7 +2552,7 @@ function! s:IsDelimValid(delimiter, delIndx, line) abort
 
         "if the delimiter is on the very first char of the line or is the
         "first non-tab/space char on the line then it is a valid comment delimiter
-        if a:delIndx ==# 0 || a:line =~# "^[ \t]\\{" . a:delIndx . "\\}\".*$"
+        if a:delIndx ==# 0 || a:line =~# "^\s\\{" . a:delIndx . "\\}\".*$"
             return 1
         endif
 
@@ -2653,7 +2653,7 @@ function! s:IsSexyComment(topline, bottomline) abort
     endif
 
     "if the top line doesn't begin with a left delimiter then the comment isn't sexy
-    if getline(a:topline) !~# '^[ \t]*' . left
+    if getline(a:topline) !~# '^\s*' . left
         return 0
     endif
 
@@ -2681,7 +2681,7 @@ function! s:IsSexyComment(topline, bottomline) abort
     while currentLine < a:bottomline
         let theLine = getline(currentLine)
 
-        if theLine !~# '^[ \t]*' . sexyComMarker
+        if theLine !~# '^\s*' . sexyComMarker
             return 0
         endif
 
@@ -2780,12 +2780,12 @@ function! s:LeftMostIndx(countCommentedLines, countEmptyLines, topline, bottomli
         " get the next line and if it is allowed to be commented, or is not
         " commented, check it
         let theLine = getline(currentLine)
-        if a:countEmptyLines || theLine !~# '^[ \t]*$'
+        if a:countEmptyLines || theLine !~# '^\s*$'
             if a:countCommentedLines || (!s:IsCommented(s:Left(), s:Right(), theLine) && !s:IsCommented(s:Left({'alt': 1}), s:Right({'alt': 1}), theLine))
                 " convert spaces to tabs and get the number of leading spaces for
                 " this line and update leftMostIndx if need be
                 let theLine = s:ConvertLeadingTabsToSpaces(theLine)
-                let leadSpaceOfLine = strlen( substitute(theLine, '\(^[ \t]*\).*$','\1','') )
+                let leadSpaceOfLine = strlen( substitute(theLine, '\(^\s*\).*$','\1','') )
                 if leadSpaceOfLine < leftMostIndx
                     let leftMostIndx = leadSpaceOfLine
                 endif
@@ -2963,7 +2963,7 @@ function! s:RightMostIndx(countCommentedLines, countEmptyLines, topline, bottoml
         " get the next line and see if it is commentable, otherwise it doesn't
         " count
         let theLine = getline(currentLine)
-        if a:countEmptyLines || theLine !~# '^[ \t]*$'
+        if a:countEmptyLines || theLine !~# '^\s*$'
 
             if a:countCommentedLines || (!s:IsCommented(s:Left(), s:Right(), theLine) && !s:IsCommented(s:Left({'alt': 1}), s:Right({'alt': 1}), theLine))
 
