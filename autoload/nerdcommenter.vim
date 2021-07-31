@@ -1906,7 +1906,7 @@ function! s:CanCommentLine(forceNested, lineNum) abort
 
     " make sure we don't comment lines that are just spaces or tabs or empty,
     " unless configured otherwise
-    if g:NERDCommentEmptyLines ==# 0 && theLine =~# "^\s*$"
+    if g:NERDCommentEmptyLines ==# 0 && theLine =~# '^\s*$'
         return 0
     endif
 
@@ -1973,7 +1973,7 @@ function! s:CanToggleCommentLine(forceNested, lineNum) abort
 
     " make sure we don't comment lines that are just spaces or tabs or empty,
     " unless configured otherwise
-    if g:NERDCommentEmptyLines ==# 0 && theLine =~# "^\s*$"
+    if g:NERDCommentEmptyLines ==# 0 && theLine =~# '^\s*$'
         return 0
     endif
 
