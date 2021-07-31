@@ -1259,9 +1259,9 @@ function! nerdcommenter#Comment(mode, type) range abort
         endtry
 
     elseif a:type ==? 'ToEOL'
-        call s:SaveScreenState()
+        let view = winsaveview()
         call s:CommentBlock(firstLine, firstLine, col('.'), col('$')-1, 1)
-        call s:RestoreScreenState()
+        call winrestview(view)
 
     elseif a:type ==? 'Append'
         call s:AppendCommentToLine()
@@ -2907,21 +2907,6 @@ function! s:ReplaceRightMostDelim(toReplace, replacor, str) abort
     return line
 endfunction
 
-"FUNCTION: s:RestoreScreenState()
-"
-"Sets the screen state back to what it was when s:SaveScreenState was last
-"called.
-"
-function! s:RestoreScreenState() abort
-    if !exists('t:NERDComOldTopLine') || !exists('t:NERDComOldPos')
-        throw 'NERDCommenter exception: cannot restore screen'
-    endif
-
-    call cursor(t:NERDComOldTopLine, 0)
-    normal! zt
-    call setpos('.', t:NERDComOldPos)
-endfunction
-
 " Function: s:Right(...)
 " returns right delimiter data
 function! s:Right(...) abort
@@ -2981,14 +2966,6 @@ function! s:RightMostIndx(countCommentedLines, countEmptyLines, topline, bottoml
     endwhile
 
     return rightMostIndx
-endfunction
-
-"FUNCTION: s:SaveScreenState()
-"Saves the current cursor position in the current buffer and the window
-"scroll position
-function! s:SaveScreenState() abort
-    let t:NERDComOldPos = getpos('.')
-    let t:NERDComOldTopLine = line('w0')
 endfunction
 
 " Function: s:SwapOuterMultiPartDelimsForPlaceHolders(line)
