@@ -651,7 +651,7 @@ function! s:CommentBlock(top, bottom, lSide, rSide, forceNested) abort
     "alternative delimiters (if THEY are) as the comment will be better and more
     "accurate with multipart delimiters
     let switchedDelims = 0
-    if !s:Multipart() && !g:NERDAllowAnyVisualDelims && s:AltMultipart()
+    if !s:Multipart() && g:NERDAllowAnyVisualDelims && s:AltMultipart()
         let switchedDelims = 1
         call nerdcommenter#SwitchToAlternativeDelimiters(0)
     endif
@@ -1068,7 +1068,7 @@ function! s:CommentRegion(topLine, topCol, bottomLine, bottomCol, forceNested) a
 
     "switch delimiters (if we can) if the current set isn't multipart
     let switchedDelims = 0
-    if !s:Multipart() && s:AltMultipart() && !g:NERDAllowAnyVisualDelims
+    if !s:Multipart() && s:AltMultipart() && g:NERDAllowAnyVisualDelims
         let switchedDelims = 1
         call nerdcommenter#SwitchToAlternativeDelimiters(0)
     endif
