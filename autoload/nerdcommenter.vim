@@ -114,6 +114,7 @@ let s:delimiterMap = {
     \ 'exports': { 'left': '#' },
     \ 'factor': { 'left': '! ', 'leftAlt': '!# ' },
     \ 'fancy': { 'left': '#' },
+    \ 'fasm': { 'left': ';' },
     \ 'faust': { 'left': '//' },
     \ 'fgl': { 'left': '#' },
     \ 'fluent': { 'left': '#', 'leftAlt': '##' },
