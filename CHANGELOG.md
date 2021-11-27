@@ -1,5 +1,15 @@
 # Changelog
 
+### 2.6.0
+
+* Refactor code to run as autoload plugin
+* Add lots of community contributed file types
+* Fix several languages with idiosyncrasies
+* Improve interoperability with other vim settings
+* Improve handling of ranges
+* Improve help documentation
+* Cleanup and fix vimscript issues
+
 ### 2.5.2
 
 * Minor update to include new file types contributed by the community over the last few months.
