@@ -1429,12 +1429,13 @@ function! s:PlaceDelimitersAndInsBetween() abort
     "    Otherwise, use 'i'.
     let insert = col('.') > strlen(getline('.')) ? 'a' : 'i'
     " 2. Insert comment delimiters.
-    " 3. Move the cursor to the left of the closing delimiter.
+    " 3. Move the cursor to the left of the closing delimiter, without
+    "    breaking undo sequence.
     " 4. Enter insert normal mode again without changing the cursor position.
     "    This ensures that returning to the insert mode after finishing the
     "    script execution does not move the cursor.
-    "                 ( 1  )   (    2     )   (                3               )   (      4     )
-    execute 'normal!' insert . left . right . repeat("\<Left>", strchars(right)) . "\<C-\>\<C-O>"
+    "                 ( 1  )   (    2     )   (                   3                   )   (      4     )
+    execute 'normal!' insert . left . right . repeat("\<C-G>U\<Left>", strchars(right)) . "\<C-\>\<C-O>"
 endfunction
 
 " Function: s:RemoveDelimiters(left, right, line)
