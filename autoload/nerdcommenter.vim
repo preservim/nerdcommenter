@@ -1153,6 +1153,7 @@ endfunction
 "   -lineNo:    the line number of the line to check
 " Return: Number, 1 if the line is a comment, 0 else
 function! nerdcommenter#IsLineCommented(lineNo) abort
+    call nerdcommenter#SetUp()
     let theLine = getline(a:lineNo)
     return s:IsInSexyComment(a:lineNo) || s:IsCommentedFromStartOfLine(s:Left(), theLine) || s:IsCommentedFromStartOfLine(s:Left({'alt': 1}), theLine)
 endfunction
