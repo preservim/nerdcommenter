@@ -345,7 +345,7 @@ let s:delimiterMap = {
     \ 'sh': { 'left': '#' },
     \ 'shader_test': { 'left': '#' },
     \ 'sicad': { 'left': '*' },
-    \ 'sile': { 'left': '%' },
+    \ 'sile': { 'left': '%', 'leftAlt': '--' },
     \ 'simula': { 'left': '%', 'leftAlt': '--' },
     \ 'sinda': { 'left': '$' },
     \ 'skill': { 'left': ';' },
