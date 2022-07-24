@@ -778,10 +778,12 @@ function! s:CommentLines(forceNested, align, firstLine, lastLine) abort
 
             " check if we can comment this line
             if !isCommented || g:NERDUsePlaceHolders || s:Multipart()
+                let lineEmpty = theLine =~# '^\s*$'
+                let leftParam = lineEmpty ? {} : {'space': 1}
                 if a:align ==# 'left' || a:align ==# 'start' || a:align ==# 'both'
-                    let theLine = s:AddLeftDelimAligned(s:Left({'space': 1}), theLine, leftAlignIndx)
+                    let theLine = s:AddLeftDelimAligned(s:Left(leftParam), theLine, leftAlignIndx)
                 else
-                    let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)
+                    let theLine = s:AddLeftDelim(s:Left(leftParam), theLine)
                 endif
                 if a:align ==# 'both'
                     let theLine = s:AddRightDelimAligned(s:Right({'space': 1}), theLine, rightAlignIndx)
