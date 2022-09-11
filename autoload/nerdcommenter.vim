@@ -440,7 +440,8 @@ let s:delimiterMap = {
     \ 'xquery': { 'left': '(:', 'right': ':)' },
     \ 'yaml': { 'left': '#' },
     \ 'z8a': { 'left': ';' },
-    \ 'zig': { 'left': '//' }
+    \ 'zig': { 'left': '//' },
+    \ 'tla': { 'left': '\\*', 'leftAlt': '(*', 'rightAlt': '*)' }
     \ }
 
 let g:NERDDelimiterMap = s:delimiterMap
