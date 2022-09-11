@@ -396,6 +396,7 @@ let s:delimiterMap = {
     \ 'texmf': { 'left': '%' },
     \ 'tf': { 'left': '#' },
     \ 'tidy': { 'left': '#' },
+    \ 'tla': { 'left': '\\*', 'leftAlt': '(*', 'rightAlt': '*)' },
     \ 'tli': { 'left': '#' },
     \ 'tmux': { 'left': '#' },
     \ 'toml': { 'left': '#' },
@@ -440,8 +441,7 @@ let s:delimiterMap = {
     \ 'xquery': { 'left': '(:', 'right': ':)' },
     \ 'yaml': { 'left': '#' },
     \ 'z8a': { 'left': ';' },
-    \ 'zig': { 'left': '//' },
-    \ 'tla': { 'left': '\\*', 'leftAlt': '(*', 'rightAlt': '*)' }
+    \ 'zig': { 'left': '//' }
     \ }
 
 let g:NERDDelimiterMap = s:delimiterMap
