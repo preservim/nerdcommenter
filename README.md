@@ -201,8 +201,8 @@ Most of the following mappings are for normal/visual mode only. The **|NERDComme
 
 While the plugin does not directly support motions, you can leverage its support for selections to do something very similar. For example, to add motions to toggle comments on the paragraph text object you could use:
 ```vim
-nnoremap <silent> <leader>c} V}:call NERDComment('x', 'toggle')<CR>
-nnoremap <silent> <leader>c{ V{:call NERDComment('x', 'toggle')<CR>
+nnoremap <silent> <leader>c} V}:call nerdcommenter#Comment('x', 'toggle')<CR>
+nnoremap <silent> <leader>c{ V{:call nerdcommenter#Comment('x', 'toggle')<CR>
 ```
 
 ## Contributions
