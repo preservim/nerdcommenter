@@ -1,5 +1,12 @@
 # Changelog
 
+### 2.7.0
+
+* Support for many more filetypes
+* Sort out race condition when using utility functions directly
+* Fixup undo support when commenting results in cursor moves
+* Refactor comment insertion code
+
 ### 2.6.0
 
 * Refactor code to run as autoload plugin
