@@ -68,10 +68,12 @@ git clone https://github.com/preservim/nerdcommenter.git
 (For Neovim, change `~/.vim/` to `~/.config/nvim/`.)
 
 ```sh
-curl -fLo ~/.vim/plugin/NERD_Commenter.vim --create-dirs \
+curl -fLo ~/.vim/plugin/nerdcommenter.vim --create-dirs \
   https://raw.githubusercontent.com/preservim/nerdcommenter/master/plugin/nerdcommenter.vim
-curl -fLo ~/.vim/doc/NERD_Commenter.txt --create-dirs \
+curl -fLo ~/.vim/doc/nerdcommenter.txt --create-dirs \
   https://raw.githubusercontent.com/preservim/nerdcommenter/master/doc/nerdcommenter.txt
+curl -fLo ~/.vim/autoload/nerdcommenter.vim --create-dirs \
+  https://raw.githubusercontent.com/preservim/nerdcommenter/master/autoload/nerdcommenter.vim
 ```
 </details>
 
