@@ -1766,6 +1766,8 @@ function! s:UncommentLineNormal(line) abort
     endif
 
 
+    let indxLeft = s:FindDelimiterIndex(s:Left(), line)
+    let indxLeftAlt = s:FindDelimiterIndex(s:Left({'alt': 1}), line)
     let indxLeftPlace = s:FindDelimiterIndex(g:NERDLPlace, line)
     let indxRightPlace = s:FindDelimiterIndex(g:NERDRPlace, line)
 
