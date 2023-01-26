@@ -534,10 +534,10 @@ endfunction
 "    if this function changed the delimiters or not
 " function nerdcommenter#SwitchToAlternativeDelimiters(printMsgs)
 function! nerdcommenter#SwitchToAlternativeDelimiters(printMsgs) abort
-    call nerdcommenter#SetUp()
     if exists('*NERDCommenter_before')
         exe 'call NERDCommenter_before()'
     endif
+    call nerdcommenter#SetUp()
     "if both of the alternative delimiters are empty then there is no
     "alternative comment style so bail out
     if b:NERDCommenterDelims['leftAlt'] ==# '' && b:NERDCommenterDelims['rightAlt'] ==# ''
@@ -1175,10 +1175,10 @@ endfunction
 "    'Minimal', 'Toggle', 'AlignLeft', 'AlignBoth', 'Comment',
 "    'Nested', 'ToEOL', 'Append', 'Insert', 'Uncomment', 'Yank'
 function! nerdcommenter#Comment(mode, type) range abort
-    call nerdcommenter#SetUp()
     if exists('*NERDCommenter_before')
         exe 'call NERDCommenter_before()'
     endif
+    call nerdcommenter#SetUp()
 
     let isVisual = a:mode =~# '[vsx]'
 
