@@ -91,7 +91,7 @@ let s:delimiterMap = {
     \ 'dns': { 'left': ';' },
     \ 'docbk': { 'left': '<!--', 'right': '-->' },
     \ 'dockerfile': { 'left': '#' },
-    \ 'dosbatch': { 'left': 'REM ', 'leftAlt': '::' },
+    \ 'dosbatch': { 'left': 'REM ', 'nested': 1, 'leftAlt': 'REM ', 'nestedAlt': 1 },
     \ 'dosini': { 'left': ';' },
     \ 'dot': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'dracula': { 'left': ';' },
