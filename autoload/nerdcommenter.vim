@@ -2535,7 +2535,7 @@ function! s:IsDelimValid(delimiter, delIndx, line) abort
         endif
 
         # If delimiter is the first non-whitespace character it is valid
-        if a:line =~ '^\s*"'
+        if a:line =~# '^\s*"'
             return 1
         endif
 
