@@ -2534,9 +2534,8 @@ function! s:IsDelimValid(delimiter, delIndx, line) abort
             return 0
         endif
 
-        "if the delimiter is on the very first char of the line or is the
-        "first non-tab/space char on the line then it is a valid comment delimiter
-        if a:delIndx ==# 0 || a:line =~# "^\s\\{" . a:delIndx . "\\}\".*$"
+        # If delimiter is the first non-whitespace character it is valid
+        if a:line =~ '^\s*"'
             return 1
         endif
 
