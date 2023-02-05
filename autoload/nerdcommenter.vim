@@ -50,7 +50,7 @@ let s:delimiterMap = {
     \ 'btm': { 'left': '::' },
     \ 'c': { 'left': '/*', 'right': '*/', 'leftAlt': '//' },
     \ 'cabal': { 'left': '--' },
-    \ 'cairo': { 'left': '#' },
+    \ 'cairo': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'calibre': { 'left': '//' },
     \ 'caos': { 'left': '*' },
     \ 'catalog': { 'left': '--', 'right': '--' },
