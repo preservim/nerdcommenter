@@ -54,6 +54,7 @@ let s:delimiterMap = {
     \ 'calibre': { 'left': '//' },
     \ 'caos': { 'left': '*' },
     \ 'catalog': { 'left': '--', 'right': '--' },
+    \ 'cel': { 'left': '//' },
     \ 'cf': { 'left': '<!---', 'right': '--->' },
     \ 'cfg': { 'left': '#' },
     \ 'cg': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
