@@ -461,6 +461,10 @@ endif
 " This function is responsible for setting up buffer scoped variables for the
 " current buffer.
 function! nerdcommenter#SetUp() abort
+    if exists('b:NERDCommenterDelims')
+        return
+    endif
+
     let filetype = &filetype
 
     "for compound filetypes, if we don't know how to handle the full filetype
