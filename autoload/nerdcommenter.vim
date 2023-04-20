@@ -2524,8 +2524,9 @@ function! s:IsDelimValid(delimiter, delIndx, line) abort
 
     "vim comments are so fucking stupid!! Why the hell do they have comment
     "delimiters that are used elsewhere in the syntax?!?! We need to check
-    "some conditions especially for vim
-    if &filetype ==# 'vim'
+    "some conditions especially for vim. 
+    "Also check &commentstring because it may be overwritten for embedded lua.
+    if &filetype ==# 'vim' && &commentstring[0] ==# '"'
         if !s:IsNumEven(s:CountNonESCedOccurances(preComStr, '"', "\\"))
             return 0
         endif
