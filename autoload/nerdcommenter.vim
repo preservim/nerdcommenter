@@ -421,6 +421,7 @@ let s:delimiterMap = {
     \ 'vala': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'vasp': { 'left': '!' },
     \ 'vb': { 'left': "'" },
+    \ 'vcl': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'velocity': { 'left': '##', 'right': '', 'leftAlt': '#*', 'rightAlt': '*#' },
     \ 'vera': { 'left': '/*', 'right': '*/', 'leftAlt': '//' },
     \ 'verilog': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
