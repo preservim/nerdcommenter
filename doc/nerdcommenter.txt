@@ -66,7 +66,7 @@ creates a namespace so that custom commands don't interfere with Vim's
 built-in shortcuts.
 
 The leader key can be mapped to whatever the user likes (see :help mapleader).
-In the definition of custom commands |<Leader>| is the placeholder for the 
+In the definition of custom commands |<Leader>| is the placeholder for the
 leader key. To see the current mapping for |<Leader>| type :echo mapleader.
 If it reports an undefined variable it means the leader key is set to the
 default of '\'.
@@ -464,38 +464,38 @@ change the filetype back: >
 
 |'NERDCustomDelimiters'|              Add or override delimiters for any
                                       filetypes.
-                                      
+
 |'NERDDefaultNesting'|                Tells the script to use nested comments
                                       by default.
-                                      
+
 |'NERDMenuMode'|                      Specifies how the NERD commenter menu
                                       will appear (if at all).
-                                      
+
 |'NERDLPlace'|                        Specifies what to use as the left
                                       delimiter placeholder when nesting
                                       comments.
-                                      
+
 |'NERDUsePlaceHolders'|               Specifies which filetypes may use
                                       placeholders when nesting comments.
-                                      
+
 |'NERDRemoveAltComs'|                 Tells the script whether to remove
                                       alternative comment delimiters when
                                       uncommenting.
-                                      
+
 |'NERDRemoveExtraSpaces'|             Tells the script to always remove the
                                       extra spaces when uncommenting
                                       (regardless of whether NERDSpaceDelims
                                       is set).
-                                      
+
 |'NERDRPlace'|                        Specifies what to use as the right
                                       delimiter placeholder when nesting
                                       comments.
-                                      
+
 |'NERDSpaceDelims'|                   Specifies whether to add extra spaces
                                       around delimiters when commenting, and
                                       whether to remove them when
                                       uncommenting.
-                                      
+
 |'NERDTrimTrailingWhitespace'|        Specifies if trailing whitespace
                                       should be deleted when uncommenting.
 
@@ -506,7 +506,7 @@ change the filetype back: >
                                       one of 'none', 'left', 'start', or
                                       'both'.
 
-|'NERDToggleCheckAllLines'|           Enable NERDCommenterToggle to check 
+|'NERDToggleCheckAllLines'|           Enable NERDCommenterToggle to check
                                       all selected lines is commented or not.
 
 ------------------------------------------------------------------------------
@@ -826,7 +826,7 @@ again.
 Values: 0 or 1.
 Default 0.
 
-When this option is set to 1, NERDCommenterToggle will check all selected line, 
+When this option is set to 1, NERDCommenterToggle will check all selected line,
 if there have oneline not be commented, then comment all lines.
 
 ------------------------------------------------------------------------------
@@ -901,15 +901,15 @@ NERDComment({mode}, {type})                                    *NERDComment()*
               {mode}:       character indicating the mode in which the comment
                             is requested:
                             'n' for Normal mode, 'x' for Visual mode
-              {type}:       the type of commenting requested. Can be 'Sexy', 
-                            'Invert', 'Minimal', 'Toggle', 'AlignLeft', 
+              {type}:       the type of commenting requested. Can be 'Sexy',
+                            'Invert', 'Minimal', 'Toggle', 'AlignLeft',
                             'AlignBoth', 'Comment', 'Nested', 'ToEOL', 'Append',
                             'Insert', 'Uncomment', 'Yank'
 
 
 NERDCommentIsCharCommented({line}, {col})       *NERDCommentIsCharCommented()*
             Check if the character at [{line}, {col}] is inside a comment
-            Note the Comment delimeter it self is considered as part of the 
+            Note the Comment delimeter it self is considered as part of the
             comment
 
             Args:
