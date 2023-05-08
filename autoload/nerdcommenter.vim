@@ -491,7 +491,7 @@ function! nerdcommenter#SetUp() abort
             endif
         endfor
         " if g:NERD_<filetype>_alt_style is defined, use the alternate style
-        let b:NERDCommenterFirstInit = getbufvar(1,'NERDCommenterFirstInit')
+        let b:NERDCommenterFirstInit = getbufvar(bufnr(),'NERDCommenterFirstInit')
         if exists('g:NERDAltDelims_'.filetype) && eval('g:NERDAltDelims_'.filetype) && !b:NERDCommenterFirstInit
             let b:NERDCommenterFirstInit = 1
             call nerdcommenter#SwitchToAlternativeDelimiters(0)
