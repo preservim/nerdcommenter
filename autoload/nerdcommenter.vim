@@ -81,6 +81,7 @@ let s:delimiterMap = {
     \ 'cython': { 'left': '# ', 'leftAlt': '#' },
     \ 'd': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'dakota': { 'left': '#' },
+    \ 'dart': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'dcl': { 'left': '$!' },
     \ 'debcontrol': { 'left': '#' },
     \ 'debsources': { 'left': '#' },
