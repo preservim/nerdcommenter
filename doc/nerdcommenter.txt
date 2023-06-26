@@ -510,7 +510,7 @@ change the filetype back: >
                                       all selected lines is commented or not.
 
 ------------------------------------------------------------------------------
-4.3 Options details                              *NERDCommenterOptionsDetails*
+4.2 Options details                              *NERDCommenterOptionsDetails*
 
 To enable any of the below options you should put the given line in your
 ~/.vimrc
@@ -855,7 +855,7 @@ file by the following line >
 <
 
 ------------------------------------------------------------------------------
-3.3 Default delimiter customisation               *NERDCommenterDefaultDelims*
+4.3 Default delimiter customisation               *NERDCommenterDefaultDelims*
 
 If you want the NERD commenter to use the alternative delimiters for a
 specific filetype by default then put a line of this form into your vimrc: >
