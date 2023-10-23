@@ -15,6 +15,7 @@ let s:delimiterMap = {
     \ 'ada': { 'left': '--', 'leftAlt': '--  ' },
     \ 'ahdl': { 'left': '--' },
     \ 'ahk': { 'left': ';', 'leftAlt': '/*', 'rightAlt': '*/' },
+    \ 'alloy': { 'left': '/*', 'right': '*/', 'leftAlt': '//' },
     \ 'amiga': { 'left': ';' },
     \ 'aml': { 'left': '/*' },
     \ 'ampl': { 'left': '#' },
