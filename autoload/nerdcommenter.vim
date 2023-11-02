@@ -1319,6 +1319,7 @@ endfunction
 "   -col        the column number of the character
 " Return: Number, 1 if the character is inside a comment, 0 if is not
 function! nerdcommenter#IsCharCommented(line, col) abort
+    call nerdcommenter#SetUp()
   " Function: s:searchfor(str, line, col, direction, [maxline])
   " search str in the buffer, including the character at [line, col]
   " Args:
