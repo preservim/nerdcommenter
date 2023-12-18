@@ -280,6 +280,7 @@ let s:delimiterMap = {
     \ 'ox': { 'left': '//' },
     \ 'paludis-use-conf': { 'left': '#' },
     \ 'pandoc': { 'left': '<!--', 'right': '-->' },
+    \ 'pamenv': { 'left': '#' },
     \ 'pascal': { 'left': '{', 'right': '}', 'leftAlt': '(*', 'rightAlt': '*)' },
     \ 'patran': { 'left': '$', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'pcap': { 'left': '#' },
