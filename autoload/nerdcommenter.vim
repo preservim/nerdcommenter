@@ -24,6 +24,7 @@ let s:delimiterMap = {
     \ 'apachestyle': { 'left': '#' },
     \ 'apdl': { 'left': '!' },
     \ 'applescript': { 'left': '--', 'leftAlt': '(*', 'rightAlt': '*)' },
+    \ 'aptconf': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'armasm': { 'left': ';' },
     \ 'asciidoc': { 'left': '//' },
     \ 'asm': { 'left': ';', 'leftAlt': '#' },
