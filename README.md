@@ -6,6 +6,20 @@ Comment functions so powerful—no comment necessary.
 
 ## Installation
 
+Below are just some of the methods for installing nerdcommenter. Do not follow all of these instructions; just pick your favorite one. Other plugin managers exist, and nerdcommenter should install just fine with any of them.
+
+#### Vim 8+ packages
+
+If you are using VIM version 8 or higher you can use its built-in package 
+solution, remember, in this case you should keep the plugin update manuelly, see `:help packages` for more information. Just run these commands in your terminal:
+
+```bash
+git clone https://github.com/scrooloose/nerdcommenter.git ~/.vim/pack/vendor/start/nerdcommenter
+vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdcommenter/doc" -c q
+```
+
+Otherwise, if you are looking for an automatic way these are some of the several 3rd-party plugin managers you can choose from. Be sure you read the instructions for your chosen plugin, as there typically are additional steps you need to take.
+
 ### Via Plugin Manager (Recommended)
 
 <details>
