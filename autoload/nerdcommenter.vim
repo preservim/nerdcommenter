@@ -91,6 +91,7 @@ let s:delimiterMap = {
     \ 'desktop': { 'left': '#' },
     \ 'dhcpd': { 'left': '#' },
     \ 'diff': { 'left': '#' },
+    \ 'dts': { 'left': '/*', 'right': '*/', 'leftAlt': '//' },
     \ 'django': { 'left': '{% comment %}', 'right': '{% endcomment %}', 'leftAlt': '{#', 'rightAlt': '#}' },
     \ 'dns': { 'left': ';' },
     \ 'docbk': { 'left': '<!--', 'right': '-->' },
