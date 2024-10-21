@@ -418,6 +418,7 @@ let s:delimiterMap = {
     \ 'ttl': { 'left': '#' },
     \ 'tup': { 'left': '#' },
     \ 'twig': { 'left': '{#', 'right': '#}' },
+    \ 'typst': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'txt2tags': { 'left': '%' },
     \ 'typescript': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'typescriptreact': { 'left': '//', 'leftAlt': '{/*', 'rightAlt': '*/}' },
