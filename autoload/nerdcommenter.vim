@@ -421,6 +421,7 @@ let s:delimiterMap = {
     \ 'txt2tags': { 'left': '%' },
     \ 'typescript': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'typescriptreact': { 'left': '//', 'leftAlt': '{/*', 'rightAlt': '*/}' },
+    \ 'typst': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'uc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'uc4': { 'left': '!' },
     \ 'uil': { 'left': '!' },
