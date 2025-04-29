@@ -406,7 +406,7 @@ let s:delimiterMap = {
     \ 'texmf': { 'left': '%' },
     \ 'tf': { 'left': '#' },
     \ 'tidy': { 'left': '#' },
-    \ 'tjp': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' }
+    \ 'tjp': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'tla': { 'left': '\\*', 'leftAlt': '(*', 'rightAlt': '*)' },
     \ 'tli': { 'left': '#' },
     \ 'tmux': { 'left': '#' },
