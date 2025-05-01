@@ -1024,7 +1024,8 @@ function! s:CommentLinesToggle(forceNested, firstLine, lastLine) abort
     let currentLine = a:firstLine
 
     let align = g:NERDDefaultAlign
-    let leftAlignIndx = align ==# 'start' ? 0 : s:LeftMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
+    let lookBehind = align ==# 'previous' && currentLine != 1 && s:IsCommentedFromStartOfLine(s:Left(), getline(currentLine - 1))
+    let leftAlignIndx = align ==# 'start' ? 0 : s:LeftMostIndx(a:forceNested, 0, a:firstLine - lookBehind, a:lastLine)
     let rightAlignIndx = s:RightMostIndx(a:forceNested, 0, a:firstLine, a:lastLine)
     let rightAlignIndx = rightAlignIndx + strlen(s:Left({'space': 1}))
 
@@ -1042,7 +1043,7 @@ function! s:CommentLinesToggle(forceNested, firstLine, lastLine) abort
                 let theLine = s:SwapOuterMultiPartDelimsForPlaceHolders(theLine)
             endif
 
-            if align ==# 'left' || align ==# 'start' || align ==# 'both'
+            if align ==# 'left' || align ==# 'start' || align ==# 'both' || align ==# 'previous'
                 let theLine = s:AddLeftDelimAligned(s:Left({'space': 1}), theLine, leftAlignIndx)
             else
                 let theLine = s:AddLeftDelim(s:Left({'space': 1}), theLine)

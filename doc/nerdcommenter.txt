@@ -503,8 +503,8 @@ change the filetype back: >
                                       style sexy comments.
 
 |'NERDDefaultAlign'|                  Specifies the default alignment to use,
-                                      one of 'none', 'left', 'start', or
-                                      'both'.
+                                      one of 'none', 'left', 'start', 'both'
+                                      or 'previous'.
 
 |'NERDToggleCheckAllLines'|           Enable NERDCommenterToggle to check
                                       all selected lines is commented or not.
@@ -784,7 +784,7 @@ deleted when uncommenting a line.
 
 ------------------------------------------------------------------------------
                                                              *'NERDDefaultAlign'*
-Values: 'none', 'left', 'start', 'both'
+Values: 'none', 'left', 'start', 'both', 'previous'.
 Default 'none'.
 
 Specifies the default alignment to use when inserting comments.
