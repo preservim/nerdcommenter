@@ -452,7 +452,7 @@ let s:delimiterMap = {
     \ 'xmath': { 'left': '#' },
     \ 'xpm2': { 'left': '!' },
     \ 'xquery': { 'left': '(:', 'right': ':)' },
-    \ 'yaml': { 'left': '#' },
+    \ 'yaml': { 'left': '# ' },
     \ 'z8a': { 'left': ';' },
     \ 'zig': { 'left': '//' }
     \ }
