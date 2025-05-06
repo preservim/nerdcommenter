@@ -1291,11 +1291,11 @@ function! nerdcommenter#Comment(mode, type) range abort
 
     elseif a:type ==? 'Yank'
         if isVisual
-            normal! gvy
+            execute 'normal! gv"'. v:register . 'y'
         elseif countWasGiven
-            execute firstLine .','. lastLine .'yank'
+            execute firstLine .','. lastLine .'yank '. v:register
         else
-            normal! yy
+            execute 'normal! "'. v:register .'yy'
         endif
         execute firstLine .','. lastLine .'call nerdcommenter#Comment("'. a:mode .'", "Comment")'
     endif
