@@ -1290,12 +1290,13 @@ function! nerdcommenter#Comment(mode, type) range abort
         call s:UncommentLines(firstLine, lastLine)
 
     elseif a:type ==? 'Yank'
+        let l:register = (v:register ==? '"' ? g:NERDDefaultRegister : v:register)
         if isVisual
-            execute 'normal! gv"'. v:register . 'y'
+            execute 'normal! gv"'. l:register . 'y'
         elseif countWasGiven
-            execute firstLine .','. lastLine .'yank '. v:register
+            execute firstLine .','. lastLine .'yank '. l:register
         else
-            execute 'normal! "'. v:register .'yy'
+            execute 'normal! "'. l:register .'yy'
         endif
         execute firstLine .','. lastLine .'call nerdcommenter#Comment("'. a:mode .'", "Comment")'
     endif
