@@ -136,6 +136,9 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
+
+" Make NERDCommentYank write to a specific register by default, instead of `""`
+let g:NERDDefaultRegister = 'c'
 ```
 
 ### Default mappings
@@ -172,7 +175,7 @@ Most of the following mappings are for normal/visual mode only. The **|NERDComme
 
   * `[count]<leader>cy` **|NERDCommenterYank|**
 
-    Same as <leader>cc except that the commented line(s) are yanked first.
+    Same as <Leader>cc except that it first yanks the commented line(s) [into register x].
 
   * `<leader>c$` **|NERDCommenterToEOL|**
 
