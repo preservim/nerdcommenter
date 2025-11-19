@@ -277,6 +277,7 @@ let s:delimiterMap = {
     \ 'omnimark': { 'left': ';' },
     \ 'ooc': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'openroad': { 'left': '//' },
+    \ 'openscad': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'opl': { 'left': 'REM' },
     \ 'ora': { 'left': '#' },
     \ 'ox': { 'left': '//' },
