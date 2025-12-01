@@ -490,12 +490,16 @@ function! nerdcommenter#SetUp() abort
 
     if has_key(s:delimiterMap, filetype)
         let b:NERDCommenterDelims = copy(s:delimiterMap[filetype])
+        if has_key(b:NERDCommenterDelims, 'marker')
+            let b:NERDSexyComMarker = b:NERDCommenterDelims['marker']
+            let b:NERDSexyComMarkerSet = 1
+        endif
         for i in ['left', 'leftAlt', 'right', 'rightAlt']
             if !has_key(b:NERDCommenterDelims, i)
                 let b:NERDCommenterDelims[i] = ''
             endif
         endfor
-        for i in ['nested', 'nestedAlt']
+        for i in ['nested', 'nestedAlt', 'surround']
             if !has_key(b:NERDCommenterDelims, i)
                 let b:NERDCommenterDelims[i] = 0
             endif
@@ -909,10 +913,15 @@ function! s:CommentLinesSexy(topline, bottomline) abort
     " we jam the comment as far to the right as possible
     let leftAlignIndx = s:LeftMostIndx(1, 1, a:topline, a:bottomline)
 
+    if b:NERDCommenterDelims['surround']
+        execute a:topline . 'normal! O'
+        call setline(a:topline, left)
+        execute a:bottomline+1 . 'normal! o'
+        call setline(a:bottomline+2, right)
     "check if we should use the compact style i.e that the left/right
     "delimiters should appear on the first and last lines of the code and not
     "on separate lines above/below the first/last lines of code
-    if g:NERDCompactSexyComs
+    elseif g:NERDCompactSexyComs
         let spaceString = (g:NERDSpaceDelims ? s:spaceStr : '')
 
         "comment the top line
@@ -2242,7 +2251,7 @@ function! s:GetSexyComMarker(space, esc) abort
     let sexyComMarker = b:NERDSexyComMarker
 
     "if there is no hardcoded marker then we find one
-    if sexyComMarker ==# ''
+    if b:NERDSexyComMarkerSet == 0 && sexyComMarker ==# ''
 
         "if the filetype has c style comments then use standard c sexy
         "comments
