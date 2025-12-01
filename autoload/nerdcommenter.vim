@@ -490,6 +490,10 @@ function! nerdcommenter#SetUp() abort
 
     if has_key(s:delimiterMap, filetype)
         let b:NERDCommenterDelims = copy(s:delimiterMap[filetype])
+        if has_key(b:NERDCommenterDelims, 'marker')
+            let b:NERDSexyComMarker = b:NERDCommenterDelims['marker']
+            let b:NERDSexyComMarkerSet = 1
+        endif
         for i in ['left', 'leftAlt', 'right', 'rightAlt']
             if !has_key(b:NERDCommenterDelims, i)
                 let b:NERDCommenterDelims[i] = ''
@@ -2242,7 +2246,7 @@ function! s:GetSexyComMarker(space, esc) abort
     let sexyComMarker = b:NERDSexyComMarker
 
     "if there is no hardcoded marker then we find one
-    if sexyComMarker ==# ''
+    if b:NERDSexyComMarkerSet == 0 && sexyComMarker ==# ''
 
         "if the filetype has c style comments then use standard c sexy
         "comments
