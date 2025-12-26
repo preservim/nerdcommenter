@@ -43,6 +43,7 @@ call s:InitVariable('g:NERDTrimTrailingWhitespace', 0)
 call s:InitVariable('g:NERDToggleCheckAllLines', 0)
 call s:InitVariable('g:NERDDisableTabsInBlockComm', 0)
 call s:InitVariable('g:NERDSuppressWarnings', 0)
+call s:InitVariable('g:NERDDefaultRegister', '"')
 
 " Section: Comment mapping and menu item setup
 " ===========================================================================

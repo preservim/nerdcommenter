@@ -126,8 +126,9 @@ Toggles the comment state of the selected line(s) individually.
 Comments out the selected lines ``sexily''
 
 
-[count]|<Leader>|cy |NERDCommenterYank|
-Same as |<Leader>|cc except that the commented line(s) are yanked first.
+["x][count]|<Leader>|cy |NERDCommenterYank|
+Same as |<Leader>|cc except that it first yanks the commented line(s) [into
+register x].
 
 
 |<Leader>|c$ |NERDCommenterToEOL|
@@ -280,11 +281,15 @@ Related options:
 ------------------------------------------------------------------------------
 3.2.7 Yank comment map                                     *NERDCommenterYank*
 
-Default mapping: [count]|<Leader>|cy
+Default mapping: ["x]|[count]|<Leader>|cy
 Mapped to: <plug>NERDCommenterYank
 Applicable modes: normal visual visual-line visual-block.
 
-Same as |<Leader>|cc except that it yanks the line(s) that are commented first.
+Same as |<Leader>|cc except that it first yanks the commented line(s) [into
+register x].
+
+Related options:
+|'NERDDefaultRegister'|
 
 ------------------------------------------------------------------------------
 3.2.8 Comment to EOL map                                  *NERDCommenterToEOL*
@@ -508,6 +513,9 @@ change the filetype back: >
 
 |'NERDToggleCheckAllLines'|           Enable NERDCommenterToggle to check
                                       all selected lines is commented or not.
+
+|'NERDDefaultRegister'|               Specifies which register
+                                      |NERDCommenterYank| yanks to.
 
 ------------------------------------------------------------------------------
 4.2 Options details                              *NERDCommenterOptionsDetails*
@@ -813,7 +821,7 @@ As opposed to like this: >
 If this option is set to 1 then the top style will be used.
 
 ------------------------------------------------------------------------------
-                                                          *'NERDDefaultNesting'*
+                                                        *'NERDDefaultNesting'*
 Values: 0 or 1.
 Default 1.
 
@@ -853,6 +861,16 @@ file by the following line >
     \ 'fortran':{'left':'!','leftAlt':'!===BEGIN===!','rightAlt':'!===END===!'}
     \ }
 <
+
+------------------------------------------------------------------------------
+                                                       *'NERDDefaultRegister'*
+Values: single-character string.
+Default '"'.
+
+|NERDCommenterYank| will yank to this register, unless another is specified
+with ["x].
+
+See |registers| for available register names and other details.
 
 ------------------------------------------------------------------------------
 4.3 Default delimiter customisation               *NERDCommenterDefaultDelims*
